@@ -2,8 +2,12 @@ package by.epam.onlinepharmacy.controller;
 
 import by.epam.onlinepharmacy.dto.UserRegDto;
 import by.epam.onlinepharmacy.entity.Role;
+import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.service.UserService;
 import by.epam.onlinepharmacy.service.impl.UserServiceImpl;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 
 import javax.servlet.ServletException;
@@ -15,7 +19,7 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/registration")
 public class RegistrationController extends HttpServlet {
-
+    private Logger logger = LogManager.getLogger();
     private UserService userService = new UserServiceImpl();
 
 
@@ -32,7 +36,20 @@ public class RegistrationController extends HttpServlet {
         UserRegDto userRegDto = new UserRegDto(loginRegistration, passwordRegistration,
                 firstNameRegistration, lastNameRegistration, emailRegistration,
                 telephoneRegistration, userRole);
-        userService.createUser(userRegDto);
+        try {
+            if (userService.createUser(userRegDto)) {
+                req.getRequestDispatcher("/index.jsp").forward(req, resp);
+            } else {
+                String errorRegistration = "Such login already exists";
+                req.getServletContext().setAttribute("errorRegistration", errorRegistration);
+                req.getRequestDispatcher("/registration.jsp").forward(req, resp);
+            }
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, "Exception is in method doPost() " + e.getMessage());
+        }
+    }
+
+}
 //
 //        Properties properties = new Properties();
 //        try {
@@ -47,13 +64,6 @@ public class RegistrationController extends HttpServlet {
 //        MailSender sender = new MailSender(mailTo, subject, body, properties);
 //        sender.send();
 
-//        if (UserRegistrationService.userRegistration(userRegistration, connection)) {
-//            String errorRegistration = "Such login is used";
-//            req.getSession().setAttribute("errorRegistration", errorRegistration);
-//            req.getRequestDispatcher("/registration.jsp").forward(req, resp);
-//        } else {
-        resp.sendRedirect("/verification.jsp");
-    }
-}
+
 
 

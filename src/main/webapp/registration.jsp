@@ -5,7 +5,7 @@
 <h2>Registration</h2>
 </body>
 <form action="/registration" method="post">
-    <p>${sessionScope.errorRegistration}</p>
+    <p>${applicationScope.errorRegistration}</p>
     Login<input type="text" name="loginRegistration"/>
     Password<input type="password" name="passwordRegistration"/>
     First name <input type="text" name="firstNameRegistration"/>

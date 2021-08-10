@@ -15,7 +15,7 @@ import java.util.Properties;
 class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();
     private static final Properties properties = new Properties();
-    private static final String DATABASE_PROPERTIES = "database.properties";
+    private static final String DATABASE_PROPERTIES = "properties/database.properties";
     private static final String PROPERTY_URL = "db.url";
     private static final String PROPERTY_USER = "db.user";
     private static final String PROPERTY_PASSWORD = "db.password";
@@ -34,14 +34,14 @@ class ConnectionFactory {
            DRIVER_CLASS_NAME = properties.getProperty(PROPERTY_DRIVER_CLASS_NAME);
            Class.forName(DRIVER_CLASS_NAME);
        } catch (FileNotFoundException e) {
-           logger.log(Level.FATAL, "File with properties not found: {}", e.getMessage());
-           throw new RuntimeException("File with properties not found: " + e.getMessage());
+           logger.log(Level.FATAL, "File with properties" + DATABASE_PROPERTIES + " not found " + e.getMessage());
+           throw new RuntimeException("File with properties" + DATABASE_PROPERTIES + " not found: " + e.getMessage());
        } catch (IOException e) {
-           logger.log(Level.FATAL, "Reading error: {}", e.getMessage());
+           logger.log(Level.FATAL, "Reading error: " + e.getMessage());
            throw new RuntimeException("Reading error: " + e.getMessage());
        } catch (ClassNotFoundException e) {
-           logger.log(Level.FATAL, "Driver " + properties.getProperty(PROPERTY_DRIVER_CLASS_NAME) + "not found");
-           throw new RuntimeException("Driver " + properties.getProperty(PROPERTY_DRIVER_CLASS_NAME) + "not found");
+           logger.log(Level.FATAL, "Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found " + e.getMessage());
+           throw new RuntimeException("Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found " + e.getMessage());
        }
    }
 

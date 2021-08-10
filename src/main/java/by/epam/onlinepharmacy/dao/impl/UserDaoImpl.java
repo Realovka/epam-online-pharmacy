@@ -11,12 +11,15 @@ import java.sql.SQLException;
 
 public class UserDaoImpl implements UserDao {
     private ConnectionPool connectionPool = ConnectionPool.INSTANCE;
+    private static final String CREATE_USER = """
+        INSERT INTO users (login, password, first_name, last_name, email, telephone, role_id)
+        VALUES(?, ?, ?, ?,  ?, ?, (SELECT role_id FROM user_role WHERE role=?))
+         """;
 
     @Override
     public void createUser(User user)  {
-        try {
-            String sql = "INSERT INTO users VALUES (default , ?,?,?,?,?,?,?, default)";
-            PreparedStatement ps = connectionPool.getConnection().prepareStatement(sql);
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(CREATE_USER)) {
             ps.setString(1, user.getLogin());
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getFirstName());

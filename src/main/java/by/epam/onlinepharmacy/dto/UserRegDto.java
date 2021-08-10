@@ -11,7 +11,8 @@ public class UserRegDto {
     private String telephone;
     private Role role;
 
-    public UserRegDto(String login, String password, String firstName, String lastName, String email, String telephone, Role role) {
+    public UserRegDto(String login, String password, String firstName,
+                      String lastName, String email, String telephone, Role role) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;

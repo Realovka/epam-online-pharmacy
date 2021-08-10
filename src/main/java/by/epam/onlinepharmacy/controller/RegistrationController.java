@@ -2,23 +2,18 @@ package by.epam.onlinepharmacy.controller;
 
 import by.epam.onlinepharmacy.dto.UserRegDto;
 import by.epam.onlinepharmacy.entity.Role;
-import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.service.UserService;
 import by.epam.onlinepharmacy.service.impl.UserServiceImpl;
-import by.epam.onlinepharmacy.verification.MailSender;
 
 
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.Properties;
 
-//@WebServlet(urlPatterns = "/registration")
+@WebServlet(urlPatterns = "/registration")
 public class RegistrationController extends HttpServlet {
 
     private UserService userService = new UserServiceImpl();
@@ -33,9 +28,10 @@ public class RegistrationController extends HttpServlet {
         String lastNameRegistration = req.getParameter("lastNameRegistration");
         String emailRegistration = req.getParameter("emailRegistration");
         String telephoneRegistration = req.getParameter("telephoneRegistration");
-        Role userRole = Role.valueOf(req.getParameter("role"));
+        Role userRole = Role.valueOf(String.valueOf(req.getParameter("role")));
         UserRegDto userRegDto = new UserRegDto(loginRegistration, passwordRegistration,
-                firstNameRegistration, lastNameRegistration, emailRegistration, telephoneRegistration, userRole);
+                firstNameRegistration, lastNameRegistration, emailRegistration,
+                telephoneRegistration, userRole);
         userService.createUser(userRegDto);
 //
 //        Properties properties = new Properties();

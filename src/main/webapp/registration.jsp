@@ -10,8 +10,8 @@
     Password<input type="password" name="passwordRegistration"/>
     First name <input type="text" name="firstNameRegistration"/>
     Last name <input type="text" name="lastNameRegistration"/>
-    email <input type="text" name="emailRegistration"/>
-    Telephone <input type="text" name="telephoneRegistration"/>
+    email <input type="email" name="emailRegistration"/>
+    Telephone <input type="tel" name="telephoneRegistration"/>
     Role <select name="role">
     <option>PHARMACIST</option>
     <option>CUSTOMER</option>

@@ -16,27 +16,26 @@ public enum ConnectionPool {
     INSTANCE;
 
     private Logger logger = LogManager.getLogger();
+    private static final int DEFAULT_POOL_SIZE = 8;
     private BlockingQueue<ProxyConnection> freeConnections;
     private Queue<ProxyConnection> givenAwayConnections;
 
-    private static final int DEFAULT_POOL_SIZE = 32;
 
     ConnectionPool() {
         freeConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
         givenAwayConnections = new ArrayDeque<>();
-        logger.log(Level.INFO, "Try to create connection pool");
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
                 Connection connection = ConnectionFactory.getConnection();
                 ProxyConnection proxyConnection = new ProxyConnection(connection);
                 freeConnections.add(proxyConnection);
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "coudn't create connection to data base: " + e.getMessage());
+                logger.log(Level.ERROR, "Couldn't create connection to database: " + e.getMessage());
             }
         }
         if (freeConnections.size() == 0) {
-            logger.log(Level.FATAL, "connections poll don't created, pool size: " + freeConnections.size());
-            throw new RuntimeException("connections poll don't created");
+            logger.log(Level.FATAL, "Connection poll wasn't created, pool size: " + freeConnections.size());
+            throw new RuntimeException("Connection poll wasn't created, pool size: " + freeConnections.size());
         }
         logger.log(Level.INFO, "Connection pool was created");
     }
@@ -47,24 +46,29 @@ public enum ConnectionPool {
             connection = freeConnections.take();
             givenAwayConnections.offer(connection);
         } catch (InterruptedException e) {
-            logger.log(Level.ERROR, "InterruptedException in method getConnection ", e);
+            logger.log(Level.ERROR, "InterruptedException in method getConnection() " + e.getMessage());
+            Thread.currentThread().interrupt();
         }
         return connection;
     }
 
     public void releaseConnection(Connection connection) {
-        if (connection instanceof ProxyConnection) {
-            givenAwayConnections.remove(connection);
-            freeConnections.offer((ProxyConnection) connection);
+        if (connection instanceof ProxyConnection && givenAwayConnections.remove(connection)) {
+            try {
+                freeConnections.put((ProxyConnection) connection);
+            } catch (InterruptedException e) {
+                logger.log(Level.ERROR, "InterruptedException in method releaseConnection() " + e.getMessage());
+                Thread.currentThread().interrupt();
+            }
         }
     }
 
     public void destroyPool() {
-        for(int i = 0; i < DEFAULT_POOL_SIZE; i++) {
+        for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
                 freeConnections.take().reallyClose();
             } catch (InterruptedException e) {
-
+                logger.log(Level.ERROR, "InterruptedException in method destroyPool() " + e.getMessage());
             }
         }
         deregisterDrivers();
@@ -76,7 +80,7 @@ public enum ConnectionPool {
                 DriverManager.deregisterDriver(driver);
 
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "SQLException in method deregisterDrivers() ", e);
+                logger.log(Level.ERROR, "SQLException in method deregisterDrivers() " + e.getMessage());
             }
         });
     }

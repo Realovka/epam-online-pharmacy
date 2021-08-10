@@ -16,16 +16,14 @@ public class UserServiceImpl implements UserService {
 //        if (userDao.containsByLogin(userRegDTO.getLoginUserDTO()).isPresent()) {
 //            throw new DuplicateUserException("Such user is already");
 //        }
-        User user = new User(userRegDto.getLogin(),userRegDto.getPassword(), userRegDto.getFirstName(),
-                userRegDto.getLastName(), userRegDto.getEmail(), userRegDto.getTelephone(), userRegDto.getRole());
+        User user = new User.Builder()
+                .setLogin(userRegDto.getLogin())
+                .setPassword(userRegDto.getPassword())
+                .setFirstName(userRegDto.getFirstName())
+                .setLastName(userRegDto.getLastName())
+                .setEmail(userRegDto.getEmail())
+                .setTelephone(userRegDto.getTelephone())
+                .setRole(userRegDto.getRole()).build();
         userDao.createUser(user);
     }
-
-//    public boolean authorizeUser(UserAuthDTO userAuthDTO) {
-//        User user = new User (userAuthDTO.getLoginAuthUser(),userAuthDTO.getPasswordAuthUser());
-//        if (userDao.containsUser(user).isEmpty()) {
-//            throw new NoSuchUserException("No such user in DB");
-//        }
-//        return true;
-//    }
 }

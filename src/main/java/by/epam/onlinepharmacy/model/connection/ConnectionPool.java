@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.connection;
+package by.epam.onlinepharmacy.model.connection;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -16,7 +16,7 @@ public enum ConnectionPool {
     INSTANCE;
 
     private Logger logger = LogManager.getLogger();
-    private static final int DEFAULT_POOL_SIZE = 8;
+    private static final int DEFAULT_POOL_SIZE = 4;
     private BlockingQueue<ProxyConnection> freeConnections;
     private Queue<ProxyConnection> givenAwayConnections;
 

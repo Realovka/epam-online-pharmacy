@@ -3,8 +3,8 @@ package by.epam.onlinepharmacy.controller;
 import by.epam.onlinepharmacy.dto.UserRegDto;
 import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.exception.ServiceException;
-import by.epam.onlinepharmacy.service.UserService;
-import by.epam.onlinepharmacy.service.impl.UserServiceImpl;
+import by.epam.onlinepharmacy.model.service.UserService;
+import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = "/registration")
+@WebServlet(urlPatterns = "/reg")
 public class RegistrationController extends HttpServlet {
     private Logger logger = LogManager.getLogger();
     private UserService userService = new UserServiceImpl();

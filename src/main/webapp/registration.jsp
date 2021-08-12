@@ -1,10 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
+<head>
+    <title>Registration</title>
+</head>
 <body>
-<h2>Registration</h2>
-</body>
-<form action="/registration" method="post">
+<div style="text-align: center">
+    <h1>Registration</h1>
+<form action="/reg" method="post">
     <p>${applicationScope.errorRegistration}</p>
     Login<input type="text" name="loginRegistration"/>
     Password<input type="password" name="passwordRegistration"/>
@@ -19,4 +22,6 @@
 </select>
     <input type="submit" name="Registration">
 </form>
+</div>
+</body>
 </html>

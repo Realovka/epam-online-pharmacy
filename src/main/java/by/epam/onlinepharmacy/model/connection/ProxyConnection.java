@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.connection;
+package by.epam.onlinepharmacy.model.connection;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;

@@ -40,9 +40,16 @@ public class UserDaoImpl implements UserDao {
             JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST'
              """;
 
-    private static final String VERIFY_PHARMACIST = """
-            UPDATE users SET status_id = (SELECT status_id FROM user_status WHERE status='ACTIVE') WHERE user_id=?
+    private static final String CHANGE_PHARMACIST_STATUS = """
+            UPDATE users SET status_id = (SELECT status_id FROM user_status WHERE status=?) WHERE user_id=?
             """;
+
+    private static final String FIND_INACTIVE_PHARMACISTS = """
+            SELECT u.user_id, u.first_name, u.last_name, us.status FROM users u JOIN user_status us ON u.status_id=us.status_id
+            JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST' AND us.status='INACTIVE'
+             """;
+
+
 
     @Override
     public void createUser(User user) throws DaoException {
@@ -127,14 +134,39 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void verifyPharmacist(long id) throws DaoException {
+    public void changePharmacistStatus(long id, Status status) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(VERIFY_PHARMACIST)) {
-            preparedStatement.setLong(1, id);
+            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PHARMACIST_STATUS)) {
+            preparedStatement.setString(1, String.valueOf(status));
+            preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method verifyPharmacists() " + e.getMessage());
-            throw new DaoException("SQLException in method verifyPharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method changePharmacists() " + e.getMessage());
+            throw new DaoException("SQLException in method changePharmacists() " + e.getMessage());
         }
     }
+
+    @Override
+    public List<User> findInactivePharmacists() throws DaoException {
+        List<User> inactivePharmacists = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_INACTIVE_PHARMACISTS)) {
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User.Builder()
+                            .setUserId(rs.getLong(NameColumn.USER_ID))
+                            .setFirstName(rs.getString(NameColumn.FIRST_NAME))
+                            .setLastName(rs.getString(NameColumn.LAST_NAME))
+                            .setStatus(Status.valueOf(rs.getString(NameColumn.STATUS)))
+                            .build();
+                    inactivePharmacists.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findInactivePharmacists() " + e.getMessage());
+            throw new DaoException("SQLException in method findInactivePharmacists() " + e.getMessage());
+        }
+        return inactivePharmacists;
+    }
+
 }

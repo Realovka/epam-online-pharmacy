@@ -2,6 +2,8 @@ package by.epam.onlinepharmacy.model.service.impl;
 
 import by.epam.onlinepharmacy.dto.UserAuthDto;
 import by.epam.onlinepharmacy.dto.UserRegDto;
+import by.epam.onlinepharmacy.dto.UserViewDto;
+import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -15,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
@@ -70,7 +73,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findAllPharmacists() throws ServiceException {
+    public List<UserViewDto> findAllPharmacists() throws ServiceException {
         List<User> pharmacists;
         try {
            pharmacists =userDao.findAllPharmacists();
@@ -78,18 +81,42 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Exception is in method findAllPharmacists() " + e.getMessage());
             throw new ServiceException("Exception is in method findAllPharmacists() " + e.getMessage());
         }
-        return pharmacists;
+        return pharmacists.stream()
+                .map(pharmacist-> new UserViewDto.Builder()
+                        .setUserId(pharmacist.getUserId())
+                        .setFirstName(pharmacist.getFirstName())
+                        .setLastName(pharmacist.getLastName())
+                        .setStatus(pharmacist.getStatus())
+                        .build()).collect(Collectors.toList());
     }
 
     @Override
-    public void verifyPharmacist(String id) throws ServiceException {
+    public void changePharmacistStatus(String id, Status status) throws ServiceException {
         try {
-            userDao.verifyPharmacist(Integer.parseInt(id));
+            userDao.changePharmacistStatus(Long.parseLong(id), status);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method verifyPharmacists() " + e.getMessage());
-            throw new ServiceException("Exception is in method verifyPharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method verifyPharmacist() " + e.getMessage());
+            throw new ServiceException("Exception is in method verifyPharmacist() " + e.getMessage());
         }
-
     }
+
+    @Override
+    public List<UserViewDto> findInactivePharmacists() throws ServiceException {
+        List<User> inactivePharmacists;
+        try {
+            inactivePharmacists =userDao.findInactivePharmacists();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method findInactivePharmacists() " + e.getMessage());
+            throw new ServiceException("Exception is in method findInactivePharmacists() " + e.getMessage());
+        }
+        return inactivePharmacists.stream()
+                .map(pharmacist-> new UserViewDto.Builder()
+                        .setUserId(pharmacist.getUserId())
+                        .setFirstName(pharmacist.getFirstName())
+                        .setLastName(pharmacist.getLastName())
+                        .setStatus(pharmacist.getStatus())
+                        .build()).collect(Collectors.toList());
+    }
+
 
 }

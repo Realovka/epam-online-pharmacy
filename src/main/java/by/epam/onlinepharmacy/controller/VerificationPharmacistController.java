@@ -1,5 +1,7 @@
 package by.epam.onlinepharmacy.controller;
 
+import by.epam.onlinepharmacy.dto.UserViewDto;
+import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -25,14 +27,14 @@ public class VerificationPharmacistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        List<User> pharmacists = new ArrayList<>();
+        List<UserViewDto> pharmacists = new ArrayList<>();
         try {
-            userService.verifyPharmacist(id);
+            userService.changePharmacistStatus(id, Status.ACTIVE);
             pharmacists = userService.findAllPharmacists();
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method doGet()" + e.getMessage());
         }
         req.getSession().setAttribute("allPharmacists", pharmacists);
-        req.getRequestDispatcher("/verificationpharmacists.jsp").forward(req, resp);
+        req.getRequestDispatcher("/allpharmacists.jsp").forward(req, resp);
     }
 }

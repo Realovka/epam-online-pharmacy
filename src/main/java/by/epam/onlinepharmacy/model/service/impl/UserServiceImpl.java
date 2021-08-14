@@ -122,13 +122,29 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateLogin(String id, String login) throws ServiceException {
+    public boolean updateLogin(long id, String login) throws ServiceException {
         try {
-            userDao.updateLogin(Long.parseLong(id), login);
+            Optional<User> user = userDao.findByLogin(login);
+            if (user.isEmpty()) {
+                userDao.updateLogin(id, login);
+                return true;
+            }
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Exception is in method updateLogin() " + e.getMessage());
             throw new ServiceException("Exception is in method updateLogin() " + e.getMessage());
         }
+        return false;
+    }
+
+    @Override
+    public void updateFirstName(long id, String firstName) throws ServiceException {
+        try {
+            userDao.updateFirstName(id, firstName);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method updateFirstName() " + e.getMessage());
+            throw new ServiceException("Exception is in method updateFirstName() " + e.getMessage());
+        }
+
     }
 
 

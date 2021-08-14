@@ -46,7 +46,7 @@ public class AuthenticationController extends HttpServlet {
             }
         } else {
             String errorAuthentication = "Login or password are incorrect";
-            req.getServletContext().setAttribute("errorAuthentication", errorAuthentication);
+            req.setAttribute("errorAuthentication", errorAuthentication);
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }
 

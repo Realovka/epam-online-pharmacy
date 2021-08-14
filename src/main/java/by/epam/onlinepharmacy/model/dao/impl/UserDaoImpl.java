@@ -50,10 +50,11 @@ public class UserDaoImpl implements UserDao {
             JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST' AND us.status='INACTIVE'
              """;
 
-    private static final String UPDATE_USER_LOGIN = """
-            UPDATE users SET login =? WHERE user_id =?
-            """;
-
+    private static final String UPDATE_USER_LOGIN = "UPDATE users SET login =? WHERE user_id =?";
+    private static final String UPDATE_USER_FIRST_NAME = "UPDATE users SET first_name =? WHERE user_id =?";
+    private static final String UPDATE_USER_LAST_NAME = "UPDATE users SET last_name =? WHERE user_id =?";
+    private static final String UPDATE_USER_EMAIL = "UPDATE users SET email =? WHERE user_id =?";
+    private static final String UPDATE_USER_TELEPHONE = "UPDATE users SET telephone =? WHERE user_id =?";
 
 
     @Override
@@ -187,6 +188,58 @@ public class UserDaoImpl implements UserDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateLogin() " + e.getMessage());
             throw new DaoException("SQLException in method updateLogin() " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateFirstName(long id, String firstName) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_FIRST_NAME)) {
+            preparedStatement.setString(1, firstName);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateFirstName() " + e.getMessage());
+            throw new DaoException("SQLException in method updateFirstName() " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateLastName(long id, String lastName) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_LAST_NAME)) {
+            preparedStatement.setString(1, lastName);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateLastName() " + e.getMessage());
+            throw new DaoException("SQLException in method updateLastName() " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateEmail(long id, String email) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_EMAIL)) {
+            preparedStatement.setString(1, email);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateEmail() " + e.getMessage());
+            throw new DaoException("SQLException in method updateEmail() " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void updateTelephone(long id, String telephone) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_TELEPHONE)) {
+            preparedStatement.setString(1, telephone);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateTelephone() " + e.getMessage());
+            throw new DaoException("SQLException in method updateTelephone() " + e.getMessage());
         }
     }
 

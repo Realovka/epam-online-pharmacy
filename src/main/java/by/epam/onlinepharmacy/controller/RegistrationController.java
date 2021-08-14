@@ -41,7 +41,7 @@ public class RegistrationController extends HttpServlet {
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
             } else {
                 String errorRegistration = "Such login already exists";
-                req.getServletContext().setAttribute("errorRegistration", errorRegistration);
+                req.setAttribute("errorRegistration", errorRegistration);
                 req.getRequestDispatcher("/registration.jsp").forward(req, resp);
             }
         } catch (ServiceException e) {

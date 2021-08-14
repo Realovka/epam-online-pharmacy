@@ -36,7 +36,7 @@
     </table>
 </c:when>
 <c:otherwise>
-    <label>No inactive pharmacists</label>
+    <label>No inactive pharmacists</label><br>
 </c:otherwise>
 </c:choose>
 <a href="/admin/adminmain.jsp">Main</a>

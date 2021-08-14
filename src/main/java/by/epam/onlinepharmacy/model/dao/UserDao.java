@@ -15,4 +15,8 @@ public interface UserDao {
     void changePharmacistStatus(long id, Status status) throws DaoException;
     List<User> findInactivePharmacists() throws DaoException;
     void updateLogin(long id, String login) throws DaoException;
+    void updateFirstName(long id, String firstName) throws DaoException;
+    void updateLastName(long id, String lastName) throws DaoException;
+    void updateEmail(long id, String email) throws DaoException;
+    void updateTelephone(long id, String telephone) throws DaoException;
 }

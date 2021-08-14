@@ -16,5 +16,6 @@ public interface UserService {
     List<UserViewDto> findAllPharmacists() throws ServiceException;
     void changePharmacistStatus(String id, Status status) throws ServiceException;
     List<UserViewDto> findInactivePharmacists() throws ServiceException;
-    void updateLogin(String id, String login) throws ServiceException;
+    boolean updateLogin(long id, String login) throws ServiceException;
+    void updateFirstName(long id, String firstName) throws ServiceException;
 }

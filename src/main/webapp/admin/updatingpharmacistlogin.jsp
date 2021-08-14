@@ -7,9 +7,8 @@
 <body>
 <h1 style="text-align: center">Update login</h1>
 <form action="/updatePharmacistLogin" method="post">
-    <p>${applicationScope.errorUpdatingLogin}</p>
-    Login<input type="text" name="newLogin"/>
-    <input type="hidden" name="id" value="${requestScope.id}"/>
+    <p>${requestScope.errorUpdatingLogin}</p>
+    <input type="text" name="newLogin" placeholder="new login"/>
     <input type="submit" name="Update login"/>
 </form>
 <a href="/admin/adminmain.jsp">Main</a>

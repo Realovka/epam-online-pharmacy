@@ -8,9 +8,9 @@
 <div style="text-align: center">
     <h1>Authorization</h1>
 <form action="/auth" method="post">
-    <p>${applicationScope.errorAuthentication}</p>
-    Login<input type="text" name="loginAuthorization"/>
-    Password<input type="password" name="passwordAuthorization"/>
+    <p>${requestScope.errorAuthentication}</p>
+    <input type="text" name="loginAuthorization" placeholder="login"/>
+    <input type="password" name="passwordAuthorization" placeholder="password"/>
     <input type="submit" name="Authorization"/>
     <a href="/registration.jsp">Registration</a>
     <a href="/logout">Logout</a>

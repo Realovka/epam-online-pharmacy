@@ -33,6 +33,6 @@ public class AllPharmacistsController extends HttpServlet {
             logger.log(Level.ERROR, "Exception is in method doGet() " + e.getMessage());
         }
         req.getSession().setAttribute("allPharmacists", pharmacists);
-        req.getRequestDispatcher("/allpharmacists.jsp").forward(req, resp);
+        req.getRequestDispatcher("admin/allpharmacists.jsp").forward(req, resp);
     }
 }

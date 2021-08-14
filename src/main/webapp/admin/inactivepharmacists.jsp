@@ -39,5 +39,7 @@
     <label>No inactive pharmacists</label>
 </c:otherwise>
 </c:choose>
+<a href="/admin/adminmain.jsp">Main</a>
+<a href="/logout">Logout</a>
 </body>
 </html>

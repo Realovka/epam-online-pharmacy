@@ -31,6 +31,6 @@ public class InactivePharmacistsController extends HttpServlet {
             logger.log(Level.ERROR, "Exception is in method doGet() " + e.getMessage());
         }
         req.getSession().setAttribute("inactivePharmacists", inactivePharmacists);
-        req.getRequestDispatcher("/inactivepharmacists.jsp").forward(req, resp);
+        req.getRequestDispatcher("admin/inactivepharmacists.jsp").forward(req, resp);
     }
 }

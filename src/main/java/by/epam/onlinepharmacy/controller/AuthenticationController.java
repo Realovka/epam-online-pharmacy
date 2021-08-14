@@ -42,7 +42,7 @@ public class AuthenticationController extends HttpServlet {
                 //TODO roles
                 case PHARMACIST -> req.getRequestDispatcher("/pharmacistmain.jsp").forward(req, resp);
                 case CUSTOMER -> req.getRequestDispatcher("/customermain.jsp").forward(req, resp);
-                case ADMIN -> req.getRequestDispatcher("/adminmain.jsp").forward(req, resp);
+                case ADMIN -> req.getRequestDispatcher("admin/adminmain.jsp").forward(req, resp);
             }
         } else {
             String errorAuthentication = "Login or password are incorrect";

@@ -63,8 +63,8 @@ public class UserServiceImpl implements UserService {
         try {
            userFromDb = userDao.authenticationUser(user);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method authenticationUserByLoginAndPassword() " + e.getMessage());
-            throw new ServiceException("Exception is in method authenticationUserByLoginAndPassword() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method authenticationUser() " + e.getMessage());
+            throw new ServiceException("Exception is in method authenticationUser() " + e.getMessage());
        }
        if(userFromDb.isEmpty()) {
            userFromDb = Optional.empty();
@@ -84,8 +84,11 @@ public class UserServiceImpl implements UserService {
         return pharmacists.stream()
                 .map(pharmacist-> new UserViewDto.Builder()
                         .setUserId(pharmacist.getUserId())
+                        .setLogin(pharmacist.getLogin())
                         .setFirstName(pharmacist.getFirstName())
                         .setLastName(pharmacist.getLastName())
+                        .setTelephone(pharmacist.getTelephone())
+                        .setEmail(pharmacist.getEmail())
                         .setStatus(pharmacist.getStatus())
                         .build()).collect(Collectors.toList());
     }
@@ -116,6 +119,16 @@ public class UserServiceImpl implements UserService {
                         .setLastName(pharmacist.getLastName())
                         .setStatus(pharmacist.getStatus())
                         .build()).collect(Collectors.toList());
+    }
+
+    @Override
+    public void updateLogin(String id, String login) throws ServiceException {
+        try {
+            userDao.updateLogin(Long.parseLong(id), login);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method updateLogin() " + e.getMessage());
+            throw new ServiceException("Exception is in method updateLogin() " + e.getMessage());
+        }
     }
 
 

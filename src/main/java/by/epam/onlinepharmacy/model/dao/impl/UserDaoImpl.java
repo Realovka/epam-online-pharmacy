@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
             INSERT INTO users (login, password, first_name, last_name, email, telephone, role_id)
             VALUES(?, ?, ?, ?, ?, ?, (SELECT role_id FROM user_role WHERE role=?))
              """;
-    private static final String FIND_BY_LOGIN = "SELECT login FROM users WHERE login= ?";
+    private static final String FIND_BY_LOGIN = "SELECT login FROM users WHERE login=?";
 
     private static final String IDENT_USER = """
             SELECT u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
@@ -36,11 +36,12 @@ public class UserDaoImpl implements UserDao {
             """;
 
     private static final String FIND_ALL_PHARMACISTS = """
-            SELECT u.user_id, u.first_name, u.last_name, us.status FROM users u JOIN user_status us ON u.status_id=us.status_id
+            SELECT u.user_id, u.login, u.first_name, u.last_name, u.telephone, u.email, us.status FROM users u 
+            JOIN user_status us ON u.status_id=us.status_id
             JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST'
              """;
 
-    private static final String CHANGE_PHARMACIST_STATUS = """
+    private static final String UPDATE_PHARMACIST_STATUS = """
             UPDATE users SET status_id = (SELECT status_id FROM user_status WHERE status=?) WHERE user_id=?
             """;
 
@@ -48,6 +49,10 @@ public class UserDaoImpl implements UserDao {
             SELECT u.user_id, u.first_name, u.last_name, us.status FROM users u JOIN user_status us ON u.status_id=us.status_id
             JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST' AND us.status='INACTIVE'
              """;
+
+    private static final String UPDATE_USER_LOGIN = """
+            UPDATE users SET login =? WHERE user_id =?
+            """;
 
 
 
@@ -119,8 +124,11 @@ public class UserDaoImpl implements UserDao {
                 while (rs.next()) {
                     User user = new User.Builder()
                             .setUserId(rs.getLong(NameColumn.USER_ID))
+                            .setLogin(rs.getString(NameColumn.LOGIN))
                             .setFirstName(rs.getString(NameColumn.FIRST_NAME))
                             .setLastName(rs.getString(NameColumn.LAST_NAME))
+                            .setTelephone(rs.getString(NameColumn.TELEPHONE))
+                            .setEmail(rs.getString(NameColumn.EMAIL))
                             .setStatus(Status.valueOf(rs.getString(NameColumn.STATUS)))
                             .build();
                     pharmacists.add(user);
@@ -136,7 +144,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void changePharmacistStatus(long id, Status status) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(CHANGE_PHARMACIST_STATUS)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACIST_STATUS)) {
             preparedStatement.setString(1, String.valueOf(status));
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
@@ -168,5 +176,19 @@ public class UserDaoImpl implements UserDao {
         }
         return inactivePharmacists;
     }
+
+    @Override
+    public void updateLogin(long id, String login) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_LOGIN)) {
+            preparedStatement.setString(1, login);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateLogin() " + e.getMessage());
+            throw new DaoException("SQLException in method updateLogin() " + e.getMessage());
+        }
+    }
+
 
 }

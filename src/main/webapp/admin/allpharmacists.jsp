@@ -42,12 +42,15 @@
     </table>
 
     <h2 style="text-align: left">Active pharmacists</h2>
-    <label>Click on id if you want inactivate pharmacist</label>
+    <label>Click on parameter if you want to change it</label>
     <table border="3">
         <thead>
         <th>Id</th>
+        <th>Login</th>
         <th>First name</th>
         <th>Last name</th>
+        <th>Telephone</th>
+        <th>email</th>
         <th>Status</th>
         </thead>
 
@@ -56,16 +59,26 @@
                 <c:when test="${pharmacist.status.equals(Status.ACTIVE)}">
                     <tr>
                         <td>
-                            <a href="/inactivationPharmacist?id=${pharmacist.userId}">${pharmacist.userId}</a>
+                                ${pharmacist.userId}
                         </td>
                         <td>
-                                ${pharmacist.firstName}
+                            <a href="/updateLogin?id=${pharmacist.userId}">${pharmacist.login}</a>
                         </td>
                         <td>
-                                ${pharmacist.lastName}
+                            <a href="/updateFirstName?id=${pharmacist.userId}">${pharmacist.firstName}</a>
+
                         </td>
                         <td>
-                                ${pharmacist.status}
+                            <a href="/updateLastName?id=${pharmacist.userId}">${pharmacist.lastName}</a>
+                        </td>
+                        <td>
+                            <a href="/updateTelephone?id=${pharmacist.userId}">${pharmacist.telephone}</a>
+                        </td>
+                        <td>
+                            <a href="/updateEmail?id=${pharmacist.userId}">${pharmacist.email}</a>
+                        </td>
+                        <td>
+                            <a href="/inactivationPharmacist?id=${pharmacist.userId}">${pharmacist.status}</a>
                         </td>
                     </tr>
                 </c:when>
@@ -73,6 +86,7 @@
         </c:forEach>
     </table>
 </c:if>
+<a href="/admin/adminmain.jsp">Main</a>
 <a href="/logout">Logout</a>
 </div>
 </body>

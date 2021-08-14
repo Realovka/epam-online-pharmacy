@@ -88,6 +88,5 @@
 </c:if>
 <a href="/admin/adminmain.jsp">Main</a>
 <a href="/logout">Logout</a>
-</div>
 </body>
 </html>

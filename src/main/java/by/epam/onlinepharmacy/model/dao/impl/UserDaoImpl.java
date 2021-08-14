@@ -1,9 +1,10 @@
 package by.epam.onlinepharmacy.model.dao.impl;
 
+import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
 
-import by.epam.onlinepharmacy.model.dao.NameColumn;
+import by.epam.onlinepharmacy.model.dao.ColumnName;
 import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.entity.User;
@@ -28,6 +29,7 @@ public class UserDaoImpl implements UserDao {
             INSERT INTO users (login, password, first_name, last_name, email, telephone, role_id)
             VALUES(?, ?, ?, ?, ?, ?, (SELECT role_id FROM user_role WHERE role=?))
              """;
+
     private static final String FIND_BY_LOGIN = "SELECT login FROM users WHERE login=?";
 
     private static final String IDENT_USER = """
@@ -103,9 +105,9 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(new User.Builder()
-                            .setFirstName(rs.getString(NameColumn.FIRST_NAME))
-                            .setLastName(rs.getString(NameColumn.LAST_NAME))
-                            .setRole(Role.valueOf(rs.getString(NameColumn.ROLE)))
+                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
+                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
+                            .setRole(Role.valueOf(rs.getString(ColumnName.USER_ROLE)))
                             .build());
                 }
             }
@@ -124,13 +126,13 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(NameColumn.USER_ID))
-                            .setLogin(rs.getString(NameColumn.LOGIN))
-                            .setFirstName(rs.getString(NameColumn.FIRST_NAME))
-                            .setLastName(rs.getString(NameColumn.LAST_NAME))
-                            .setTelephone(rs.getString(NameColumn.TELEPHONE))
-                            .setEmail(rs.getString(NameColumn.EMAIL))
-                            .setStatus(Status.valueOf(rs.getString(NameColumn.STATUS)))
+                            .setUserId(rs.getLong(ColumnName.USER_ID))
+                            .setLogin(rs.getString(ColumnName.USER_LOGIN))
+                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
+                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
+                            .setTelephone(rs.getString(ColumnName.USER_TELEPHONE))
+                            .setEmail(rs.getString(ColumnName.USER_EMAIL))
+                            .setStatus(Status.valueOf(rs.getString(ColumnName.USER_STATUS)))
                             .build();
                     pharmacists.add(user);
                 }
@@ -163,10 +165,10 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(NameColumn.USER_ID))
-                            .setFirstName(rs.getString(NameColumn.FIRST_NAME))
-                            .setLastName(rs.getString(NameColumn.LAST_NAME))
-                            .setStatus(Status.valueOf(rs.getString(NameColumn.STATUS)))
+                            .setUserId(rs.getLong(ColumnName.USER_ID))
+                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
+                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
+                            .setStatus(Status.valueOf(rs.getString(ColumnName.USER_STATUS)))
                             .build();
                     inactivePharmacists.add(user);
                 }
@@ -242,6 +244,4 @@ public class UserDaoImpl implements UserDao {
             throw new DaoException("SQLException in method updateTelephone() " + e.getMessage());
         }
     }
-
-
 }

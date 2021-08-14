@@ -144,8 +144,6 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Exception is in method updateFirstName() " + e.getMessage());
             throw new ServiceException("Exception is in method updateFirstName() " + e.getMessage());
         }
-
     }
-
 
 }

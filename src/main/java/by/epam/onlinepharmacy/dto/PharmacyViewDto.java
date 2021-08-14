@@ -1,23 +1,23 @@
-package by.epam.onlinepharmacy.entity;
+package by.epam.onlinepharmacy.dto;
 
-public class Pharmacy {
+public class PharmacyViewDto {
     private long pharmacyId;
     private int number;
     private String city;
     private String street;
     private String house;
-    private int block;
+    private Integer block;
 
-    public Pharmacy() {
-    }
-
-    public Pharmacy(long pharmacyId, int number, String city, String street, String house, int block) {
+    public PharmacyViewDto(long pharmacyId, int number, String city, String street, String house, Integer block) {
         this.pharmacyId = pharmacyId;
         this.number = number;
         this.city = city;
         this.street = street;
         this.house = house;
         this.block = block;
+    }
+
+    public PharmacyViewDto() {
     }
 
     public long getPharmacyId() {
@@ -60,54 +60,55 @@ public class Pharmacy {
         this.house = house;
     }
 
-    public int getBlock() {
+    public Integer getBlock() {
         return block;
     }
 
-    public void setBlock(int block) {
+    public void setBlock(Integer block) {
         this.block = block;
     }
 
     public static class Builder {
-        private Pharmacy newPharmacy;
+        private PharmacyViewDto newPharmacy;
 
         public Builder() {
-            newPharmacy = new Pharmacy();
+            newPharmacy = new PharmacyViewDto();
         }
 
-        public Pharmacy.Builder setPharmacyId(long pharmacyId) {
+        public PharmacyViewDto.Builder setPharmacyId(long pharmacyId) {
             newPharmacy.pharmacyId = pharmacyId;
             return this;
         }
 
-        public Pharmacy.Builder setNumber(int number) {
+        public PharmacyViewDto.Builder setNumber(int number) {
             newPharmacy.number = number;
             return this;
         }
 
-        public Pharmacy.Builder setCity(String city) {
+        public PharmacyViewDto.Builder setCity(String city) {
             newPharmacy.city = city;
             return this;
         }
 
 
-        public Pharmacy.Builder setStreet(String street) {
+        public PharmacyViewDto.Builder setStreet(String street) {
             newPharmacy.street = street;
             return this;
         }
 
-        public Pharmacy.Builder setHouse(String house) {
+        public PharmacyViewDto.Builder setHouse(String house) {
             newPharmacy.house = house;
             return this;
         }
 
-        public Pharmacy.Builder setBlock(int block) {
+        public PharmacyViewDto.Builder setBlock(Integer block) {
             newPharmacy.block = block;
             return this;
         }
 
-        public Pharmacy build() {
+        public PharmacyViewDto build() {
             return newPharmacy;
         }
     }
+
 }

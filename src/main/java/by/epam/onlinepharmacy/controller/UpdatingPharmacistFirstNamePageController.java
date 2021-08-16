@@ -21,6 +21,6 @@ public class UpdatingPharmacistFirstNamePageController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
         req.getSession().setAttribute("id", Long.parseLong(id));
-        req.getRequestDispatcher("admin/updatingpharmacistfirstname.jsp").forward(req, resp);
+        req.getRequestDispatcher("pages/admin/updatingpharmacistfirstname.jsp").forward(req, resp);
     }
 }

@@ -39,6 +39,6 @@ public class AdditionPharmacyController extends HttpServlet {
           logger.log(Level.ERROR, "Error is in method doPost()");
         }
         req.getSession().setAttribute("allPharmacies", pharmacies);
-        req.getRequestDispatcher("admin/allpharmacies.jsp").forward(req, resp);
+        req.getRequestDispatcher("pages/admin/allpharmacies.jsp").forward(req, resp);
     }
 }

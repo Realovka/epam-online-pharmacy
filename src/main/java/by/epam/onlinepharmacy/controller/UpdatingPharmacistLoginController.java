@@ -32,10 +32,10 @@ public class UpdatingPharmacistLoginController extends HttpServlet {
             if(userService.updateLogin(id, newLogin)) {
                 pharmacists = userService.findAllPharmacists();
                 req.getSession().setAttribute("allPharmacists", pharmacists);
-                req.getRequestDispatcher("admin/allpharmacists.jsp").forward(req, resp);
+                req.getRequestDispatcher("pages/admin/allpharmacists.jsp").forward(req, resp);
             } else {
                 req.setAttribute("errorUpdatingLogin", "Such login already exists");
-                req.getRequestDispatcher("admin/updatingpharmacistlogin.jsp").forward(req, resp);
+                req.getRequestDispatcher("pages/admin/updatingpharmacistlogin.jsp").forward(req, resp);
             }
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method doPost()" + e.getMessage());

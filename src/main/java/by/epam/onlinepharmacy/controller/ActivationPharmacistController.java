@@ -2,7 +2,6 @@ package by.epam.onlinepharmacy.controller;
 
 import by.epam.onlinepharmacy.dto.UserViewDto;
 import by.epam.onlinepharmacy.entity.Status;
-import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;

@@ -31,6 +31,6 @@ public class AllPharmaciesController extends HttpServlet {
             logger.log(Level.ERROR, "Exception is in method doGet() " + e.getMessage());
         }
         req.getSession().setAttribute("allPharmacies", pharmacies);
-        req.getRequestDispatcher("admin/allpharmacies.jsp").forward(req, resp);
+        req.getRequestDispatcher("pages/admin/allpharmacies.jsp").forward(req, resp);
     }
 }

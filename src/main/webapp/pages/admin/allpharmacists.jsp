@@ -3,6 +3,8 @@
 <%@ page import="by.epam.onlinepharmacy.entity.Status" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
     <title>All pharmacists</title>
 </head>
 <body>
@@ -86,7 +88,7 @@
         </c:forEach>
     </table>
 </c:if>
-<a href="/admin/adminmain.jsp">Main</a>
+<a href="/mainAdmin">Main</a>
 <a href="/logout">Logout</a>
 </body>
 </html>

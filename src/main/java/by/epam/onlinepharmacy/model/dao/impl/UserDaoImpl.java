@@ -1,14 +1,12 @@
 package by.epam.onlinepharmacy.model.dao.impl;
 
-import by.epam.onlinepharmacy.entity.Pharmacy;
-import by.epam.onlinepharmacy.entity.Status;
-import by.epam.onlinepharmacy.model.connection.ConnectionPool;
-
-import by.epam.onlinepharmacy.model.dao.ColumnName;
-import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.entity.Role;
+import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
+import by.epam.onlinepharmacy.model.connection.ConnectionPool;
+import by.epam.onlinepharmacy.model.dao.ColumnName;
+import by.epam.onlinepharmacy.model.dao.UserDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +21,7 @@ import java.util.Optional;
 
 public class UserDaoImpl implements UserDao {
     private Logger logger = LogManager.getLogger();
-    private ConnectionPool connectionPool = ConnectionPool.INSTANCE;
+    private ConnectionPool connectionPool = ConnectionPool.getInstance();
 
     private static final String CREATE_USER = """
             INSERT INTO users (login, password, first_name, last_name, email, telephone, role_id)

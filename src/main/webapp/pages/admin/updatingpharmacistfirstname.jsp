@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Updating pharmacist first name</title>
 </head>
 <body>
@@ -11,7 +13,7 @@
     <input type="text" name="newFirstName" placeholder="new first name"/>
     <input type="submit" name="Update first name"/>
 </form>
-<a href="/admin/adminmain.jsp">Main</a>
+<a href="/mainAdmin">Main</a>
 <a href="/logout">Logout</a>
 </body>
 </html>

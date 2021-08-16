@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
     <title>All pharmacies</title>
 </head>
 <body>
@@ -17,6 +19,7 @@
 </form>
 <c:choose>
     <c:when test="${sessionScope.allPharmacies.size()>0}">
+
         <table border="3">
             <thead>
             <th>Id</th>
@@ -53,7 +56,7 @@
         </table>
     </c:when>
 </c:choose>
-<a href="/admin/adminmain.jsp">Main</a>
+<a href="/mainAdmin">Main</a>
 <a href="/logout">Logout</a>
 </body>
 </html>

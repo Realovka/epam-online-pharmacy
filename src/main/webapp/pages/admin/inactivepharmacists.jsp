@@ -2,6 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/style.css">
     <title>Deleted pharmacists</title>
 </head>
 <body>
@@ -39,7 +41,7 @@
     <label>No inactive pharmacists</label><br>
 </c:otherwise>
 </c:choose>
-<a href="/admin/adminmain.jsp">Main</a>
+<a href="/mainAdmin">Main</a>
 <a href="/logout">Logout</a>
 </body>
 </html>

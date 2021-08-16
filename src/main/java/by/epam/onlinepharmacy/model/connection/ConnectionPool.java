@@ -40,6 +40,10 @@ public enum ConnectionPool {
         logger.log(Level.INFO, "Connection pool was created");
     }
 
+    public static ConnectionPool getInstance() {
+        return INSTANCE;
+    }
+
     public Connection getConnection() {
         ProxyConnection connection = null;
         try {

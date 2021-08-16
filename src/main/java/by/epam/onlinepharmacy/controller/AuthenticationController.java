@@ -1,7 +1,6 @@
 package by.epam.onlinepharmacy.controller;
 
 import by.epam.onlinepharmacy.dto.UserAuthDto;
-import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -26,7 +25,6 @@ public class AuthenticationController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf8");
         String loginAuthorization = req.getParameter("loginAuthorization");
         String passwordAuthorization = req.getParameter("passwordAuthorization");
         UserAuthDto userAuthDto = new UserAuthDto(loginAuthorization, passwordAuthorization);
@@ -42,7 +40,7 @@ public class AuthenticationController extends HttpServlet {
                 //TODO roles
                 case PHARMACIST -> req.getRequestDispatcher("/pharmacistmain.jsp").forward(req, resp);
                 case CUSTOMER -> req.getRequestDispatcher("/customermain.jsp").forward(req, resp);
-                case ADMIN -> req.getRequestDispatcher("admin/adminmain.jsp").forward(req, resp);
+                case ADMIN -> req.getRequestDispatcher("/mainAdmin").forward(req, resp);
             }
         } else {
             String errorAuthentication = "Login or password are incorrect";

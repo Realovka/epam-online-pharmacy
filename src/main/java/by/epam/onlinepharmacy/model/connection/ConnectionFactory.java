@@ -34,14 +34,14 @@ class ConnectionFactory {
            DRIVER_CLASS_NAME = properties.getProperty(PROPERTY_DRIVER_CLASS_NAME);
            Class.forName(DRIVER_CLASS_NAME);
        } catch (FileNotFoundException e) {
-           logger.log(Level.FATAL, "File with properties" + DATABASE_PROPERTIES + " not found " + e.getMessage());
-           throw new RuntimeException("File with properties" + DATABASE_PROPERTIES + " not found: " + e.getMessage());
+           logger.log(Level.FATAL, "File with properties" + DATABASE_PROPERTIES + " not found " + e);
+           throw new RuntimeException("File with properties" + DATABASE_PROPERTIES + " not found: " + e);
        } catch (IOException e) {
-           logger.log(Level.FATAL, "Reading error: " + e.getMessage());
-           throw new RuntimeException("Reading error: " + e.getMessage());
+           logger.log(Level.FATAL, "Reading error: ", e);
+           throw new RuntimeException("Reading error: ", e);
        } catch (ClassNotFoundException e) {
-           logger.log(Level.FATAL, "Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found " + e.getMessage());
-           throw new RuntimeException("Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found " + e.getMessage());
+           logger.log(Level.FATAL, "Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found ", e);
+           throw new RuntimeException("Driver " + PROPERTY_DRIVER_CLASS_NAME + "not found ", e);
        }
    }
 

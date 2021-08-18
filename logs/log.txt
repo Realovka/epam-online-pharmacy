@@ -18,3 +18,19 @@
 2021-08-16 13:07:35.102 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-08-16 13:08:33.917 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-08-16 14:00:30.547 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 14:45:11.704 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 14:46:25.367 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 14:50:02.393 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 15:11:27.930 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 15:14:20.671 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 15:25:07.655 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-16 16:20:58.991 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 09:25:32.330 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 09:28:15.939 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 09:37:44.115 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 09:40:11.442 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 09:58:33.264 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 10:15:05.431 [RMI TCP Connection(7)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 10:58:27.583 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 14:48:45.501 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-18 14:57:37.709 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

@@ -6,12 +6,12 @@ public class Pharmacy {
     private String city;
     private String street;
     private String house;
-    private int block;
+    private Integer block;
 
     public Pharmacy() {
     }
 
-    public Pharmacy(long pharmacyId, int number, String city, String street, String house, int block) {
+    public Pharmacy(long pharmacyId, int number, String city, String street, String house, Integer block) {
         this.pharmacyId = pharmacyId;
         this.number = number;
         this.city = city;
@@ -60,11 +60,11 @@ public class Pharmacy {
         this.house = house;
     }
 
-    public int getBlock() {
+    public Integer getBlock() {
         return block;
     }
 
-    public void setBlock(int block) {
+    public void setBlock(Integer block) {
         this.block = block;
     }
 
@@ -101,7 +101,7 @@ public class Pharmacy {
             return this;
         }
 
-        public Pharmacy.Builder setBlock(int block) {
+        public Pharmacy.Builder setBlock(Integer block) {
             newPharmacy.block = block;
             return this;
         }

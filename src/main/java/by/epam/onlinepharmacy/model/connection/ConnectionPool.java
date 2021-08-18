@@ -33,7 +33,7 @@ public enum ConnectionPool {
                 logger.log(Level.ERROR, "Couldn't create connection to database: " + e.getMessage());
             }
         }
-        if (freeConnections.size() == 0) {
+        if (freeConnections.isEmpty()) {
             logger.log(Level.FATAL, "Connection poll wasn't created, pool size: " + freeConnections.size());
             throw new RuntimeException("Connection poll wasn't created, pool size: " + freeConnections.size());
         }

@@ -1,22 +1,45 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Home page</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Alpha pharmacy</title>
 </head>
 <body>
-<div style="text-align: center">
-    <h1>Authorization</h1>
-    <form action="/auth" method="post">
-        <p>${requestScope.errorAuthentication}</p>
-        <input type="text" name="loginAuthorization" placeholder="login"/>
-        <input type="password" name="passwordAuthorization" placeholder="password"/>
-        <input type="submit" name="Authorization"/>
-        <a href="/registration.jsp">Registration</a>
-        <a href="/logout">Logout</a>
-    </form>
+
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="#">How to do order</a>
+        </li>
+        <li>
+            <a href="#">About us</a>
+        </li>
+        <li>
+            <a href="#">Questions</a>
+        </li>
+    </ul>
+</nav>
+<h2>Authorization</h2>
+<form action="/auth" method="post">
+    <p>${requestScope.errorAuthentication}</p>
+    <input type="text" name="loginAuthorization" placeholder="login"/><br>
+    <input type="password" name="passwordAuthorization" placeholder="password"/><br>
+    <input type="submit" value="Sign in"/><br>
+    <a href="/registration.jsp">Registration</a><br>
+    <a href="/logout">Logout</a>
+</form>
+<div class="titles">
+    <div class="title_first">
+        Taking Care Of Your Health
+    </div>
+    <h1>
+        Alpha Pharmacy
+    </h1>
 </div>
+
 </body>
 </html>

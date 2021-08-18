@@ -1,6 +1,5 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.dto.UserAuthDto;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -27,12 +26,15 @@ public class AuthenticationController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String loginAuthorization = req.getParameter("loginAuthorization");
         String passwordAuthorization = req.getParameter("passwordAuthorization");
-        UserAuthDto userAuthDto = new UserAuthDto(loginAuthorization, passwordAuthorization);
+        User userAuth = new User.Builder()
+                .setLogin(loginAuthorization)
+                .setPassword(passwordAuthorization)
+                .build();
         Optional<User> user = Optional.empty();
         try {
-            user = userService.authenticationUser(userAuthDto);
+            user = userService.authenticationUser(userAuth);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception is in method doPost() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method doPost() " , e);
         }
         if (user.isPresent()) {
             req.getSession().setAttribute("authUser", user.get());

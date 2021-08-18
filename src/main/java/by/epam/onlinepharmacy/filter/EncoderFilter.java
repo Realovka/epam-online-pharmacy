@@ -7,7 +7,6 @@
 //import javax.servlet.annotation.WebFilter;
 //import java.io.IOException;
 //
-//@WebFilter(filterName = "encoderFilter")
 //public class EncoderFilter extends UtilFilter {
 //    @Override
 //    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {

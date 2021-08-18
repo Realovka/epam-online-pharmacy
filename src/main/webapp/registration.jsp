@@ -1,12 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="styles/reg.css">
     <title>Registration</title>
 </head>
 <body>
+
 <div style="text-align: center">
     <div class="back>">
         <img src="img/background.jpg">

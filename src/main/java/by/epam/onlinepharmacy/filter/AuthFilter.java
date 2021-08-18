@@ -1,7 +1,5 @@
 //package by.epam.onlinepharmacy.filter;
 //
-//import by.epam.onlinepharmacy.dto.UserAuthDto;
-//import by.epam.onlinepharmacy.entity.Role;
 //import by.epam.onlinepharmacy.entity.User;
 //import by.epam.onlinepharmacy.exception.ServiceException;
 //import by.epam.onlinepharmacy.model.service.UserService;
@@ -20,7 +18,7 @@
 //import java.io.IOException;
 //import java.util.Optional;
 //
-//@WebFilter(filterName = "authFilter", urlPatterns = "/auth")
+//@WebFilter(value = "/auth")
 //public class AuthFilter extends UtilFilter {
 //    private Logger logger = LogManager.getLogger();
 //    private UserService userService = new UserServiceImpl();
@@ -31,9 +29,12 @@
 //        HttpServletResponse resp = (HttpServletResponse) response;
 //        String loginAuthorization = req.getParameter("loginAuthorization");
 //        String passwordAuthorization = req.getParameter("passwordAuthorization");
-//        UserAuthDto userAuthDto = new UserAuthDto(loginAuthorization, passwordAuthorization);
+//        User userAuth = new User.Builder()
+//                .setLogin(loginAuthorization)
+//                .setPassword(passwordAuthorization)
+//                .build();
 //        try {
-//            Optional<User> user = userService.authenticationUser(userAuthDto);
+//            Optional<User> user = userService.authenticationUser(userAuth);
 //            user.ifPresentOrElse(userFromDb -> {
 //                        req.getSession().setAttribute("authUser", user.get());
 //                        try {
@@ -41,7 +42,7 @@
 //                                //TODO roles
 //                                case PHARMACIST -> req.getRequestDispatcher("/pharmacistmain.jsp").forward(req, resp);
 //                                case CUSTOMER -> req.getRequestDispatcher("/customermain.jsp").forward(req, resp);
-//                                case ADMIN -> req.getRequestDispatcher("admin/adminmain.jsp").forward(req, resp);
+//                                case ADMIN -> req.getRequestDispatcher("/mainAdmin").forward(req, resp);
 //                            }
 //                        }
 //                            catch (ServletException e) {
@@ -66,5 +67,6 @@
 //        } catch (ServiceException e) {
 //            logger.log(Level.ERROR, "Exception is in method doPost() " + e.getMessage());
 //        }
+//        chain.doFilter(request, response);
 //    }
 //}

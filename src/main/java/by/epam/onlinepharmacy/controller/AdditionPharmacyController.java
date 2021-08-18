@@ -1,7 +1,6 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.dto.PharmacyRegDto;
-import by.epam.onlinepharmacy.dto.PharmacyViewDto;
+import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
@@ -30,15 +29,21 @@ public class AdditionPharmacyController extends HttpServlet {
         String street = req.getParameter("street");
         String house = req.getParameter("house");
         String block = req.getParameter("block");
-        PharmacyRegDto pharmacy = new PharmacyRegDto(number,city,street, house, block);
-        List<PharmacyViewDto> pharmacies = new ArrayList<>();
+        Pharmacy pharmacy = new Pharmacy.Builder()
+                .setNumber(Integer.parseInt(number))
+                .setCity(city)
+                .setStreet(street)
+                .setHouse(house)
+                .setBlock(Integer.valueOf(block))
+                .build();
+        List<Pharmacy> pharmacies = new ArrayList<>();
         try {
             pharmacyService.createPharmacy(pharmacy);
             pharmacies = pharmacyService.findAllPharmacies();
         } catch (ServiceException e) {
-          logger.log(Level.ERROR, "Error is in method doPost()");
+          logger.log(Level.ERROR, "Error is in method doPost()", e);
         }
         req.getSession().setAttribute("allPharmacies", pharmacies);
-        req.getRequestDispatcher("pages/admin/allpharmacies.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/admin/allpharmacies.jsp").forward(req, resp);
     }
 }

@@ -1,6 +1,6 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.dto.UserViewDto;
+import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
@@ -26,14 +26,14 @@ public class UpdatingPharmacistFirstNameController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = (long) req.getSession().getAttribute("id");
         String newFirstName = req.getParameter("newFirstName");
-        List<UserViewDto> pharmacists = new ArrayList<>();
+        List<User> pharmacists = new ArrayList<>();
         try {
             userService.updateFirstName(id, newFirstName);
             pharmacists = userService.findAllPharmacists();
             req.getSession().setAttribute("allPharmacists", pharmacists);
-            req.getRequestDispatcher("pages/admin/allpharmacists.jsp").forward(req, resp);
+            req.getRequestDispatcher("WEB-INF/pages/admin/allpharmacists.jsp").forward(req, resp);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method doPost()" + e.getMessage());
+            logger.log(Level.ERROR, "Exception in method doPost()", e);
         }
     }
 }

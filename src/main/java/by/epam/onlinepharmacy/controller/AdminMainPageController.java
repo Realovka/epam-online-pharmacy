@@ -10,7 +10,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/mainAdmin")
 public class AdminMainPageController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("pages/admin/adminmain.jsp").forward(req, resp);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("WEB-INF/pages/admin/adminmain.jsp").forward(req, resp);
     }
 }

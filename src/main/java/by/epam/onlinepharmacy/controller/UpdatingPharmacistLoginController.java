@@ -1,7 +1,6 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.dto.UserViewDto;
-import by.epam.onlinepharmacy.entity.Status;
+import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
@@ -27,7 +26,7 @@ public class UpdatingPharmacistLoginController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         long id = (long) req.getSession().getAttribute("id");
         String newLogin = req.getParameter("newLogin");
-        List<UserViewDto> pharmacists = new ArrayList<>();
+        List<User> pharmacists = new ArrayList<>();
         try {
             if(userService.updateLogin(id, newLogin)) {
                 pharmacists = userService.findAllPharmacists();
@@ -35,11 +34,10 @@ public class UpdatingPharmacistLoginController extends HttpServlet {
                 req.getRequestDispatcher("pages/admin/allpharmacists.jsp").forward(req, resp);
             } else {
                 req.setAttribute("errorUpdatingLogin", "Such login already exists");
-                req.getRequestDispatcher("pages/admin/updatingpharmacistlogin.jsp").forward(req, resp);
+                req.getRequestDispatcher("WEB-INF/pages/admin/updatingpharmacistlogin.jsp").forward(req, resp);
             }
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method doPost()" + e.getMessage());
+            logger.log(Level.ERROR, "Exception in method doPost()", e);
         }
-
     }
 }

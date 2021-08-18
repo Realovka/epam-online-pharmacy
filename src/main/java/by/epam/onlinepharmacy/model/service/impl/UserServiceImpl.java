@@ -1,8 +1,5 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
-import by.epam.onlinepharmacy.dto.UserAuthDto;
-import by.epam.onlinepharmacy.dto.UserRegDto;
-import by.epam.onlinepharmacy.dto.UserViewDto;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
@@ -17,54 +14,41 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private UserDao userDao = new UserDaoImpl();
 
     @Override
-    public boolean createUser(UserRegDto userRegDto) throws ServiceException {
+    public boolean createUser(User userReg) throws ServiceException {
         try {
-            if (userDao.findByLogin(userRegDto.getLogin()).isPresent()) {
+            if (userDao.findByLogin(userReg.getLogin()).isPresent()) {
                 return false;
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Such login already exists " + e.getMessage());
-            throw new ServiceException("Such login already exists " + e.getMessage());
+            logger.log(Level.ERROR, "Such login already exists ", e);
+            throw new ServiceException("Such login already exists ", e);
         }
-
-
-        User user = new User.Builder()
-                .setLogin(userRegDto.getLogin())
-                .setPassword(PasswordEncoder.createPasswordEncoded(userRegDto.getPassword()))
-                .setFirstName(userRegDto.getFirstName())
-                .setLastName(userRegDto.getLastName())
-                .setEmail(userRegDto.getEmail())
-                .setTelephone(userRegDto.getTelephone())
-                .setRole(userRegDto.getRole()).build();
+        userReg.setPassword(PasswordEncoder.createPasswordEncoded(userReg.getPassword()));
         try {
-            userDao.createUser(user);
+            userDao.createUser(userReg);
         } catch (DaoException ex) {
-            logger.log(Level.ERROR, "Exception is in method createUser() " + ex.getMessage());
-            throw new ServiceException("Exception is in method createUser() " + ex.getMessage());
+            logger.log(Level.ERROR, "Exception is in method createUser() ", ex);
+            throw new ServiceException("Exception is in method createUser() ", ex);
         }
         return true;
     }
 
     @Override
-    public Optional<User> authenticationUser(UserAuthDto userAuthDto) throws ServiceException {
+    public Optional<User> authenticationUser(User userAuth) throws ServiceException {
         Optional<User> userFromDb;
-        String passwordEncoded = PasswordEncoder.createPasswordEncoded(userAuthDto.getPassword());
-        User user = new User.Builder()
-                .setLogin(userAuthDto.getLogin())
-                .setPassword(passwordEncoded)
-                .build();
+        String passwordEncoded = PasswordEncoder.createPasswordEncoded(userAuth.getPassword());
+        userAuth.setPassword(passwordEncoded);
         try {
-           userFromDb = userDao.authenticationUser(user);
+           userFromDb = userDao.authenticationUser(userAuth);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method authenticationUser() " + e.getMessage());
-            throw new ServiceException("Exception is in method authenticationUser() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method authenticationUser() " , e);
+            throw new ServiceException("Exception is in method authenticationUser() ", e);
        }
        if(userFromDb.isEmpty()) {
            userFromDb = Optional.empty();
@@ -73,24 +57,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserViewDto> findAllPharmacists() throws ServiceException {
+    public List<User> findAllPharmacists() throws ServiceException {
         List<User> pharmacists;
         try {
            pharmacists =userDao.findAllPharmacists();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findAllPharmacists() " + e.getMessage());
-            throw new ServiceException("Exception is in method findAllPharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method findAllPharmacists() ", e);
+            throw new ServiceException("Exception is in method findAllPharmacists() " , e);
         }
-        return pharmacists.stream()
-                .map(pharmacist-> new UserViewDto.Builder()
-                        .setUserId(pharmacist.getUserId())
-                        .setLogin(pharmacist.getLogin())
-                        .setFirstName(pharmacist.getFirstName())
-                        .setLastName(pharmacist.getLastName())
-                        .setTelephone(pharmacist.getTelephone())
-                        .setEmail(pharmacist.getEmail())
-                        .setStatus(pharmacist.getStatus())
-                        .build()).collect(Collectors.toList());
+        return pharmacists;
     }
 
     @Override
@@ -98,27 +73,21 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.changePharmacistStatus(Long.parseLong(id), status);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method verifyPharmacist() " + e.getMessage());
-            throw new ServiceException("Exception is in method verifyPharmacist() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method verifyPharmacist() " , e);
+            throw new ServiceException("Exception is in method verifyPharmacist() " , e);
         }
     }
 
     @Override
-    public List<UserViewDto> findInactivePharmacists() throws ServiceException {
+    public List<User> findInactivePharmacists() throws ServiceException {
         List<User> inactivePharmacists;
         try {
             inactivePharmacists =userDao.findInactivePharmacists();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findInactivePharmacists() " + e.getMessage());
-            throw new ServiceException("Exception is in method findInactivePharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method findInactivePharmacists() ", e);
+            throw new ServiceException("Exception is in method findInactivePharmacists() ", e);
         }
-        return inactivePharmacists.stream()
-                .map(pharmacist-> new UserViewDto.Builder()
-                        .setUserId(pharmacist.getUserId())
-                        .setFirstName(pharmacist.getFirstName())
-                        .setLastName(pharmacist.getLastName())
-                        .setStatus(pharmacist.getStatus())
-                        .build()).collect(Collectors.toList());
+        return inactivePharmacists;
     }
 
     @Override
@@ -130,8 +99,8 @@ public class UserServiceImpl implements UserService {
                 return true;
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateLogin() " + e.getMessage());
-            throw new ServiceException("Exception is in method updateLogin() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method updateLogin() ", e);
+            throw new ServiceException("Exception is in method updateLogin() ",  e);
         }
         return false;
     }
@@ -141,8 +110,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateFirstName(id, firstName);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateFirstName() " + e.getMessage());
-            throw new ServiceException("Exception is in method updateFirstName() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method updateFirstName() ", e);
+            throw new ServiceException("Exception is in method updateFirstName() ", e);
         }
     }
 

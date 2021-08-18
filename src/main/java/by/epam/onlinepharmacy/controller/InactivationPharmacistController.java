@@ -1,6 +1,5 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.dto.UserViewDto;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -27,14 +26,14 @@ public class InactivationPharmacistController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        List<UserViewDto> pharmacists = new ArrayList<>();
+        List<User> pharmacists = new ArrayList<>();
         try {
             userService.changePharmacistStatus(id, Status.INACTIVE);
             pharmacists = userService.findAllPharmacists();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method doGet()" + e.getMessage());
+            logger.log(Level.ERROR, "Exception in method doGet()", e);
         }
         req.getSession().setAttribute("allPharmacists", pharmacists);
-        req.getRequestDispatcher("pages/admin/allpharmacists.jsp").forward(req, resp);
+        req.getRequestDispatcher("WEB-INF/pages/admin/allpharmacists.jsp").forward(req, resp);
     }
 }

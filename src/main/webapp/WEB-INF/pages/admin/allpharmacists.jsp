@@ -1,10 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="by.epam.onlinepharmacy.entity.Status" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/common.css">
     <title>All pharmacists</title>
 </head>
 <body>

@@ -1,0 +1,54 @@
+body {
+    font-family: Constantia, sans-serif;
+    background: url("../img/back_main.jpeg")no-repeat center center fixed;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 60px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+h2 {
+    color: #fff;
+}
+
+.title_first {
+    font-size: 40px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav{
+    float:right;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.menu li {
+    float: left;
+    display: block;
+    margin-right: 41px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+

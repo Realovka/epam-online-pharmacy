@@ -45,7 +45,7 @@ public class AuthenticationController extends HttpServlet {
                 case ADMIN -> req.getRequestDispatcher("/mainAdmin").forward(req, resp);
             }
         } else {
-            String errorAuthentication = "Login or password are incorrect";
+            String errorAuthentication = "Login or password is incorrect";
             req.setAttribute("errorAuthentication", errorAuthentication);
             req.getRequestDispatcher("/index.jsp").forward(req, resp);
         }

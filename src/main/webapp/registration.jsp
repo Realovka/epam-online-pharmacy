@@ -6,32 +6,42 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/reg.css">
+    <link rel="stylesheet" href="styles/common.css">
     <title>Registration</title>
 </head>
 <body>
-
-<div style="text-align: center">
-    <div class="back>">
-        <img src="img/background.jpg">
-    </div>
-    <h1>Registration</h1>
-
-        <form action="/reg" method="post">
-            <p>${requestScope.errorRegistration}</p>
-            <input type="text" name="loginRegistration" placeholder="login"/>
-            <input type="password" name="passwordRegistration" placeholder="password"/>
-            <input type="text" name="firstNameRegistration" placeholder="first name"/>
-            <input type="text" name="lastNameRegistration" placeholder="last name"/>
-            <input type="email" name="emailRegistration" placeholder="email"/>
-            <input type="tel" name="telephoneRegistration" placeholder="telephone"/>
-            Role <select name="role">
+<a href="/index.jsp">Back to home page</a>
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="#">How to do order</a>
+        </li>
+        <li>
+            <a href="#">About us</a>
+        </li>
+        <li>
+            <a href="#">Questions</a>
+        </li>
+    </ul>
+</nav>
+<div class="registr">
+    <form action="/reg" method="post">
+        <h1>Registration</h1><br>
+        <p>${requestScope.errorRegistration}</p><br>
+        <input type="text" name="loginRegistration" placeholder="login"/><br>
+        <input type="password" name="passwordRegistration" placeholder="password"/><br>
+        <input type="text" name="firstNameRegistration" placeholder="first name"/><br>
+        <input type="text" name="lastNameRegistration" placeholder="last name"/><br>
+        <input type="email" name="emailRegistration" placeholder="email"/><br>
+        <input type="tel" name="telephoneRegistration" placeholder="telephone"/><br>
+        <select name="role">
             <option>PHARMACIST</option>
             <option>CUSTOMER</option>
             <option>ADMIN</option>
-        </select>
-            <input type="submit" name="Registration">
-        </form>
-
+        </select><br><br>
+        <input type="submit" value="Registration">
+    </form>
+</div>
 </div>
 </body>
 </html>

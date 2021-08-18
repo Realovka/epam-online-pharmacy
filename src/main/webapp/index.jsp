@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/common.css">
     <title>Alpha pharmacy</title>
 </head>
 <body>
@@ -24,14 +25,18 @@
     </ul>
 </nav>
 <h2>Authorization</h2>
+<div class="auth">
 <form action="/auth" method="post">
-    <p>${requestScope.errorAuthentication}</p>
+    <p>
+    ${requestScope.errorAuthentication}
+    </p>
     <input type="text" name="loginAuthorization" placeholder="login"/><br>
     <input type="password" name="passwordAuthorization" placeholder="password"/><br>
     <input type="submit" value="Sign in"/><br>
     <a href="/registration.jsp">Registration</a><br>
     <a href="/logout">Logout</a>
 </form>
+</div>
 <div class="titles">
     <div class="title_first">
         Taking Care Of Your Health
@@ -40,6 +45,5 @@
         Alpha Pharmacy
     </h1>
 </div>
-
 </body>
 </html>

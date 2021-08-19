@@ -6,9 +6,10 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/common_menu.css">
     <title>Alpha pharmacy</title>
 </head>
+
 <body>
 
 <nav class="menu">

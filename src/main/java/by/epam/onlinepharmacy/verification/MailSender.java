@@ -24,6 +24,7 @@ public class MailSender {
         this.properties = properties;
     }
 
+    //TODO
     public void send() {
         try {
             initMessage();

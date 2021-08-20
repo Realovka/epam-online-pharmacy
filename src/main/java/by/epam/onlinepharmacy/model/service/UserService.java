@@ -11,7 +11,8 @@ public interface UserService {
     boolean createUser(User userReg) throws ServiceException;
     Optional<User> authenticationUser(User userAuth) throws ServiceException;
     List<User> findAllPharmacists() throws ServiceException;
-    void changePharmacistStatus(String id, Status status) throws ServiceException;
+    boolean updateCustomerStatus(String code) throws ServiceException;
+    void updatePharmacistStatus(String id, Status status) throws ServiceException;
     List<User> findInactivePharmacists() throws ServiceException;
     boolean updateLogin(long id, String login) throws ServiceException;
     void updateFirstName(long id, String firstName) throws ServiceException;

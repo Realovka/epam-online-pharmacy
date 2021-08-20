@@ -5,6 +5,7 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
+import by.epam.onlinepharmacy.verification.EmailSending;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,31 +43,23 @@ public class RegistrationController extends HttpServlet {
                 .build();
         try {
             if (userService.createUser(userReg)) {
+                if(userReg.getRole().equals(Role.CUSTOMER)) {
+                    req.getRequestDispatcher("/regcustomer.jsp").forward(req, resp);
+                }
                 req.getRequestDispatcher("/index.jsp").forward(req, resp);
+
             } else {
                 String errorRegistration = "Such login already exists";
                 req.setAttribute("errorRegistration", errorRegistration);
                 req.getRequestDispatcher("/registration.jsp").forward(req, resp);
             }
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception is in method doPost() " + e.getMessage());
+            logger.log(Level.ERROR, "Exception is in method doPost() ", e);
         }
     }
 
 }
-//
-//        Properties properties = new Properties();
-//        try {
-//            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("mail.properties"));
-////            properties.load(new FileReader("E://epam//onlinepharmacy//src//main//resources//mail.properties"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        String mailTo = "testpostepam@gmail.com";
-//        String subject = "hello";
-//        String body = "Hello";
-//        MailSender sender = new MailSender(mailTo, subject, body, properties);
-//        sender.send();
+
 
 
 

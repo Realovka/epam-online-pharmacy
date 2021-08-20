@@ -1,0 +1,37 @@
+package by.epam.onlinepharmacy.verification;
+
+import by.epam.onlinepharmacy.entity.User;
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
+import java.util.UUID;
+
+public class EmailSending {
+    public static void sendEmail(User user, String code) {
+
+        Properties properties = new Properties();
+        try {
+            properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("mail.properties"));
+            //TODO
+            properties.load(new FileReader("E://epam//onlinepharmacy//src//main//resources//mail.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        if (!user.getEmail().isEmpty()) {
+            String message = String.format(
+                    "Hello, %s  %s \n" +
+                            "Welcome to Alpha Pharmacy. Your activation code is %s",
+                    user.getFirstName(),
+                    user.getLastName(),
+                    code
+            );
+
+            String header = "Activation from Alpha Pharmacy";
+            MailSender sender = new MailSender(user.getEmail(), header, message, properties);
+            sender.send();
+        }
+    }
+}

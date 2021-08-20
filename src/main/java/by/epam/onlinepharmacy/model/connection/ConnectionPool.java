@@ -30,7 +30,7 @@ public enum ConnectionPool {
                 ProxyConnection proxyConnection = new ProxyConnection(connection);
                 freeConnections.add(proxyConnection);
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "Couldn't create connection to database: " + e.getMessage());
+                logger.log(Level.ERROR, "Couldn't create connection to database: ", e);
             }
         }
         if (freeConnections.isEmpty()) {
@@ -50,7 +50,7 @@ public enum ConnectionPool {
             connection = freeConnections.take();
             givenAwayConnections.offer(connection);
         } catch (InterruptedException e) {
-            logger.log(Level.ERROR, "InterruptedException in method getConnection() " + e.getMessage());
+            logger.log(Level.ERROR, "InterruptedException in method getConnection() ", e);
             Thread.currentThread().interrupt();
         }
         return connection;
@@ -61,7 +61,7 @@ public enum ConnectionPool {
             try {
                 freeConnections.put((ProxyConnection) connection);
             } catch (InterruptedException e) {
-                logger.log(Level.ERROR, "InterruptedException in method releaseConnection() " + e.getMessage());
+                logger.log(Level.ERROR, "InterruptedException in method releaseConnection() ", e);
                 Thread.currentThread().interrupt();
             }
         }
@@ -72,7 +72,7 @@ public enum ConnectionPool {
             try {
                 freeConnections.take().reallyClose();
             } catch (InterruptedException e) {
-                logger.log(Level.ERROR, "InterruptedException in method destroyPool() " + e.getMessage());
+                logger.log(Level.ERROR, "InterruptedException in method destroyPool() ", e);
             }
         }
         deregisterDrivers();
@@ -84,7 +84,7 @@ public enum ConnectionPool {
                 DriverManager.deregisterDriver(driver);
 
             } catch (SQLException e) {
-                logger.log(Level.ERROR, "SQLException in method deregisterDrivers() " + e.getMessage());
+                logger.log(Level.ERROR, "SQLException in method deregisterDrivers() ", e);
             }
         });
     }

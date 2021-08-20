@@ -48,8 +48,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findAllPharmacies() " + e.getMessage());
-            throw new DaoException("SQLException in method findAllPharmacies() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method findAllPharmacies() ", e);
+            throw new DaoException("SQLException in method findAllPharmacies() ", e);
         }
         return pharmacies;
     }
@@ -65,8 +65,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
             ps.setInt(5, pharmacy.getBlock());
             ps.execute();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createPharmacy() " + e.getMessage());
-            throw new DaoException("SQLException in method createPharmacy() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method createPharmacy() ", e);
+            throw new DaoException("SQLException in method createPharmacy() ", e);
         }
     }
 

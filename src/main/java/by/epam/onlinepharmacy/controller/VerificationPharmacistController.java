@@ -28,7 +28,7 @@ public class VerificationPharmacistController extends HttpServlet {
         String id = req.getParameter("id");
         List<User> pharmacists = new ArrayList<>();
         try {
-            userService.changePharmacistStatus(id, Status.ACTIVE);
+            userService.updatePharmacistStatus(id, Status.ACTIVE);
             pharmacists = userService.findAllPharmacists();
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method doGet()" , e);

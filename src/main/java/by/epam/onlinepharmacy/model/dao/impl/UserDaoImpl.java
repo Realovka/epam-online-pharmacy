@@ -28,9 +28,13 @@ public class UserDaoImpl implements UserDao {
             VALUES(?, ?, ?, ?, ?, ?, (SELECT role_id FROM user_role WHERE role=?))
              """;
 
-    private static final String FIND_BY_LOGIN = "SELECT login FROM users WHERE login=?";
+    private static final String CREATE_CODE = "INSERT INTO code_activation (user_id, code_value) VALUES (?, ?)";
 
-    private static final String IDENT_USER = """
+    private static final String FIND_CUSTOMER = "SELECT user_id FROM code_activation WHERE code_value = ?";
+
+    private static final String FIND_BY_LOGIN = "SELECT user_id FROM users WHERE login=?";
+
+    private static final String AUTHORIZE_USER = """
             SELECT u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
             WHERE u.login=? AND u.password=?
             """;
@@ -41,7 +45,7 @@ public class UserDaoImpl implements UserDao {
             JOIN user_role ur ON u.role_id=ur.role_id WHERE ur.role='PHARMACIST'
              """;
 
-    private static final String UPDATE_PHARMACIST_STATUS = """
+    private static final String UPDATE_USER_STATUS = """
             UPDATE users SET status_id = (SELECT status_id FROM user_status WHERE status=?) WHERE user_id=?
             """;
 
@@ -58,7 +62,8 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public void createUser(User user) throws DaoException {
+    public int createUser(User user) throws DaoException {
+        int result = 0;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(CREATE_USER)) {
             ps.setString(1, user.getLogin());
@@ -68,11 +73,12 @@ public class UserDaoImpl implements UserDao {
             ps.setString(5, user.getEmail());
             ps.setString(6, user.getTelephone());
             ps.setString(7, user.getRole().name());
-            ps.execute();
+            result = ps.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createUser() " + e.getMessage());
-            throw new DaoException("SQLException in method createUser() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
+            throw new DaoException("SQLException in method createUser() ", e);
         }
+        return result;
     }
 
     @Override
@@ -82,22 +88,54 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, login);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    return Optional.of(new User.Builder()
-                            .setLogin(login)
-                            .build());
+                    User user = new User.Builder()
+                            .setUserId(rs.getLong(ColumnName.USER_ID))
+                            .build();
+                    return Optional.of(user);
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createUser() " + e.getMessage());
-            throw new DaoException("SQLException in method createUser() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
+            throw new DaoException("SQLException in method createUser() ", e);
         }
         return Optional.empty();
     }
 
     @Override
+    public void createCodeActivation(long userId, String code) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(CREATE_CODE)) {
+            ps.setLong(1, userId);
+            ps.setString(2, code);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
+            throw new DaoException("SQLException in method createUser() ", e);
+        }
+    }
+
+    @Override
+    public long findIdForVerificationCustomer(String code) throws DaoException {
+        long id = 0L;
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_CUSTOMER)) {
+            preparedStatement.setString(1, code);
+            try (ResultSet rs = preparedStatement.executeQuery()) {
+                if (rs.next()) {
+                    id = rs.getLong(ColumnName.USER_ID);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findIdForActivationCustomer() ", e);
+            throw new DaoException("SQLException in method findIdForActivationCustomer() ", e);
+        }
+        return id;
+    }
+
+    @Override
     public Optional<User> authenticationUser(User user) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(IDENT_USER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(AUTHORIZE_USER)) {
             preparedStatement.setString(1, user.getLogin());
             preparedStatement.setString(2, user.getPassword());
             try (ResultSet rs = preparedStatement.executeQuery()) {
@@ -143,16 +181,18 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void changePharmacistStatus(long id, Status status) throws DaoException {
+    public int updateUserStatus(long id, Status status) throws DaoException {
+        int result = 0;
         try (Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACIST_STATUS)) {
+            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_STATUS)) {
             preparedStatement.setString(1, String.valueOf(status));
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method changePharmacists() " + e.getMessage());
-            throw new DaoException("SQLException in method changePharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method changePharmacists() ", e);
+            throw new DaoException("SQLException in method changePharmacists() ", e);
         }
+        return result;
     }
 
     @Override

@@ -1,39 +1,79 @@
-2021-08-15 13:36:32.486 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 14:35:20.062 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 14:39:18.892 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 16:25:39.479 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 16:27:28.034 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 16:29:51.475 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 16:50:23.764 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 16:58:11.626 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 17:00:26.386 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 17:05:32.430 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-15 17:21:49.092 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 12:43:18.805 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 12:44:58.439 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 12:48:28.911 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 12:51:50.392 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 13:01:46.860 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 13:05:18.053 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 13:07:35.102 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 13:08:33.917 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 14:00:30.547 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 14:45:11.704 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 14:46:25.367 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 14:50:02.393 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 15:11:27.930 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 15:14:20.671 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 15:25:07.655 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-16 16:20:58.991 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 09:25:32.330 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 09:28:15.939 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 09:37:44.115 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 09:40:11.442 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 09:58:33.264 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 10:15:05.431 [RMI TCP Connection(7)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 10:58:27.583 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 14:48:45.501 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 14:57:37.709 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 22:01:10.943 [http-nio-8080-exec-1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-18 22:56:28.186 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-08-19 10:26:10.287 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-08-20 18:27:59.349 [http-nio-8080-exec-9] ERROR onlinepharmacy.model.service.impl.UserServiceImpl - Exception is in method changeCustomerStatus() 
+by.epam.onlinepharmacy.exception.DaoException: SQLException in method findIdForActivationCustomer() 
+	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.findIdForVerificationCustomer(UserDaoImpl.java:130) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateCustomerStatus(UserServiceImpl.java:101) [classes/:?]
+	at by.epam.onlinepharmacy.controller.VerificationCustomerController.doPost(VerificationCustomerController.java:27) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'code' in 'where clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003) ~[mysql-connector-java-8.0.20.jar:?]
+	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.findIdForVerificationCustomer(UserDaoImpl.java:123) ~[classes/:?]
+	... 26 more
+2021-08-20 18:27:59.428 [http-nio-8080-exec-9] ERROR by.epam.onlinepharmacy.controller.VerificationCustomerController - Exception is in method doPost() 
+by.epam.onlinepharmacy.exception.ServiceException: Exception is in method changeCustomerStatus 
+	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateCustomerStatus(UserServiceImpl.java:108) ~[classes/:?]
+	at by.epam.onlinepharmacy.controller.VerificationCustomerController.doPost(VerificationCustomerController.java:27) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: by.epam.onlinepharmacy.exception.DaoException: SQLException in method findIdForActivationCustomer() 
+	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.findIdForVerificationCustomer(UserDaoImpl.java:130) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateCustomerStatus(UserServiceImpl.java:101) ~[classes/:?]
+	... 25 more
+Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'code' in 'where clause'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003) ~[mysql-connector-java-8.0.20.jar:?]
+	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.findIdForVerificationCustomer(UserDaoImpl.java:123) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateCustomerStatus(UserServiceImpl.java:101) ~[classes/:?]
+	... 25 more
+2021-08-20 18:31:17.692 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

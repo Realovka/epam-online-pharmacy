@@ -171,3 +171,5 @@ ALTER TABLE pharmacy ADD COLUMN number INT NOT NULL, ADD COLUMN city VARCHAR(70)
 ADD column street VARCHAR(70) NOT NULL, ADD COLUMN house INT NOT NULL, ADD COLUMN block INT NULL;
 RENAME TABLE pharmacy TO pharmacies;
 ALTER TABLE pharmacies MODIFY COLUMN house VARCHAR(20) NOT NULL;
+CREATE TABLE code_activation ( user_id bigint references users(user_id),
+code_value VARCHAR(45) NOT NUL)

@@ -29,7 +29,7 @@ public class ActivationPharmacistController extends HttpServlet {
         String id = req.getParameter("id");
         List<User> inactivePharmacists = new ArrayList<>();
         try {
-            userService.changePharmacistStatus(id, Status.ACTIVE);
+            userService.updatePharmacistStatus(id, Status.ACTIVE);
             inactivePharmacists = userService.findInactivePharmacists();
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method doGet()", e);

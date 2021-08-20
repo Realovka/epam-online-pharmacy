@@ -11,20 +11,8 @@ public class User {
     private Role role;
     private Status status;
 
-    public User() {
-    }
 
-    public User(long userId, String login, String password, String firstName,
-                String lastName, String email, String telephone, Role role, Status status) {
-        this.userId = userId;
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.telephone = telephone;
-        this.role = role;
-        this.status = status;
+    public User() {
     }
 
     public long getUserId() {
@@ -98,6 +86,7 @@ public class User {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 
     public static class Builder {
         private User newUser;

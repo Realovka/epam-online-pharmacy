@@ -9,11 +9,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserDao {
-    void createUser(User user) throws DaoException;
+    int createUser(User user) throws DaoException;
+    void createCodeActivation(long userId, String code) throws DaoException;
+    long findIdForVerificationCustomer(String code) throws DaoException;
     Optional<User> findByLogin(String login) throws DaoException;
     Optional<User> authenticationUser(User user) throws DaoException;
     List<User> findAllPharmacists() throws DaoException;
-    void changePharmacistStatus(long id, Status status) throws DaoException;
+    int updateUserStatus(long id, Status status) throws DaoException;
     List<User> findInactivePharmacists() throws DaoException;
     void updateLogin(long id, String login) throws DaoException;
     void updateFirstName(long id, String firstName) throws DaoException;

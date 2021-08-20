@@ -27,16 +27,17 @@
 </nav>
 <h2>Authorization</h2>
 <div class="auth">
-<form action="/auth" method="post">
-    <p>
-    ${requestScope.errorAuthentication}
-    </p>
-    <input type="text" name="loginAuthorization" placeholder="login"/><br>
-    <input type="password" name="passwordAuthorization" placeholder="password"/><br>
-    <input type="submit" value="Sign in"/><br>
-    <a href="/registration.jsp">Registration</a><br>
-    <a href="/logout">Logout</a>
-</form>
+    <form action="/auth" method="post">
+        <p>
+            ${requestScope.errorAuthentication}
+        </p>
+        <input type="text" name="loginAuthorization" placeholder="login"/><br>
+        <input type="password" name="passwordAuthorization" placeholder="password"/><br>
+        <input type="submit" value="Sign in"/><br>
+        <a href="/registration.jsp">Registration</a><br>
+        <a href="/regcustomer.jsp">Verification customer</a><br>
+        <a href="/logout">Logout</a>
+    </form>
 </div>
 <div class="titles">
     <div class="title_first">

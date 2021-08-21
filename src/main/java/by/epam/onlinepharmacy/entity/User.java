@@ -1,5 +1,7 @@
 package by.epam.onlinepharmacy.entity;
 
+import java.util.Objects;
+
 public class User {
     private long userId;
     private String login;
@@ -13,6 +15,19 @@ public class User {
 
 
     public User() {
+    }
+
+    public User(long userId, String login, String password, String firstName,
+                String lastName, String email, String telephone, Role role, Status status) {
+        this.userId = userId;
+        this.login = login;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.telephone = telephone;
+        this.role = role;
+        this.status = status;
     }
 
     public long getUserId() {
@@ -87,6 +102,47 @@ public class User {
         this.status = status;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return userId == user.userId && Objects.equals(login, user.login)
+                && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName)
+                && Objects.equals(lastName, user.lastName) && Objects.equals(email, user.email)
+                && Objects.equals(telephone, user.telephone) && role == user.role && status == user.status;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (userId ^ (userId >>> 32));
+        result *= 31 + (login != null ? login.hashCode() : 0);
+        result *= 31 + (password != null ? password.hashCode() : 0);
+        result *= 31 + (firstName != null ? firstName.hashCode() : 0);
+        result *= 31 + (lastName != null ? lastName.hashCode() : 0);
+        result *= 31 + (email != null ? email.hashCode() : 0);
+        result *= 31 + (telephone != null ? telephone.hashCode() : 0);
+        result *= 31 + (status != null ? status.hashCode() : 0);
+        result *= 31 + (role != null ? role.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("User{");
+        builder.append("userId=").append(userId);
+        builder.append(", login='").append(login);
+        builder.append(", password='").append(password);
+        builder.append(", firstName='").append(firstName);
+        builder.append(", lastName='").append(lastName);
+        builder.append(", email='").append(email);
+        builder.append(", telephone='").append(telephone);
+        builder.append(", role=").append(role);
+        builder.append(", status=").append(status);
+        builder.append('}');
+        return builder.toString();
+    }
 
     public static class Builder {
         private User newUser;

@@ -5,7 +5,7 @@ import by.epam.onlinepharmacy.entity.User;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.UUID;
+
 
 public class EmailSending {
     public static void sendEmail(User user, String code) {
@@ -22,8 +22,7 @@ public class EmailSending {
 
         if (!user.getEmail().isEmpty()) {
             String message = String.format(
-                    "Hello, %s  %s \n" +
-                            "Welcome to Alpha Pharmacy. Your activation code is %s",
+                    "Hello, %s  %s welcome to Alpha Pharmacy. Your activation code is %s",
                     user.getFirstName(),
                     user.getLastName(),
                     code

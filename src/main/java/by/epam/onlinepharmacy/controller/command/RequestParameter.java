@@ -10,6 +10,7 @@ public final class RequestParameter {
     public static final String TELEPHONE = "telephone";
     public static final String ROLE = "role";
     public static final String CODE = "code";
+    public static final String USER_ID = "id";
 
 
     private RequestParameter() {

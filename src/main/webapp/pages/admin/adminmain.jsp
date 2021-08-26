@@ -10,8 +10,8 @@
 </head>
 <body class="other">
     <h1>Hello ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
-    <a href="/allPharmacists">Pharmacists waiting verification and active pharmacists</a>
-    <a href="/allPharmacies">All pharmacies</a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists">Pharmacists waiting verification and active pharmacists</a>
+    <a href="">All pharmacies</a>
     <a href="/allProduct">All products</a>
     <a href="/inactivePharmacists">Inactive pharmacists</a>
     <a href="/logout">Logout</a>

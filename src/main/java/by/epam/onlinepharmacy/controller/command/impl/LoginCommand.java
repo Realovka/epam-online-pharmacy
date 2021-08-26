@@ -5,17 +5,14 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class LoginCommand implements Command {
-    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request)  {
@@ -43,10 +40,9 @@ public class LoginCommand implements Command {
                 }
             } else {
                 session.setAttribute(SessionAttribute.LOGIN_ERROR, Message.LOGIN_ERROR);
-                commandResult = new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
+                return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
             }
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception is in LoginCommand ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         return commandResult;

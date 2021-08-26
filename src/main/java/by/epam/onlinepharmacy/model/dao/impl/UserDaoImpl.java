@@ -222,8 +222,8 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findInactivePharmacists() " + e.getMessage());
-            throw new DaoException("SQLException in method findInactivePharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method findInactivePharmacists() ", e);
+            throw new DaoException("SQLException in method findInactivePharmacists() ", e);
         }
         return inactivePharmacists;
     }

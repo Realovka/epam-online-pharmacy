@@ -28,7 +28,7 @@
                 <c:when test="${pharmacist.status.equals(Status.IN_REGISTR)}">
                     <tr>
                         <td>
-                            <a href="/verificationPharmacist?id=${pharmacist.userId}">${pharmacist.userId}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=verification_pharmacist&id=${pharmacist.userId}">${pharmacist.userId}</a>
                         </td>
                         <td>
                                 ${pharmacist.firstName}
@@ -82,7 +82,7 @@
                             <a href="/updateEmail?id=${pharmacist.userId}">${pharmacist.email}</a>
                         </td>
                         <td>
-                            <a href="/inactivationPharmacist?id=${pharmacist.userId}">${pharmacist.status}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=inactivation_pharmacist&id=${pharmacist.userId}">${pharmacist.status}</a>
                         </td>
                     </tr>
                 </c:when>
@@ -90,7 +90,7 @@
         </c:forEach>
     </table>
 </c:if>
-<a href="/mainAdmin">Main</a>
-<a href="/logout">Logout</a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
+<a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

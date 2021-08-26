@@ -16,8 +16,12 @@ public class CommandProvider {
         commands.put(CommandType.VERIFICATION_CUSTOMER_PAGE, new VerificationCustomerPageCommand());
         commands.put(CommandType.REGISTRATION, new RegistrationCommand());
         commands.put(CommandType.LOGIN_PAGE, new LoginPageCommand());
-        commands.put(CommandType.VERIFICATION_CUSTOMER, new VerificationCommand());
-
+        commands.put(CommandType.VERIFICATION_CUSTOMER, new VerificationCustomerCommand());
+        commands.put(CommandType.ALL_PHARMACISTS, new AllPharmacistsCommand());
+        commands.put(CommandType.MAIN_ADMIN, new MainAdminPageCommand());
+        commands.put(CommandType.LOGOUT, new LogoutCommand());
+        commands.put(CommandType.VERIFICATION_PHARMACIST, new VerificationPharmacistCommand());
+        commands.put(CommandType.INACTIVATION_PHARMACIST, new InactivationPharmacistCommand());
     }
 
     public static CommandProvider getInstance() {

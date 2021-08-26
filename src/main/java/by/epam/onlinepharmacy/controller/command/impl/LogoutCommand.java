@@ -6,10 +6,11 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class VerificationCustomerPageCommand implements Command {
+public class LogoutCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        return new CommandResult(PagePath.VERIFICATION_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+        request.getSession().invalidate();
+        return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
     }
 }

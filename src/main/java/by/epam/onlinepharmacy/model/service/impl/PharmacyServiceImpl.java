@@ -14,7 +14,15 @@ import java.util.List;
 
 public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
-    private PharmacyDao pharmacyDao = new PharmacyDaoImpl();
+    private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
+    private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
+
+    private PharmacyServiceImpl() {
+    }
+
+    private static PharmacyServiceImpl getInstance(){
+        return instance;
+    }
 
     @Override
     public List<Pharmacy> findAllPharmacies() throws ServiceException {

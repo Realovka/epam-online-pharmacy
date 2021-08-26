@@ -1,22 +1,25 @@
 package by.epam.onlinepharmacy.entity;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Objects;
 
 public class Product {
     private long productId;
     private String name;
+    private String group;
     public BigDecimal price;
     private boolean recipe;
-    private String picture;
+    private Blob picture;
     private String instruction;
 
     public Product() {
     }
 
-    public Product(long productId, String name, BigDecimal price, boolean recipe, String picture, String instruction) {
+    public Product(long productId, String name, String group, BigDecimal price, boolean recipe, Blob picture, String instruction) {
         this.productId = productId;
         this.name = name;
+        this.group = group;
         this.price = price;
         this.recipe = recipe;
         this.picture = picture;
@@ -39,6 +42,14 @@ public class Product {
         this.name = name;
     }
 
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -55,11 +66,11 @@ public class Product {
         this.recipe = recipe;
     }
 
-    public String getPicture() {
+    public Blob getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
+    public void setPicture(Blob picture) {
         this.picture = picture;
     }
 
@@ -72,19 +83,10 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Product product = (Product) o;
-        return productId == product.productId && recipe == product.recipe && Objects.equals(name, product.name)
-                && Objects.equals(price, product.price) && Objects.equals(picture, product.picture)
-                && Objects.equals(instruction, product.instruction);
-    }
-
-    @Override
     public int hashCode() {
         int result = (int) (productId ^ (productId >>> 32));
         result *= 31 + (name != null ? name.hashCode() : 0);
+        result *= 31 + (group != null ? group.hashCode() : 0);
         result *= 31 + (price != null ? price.hashCode() : 0);
         result *= recipe ? 1 : 0;
         result *= 31 + (picture != null ? picture.hashCode() : 0);
@@ -98,6 +100,7 @@ public class Product {
         builder.append("Product{");
         builder.append("productId=").append(productId);
         builder.append(", name='").append(name);
+        builder.append(", group='").append(group);
         builder.append(", price=").append(price);
         builder.append(", recipe=").append(recipe);
         builder.append(", picture='").append(picture);

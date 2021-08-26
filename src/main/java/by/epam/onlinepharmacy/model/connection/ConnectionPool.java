@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Logger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayDeque;
-import java.util.Queue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -18,12 +16,12 @@ public enum ConnectionPool {
     private Logger logger = LogManager.getLogger();
     private static final int DEFAULT_POOL_SIZE = 4;
     private BlockingQueue<ProxyConnection> freeConnections;
-    private Queue<ProxyConnection> givenAwayConnections;
+    private BlockingQueue<ProxyConnection> givenAwayConnections;
 
 
     ConnectionPool() {
         freeConnections = new LinkedBlockingDeque<>(DEFAULT_POOL_SIZE);
-        givenAwayConnections = new ArrayDeque<>();
+        givenAwayConnections = new LinkedBlockingDeque<>();
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {
                 Connection connection = ConnectionFactory.getConnection();
@@ -82,7 +80,6 @@ public enum ConnectionPool {
         DriverManager.getDrivers().asIterator().forEachRemaining(driver -> {
             try {
                 DriverManager.deregisterDriver(driver);
-
             } catch (SQLException e) {
                 logger.log(Level.ERROR, "SQLException in method deregisterDrivers() ", e);
             }

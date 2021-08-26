@@ -22,6 +22,13 @@ import java.util.Optional;
 public class UserDaoImpl implements UserDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static UserDaoImpl instance = new UserDaoImpl();
+
+    private UserDaoImpl(){
+    }
+    public static UserDaoImpl getInstance(){
+        return instance;
+    }
 
     private static final String CREATE_USER = """
             INSERT INTO users (login, password, first_name, last_name, email, telephone, role_id)
@@ -32,7 +39,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String FIND_CUSTOMER = "SELECT user_id FROM code_activation WHERE code_value = ?";
 
-    private static final String FIND_BY_LOGIN = "SELECT user_id FROM users WHERE login=?";
+    private static final String FIND_BY_LOGIN = "SELECT user_id, first_name, last_name, email FROM users WHERE login=?";
 
     private static final String AUTHORIZE_USER = """
             SELECT u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
@@ -65,15 +72,15 @@ public class UserDaoImpl implements UserDao {
     public int createUser(User user) throws DaoException {
         int result = 0;
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(CREATE_USER)) {
-            ps.setString(1, user.getLogin());
-            ps.setString(2, user.getPassword());
-            ps.setString(3, user.getFirstName());
-            ps.setString(4, user.getLastName());
-            ps.setString(5, user.getEmail());
-            ps.setString(6, user.getTelephone());
-            ps.setString(7, user.getRole().name());
-            result = ps.executeUpdate();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER)) {
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(3, user.getFirstName());
+            preparedStatement.setString(4, user.getLastName());
+            preparedStatement.setString(5, user.getEmail());
+            preparedStatement.setString(6, user.getTelephone());
+            preparedStatement.setString(7, user.getRole().name());
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createUser() ", e);
             throw new DaoException("SQLException in method createUser() ", e);
@@ -86,10 +93,13 @@ public class UserDaoImpl implements UserDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LOGIN)) {
             preparedStatement.setString(1, login);
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(ColumnName.USER_ID))
+                            .setUserId(resultSet.getLong(ColumnName.USER_ID))
+                            .setFirstName(resultSet.getString(ColumnName.USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(ColumnName.USER_LAST_NAME))
+                            .setEmail(resultSet.getString(ColumnName.USER_EMAIL))
                             .build();
                     return Optional.of(user);
                 }
@@ -133,11 +143,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public Optional<User> authenticationUser(User user) throws DaoException {
+    public Optional<User> findUserByLoginAndPassword(String login, String password) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(AUTHORIZE_USER)) {
-            preparedStatement.setString(1, user.getLogin());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement.setString(1, login);
+            preparedStatement.setString(2, password);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(new User.Builder()
@@ -148,8 +158,8 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method authenticationUser() " + e.getMessage());
-            throw new DaoException("SQLException in method authenticationUser() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method authenticationUser() ", e);
+            throw new DaoException("SQLException in method authenticationUser() ", e);
         }
         return Optional.empty();
     }
@@ -174,8 +184,8 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findAllPharmacists() " + e.getMessage());
-            throw new DaoException("SQLException in method findAllPharmacists() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method findAllPharmacists() ", e);
+            throw new DaoException("SQLException in method findAllPharmacists() ", e);
         }
         return pharmacists;
     }
@@ -189,8 +199,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method changePharmacists() ", e);
-            throw new DaoException("SQLException in method changePharmacists() ", e);
+            logger.log(Level.ERROR, "SQLException in method updateUserStatus() ", e);
+            throw new DaoException("SQLException in method updateUserStatus() ", e);
         }
         return result;
     }

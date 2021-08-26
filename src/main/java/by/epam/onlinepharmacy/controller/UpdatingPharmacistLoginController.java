@@ -20,7 +20,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/updatePharmacistLogin")
 public class UpdatingPharmacistLoginController extends HttpServlet {
     private Logger logger = LogManager.getLogger();
-    private UserService userService = new UserServiceImpl();
+    private UserService userService = UserServiceImpl.getInstance();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

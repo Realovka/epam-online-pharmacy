@@ -19,6 +19,13 @@ import java.util.List;
 public class PharmacyDaoImpl implements PharmacyDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
+    private static PharmacyDaoImpl instance = new PharmacyDaoImpl();
+    private PharmacyDaoImpl(){
+
+    }
+    public static PharmacyDaoImpl getInstance() {
+        return instance;
+    }
 
     private static final String FIND_ALL_PHARMACIES = """
             SELECT pharmacy_id, number, city, street, house, block FROM pharmacies 

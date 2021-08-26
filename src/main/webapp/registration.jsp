@@ -10,7 +10,7 @@
     <title>Registration</title>
 </head>
 <body>
-<a href="/index.jsp">Back to home page</a>
+<a href="${pageContext.request.contextPath}/controller?command=login_page">Back to home page</a>
 <nav class="menu">
     <ul>
         <li>
@@ -25,15 +25,15 @@
     </ul>
 </nav>
 <div class="registr">
-    <form action="/reg" method="post">
+    <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
         <h1>Registration</h1><br>
-        <p>${requestScope.errorRegistration}</p><br>
-        <input type="text" name="loginRegistration" placeholder="login"/><br>
-        <input type="password" name="passwordRegistration" placeholder="password"/><br>
-        <input type="text" name="firstNameRegistration" placeholder="first name"/><br>
-        <input type="text" name="lastNameRegistration" placeholder="last name"/><br>
-        <input type="email" name="emailRegistration" placeholder="email"/><br>
-        <input type="tel" name="telephoneRegistration" placeholder="telephone"/><br>
+        <p>${sessionScope.registrationError}</p><br>
+        <input type="text" name="login" placeholder="login"/><br>
+        <input type="password" name="password" placeholder="password"/><br>
+        <input type="text" name="firstName" placeholder="first name"/><br>
+        <input type="text" name="lastName" placeholder="last name"/><br>
+        <input type="email" name="email" placeholder="email"/><br>
+        <input type="tel" name="telephone" placeholder="telephone"/><br>
         <select name="role">
             <option>PHARMACIST</option>
             <option>CUSTOMER</option>

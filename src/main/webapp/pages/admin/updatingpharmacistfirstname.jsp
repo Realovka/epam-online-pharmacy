@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="../../styles/common.css">
     <title>Updating pharmacist first name</title>
 </head>
 <body>

@@ -13,7 +13,7 @@ public interface UserDao {
     void createCodeActivation(long userId, String code) throws DaoException;
     long findIdForVerificationCustomer(String code) throws DaoException;
     Optional<User> findByLogin(String login) throws DaoException;
-    Optional<User> authenticationUser(User user) throws DaoException;
+    Optional<User> findUserByLoginAndPassword(String login, String password) throws DaoException;
     List<User> findAllPharmacists() throws DaoException;
     int updateUserStatus(long id, Status status) throws DaoException;
     List<User> findInactivePharmacists() throws DaoException;

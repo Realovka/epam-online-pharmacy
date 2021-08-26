@@ -1,0 +1,50 @@
+package by.epam.onlinepharmacy.controller;
+
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandProvider;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.exception.ServiceException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
+@WebServlet(urlPatterns = "/controller")
+public class Controller extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+       processRequest(req,resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        processRequest(req,resp);
+    }
+
+    private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String commandString = request.getParameter(RequestParameter.COMMAND);
+        Command command = CommandProvider.getInstance().getCommand(commandString);
+        CommandResult commandResult = null;
+        try {
+            commandResult = command.execute(request);
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
+        switch (commandResult.getRoutingType()) {
+            case FORWARD:
+                request.getRequestDispatcher(commandResult.getPage()).forward(request, response);
+                break;
+            case REDIRECT:
+                response.sendRedirect(request.getContextPath() + commandResult.getPage());
+                break;
+            default:
+//                logger.log(Level.ERROR, "Illegal routing type");
+//                response.sendRedirect(PagePath.ERROR_500_PAGE);
+        }
+    }
+}
+

@@ -20,49 +20,69 @@ import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
-    private UserDao userDao = new UserDaoImpl();
+    private static UserServiceImpl instance;
+    private UserDao userDao = UserDaoImpl.getInstance();
+
+    private UserServiceImpl() {
+
+    }
+
+    public static UserServiceImpl getInstance() {
+        if (instance == null) {
+            instance = new UserServiceImpl();
+        }
+        return instance;
+    }
 
     @Override
-    public boolean createUser(User userReg) throws ServiceException {
+    public Optional<User> createUser(String login, String password, String firstName, String lastName, String email, String telephone, String role) throws ServiceException {
         int result = 0;
+        User user = new User.Builder()
+                .setLogin(login)
+                .setPassword(PasswordEncoder.createPasswordEncoded(password))
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setTelephone(telephone)
+                .setRole(Role.valueOf(role))
+                .build();
         try {
-            if (userDao.findByLogin(userReg.getLogin()).isPresent()) {
-                return false;
+            if (userDao.findByLogin(user.getLogin()).isPresent()) {
+                return Optional.empty();
             }
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Such login already exists ", e);
             throw new ServiceException("Such login already exists ", e);
         }
-        userReg.setPassword(PasswordEncoder.createPasswordEncoded(userReg.getPassword()));
         try {
-            result = userDao.createUser(userReg);
+            result = userDao.createUser(user);
         } catch (DaoException ex) {
             logger.log(Level.ERROR, "Exception is in method createUser(), when create user ", ex);
             throw new ServiceException("Exception is in method createUser(), when create user ", ex);
         }
-        if (userReg.getRole().equals(Role.CUSTOMER) && result > 0) {
+        if (user.getRole().
+                equals(Role.CUSTOMER) && result > 0) {
             try {
-                Optional<User> user = userDao.findByLogin(userReg.getLogin());
-                if (user.isPresent()) {
+                Optional<User> userReg = userDao.findByLogin(user.getLogin());
+                if (userReg.isPresent()) {
                     String code = UUID.randomUUID().toString();
-                    userDao.createCodeActivation(user.get().getUserId(), code);
-                    EmailSending.sendEmail(userReg, code);
+                    userDao.createCodeActivation(userReg.get().getUserId(), code);
+                    EmailSending.sendEmail(userReg.get(), code);
                 }
             } catch (DaoException e) {
                 logger.log(Level.ERROR, "Exception is in method createUser(), when send code", e);
                 throw new ServiceException("Exception is in method createUser(), when send code ", e);
             }
         }
-        return true;
+        return Optional.of(user);
     }
 
     @Override
-    public Optional<User> authenticationUser(User userAuth) throws ServiceException {
+    public Optional<User> authenticationUser(String login, String password) throws ServiceException {
         Optional<User> userFromDb;
-        String passwordEncoded = PasswordEncoder.createPasswordEncoded(userAuth.getPassword());
-        userAuth.setPassword(passwordEncoded);
+        String passwordEncoded = PasswordEncoder.createPasswordEncoded(password);
         try {
-            userFromDb = userDao.authenticationUser(userAuth);
+            userFromDb = userDao.findUserByLoginAndPassword(login, passwordEncoded);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Exception is in method authenticationUser() ", e);
             throw new ServiceException("Exception is in method authenticationUser() ", e);
@@ -90,8 +110,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateUserStatus(Long.parseLong(id), status);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method verifyPharmacist() ", e);
-            throw new ServiceException("Exception is in method verifyPharmacist() ", e);
+            logger.log(Level.ERROR, "Exception is in method  updatePharmacistStatus() ", e);
+            throw new ServiceException("Exception is in method updatePharmacistStatus() ", e);
         }
     }
 
@@ -107,7 +127,7 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "Exception is in method changeCustomerStatus() ", e);
             throw new ServiceException("Exception is in method changeCustomerStatus ", e);
         }
-       return false;
+        return false;
     }
 
     @Override

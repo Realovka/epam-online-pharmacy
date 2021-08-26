@@ -11,12 +11,13 @@
 <p>
     Check your mailbox and enter the code from the letter in the form below
 </p>
-<form action="/regCustomer" method="post">
+<form action="${pageContext.request.contextPath}/controller?command=verification_customer" method="post">
     <p>
-        ${requestScope.errorAuthentication}
+        ${sessionScope.codeVerificationError}
     </p>
     <input type="text" name="code" placeholder="code"/><br>
     <input type="submit" value="Send"/><br>
 </form>
+<a href="${pageContext.request.contextPath}/controller?command=login_page">Back to home page</a>
 </body>
 </html>

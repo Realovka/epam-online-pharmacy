@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="../../styles/common.css">
     <title>All pharmacists</title>
 </head>
 <body>

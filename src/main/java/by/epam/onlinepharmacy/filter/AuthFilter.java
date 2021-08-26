@@ -40,8 +40,8 @@
 //                        try {
 //                            switch (user.get().getRole()) {
 //                                //TODO roles
-//                                case PHARMACIST -> req.getRequestDispatcher("/pharmacistmain.jsp").forward(req, resp);
-//                                case CUSTOMER -> req.getRequestDispatcher("/customermain.jsp").forward(req, resp);
+//                                case PHARMACIST -> req.getRequestDispatcher("/pharmacist_main.jsp").forward(req, resp);
+//                                case CUSTOMER -> req.getRequestDispatcher("/customer_main.jsp").forward(req, resp);
 //                                case ADMIN -> req.getRequestDispatcher("/mainAdmin").forward(req, resp);
 //                            }
 //                        }

@@ -11,9 +11,9 @@
 <body class="other">
     <h1>Hello ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists">Pharmacists waiting verification and active pharmacists</a>
-    <a href="">All pharmacies</a>
-    <a href="/allProduct">All products</a>
-    <a href="/inactivePharmacists">Inactive pharmacists</a>
-    <a href="/logout">Logout</a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies">All pharmacies</a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_products">All products</a>
+    <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page">Inactive pharmacists</a>
+    <a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

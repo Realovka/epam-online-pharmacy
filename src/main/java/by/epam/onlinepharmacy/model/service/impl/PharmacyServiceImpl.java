@@ -20,7 +20,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     private PharmacyServiceImpl() {
     }
 
-    private static PharmacyServiceImpl getInstance(){
+    public static PharmacyServiceImpl getInstance(){
         return instance;
     }
 
@@ -44,7 +44,14 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public void createPharmacy(Pharmacy pharmacy) throws ServiceException {
+    public void createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
+        Pharmacy pharmacy = new Pharmacy.Builder()
+                .setHouse(number)
+                .setCity(city)
+                .setStreet(street)
+                .setHouse(house)
+                .setBlock(Integer.valueOf(block))
+                .build();
         try {
             pharmacyDao.createPharmacy(pharmacy);
         } catch (DaoException e) {

@@ -22,6 +22,10 @@ public class CommandProvider {
         commands.put(CommandType.LOGOUT, new LogoutCommand());
         commands.put(CommandType.VERIFICATION_PHARMACIST, new VerificationPharmacistCommand());
         commands.put(CommandType.INACTIVATION_PHARMACIST, new InactivationPharmacistCommand());
+        commands.put(CommandType.INACTIVE_PHARMACISTS_PAGE, new InactivePharmacistsPageCommand());
+        commands.put(CommandType.ACTIVATION_PHARMACIST, new ActivationPharmacistCommand());
+        commands.put(CommandType.ALL_PHARMACIES, new AllPharmaciesCommand());
+        commands.put(CommandType.ADDITION_PHARMACY, new AdditionPharmacyCommand());
     }
 
     public static CommandProvider getInstance() {

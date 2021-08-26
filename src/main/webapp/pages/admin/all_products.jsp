@@ -59,6 +59,7 @@
         </table>
     </c:when>
 </c:choose>
-<a href="/logout">Logout</a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
+<a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

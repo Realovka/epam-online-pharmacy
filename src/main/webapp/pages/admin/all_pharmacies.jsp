@@ -11,7 +11,7 @@
 <body>
 <h1 style="text-align: center">List all pharmacies</h1>
 <h2 style="text-align: left">Add new pharmacy in form</h2>
-<form action="/addPharmacy" method="post">
+<form action="${pageContext.request.contextPath}/controller?command=addition_pharmacy" method="post">
     <input type="text" name="number" placeholder="number"/>
     <input type="text" name="city" placeholder="city"/>
     <input type="text" name="street" placeholder="street"/>
@@ -58,7 +58,7 @@
         </table>
     </c:when>
 </c:choose>
-<a href="/mainAdmin">Main</a>
-<a href="/logout">Logout</a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
+<a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

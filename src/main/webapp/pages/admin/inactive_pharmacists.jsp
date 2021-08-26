@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../../styles/common.css">
-    <title>Deleted pharmacists</title>
+    <title>Inactive pharmacists</title>
 </head>
 <body>
 <h1 style="text-align: center">List inactive pharmacists</h1>
@@ -24,7 +24,7 @@
     <c:forEach items="${sessionScope.inactivePharmacists}" var="pharmacist">
                 <tr>
                     <td>
-                        <a href="/activationPharmacist?id=${pharmacist.userId}">${pharmacist.userId}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=activation_pharmacist&id=${pharmacist.userId}">${pharmacist.userId}</a>
                     </td>
                     <td>
                             ${pharmacist.firstName}
@@ -43,7 +43,7 @@
     <label>No inactive pharmacists</label><br>
 </c:otherwise>
 </c:choose>
-<a href="/mainAdmin">Main</a>
-<a href="/logout">Logout</a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
+<a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

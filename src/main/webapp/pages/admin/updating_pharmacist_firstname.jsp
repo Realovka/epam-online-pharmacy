@@ -15,7 +15,7 @@
     <input type="text" name="newFirstName" placeholder="new first name"/>
     <input type="submit" name="Update first name"/>
 </form>
-<a href="/mainAdmin">Main</a>
-<a href="/logout">Logout</a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
+<a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>
 </body>
 </html>

@@ -21,6 +21,6 @@
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 //        String id = req.getParameter("id");
 //        req.getSession().setAttribute("id", Long.parseLong(id));
-//        req.getRequestDispatcher("WEB-INF/pages/admin/updatingpharmacistlogin.jsp").forward(req, resp);
+//        req.getRequestDispatcher("WEB-INF/pages/admin/updating_pharmacist_login.jsp").forward(req, resp);
 //    }
 //}

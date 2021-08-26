@@ -4,7 +4,6 @@ import by.epam.onlinepharmacy.controller.command.Command;
 import by.epam.onlinepharmacy.controller.command.CommandProvider;
 import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
-import by.epam.onlinepharmacy.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,23 +16,18 @@ import java.io.IOException;
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       processRequest(req,resp);
+        processRequest(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        processRequest(req,resp);
+        processRequest(req, resp);
     }
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String commandString = request.getParameter(RequestParameter.COMMAND);
         Command command = CommandProvider.getInstance().getCommand(commandString);
-        CommandResult commandResult = null;
-        try {
-            commandResult = command.execute(request);
-        } catch (ServiceException e) {
-            e.printStackTrace();
-        }
+        CommandResult commandResult = command.execute(request);
         switch (commandResult.getRoutingType()) {
             case FORWARD:
                 request.getRequestDispatcher(commandResult.getPage()).forward(request, response);

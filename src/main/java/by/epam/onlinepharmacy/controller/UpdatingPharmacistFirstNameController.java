@@ -31,7 +31,7 @@
 //            userService.updateFirstName(id, newFirstName);
 //            pharmacists = userService.findAllPharmacists();
 //            req.getSession().setAttribute("allPharmacists", pharmacists);
-//            req.getRequestDispatcher("WEB-INF/pages/admin/allpharmacists.jsp").forward(req, resp);
+//            req.getRequestDispatcher("WEB-INF/pages/admin/all_pharmacists.jsp").forward(req, resp);
 //        } catch (ServiceException e) {
 //            logger.log(Level.ERROR, "Exception in method doPost()", e);
 //        }

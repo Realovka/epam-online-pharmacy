@@ -12,12 +12,15 @@
 <h1 style="text-align: center">List all pharmacies</h1>
 <h2 style="text-align: left">Add new pharmacy in form</h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_pharmacy" method="post">
-    <input type="text" name="number" placeholder="number"/>
-    <input type="text" name="city" placeholder="city"/>
-    <input type="text" name="street" placeholder="street"/>
-    <input type="text" name="house" placeholder="house"/>
-    <input type="text" name="block" placeholder="block"/>
-    <input type="submit" name="Input pharmacy">
+    <div>${requestScope.numberError}</div><br>
+    <div>${requestScope.stringParametersError}</div><br>
+    <input type="text" name="number" placeholder="number"/><br>
+    <input type="text" name="city" placeholder="city"/><br>
+    <input type="text" name="street" placeholder="street"/><br>
+    <input type="text" name="house" placeholder="house"/><br>
+    <div>${requestScope.blockError}</div><br>
+    <input type="text" name="block" placeholder="block"/><br>
+    <input type="submit" value="Input pharmacy">
 </form>
 <c:choose>
     <c:when test="${sessionScope.allPharmacies.size()>0}">

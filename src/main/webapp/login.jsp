@@ -29,7 +29,7 @@
 <div class="auth">
     <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
         <p>
-            ${sessionScope.loginError}
+        <div class="error">${sessionScope.loginError}</div>
         </p>
         <input type="text" name="login" placeholder="login"/><br>
         <input type="password" name="password" placeholder="password"/><br>

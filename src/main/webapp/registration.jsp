@@ -27,13 +27,16 @@
 <div class="registr">
     <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
         <h1>Registration</h1><br>
-        <p>${sessionScope.registrationError}</p><br>
-        <input type="text" name="login" placeholder="login"/><br>
-        <input type="password" name="password" placeholder="password"/><br>
-        <input type="text" name="firstName" placeholder="first name"/><br>
-        <input type="text" name="lastName" placeholder="last name"/><br>
-        <input type="email" name="email" placeholder="email"/><br>
-        <input type="tel" name="telephone" placeholder="telephone"/><br>
+        <div>${requestScope.registrationError}</div><br>
+        <div>${requestScope.userRegistrationDataError}</div><br>
+        <input type="text" name="login" placeholder="login" size="35px"/><br>
+        <input type="password" name="password" placeholder="password" size="35px"/><br>
+        <input type="text" name="firstName" placeholder="first name" size="35px"/><br>
+        <input type="text" name="lastName" placeholder="last name" size="35px"/><br>
+        <div>${requestScope.emailError}</div>
+        <input type="email" name="email" placeholder="email" size="35px"/><br>
+        <div>${requestScope.telephoneError}</div>
+        <input type="tel" name="telephone" placeholder="telephone" size="35px"/><br>
         <select name="role">
             <option>PHARMACIST</option>
             <option>CUSTOMER</option>

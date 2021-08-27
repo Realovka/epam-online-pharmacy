@@ -20,7 +20,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     private PharmacyServiceImpl() {
     }
 
-    public static PharmacyServiceImpl getInstance(){
+    public static PharmacyServiceImpl getInstance() {
         return instance;
     }
 
@@ -46,12 +46,16 @@ public class PharmacyServiceImpl implements PharmacyService {
     @Override
     public void createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
         Pharmacy pharmacy = new Pharmacy.Builder()
-                .setHouse(number)
+                .setNumber(Integer.parseInt(number))
                 .setCity(city)
                 .setStreet(street)
                 .setHouse(house)
-                .setBlock(Integer.valueOf(block))
                 .build();
+        if (block.isBlank()) {
+            pharmacy.setBlock(0);
+        } else {
+            pharmacy.setBlock(Integer.valueOf(block));
+        }
         try {
             pharmacyDao.createPharmacy(pharmacy);
         } catch (DaoException e) {

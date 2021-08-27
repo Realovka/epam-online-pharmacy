@@ -30,7 +30,7 @@ public class Pharmacy {
         this.pharmacyId = pharmacyId;
     }
 
-    public int getNumber() {
+    public Integer getNumber() {
         return number;
     }
 

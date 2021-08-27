@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Optional<User> createUser(String login, String password, String firstName, String lastName, String email, String telephone, String role) throws ServiceException {
-        int result = 0;
+        int result;
         User user = new User.Builder()
                 .setLogin(login)
                 .setPassword(PasswordEncoder.createPasswordEncoded(password))

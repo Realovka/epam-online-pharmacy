@@ -8,7 +8,7 @@ public class UpdatingFirstNamePharmacistPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.USER_ID);
-        request.getSession().setAttribute(SessionAttribute.PHARMACIST_ID, id);
-        return new CommandResult(PagePath.UPDATING_PHARMACIST_FIRSTNAME, CommandResult.RoutingType.REDIRECT);
+        request.getSession().setAttribute(SessionAttribute.PHARMACIST_ID, Long.parseLong(id));
+        return new CommandResult(PagePath.UPDATING_PHARMACIST_FIRST_NAME, CommandResult.RoutingType.REDIRECT);
     }
 }

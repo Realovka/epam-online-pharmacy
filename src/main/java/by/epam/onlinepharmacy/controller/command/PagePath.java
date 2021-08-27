@@ -12,7 +12,7 @@ public final class PagePath {
     public static final String ALL_PHARMACIES = "pages/admin/all_pharmacies.jsp";
     public static final String ALL_PRODUCTS = "pages/admin/all_products.jsp";
     public static final String UPDATING_PHARMACIST_LOGIN = "pages/admin/updating_pharmacist_login.jsp";
-    public static final String UPDATING_PHARMACIST_FIRSTNAME = "pages/admin/updating_pharmacist_firstname.jsp";
+    public static final String UPDATING_PHARMACIST_FIRST_NAME = "pages/admin/updating_pharmacist_first_name.jsp";
 
     public static final String ERROR_500_PAGE = "pages/error/error500.jsp";
 

@@ -10,10 +10,10 @@
 </head>
 <body>
 <h1 style="text-align: center">Update pharmacist first name</h1>
-<form action="/updatePharmacistFirstName" method="post">
-    <p>${requestScope.errorUpdatingFirstName}</p>
-    <input type="text" name="newFirstName" placeholder="new first name"/>
-    <input type="submit" name="Update first name"/>
+<form action="${pageContext.request.contextPath}/controller?command=updating_pharmacist_first_name" method="post">
+    <p>${requestScope.updatingPharmacistFirstNameError}</p>
+    <input type="text" name="newFirstName" placeholder="new first name"/><br>
+    <input type="submit" value="Update first name"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
 <a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>

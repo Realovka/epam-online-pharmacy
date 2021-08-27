@@ -6,8 +6,8 @@ public final class Message {
     public static final String CODE_VERIFICATION_ERROR = "Incorrect verification code";
     public static final String USER_LOGIN_ERROR = "Login length isn't valid";
     public static final String PASSWORD_ERROR = "Password length isn't valid";
-    public static final String FIRSTNAME_ERROR = "Firstname isn't valid";
-    public static final String LASTNAME_ERROR = "Lastname isn't valid";
+    public static final String FIRST_NAME_ERROR = "First name isn't valid";
+    public static final String LASTNAME_ERROR = "Last name isn't valid";
     public static final String INCORRECT_EMAIL = "Incorrect email";
     public static final String INCORRECT_TELEPHONE = "Incorrect telephone";
     public static final String PHARMACY_NUMBER_ERROR = "Incorrect number";

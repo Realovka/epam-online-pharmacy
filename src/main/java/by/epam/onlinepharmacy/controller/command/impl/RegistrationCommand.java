@@ -33,7 +33,7 @@ public class RegistrationCommand implements Command {
         }
 
         if (!UserValidator.isValidFirstName(firstName)) {
-            request.setAttribute(RequestAttribute.FIRST_NAME_ERROR, Message.FIRSTNAME_ERROR);
+            request.setAttribute(RequestAttribute.FIRST_NAME_ERROR, Message.FIRST_NAME_ERROR);
         }
 
         if (!UserValidator.isValidLastName(lastName)) {

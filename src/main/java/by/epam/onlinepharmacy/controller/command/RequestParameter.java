@@ -16,7 +16,7 @@ public final class RequestParameter {
 
     //Pharmacist update
     public static final String UPDATING_PHARMACIST_LOGIN = "newLogin";
-    public static final String UPDATING_PHARMACIST_FIRSTNAME = "newFirstName";
+    public static final String UPDATING_PHARMACIST_FIRST_NAME = "newFirstName";
 
     //Pharmacy
     public static final String NUMBER = "number";

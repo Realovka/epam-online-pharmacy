@@ -12,7 +12,7 @@ public final class RequestAttribute {
     public static final String PHARMACY_STRING_PARAMETERS_ERROR = "stringParametersError";
     public static final String PHARMACY_BLOCK_ERROR = "blockError";
     public static final String UPDATING_PHARMACIST_LOGIN_ERROR = "updatingPharmacistLoginError";
-    public static final String UPDATING_PHARMACIST_FIRSTNAME_ERROR = "updatingPharmacistFirstNameError";
+    public static final String UPDATING_PHARMACIST_FIRST_NAME_ERROR = "updatingPharmacistFirstNameError";
 
 
     private RequestAttribute() {

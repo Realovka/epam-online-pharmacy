@@ -9,11 +9,11 @@
     <title>Updating pharmacist login</title>
 </head>
 <body>
-<h1 style="text-align: center">Update login</h1>
-<form action="/updatePharmacistLogin" method="post">
-    <p>${requestScope.errorUpdatingLogin}</p>
-    <input type="text" name="newLogin" placeholder="new login"/>
-    <input type="submit" name="Update login"/>
+<h1 style="text-align: center">Update pharmacist login</h1>
+<form action="${pageContext.request.contextPath}/controller?command=updating_pharmacist_login" method="post">
+    <div>${requestScope.updatingPharmacistLoginError}</div>
+    <input type="text" name="newLogin" placeholder="new login"/><br>
+    <input type="submit" value="Update login"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=main_admin">Main</a>
 <a href="${pageContext.request.contextPath}/controller?command=logout">Logout</a>

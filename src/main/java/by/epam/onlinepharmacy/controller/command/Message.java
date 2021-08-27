@@ -4,7 +4,10 @@ public final class Message {
     public static final String REGISTRATION_ERROR = "Such login already exists";
     public static final String LOGIN_ERROR = "Incorrect login or password";
     public static final String CODE_VERIFICATION_ERROR = "Incorrect verification code";
-    public static final String USER_DATA_REGISTRATION_ERROR = "Number of symbols must be between 1 and 45";
+    public static final String USER_LOGIN_ERROR = "Login length isn't valid";
+    public static final String PASSWORD_ERROR = "Password length isn't valid";
+    public static final String FIRSTNAME_ERROR = "Firstname isn't valid";
+    public static final String LASTNAME_ERROR = "Lastname isn't valid";
     public static final String INCORRECT_EMAIL = "Incorrect email";
     public static final String INCORRECT_TELEPHONE = "Incorrect telephone";
     public static final String PHARMACY_NUMBER_ERROR = "Incorrect number";

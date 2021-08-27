@@ -66,10 +66,10 @@
                                 ${pharmacist.userId}
                         </td>
                         <td>
-                            <a href="/updateLogin?id=${pharmacist.userId}">${pharmacist.login}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_login_page&id=${pharmacist.userId}">${pharmacist.login}</a>
                         </td>
                         <td>
-                            <a href="/updateFirstName?id=${pharmacist.userId}">${pharmacist.firstName}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_firstname&id=${pharmacist.userId}">${pharmacist.firstName}</a>
 
                         </td>
                         <td>

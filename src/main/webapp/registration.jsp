@@ -24,18 +24,21 @@
         </li>
     </ul>
 </nav>
-<div class="registr">
+<div class="reg">
     <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
         <h1>Registration</h1><br>
         <div>${requestScope.registrationError}</div><br>
-        <div>${requestScope.userRegistrationDataError}</div><br>
+        <div>${requestScope.loginError}</div><br>
         <input type="text" name="login" placeholder="login" size="35px"/><br>
+        <div>${requestScope.passwordError}</div><br>
         <input type="password" name="password" placeholder="password" size="35px"/><br>
+        <div>${requestScope.firstNameError}</div><br>
         <input type="text" name="firstName" placeholder="first name" size="35px"/><br>
+        <div>${requestScope.lastNameError}</div><br>
         <input type="text" name="lastName" placeholder="last name" size="35px"/><br>
-        <div>${requestScope.emailError}</div>
+        <div>${requestScope.emailError}</div><br>
         <input type="email" name="email" placeholder="email" size="35px"/><br>
-        <div>${requestScope.telephoneError}</div>
+        <div>${requestScope.telephoneError}</div><br>
         <input type="tel" name="telephone" placeholder="telephone" size="35px"/><br>
         <select name="role">
             <option>PHARMACIST</option>
@@ -44,7 +47,6 @@
         </select><br><br>
         <input type="submit" value="Registration">
     </form>
-</div>
 </div>
 </body>
 </html>

@@ -9,7 +9,7 @@
     <title>Updating pharmacist first name</title>
 </head>
 <body>
-<h1 style="text-align: center">Update first name</h1>
+<h1 style="text-align: center">Update pharmacist first name</h1>
 <form action="/updatePharmacistFirstName" method="post">
     <p>${requestScope.errorUpdatingFirstName}</p>
     <input type="text" name="newFirstName" placeholder="new first name"/>

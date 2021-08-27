@@ -14,6 +14,10 @@ public final class RequestParameter {
     public static final String CODE = "code";
     public static final String USER_ID = "id";
 
+    //Pharmacist update
+    public static final String UPDATING_PHARMACIST_LOGIN = "newLogin";
+    public static final String UPDATING_PHARMACIST_FIRSTNAME = "newFirstName";
+
     //Pharmacy
     public static final String NUMBER = "number";
     public static final String CITY = "city";

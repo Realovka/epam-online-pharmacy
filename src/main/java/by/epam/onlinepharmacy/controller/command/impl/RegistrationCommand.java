@@ -9,7 +9,6 @@ import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
 import by.epam.onlinepharmacy.validation.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class RegistrationCommand implements Command {
@@ -17,7 +16,6 @@ public class RegistrationCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         CommandResult commandResult;
-        HttpSession session = request.getSession();
         String login = request.getParameter(RequestParameter.LOGIN);
         String password = request.getParameter(RequestParameter.PASSWORD);
         String firstName = request.getParameter(RequestParameter.FIRST_NAME);
@@ -26,8 +24,20 @@ public class RegistrationCommand implements Command {
         String telephone = request.getParameter(RequestParameter.TELEPHONE);
         String role = request.getParameter(RequestParameter.ROLE);
 
-        if (!UserValidator.isValidAllParametersRegistrationUser(login, password, firstName, lastName, email, telephone)) {
-            request.setAttribute(RequestAttribute.USER_REGISTRATION_DATA_ERROR, Message.USER_DATA_REGISTRATION_ERROR);
+        if (!UserValidator.isValidLogin(login)) {
+            request.setAttribute(RequestAttribute.LOGIN_ERROR, Message.USER_LOGIN_ERROR);
+        }
+
+        if (!UserValidator.isValidPassword(password)) {
+            request.setAttribute(RequestAttribute.PASSWORD_ERROR, Message.PASSWORD_ERROR);
+        }
+
+        if (!UserValidator.isValidFirstName(firstName)) {
+            request.setAttribute(RequestAttribute.FIRST_NAME_ERROR, Message.FIRSTNAME_ERROR);
+        }
+
+        if (!UserValidator.isValidLastName(lastName)) {
+            request.setAttribute(RequestAttribute.LAST_NAME_ERROR, Message.LASTNAME_ERROR);
         }
 
         if (!UserValidator.isValidEmailRegistrationUser(email)) {

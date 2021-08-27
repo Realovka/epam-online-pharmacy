@@ -26,6 +26,9 @@ public class CommandProvider {
         commands.put(CommandType.ACTIVATION_PHARMACIST, new ActivationPharmacistCommand());
         commands.put(CommandType.ALL_PHARMACIES, new AllPharmaciesCommand());
         commands.put(CommandType.ADDITION_PHARMACY, new AdditionPharmacyCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN_PAGE, new UpdatingLoginPharmacistPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_FIRSTNAME_PAGE, new UpdatingFirstNamePharmacistPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN, new UpdatingLoginPharmacistCommand());
     }
 
     public static CommandProvider getInstance() {

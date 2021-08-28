@@ -70,16 +70,15 @@
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_first_name_page&id=${pharmacist.userId}">${pharmacist.firstName}</a>
-
                         </td>
                         <td>
-                            <a href="/updateLastName?id=${pharmacist.userId}">${pharmacist.lastName}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_last_name_page&id=${pharmacist.userId}">${pharmacist.lastName}</a>
                         </td>
                         <td>
-                            <a href="/updateTelephone?id=${pharmacist.userId}">${pharmacist.telephone}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_telephone_page&id=${pharmacist.userId}">${pharmacist.telephone}</a>
                         </td>
                         <td>
-                            <a href="/updateEmail?id=${pharmacist.userId}">${pharmacist.email}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacist_email_page&id=${pharmacist.userId}">${pharmacist.email}</a>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=inactivation_pharmacist&id=${pharmacist.userId}">${pharmacist.status}</a>

@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.controller.command;
 
 import by.epam.onlinepharmacy.controller.command.impl.*;
+import by.epam.onlinepharmacy.controller.command.impl.admin.*;
 
 import java.util.EnumMap;
 
@@ -26,10 +27,16 @@ public class CommandProvider {
         commands.put(CommandType.ACTIVATION_PHARMACIST, new ActivationPharmacistCommand());
         commands.put(CommandType.ALL_PHARMACIES, new AllPharmaciesCommand());
         commands.put(CommandType.ADDITION_PHARMACY, new AdditionPharmacyCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN_PAGE, new UpdatingLoginPharmacistPageCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME_PAGE, new UpdatingFirstNamePharmacistPageCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN, new UpdatingLoginPharmacistCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME, new UpdatingFirstNamePharmacistCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN_PAGE, new UpdatingPharmacistLoginPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME_PAGE, new UpdatingPharmacistFirstNamePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN, new UpdatingPharmacistLoginCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME, new UpdatingPharmacistFirstNameCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LAST_NAME_PAGE, new UpdatingPharmacistLastNamePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LAST_NAME, new UpdatingPharmacistLastNameCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_EMAIL, new UpdatingPharmacistEmailCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_EMAIL_PAGE, new UpdatingPharmacistEmailPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_TELEPHONE_PAGE, new UpdatingPharmacistTelephonePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_TELEPHONE, new UpdatingPharmacistTelephoneCommand());
     }
 
     public static CommandProvider getInstance() {

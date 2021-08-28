@@ -13,6 +13,9 @@ public final class PagePath {
     public static final String ALL_PRODUCTS = "pages/admin/all_products.jsp";
     public static final String UPDATING_PHARMACIST_LOGIN = "pages/admin/updating_pharmacist_login.jsp";
     public static final String UPDATING_PHARMACIST_FIRST_NAME = "pages/admin/updating_pharmacist_first_name.jsp";
+    public static final String UPDATING_PHARMACIST_LAST_NAME = "pages/admin/updating_pharmacist_last_name.jsp";
+    public static final String UPDATING_PHARMACIST_EMAIL = "pages/admin/updating_pharmacist_email.jsp";
+    public static final String UPDATING_PHARMACIST_TELEPHONE = "pages/admin/updating_pharmacist_telephone.jsp";
 
     public static final String ERROR_500_PAGE = "pages/error/error500.jsp";
 

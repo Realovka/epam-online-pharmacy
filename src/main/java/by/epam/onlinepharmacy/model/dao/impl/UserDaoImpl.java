@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int createUser(User user) throws DaoException {
-        int result = 0;
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_USER)) {
             preparedStatement.setString(1, user.getLogin());
@@ -114,10 +114,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void createCodeActivation(long userId, String code) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(CREATE_CODE)) {
-            ps.setLong(1, userId);
-            ps.setString(2, code);
-            ps.executeUpdate();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_CODE)) {
+            preparedStatement.setLong(1, userId);
+            preparedStatement.setString(2, code);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createUser() ", e);
             throw new DaoException("SQLException in method createUser() ", e);
@@ -192,7 +192,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public int updateUserStatus(long id, Status status) throws DaoException {
-        int result = 0;
+        int result;
         try (Connection connection = connectionPool.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_STATUS)) {
             preparedStatement.setString(1, String.valueOf(status));
@@ -210,13 +210,13 @@ public class UserDaoImpl implements UserDao {
         List<User> inactivePharmacists = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_INACTIVE_PHARMACISTS)) {
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                while (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(ColumnName.USER_ID))
-                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
-                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
-                            .setStatus(Status.valueOf(rs.getString(ColumnName.USER_STATUS)))
+                            .setUserId(resultSet.getLong(ColumnName.USER_ID))
+                            .setFirstName(resultSet.getString(ColumnName.USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(ColumnName.USER_LAST_NAME))
+                            .setStatus(Status.valueOf(resultSet.getString(ColumnName.USER_STATUS)))
                             .build();
                     inactivePharmacists.add(user);
                 }
@@ -236,8 +236,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method updateLogin() " + e.getMessage());
-            throw new DaoException("SQLException in method updateLogin() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method updateLogin() ", e);
+            throw new DaoException("SQLException in method updateLogin() ", e);
         }
     }
 
@@ -249,8 +249,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method updateFirstName() " + e.getMessage());
-            throw new DaoException("SQLException in method updateFirstName() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method updateFirstName() ", e);
+            throw new DaoException("SQLException in method updateFirstName() ", e);
         }
     }
 
@@ -262,8 +262,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method updateLastName() " + e.getMessage());
-            throw new DaoException("SQLException in method updateLastName() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method updateLastName() ", e);
+            throw new DaoException("SQLException in method updateLastName() ", e);
         }
     }
 
@@ -275,8 +275,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method updateEmail() " + e.getMessage());
-            throw new DaoException("SQLException in method updateEmail() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method updateEmail() ", e);
+            throw new DaoException("SQLException in method updateEmail() ", e);
         }
     }
 
@@ -288,8 +288,8 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method updateTelephone() " + e.getMessage());
-            throw new DaoException("SQLException in method updateTelephone() " + e.getMessage());
+            logger.log(Level.ERROR, "SQLException in method updateTelephone() ", e);
+            throw new DaoException("SQLException in method updateTelephone() ", e);
         }
     }
 }

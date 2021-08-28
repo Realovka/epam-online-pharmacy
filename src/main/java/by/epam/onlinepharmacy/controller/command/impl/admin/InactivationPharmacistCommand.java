@@ -1,9 +1,7 @@
-package by.epam.onlinepharmacy.controller.command.impl;
+package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.Command;
-import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.PagePath;
-import by.epam.onlinepharmacy.controller.command.SessionAttribute;
+import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -13,19 +11,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class InactivePharmacistsPageCommand implements Command {
+public class InactivationPharmacistCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         UserService userService = UserServiceImpl.getInstance();
-        List<User> inactivePharmacists;
+        String id = request.getParameter(RequestParameter.USER_ID);
+        List<User> pharmacists;
         try {
-            inactivePharmacists = userService.findInactivePharmacists();
+            userService.updatePharmacistStatus(id, Status.INACTIVE);
+            pharmacists = userService.findAllPharmacists();
         } catch (ServiceException e) {
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.INACTIVE_PHARMACISTS, inactivePharmacists);
-        return new CommandResult(PagePath.INACTIVE_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
+        session.setAttribute(SessionAttribute.ALL_PHARMACISTS, pharmacists);
+        return new CommandResult(PagePath.ALL_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
     }
 }

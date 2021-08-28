@@ -16,4 +16,7 @@ public interface UserService {
     List<User> findInactivePharmacists() throws ServiceException;
     boolean updateLogin(long id, String login) throws ServiceException;
     void updateFirstName(long id, String firstName) throws ServiceException;
+    void updateLastName(long id, String lastName) throws ServiceException;
+    void updateEmail(long id, String email) throws ServiceException;
+    void updateTelephone(long id, String telephone) throws ServiceException;
 }

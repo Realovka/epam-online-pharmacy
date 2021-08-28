@@ -13,6 +13,9 @@ public final class RequestAttribute {
     public static final String PHARMACY_BLOCK_ERROR = "blockError";
     public static final String UPDATING_PHARMACIST_LOGIN_ERROR = "updatingPharmacistLoginError";
     public static final String UPDATING_PHARMACIST_FIRST_NAME_ERROR = "updatingPharmacistFirstNameError";
+    public static final String UPDATING_PHARMACIST_LAST_NAME_ERROR = "updatingPharmacistLastNameError";
+    public static final String UPDATING_PHARMACIST_EMAIL_ERROR = "updatingPharmacistEmailError";
+    public static final String UPDATING_PHARMACIST_TELEPHONE_ERROR = "updatingPharmacistTelephoneError";
 
 
     private RequestAttribute() {

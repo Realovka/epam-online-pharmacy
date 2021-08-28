@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.controller.command.impl;
+package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.Command;
 import by.epam.onlinepharmacy.controller.command.CommandResult;

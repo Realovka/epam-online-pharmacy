@@ -24,20 +24,20 @@ public class RegistrationCommand implements Command {
         String telephone = request.getParameter(RequestParameter.TELEPHONE);
         String role = request.getParameter(RequestParameter.ROLE);
 
-        if (!UserValidator.isValidLogin(login)) {
+        if (!UserValidator.isValidStringParameter(login)) {
             request.setAttribute(RequestAttribute.LOGIN_ERROR, Message.USER_LOGIN_ERROR);
         }
 
-        if (!UserValidator.isValidPassword(password)) {
+        if (!UserValidator.isValidStringParameter(password)) {
             request.setAttribute(RequestAttribute.PASSWORD_ERROR, Message.PASSWORD_ERROR);
         }
 
-        if (!UserValidator.isValidFirstName(firstName)) {
+        if (!UserValidator.isValidStringParameter(firstName)) {
             request.setAttribute(RequestAttribute.FIRST_NAME_ERROR, Message.FIRST_NAME_ERROR);
         }
 
-        if (!UserValidator.isValidLastName(lastName)) {
-            request.setAttribute(RequestAttribute.LAST_NAME_ERROR, Message.LASTNAME_ERROR);
+        if (!UserValidator.isValidStringParameter(lastName)) {
+            request.setAttribute(RequestAttribute.LAST_NAME_ERROR, Message.LAST_NAME_ERROR);
         }
 
         if (!UserValidator.isValidEmailRegistrationUser(email)) {

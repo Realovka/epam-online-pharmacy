@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.controller.command.impl;
+package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.entity.User;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class UpdatingLoginPharmacistCommand implements Command {
+public class UpdatingPharmacistLoginCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         long id = (long) request.getSession().getAttribute(SessionAttribute.PHARMACIST_ID);
@@ -20,7 +20,7 @@ public class UpdatingLoginPharmacistCommand implements Command {
         HttpSession session = request.getSession();
         List<User> pharmacists;
 
-        if(!UserValidator.isValidLogin(newLogin)) {
+        if(!UserValidator.isValidStringParameter(newLogin)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_LOGIN_ERROR, Message.USER_LOGIN_ERROR);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
         }

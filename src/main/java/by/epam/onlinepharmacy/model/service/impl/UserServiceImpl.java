@@ -167,4 +167,33 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void updateLastName(long id, String lastName) throws ServiceException {
+        try {
+            userDao.updateLastName(id, lastName);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method updateLastName() ", e);
+            throw new ServiceException("Exception is in method updateLastName() ", e);
+        }
+    }
+
+    @Override
+    public void updateEmail(long id, String email) throws ServiceException {
+        try {
+            userDao.updateEmail(id, email);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method updateEmail() ", e);
+            throw new ServiceException("Exception is in method updateEmail() ", e);
+        }
+    }
+
+    @Override
+    public void updateTelephone(long id, String telephone) throws ServiceException {
+        try {
+            userDao.updateTelephone(id, telephone);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "Exception is in method updateTelephone() ", e);
+            throw new ServiceException("Exception is in method updateTelephone() ", e);
+        }
+    }
 }

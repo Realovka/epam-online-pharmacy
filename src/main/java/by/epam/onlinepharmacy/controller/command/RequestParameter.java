@@ -17,6 +17,10 @@ public final class RequestParameter {
     //Pharmacist update
     public static final String UPDATING_PHARMACIST_LOGIN = "newLogin";
     public static final String UPDATING_PHARMACIST_FIRST_NAME = "newFirstName";
+    public static final String UPDATING_PHARMACIST_LAST_NAME = "newLastName";
+    public static final String UPDATING_PHARMACIST_EMAIL = "newEmail";
+    public static final String UPDATING_PHARMACIST_TELEPHONE = "newTelephone";
+
 
     //Pharmacy
     public static final String NUMBER = "number";

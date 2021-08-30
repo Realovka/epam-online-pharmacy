@@ -9,9 +9,11 @@ import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
 import by.epam.onlinepharmacy.validation.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 import java.util.Optional;
 
 public class RegistrationCommand implements Command {
+    private static final String EMPTY_STRING = "\s";
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -24,35 +26,15 @@ public class RegistrationCommand implements Command {
         String telephone = request.getParameter(RequestParameter.TELEPHONE);
         String role = request.getParameter(RequestParameter.ROLE);
 
-        if (!UserValidator.isValidStringParameter(login)) {
-            request.setAttribute(RequestAttribute.LOGIN_ERROR, Message.USER_LOGIN_ERROR);
-        }
-
-        if (!UserValidator.isValidStringParameter(password)) {
-            request.setAttribute(RequestAttribute.PASSWORD_ERROR, Message.PASSWORD_ERROR);
-        }
-
-        if (!UserValidator.isValidStringParameter(firstName)) {
-            request.setAttribute(RequestAttribute.FIRST_NAME_ERROR, Message.FIRST_NAME_ERROR);
-        }
-
-        if (!UserValidator.isValidStringParameter(lastName)) {
-            request.setAttribute(RequestAttribute.LAST_NAME_ERROR, Message.LAST_NAME_ERROR);
-        }
-
-        if (!UserValidator.isValidEmailRegistrationUser(email)) {
-            request.setAttribute(RequestAttribute.EMAIL_ERROR, Message.INCORRECT_EMAIL);
-        }
-
-        if(!UserValidator.isValidTelephoneRegistrationUser(telephone)) {
-            request.setAttribute(RequestAttribute.TELEPHONE_ERROR, Message.INCORRECT_TELEPHONE);
-        }
-
-        if(request.getAttributeNames().hasMoreElements()) {
+        UserService userService = UserServiceImpl.getInstance();
+        Map<String, String> mapData =  userService.isFormValid(login, password, firstName, lastName, email, telephone);
+        request.setAttribute("mapData", mapData);
+        if (mapData.containsValue(EMPTY_STRING)) {
+            request.setAttribute(RequestAttribute.REGISTRATION_ERROR, Message.DATA_REGISTRATION_ERROR);
             return new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);
         }
+
         try {
-            UserService userService = UserServiceImpl.getInstance();
             Optional<User> user = userService.createUser(login, password, firstName, lastName, email, telephone, role);
             if (user.isPresent()) {
                 if (user.get().getRole().equals(Role.CUSTOMER)) {
@@ -61,6 +43,7 @@ public class RegistrationCommand implements Command {
                     commandResult = new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.FORWARD);
                 }
             } else {
+                mapData.put(RequestParameter.LOGIN, EMPTY_STRING);
                 request.setAttribute(RequestAttribute.REGISTRATION_ERROR, Message.REGISTRATION_ERROR);
                 commandResult = new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);
             }

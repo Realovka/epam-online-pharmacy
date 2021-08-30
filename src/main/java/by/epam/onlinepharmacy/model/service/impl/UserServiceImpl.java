@@ -1,5 +1,6 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
@@ -9,14 +10,13 @@ import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.util.PasswordEncoder;
+import by.epam.onlinepharmacy.validation.UserValidator;
 import by.epam.onlinepharmacy.verification.EmailSending;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
@@ -91,6 +91,19 @@ public class UserServiceImpl implements UserService {
             userFromDb = Optional.empty();
         }
         return userFromDb;
+    }
+
+    @Override
+    public Map<String, String> isFormValid(String login, String password, String firstName, String lastName, String email, String telephone) {
+        Map<String, String> userParameters = new HashMap<>();
+        userParameters.put(RequestParameter.LOGIN, login);
+        userParameters.put(RequestParameter.PASSWORD, password);
+        userParameters.put(RequestParameter.FIRST_NAME, firstName);
+        userParameters.put(RequestParameter.LAST_NAME, lastName);
+        userParameters.put(RequestParameter.EMAIL, email);
+        userParameters.put(RequestParameter.TELEPHONE, telephone);
+        UserValidator.isValidForm(userParameters);
+        return userParameters;
     }
 
     @Override

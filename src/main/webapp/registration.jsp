@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles/reg.css">
     <link rel="stylesheet" href="styles/common_menu.css">
-    <title><fmt:message key="registration"/></title>
+    <title><fmt:message key="page.registration"/></title>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message key="link.name.back_to_login_page"/></a>
@@ -30,7 +30,7 @@
 </nav>
 <div class="reg">
     <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
-        <h1><fmt:message key="registration"/></h1><br>
+        <h1><fmt:message key="page.registration"/></h1><br>
         <div>${requestScope.registrationError}</div><br>
         <div>${requestScope.loginError}</div><br>
         <input type="text" name="login" value="${requestScope.mapData.get("login")}" placeholder="<fmt:message key="placeholder.name.login"/>" size="35px"/><br>

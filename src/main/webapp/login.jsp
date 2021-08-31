@@ -40,7 +40,7 @@
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"/><br>
         <input type="submit" value="<fmt:message key="button.name.enter"/>"/><br>
     </form>
-    <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message key="registration"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message key="page.registration"/></a><br>
     <a href="${pageContext.request.contextPath}/controller?command=verification_customer_page"><fmt:message key="link.name.verification_customer"/></a><br>
 </div>
 <div class="titles">

@@ -27,5 +27,25 @@ public enum CommandType {
     UPDATING_PHARMACIST_LAST_NAME,
     UPDATING_PHARMACIST_EMAIL,
     UPDATING_PHARMACIST_TELEPHONE,
-    ALL_PRODUCTS
+    ALL_PRODUCTS,
+    CHANGE_LANGUAGE,
+
+    //pharmacist
+    MAIN_PHARMACIST,
+
+    //customer
+    MAIN_CUSTOMER;
+
+    public static CommandType convertRequestParameterToCommandType(String parameter) {
+        if (parameter == null) {
+            return DEFAULT;
+        }
+        CommandType commandType;
+        try {
+            commandType = CommandType.valueOf(parameter.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            commandType = DEFAULT;
+        }
+        return commandType;
+    }
 }

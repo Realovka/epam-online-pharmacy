@@ -21,7 +21,7 @@ public class UpdatingPharmacistTelephoneCommand implements Command {
         List<User> pharmacists;
 
         if (!UserValidator.isValidTelephoneRegistrationUser(newTelephone)) {
-            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_TELEPHONE_ERROR, Message.INCORRECT_TELEPHONE);
+            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_TELEPHONE_ERROR, BundleKey.INCORRECT_TELEPHONE);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_TELEPHONE, CommandResult.RoutingType.FORWARD);
         }
         try {

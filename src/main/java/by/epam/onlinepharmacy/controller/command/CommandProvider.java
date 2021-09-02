@@ -2,6 +2,8 @@ package by.epam.onlinepharmacy.controller.command;
 
 import by.epam.onlinepharmacy.controller.command.impl.*;
 import by.epam.onlinepharmacy.controller.command.impl.admin.*;
+import by.epam.onlinepharmacy.controller.command.impl.customer.GoToCustomerMainPageCommand;
+import by.epam.onlinepharmacy.controller.command.impl.pharmacist.GoToPharmacistMainPageCommand;
 
 import java.util.EnumMap;
 
@@ -13,30 +15,33 @@ public class CommandProvider {
     private CommandProvider() {
         commands = new EnumMap<>(CommandType.class);
         commands.put(CommandType.LOGIN, new LoginCommand());
-        commands.put(CommandType.REGISTRATION_PAGE, new RegistrationPageCommand());
-        commands.put(CommandType.VERIFICATION_CUSTOMER_PAGE, new VerificationCustomerPageCommand());
+        commands.put(CommandType.REGISTRATION_PAGE, new GoToRegistrationPageCommand());
+        commands.put(CommandType.VERIFICATION_CUSTOMER_PAGE, new GoToVerificationCustomerPageCommand());
         commands.put(CommandType.REGISTRATION, new RegistrationCommand());
-        commands.put(CommandType.LOGIN_PAGE, new LoginPageCommand());
+        commands.put(CommandType.LOGIN_PAGE, new GoToLoginPageCommand());
         commands.put(CommandType.VERIFICATION_CUSTOMER, new VerificationCustomerCommand());
         commands.put(CommandType.ALL_PHARMACISTS, new AllPharmacistsCommand());
-        commands.put(CommandType.MAIN_ADMIN, new MainAdminPageCommand());
+        commands.put(CommandType.MAIN_ADMIN, new GoToMainAdminPageCommand());
         commands.put(CommandType.LOGOUT, new LogoutCommand());
         commands.put(CommandType.VERIFICATION_PHARMACIST, new VerificationPharmacistCommand());
         commands.put(CommandType.INACTIVATION_PHARMACIST, new InactivationPharmacistCommand());
-        commands.put(CommandType.INACTIVE_PHARMACISTS_PAGE, new InactivePharmacistsPageCommand());
+        commands.put(CommandType.INACTIVE_PHARMACISTS_PAGE, new GoToInactivePharmacistsPageCommand());
         commands.put(CommandType.ACTIVATION_PHARMACIST, new ActivationPharmacistCommand());
         commands.put(CommandType.ALL_PHARMACIES, new AllPharmaciesCommand());
         commands.put(CommandType.ADDITION_PHARMACY, new AdditionPharmacyCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN_PAGE, new UpdatingPharmacistLoginPageCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME_PAGE, new UpdatingPharmacistFirstNamePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LOGIN_PAGE, new GoToPharmacistLoginPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME_PAGE, new GoToUpdatingPharmacistFirstNamePageCommand());
         commands.put(CommandType.UPDATING_PHARMACIST_LOGIN, new UpdatingPharmacistLoginCommand());
         commands.put(CommandType.UPDATING_PHARMACIST_FIRST_NAME, new UpdatingPharmacistFirstNameCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_LAST_NAME_PAGE, new UpdatingPharmacistLastNamePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_LAST_NAME_PAGE, new GoToUpdatingPharmacistLastNamePageCommand());
         commands.put(CommandType.UPDATING_PHARMACIST_LAST_NAME, new UpdatingPharmacistLastNameCommand());
         commands.put(CommandType.UPDATING_PHARMACIST_EMAIL, new UpdatingPharmacistEmailCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_EMAIL_PAGE, new UpdatingPharmacistEmailPageCommand());
-        commands.put(CommandType.UPDATING_PHARMACIST_TELEPHONE_PAGE, new UpdatingPharmacistTelephonePageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_EMAIL_PAGE, new GoToUpdatingPharmacistEmailPageCommand());
+        commands.put(CommandType.UPDATING_PHARMACIST_TELEPHONE_PAGE, new GoToUpdatingPharmacistTelephonePageCommand());
         commands.put(CommandType.UPDATING_PHARMACIST_TELEPHONE, new UpdatingPharmacistTelephoneCommand());
+        commands.put(CommandType.CHANGE_LANGUAGE, new ChangeLanguageCommand());
+        commands.put(CommandType.MAIN_CUSTOMER, new GoToCustomerMainPageCommand());
+        commands.put(CommandType.MAIN_PHARMACIST, new GoToPharmacistMainPageCommand());
     }
 
     public static CommandProvider getInstance() {

@@ -1,22 +1,21 @@
 <%@page contentType="text/html; charset=utf-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="${sessionScope.locale}" scope="session" />
 <fmt:setBundle basename="properties.pagecontent" />
 
 
 <!DOCTYPE html>
-<html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/common_menu.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/common_menu.css">
     <title><fmt:message key="company.name"/></title>
 </head>
 
 <body>
-
+<a href="${pageContext.request.contextPath}/controller?command=change_language">${sessionScope.locale}</a><br>
 <nav class="menu">
     <ul>
         <li>
@@ -34,7 +33,7 @@
 <div class="auth">
     <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
         <p>
-        <div class="error">${sessionScope.loginError}</div>
+        <div class="error"> <fmt:message key="${sessionScope.loginError}"/></div>
         </p>
         <input type="text" name="login" placeholder="<fmt:message key="placeholder.name.login"/>"/><br>
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"/><br>

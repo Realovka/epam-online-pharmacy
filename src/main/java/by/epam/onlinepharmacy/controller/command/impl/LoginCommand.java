@@ -5,11 +5,10 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 import java.util.Optional;
 
 public class LoginCommand implements Command {
@@ -39,7 +38,7 @@ public class LoginCommand implements Command {
                     }
                 }
             } else {
-                session.setAttribute(SessionAttribute.LOGIN_ERROR, Message.LOGIN_ERROR);
+                session.setAttribute(SessionAttribute.LOGIN_ERROR, BundleKey.LOGIN_ERROR);
                 return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
             }
         } catch (ServiceException e) {

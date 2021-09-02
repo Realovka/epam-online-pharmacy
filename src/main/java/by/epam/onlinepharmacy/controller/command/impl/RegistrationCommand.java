@@ -6,7 +6,6 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
-import by.epam.onlinepharmacy.validation.UserValidator;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -30,7 +29,7 @@ public class RegistrationCommand implements Command {
         Map<String, String> mapData =  userService.isFormValid(login, password, firstName, lastName, email, telephone);
         request.setAttribute("mapData", mapData);
         if (mapData.containsValue(EMPTY_STRING)) {
-            request.setAttribute(RequestAttribute.REGISTRATION_ERROR, Message.DATA_REGISTRATION_ERROR);
+            request.setAttribute(RequestAttribute.REGISTRATION_ERROR, BundleKey.DATA_REGISTRATION_ERROR);
             return new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);
         }
 
@@ -44,7 +43,7 @@ public class RegistrationCommand implements Command {
                 }
             } else {
                 mapData.put(RequestParameter.LOGIN, EMPTY_STRING);
-                request.setAttribute(RequestAttribute.REGISTRATION_ERROR, Message.REGISTRATION_ERROR);
+                request.setAttribute(RequestAttribute.LOGIN_ERROR, BundleKey.REGISTRATION_ERROR);
                 commandResult = new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {

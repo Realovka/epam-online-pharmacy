@@ -1,7 +1,7 @@
 package by.epam.onlinepharmacy.controller.command;
 
-public final class Message {
-    public static final String REGISTRATION_ERROR = "Such login already exists";
+public final class BundleKey {
+    public static final String REGISTRATION_ERROR = "error.registration";
     public static final String LOGIN_ERROR = "Incorrect login or password";
     public static final String CODE_VERIFICATION_ERROR = "Incorrect verification code";
     public static final String DATA_REGISTRATION_ERROR = "Some fields are incorrect";
@@ -14,6 +14,6 @@ public final class Message {
     public static final String PHARMACY_STRING_PARAMETERS_ERROR = "Incorrect city or street or house";
     public static final String PHARMACY_BLOCK_ERROR = "Incorrect block";
 
-    private Message() {
+    private BundleKey() {
     }
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-public class InactivePharmacistsPageCommand implements Command {
+public class GoToInactivePharmacistsPageCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {

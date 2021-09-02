@@ -1,4 +1,4 @@
-//package by.epam.onlinepharmacy.filter;
+//package by.epam.onlinepharmacy.controller.filter;
 //
 //import javax.servlet.FilterChain;
 //import javax.servlet.ServletException;

@@ -30,7 +30,7 @@ public class AdditionPharmacyCommand implements Command {
                 return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
             }
             session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
-            request.setAttribute(RequestAttribute.PHARMACY_NUMBER_ERROR, Message.PHARMACY_NUMBER_ERROR);
+            request.setAttribute(RequestAttribute.PHARMACY_NUMBER_ERROR, BundleKey.PHARMACY_NUMBER_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
         }
 
@@ -41,7 +41,7 @@ public class AdditionPharmacyCommand implements Command {
                 return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
             }
             session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
-            request.setAttribute(RequestAttribute.PHARMACY_STRING_PARAMETERS_ERROR, Message.PHARMACY_STRING_PARAMETERS_ERROR);
+            request.setAttribute(RequestAttribute.PHARMACY_STRING_PARAMETERS_ERROR, BundleKey.PHARMACY_STRING_PARAMETERS_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
         }
 
@@ -52,7 +52,7 @@ public class AdditionPharmacyCommand implements Command {
                 return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
             }
             session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
-            request.setAttribute(RequestAttribute.PHARMACY_BLOCK_ERROR, Message.PHARMACY_BLOCK_ERROR);
+            request.setAttribute(RequestAttribute.PHARMACY_BLOCK_ERROR, BundleKey.PHARMACY_BLOCK_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
         }
 

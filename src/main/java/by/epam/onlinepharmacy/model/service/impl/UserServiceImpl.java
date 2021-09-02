@@ -20,6 +20,7 @@ import java.util.*;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
+    private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
     private static UserServiceImpl instance;
     private UserDao userDao = UserDaoImpl.getInstance();
 
@@ -37,14 +38,18 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> createUser(String login, String password, String firstName, String lastName, String email, String telephone, String role) throws ServiceException {
         int result;
-        User user = new User.Builder()
+        User user = new User();
+        if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
+                 user.setRole(Role.valueOf(role));
+        }
+        user = new User.Builder()
                 .setLogin(login)
                 .setPassword(PasswordEncoder.createPasswordEncoded(password))
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setEmail(email)
+                .setRole(convertRole(role))
                 .setTelephone(telephone)
-                .setRole(Role.valueOf(role))
                 .build();
         try {
             if (userDao.findByLogin(user.getLogin()).isPresent()) {
@@ -207,6 +212,14 @@ public class UserServiceImpl implements UserService {
         } catch (DaoException e) {
             logger.log(Level.ERROR, "Exception is in method updateTelephone() ", e);
             throw new ServiceException("Exception is in method updateTelephone() ", e);
+        }
+    }
+
+    private Role convertRole(String role) {
+        if(role.equals(ROLE_CUSTOMER_IN_RUSSIAN)) {
+            return Role.CUSTOMER;
+        } else {
+            return Role.PHARMACIST;
         }
     }
 }

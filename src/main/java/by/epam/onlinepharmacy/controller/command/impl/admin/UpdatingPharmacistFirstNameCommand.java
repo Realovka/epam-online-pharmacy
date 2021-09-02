@@ -21,7 +21,7 @@ public class UpdatingPharmacistFirstNameCommand implements Command {
         List<User> pharmacists;
 
         if (!UserValidator.isValidStringParameter(newFirstName)) {
-            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_FIRST_NAME_ERROR, Message.FIRST_NAME_ERROR);
+            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_FIRST_NAME_ERROR, BundleKey.FIRST_NAME_ERROR);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_FIRST_NAME, CommandResult.RoutingType.FORWARD);
         }
         try {

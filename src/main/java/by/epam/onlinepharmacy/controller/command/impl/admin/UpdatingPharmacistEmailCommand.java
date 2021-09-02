@@ -21,7 +21,7 @@ public class UpdatingPharmacistEmailCommand implements Command {
         List<User> pharmacists;
 
         if (!UserValidator.isValidEmailRegistrationUser(newEmail)) {
-            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_EMAIL_ERROR, Message.INCORRECT_EMAIL);
+            request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_EMAIL_ERROR, BundleKey.INCORRECT_EMAIL);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_EMAIL, CommandResult.RoutingType.FORWARD);
         }
         try {

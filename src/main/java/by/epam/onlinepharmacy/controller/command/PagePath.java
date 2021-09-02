@@ -1,12 +1,12 @@
 package by.epam.onlinepharmacy.controller.command;
 
 public final class PagePath {
-    public static final String MAIN_PHARMACIST = "";
-    public static final String MAIN_CUSTOMER = "";
-    public static final String MAIN_ADMIN = "pages/admin/admin_main.jsp";
-    public static final String LOGIN = "login.jsp";
-    public static final String REGISTRATION = "registration.jsp";
-    public static final String VERIFICATION_CUSTOMER = "verification_customer.jsp";
+    public static final String MAIN_PHARMACIST = "/pages/pharmacist/pharmacist_main.jsp";
+    public static final String MAIN_CUSTOMER = "pages/customer/customer_main.jsp";
+    public static final String MAIN_ADMIN = "/pages/admin/admin_main.jsp";
+    public static final String LOGIN = "pages/login.jsp";
+    public static final String REGISTRATION = "pages/registration.jsp";
+    public static final String VERIFICATION_CUSTOMER = "pages/verification_customer.jsp";
     public static final String ALL_PHARMACISTS = "pages/admin/all_pharmacists.jsp";
     public static final String INACTIVE_PHARMACISTS = "pages/admin/inactive_pharmacists.jsp";
     public static final String ALL_PHARMACIES = "pages/admin/all_pharmacies.jsp";

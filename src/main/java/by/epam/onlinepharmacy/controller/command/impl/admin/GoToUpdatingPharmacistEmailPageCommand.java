@@ -4,7 +4,7 @@ import by.epam.onlinepharmacy.controller.command.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UpdatingPharmacistEmailPageCommand implements Command {
+public class GoToUpdatingPharmacistEmailPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.USER_ID);

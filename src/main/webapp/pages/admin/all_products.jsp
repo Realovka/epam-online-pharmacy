@@ -3,13 +3,13 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent" />
+<fmt:setBundle basename="properties.pagecontent_En_en" />
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../styles/common.css">
+    <link rel="stylesheet" href="/styles/common.css">
     <title>All products</title>
 </head>
 <body>

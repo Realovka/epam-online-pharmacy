@@ -1,8 +1,6 @@
 package by.epam.onlinepharmacy.controller.filter;
 
-import by.epam.onlinepharmacy.controller.command.CommandType;
 import by.epam.onlinepharmacy.controller.command.PagePath;
-import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.entity.User;
@@ -10,57 +8,48 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.EnumMap;
-import java.util.EnumSet;
 import java.util.List;
-import java.util.Map;
 
-import static by.epam.onlinepharmacy.controller.command.CommandType.*;
+import static by.epam.onlinepharmacy.controller.command.PagePath.*;
 
 
 public class PageRedirectSecurityFilter implements Filter {
     private Logger logger = LogManager.getLogger();
-    private EnumMap<Role, List<String>> availableCommands;
-    private List<String> adminCommands;
-    private EnumSet<CommandType> customerCommands;
-    private List<String> pharmacistCommands;
-    private EnumSet<CommandType> guestCommands;
+    private EnumMap<Role, List<String>> availablePages;
+    private List<String> adminPages;
+    private List<String> customerPages;
+    private List<String> pharmacistPages;
+    private List<String> guestPages;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        availableCommands = new EnumMap<>(Role.class);
-        guestCommands = EnumSet.of(DEFAULT, LOGIN,LOGIN_PAGE, VERIFICATION_CUSTOMER,
-                REGISTRATION, REGISTRATION_PAGE, VERIFICATION_CUSTOMER_PAGE, VERIFICATION_PHARMACIST, CHANGE_LANGUAGE);
+        availablePages = new EnumMap<>(Role.class);
+        guestPages = List.of(LOGIN, REGISTRATION, VERIFICATION_CUSTOMER);
 
-        adminCommands = List.of(PagePath.MAIN_ADMIN);
+        adminPages = List.of(MAIN_ADMIN, ALL_PHARMACISTS, INACTIVE_PHARMACISTS,
+                ALL_PHARMACIES, ALL_PRODUCTS,UPDATING_PHARMACIST_LOGIN, UPDATING_PHARMACIST_FIRST_NAME,
+                UPDATING_PHARMACIST_LAST_NAME, UPDATING_PHARMACIST_EMAIL, UPDATING_PHARMACIST_TELEPHONE);
 
-        customerCommands = EnumSet.of(DEFAULT, LOGIN, LOGOUT, CHANGE_LANGUAGE, MAIN_CUSTOMER);
+        customerPages = List.of(MAIN_CUSTOMER);
 
-        pharmacistCommands = List.of(PagePath.MAIN_PHARMACIST);
+        pharmacistPages = List.of(MAIN_PHARMACIST);
 
-//        availableCommands.put(Role.GUEST, guestCommands);
-        availableCommands.put(Role.ADMIN, adminCommands);
-        availableCommands.put(Role.PHARMACIST, pharmacistCommands);
-//        availableCommands.put(Role.CUSTOMER, customerCommands);
+        availablePages.put(Role.GUEST, guestPages);
+        availablePages.put(Role.ADMIN, adminPages);
+        availablePages.put(Role.PHARMACIST, pharmacistPages);
+        availablePages.put(Role.CUSTOMER, customerPages);
     }
 
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-        HttpServletResponse httpServletResponse = (HttpServletResponse) response;
-        String commandString = httpServletRequest.getParameter(RequestParameter.COMMAND);
-
 
         String servletPath = httpServletRequest.getServletPath();
-
-
-        CommandType currentCommand = CommandType.convertRequestParameterToCommandType(commandString);
 
         HttpSession session = httpServletRequest.getSession();
         User user = (User) session.getAttribute(SessionAttribute.USER_AUTH);
@@ -72,26 +61,20 @@ public class PageRedirectSecurityFilter implements Filter {
             role = user.getRole();
         }
 
-//        EnumSet<CommandType> availableCommandsForCurrentUser = availableCommands.get(role);
-
-        if (role.equals(Role.ADMIN) && !adminCommands.contains(servletPath)) {
-            String s = httpServletRequest.getContextPath()+PagePath.LOGIN;
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath()+PagePath.LOGIN);
+        if (role.equals(Role.ADMIN) && !adminPages.contains(servletPath)) {
+            httpServletRequest.getRequestDispatcher(PagePath.LOGIN).forward(request, response);
         }
 
-        if (role.equals(Role.CUSTOMER) && !customerCommands.contains(currentCommand)) {
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + PagePath.LOGIN);
-            return;
+        if (role.equals(Role.CUSTOMER) && !customerPages.contains(servletPath)) {
+            httpServletRequest.getRequestDispatcher(PagePath.LOGIN).forward(request, response);
         }
 
-        if (role.equals(Role.PHARMACIST) && !pharmacistCommands.contains(servletPath)) {
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + PagePath.LOGIN);
-            return;
+        if (role.equals(Role.PHARMACIST) && !pharmacistPages.contains(servletPath)) {
+            httpServletRequest.getRequestDispatcher(PagePath.LOGIN).forward(request, response);
         }
 
-        if (role.equals(Role.GUEST) && !guestCommands.contains(currentCommand)) {
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + PagePath.LOGIN);
-            return;
+        if (role.equals(Role.GUEST) && !guestPages.contains(servletPath)) {
+            httpServletRequest.getRequestDispatcher(PagePath.LOGIN).forward(request, response);
         }
         chain.doFilter(request, response);
     }

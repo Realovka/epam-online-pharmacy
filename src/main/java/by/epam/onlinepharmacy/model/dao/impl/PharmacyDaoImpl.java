@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
+
 public class PharmacyDaoImpl implements PharmacyDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -44,12 +46,12 @@ public class PharmacyDaoImpl implements PharmacyDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     Pharmacy pharmacy = new Pharmacy.Builder()
-                            .setPharmacyId(rs.getLong(ColumnName.PHARMACY_ID))
-                            .setNumber(rs.getInt(ColumnName.PHARMACY_NUMBER))
-                            .setCity(rs.getString(ColumnName.PHARMACY_CITY))
-                            .setStreet(rs.getString(ColumnName.PHARMACY_STREET))
-                            .setHouse(rs.getString(ColumnName.PHARMACY_HOUSE))
-                            .setBlock(rs.getInt(ColumnName.PHARMACY_BLOCK))
+                            .setPharmacyId(rs.getLong(PHARMACY_ID))
+                            .setNumber(rs.getInt(PHARMACY_NUMBER))
+                            .setCity(rs.getString(PHARMACY_CITY))
+                            .setStreet(rs.getString(PHARMACY_STREET))
+                            .setHouse(rs.getString(PHARMACY_HOUSE))
+                            .setBlock(rs.getInt(PHARMACY_BLOCK))
                             .build();
                     pharmacies.add(pharmacy);
                 }

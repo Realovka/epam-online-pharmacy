@@ -3,12 +3,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent" />
+<fmt:setBundle basename="properties.pagecontent_En_en" />
 
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <title><fmt:message key="title.verification.customer"/></title>
 </head>
 <body>

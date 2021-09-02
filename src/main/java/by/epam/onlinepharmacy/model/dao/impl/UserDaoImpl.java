@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
+
 public class UserDaoImpl implements UserDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -96,10 +98,10 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     User user = new User.Builder()
-                            .setUserId(resultSet.getLong(ColumnName.USER_ID))
-                            .setFirstName(resultSet.getString(ColumnName.USER_FIRST_NAME))
-                            .setLastName(resultSet.getString(ColumnName.USER_LAST_NAME))
-                            .setEmail(resultSet.getString(ColumnName.USER_EMAIL))
+                            .setUserId(resultSet.getLong(USER_ID))
+                            .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(USER_LAST_NAME))
+                            .setEmail(resultSet.getString(USER_EMAIL))
                             .build();
                     return Optional.of(user);
                 }
@@ -132,7 +134,7 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(1, code);
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
-                    id = rs.getLong(ColumnName.USER_ID);
+                    id = rs.getLong(USER_ID);
                 }
             }
         } catch (SQLException e) {
@@ -151,8 +153,8 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 if (rs.next()) {
                     return Optional.of(new User.Builder()
-                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
-                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
+                            .setFirstName(rs.getString(USER_FIRST_NAME))
+                            .setLastName(rs.getString(USER_LAST_NAME))
                             .setRole(Role.valueOf(rs.getString(ColumnName.USER_ROLE)))
                             .build());
                 }
@@ -172,13 +174,13 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(ColumnName.USER_ID))
-                            .setLogin(rs.getString(ColumnName.USER_LOGIN))
-                            .setFirstName(rs.getString(ColumnName.USER_FIRST_NAME))
-                            .setLastName(rs.getString(ColumnName.USER_LAST_NAME))
-                            .setTelephone(rs.getString(ColumnName.USER_TELEPHONE))
-                            .setEmail(rs.getString(ColumnName.USER_EMAIL))
-                            .setStatus(Status.valueOf(rs.getString(ColumnName.USER_STATUS)))
+                            .setUserId(rs.getLong(USER_ID))
+                            .setLogin(rs.getString(USER_LOGIN))
+                            .setFirstName(rs.getString(USER_FIRST_NAME))
+                            .setLastName(rs.getString(USER_LAST_NAME))
+                            .setTelephone(rs.getString(USER_TELEPHONE))
+                            .setEmail(rs.getString(USER_EMAIL))
+                            .setStatus(Status.valueOf(rs.getString(USER_STATUS)))
                             .build();
                     pharmacists.add(user);
                 }
@@ -213,10 +215,10 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     User user = new User.Builder()
-                            .setUserId(resultSet.getLong(ColumnName.USER_ID))
-                            .setFirstName(resultSet.getString(ColumnName.USER_FIRST_NAME))
-                            .setLastName(resultSet.getString(ColumnName.USER_LAST_NAME))
-                            .setStatus(Status.valueOf(resultSet.getString(ColumnName.USER_STATUS)))
+                            .setUserId(resultSet.getLong(USER_ID))
+                            .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(USER_LAST_NAME))
+                            .setStatus(Status.valueOf(resultSet.getString(USER_STATUS)))
                             .build();
                     inactivePharmacists.add(user);
                 }

@@ -18,6 +18,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.*;
 
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
+
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
@@ -101,12 +103,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public Map<String, String> isFormValid(String login, String password, String firstName, String lastName, String email, String telephone) {
         Map<String, String> userParameters = new HashMap<>();
-        userParameters.put(RequestParameter.LOGIN, login);
-        userParameters.put(RequestParameter.PASSWORD, password);
-        userParameters.put(RequestParameter.FIRST_NAME, firstName);
-        userParameters.put(RequestParameter.LAST_NAME, lastName);
-        userParameters.put(RequestParameter.EMAIL, email);
-        userParameters.put(RequestParameter.TELEPHONE, telephone);
+        userParameters.put(LOGIN, login);
+        userParameters.put(PASSWORD, password);
+        userParameters.put(FIRST_NAME, firstName);
+        userParameters.put(LAST_NAME, lastName);
+        userParameters.put(EMAIL, email);
+        userParameters.put(TELEPHONE, telephone);
         UserValidator.isValidForm(userParameters);
         return userParameters;
     }

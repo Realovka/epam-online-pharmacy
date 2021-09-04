@@ -2,8 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent_En_en" />
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
+<fmt:setBundle basename="${sessionScope.currentBundle}" />
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     <title><fmt:message key="page.registration"/></title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message key="link.name.back_to_login_page"/></a>
 <nav class="menu">
     <ul>

@@ -42,6 +42,11 @@ public class CommandProvider {
         commands.put(CommandType.CHANGE_LANGUAGE, new ChangeLanguageCommand());
         commands.put(CommandType.MAIN_CUSTOMER, new GoToCustomerMainPageCommand());
         commands.put(CommandType.MAIN_PHARMACIST, new GoToPharmacistMainPageCommand());
+        commands.put(CommandType.ALL_PRODUCTS, new GoToAllProductsPageCommand());
+        commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
+        commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
+        commands.put(CommandType.ADDITION_PICTURE, new AdditionPictureCommand());
+        commands.put(CommandType.ADD_PIC, new AddPicCommand());
     }
 
     public static CommandProvider getInstance() {

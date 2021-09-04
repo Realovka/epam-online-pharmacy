@@ -2,8 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent_En_en" />
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
+<fmt:setBundle basename="${sessionScope.currentBundle}" />
 
 <!DOCTYPE html>
 <html>
@@ -13,17 +13,21 @@
     <title>All products</title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center">List all products</h1>
 <h2 style="text-align: left">Add new product in form</h2>
-<form action="/addProduct" method="post">
-    <input type="text" name="name" placeholder="name"/>
-    <input type="text" name="price" placeholder="price"/>
-    <input type="text" name="group" placeholder="group"/>
-    <input type="text" name="recipe" placeholder="recipe"/>
-    <input type="file" name="picture" placeholder="picture"/>
-    <input type="text" name="instruction" placeholder="instruction"/>
+<form action="${pageContext.request.contextPath}/controller?command=addition_product" method="post">
+    <input type="text" name="name" placeholder="name"/><br>
+    <input type="text" name="price" placeholder="price"/><br>
+    <input type="text" name="group" placeholder="group"/><br>
+    <select name="recipe">
+        <option>Yes</option>
+        <option>No</option>
+    </select><br>
+    <input type="text" name="instruction" placeholder="instruction"/><br>
     <input type="submit" value="Input product">
 </form>
+<a href="${pageContext.request.contextPath}/controller?command=addition_picture_page">Add picture</a>
 <c:choose>
     <c:when test="${sessionScope.allProducts.size()>0}">
 
@@ -41,22 +45,22 @@
 
                 <tr>
                     <td>
-                            ${product.}
+
                     </td>
                     <td>
-                            ${}
+
                     </td>
                     <td>
-                            ${pharmacy.city}
+
                     </td>
                     <td>
-                            ${pharmacy.street}
+
                     </td>
                     <td>
-                            ${pharmacy.house}
+
                     </td>
                     <td>
-                            ${pharmacy.block}
+
                     </td>
                 </tr>
             </c:forEach>

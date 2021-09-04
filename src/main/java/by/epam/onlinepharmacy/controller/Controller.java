@@ -6,13 +6,17 @@ import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-//@WebServlet(urlPatterns = "/controller")
+@WebServlet(urlPatterns = "/controller")
+@MultipartConfig(location = "E://epam//onlinepharmacy//pictures", fileSizeThreshold = 1024 * 1024,
+        maxFileSize = 1024 * 1024 * 5,
+        maxRequestSize = 1024 * 1024 * 25)
 public class Controller extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -9,6 +9,10 @@ public final class SessionAttribute {
     public static final String ALL_PHARMACIES = "allPharmacies";
     public static final String PHARMACIST_ID = "id";
     public static final String PREVIOUS_QUERY = "previousQuery";
+    public static final String CURRENT_LOCALE = "currentLocale";
+    public static final String SECOND_LOCALE = "secondLocale";
+    public static final String CURRENT_BUNDLE = "currentBundle";
+
 
     private SessionAttribute() {
     }

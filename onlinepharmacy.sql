@@ -172,4 +172,8 @@ ADD column street VARCHAR(70) NOT NULL, ADD COLUMN house INT NOT NULL, ADD COLUM
 RENAME TABLE pharmacy TO pharmacies;
 ALTER TABLE pharmacies MODIFY COLUMN house VARCHAR(20) NOT NULL;
 CREATE TABLE code_activation ( user_id bigint references users(user_id),
-code_value VARCHAR(45) NOT NUL)
+code_value VARCHAR(45) NOT NUL),
+ALTER TABLE products RENAME column name TO product_name
+ALTER TABLE `online_pharmacy`.`products`
+    CHANGE COLUMN `group` `product_group` VARCHAR(45) NOT NULL ,
+    CHANGE COLUMN `picture` `picture` BLOB NULL ;

@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -16,7 +17,7 @@ import java.util.List;
 
 import static by.epam.onlinepharmacy.controller.command.PagePath.*;
 
-
+@WebFilter(urlPatterns = {"/pages/*"})
 public class PageRedirectSecurityFilter implements Filter {
     private Logger logger = LogManager.getLogger();
     private EnumMap<Role, List<String>> availablePages;
@@ -32,7 +33,8 @@ public class PageRedirectSecurityFilter implements Filter {
 
         adminPages = List.of(MAIN_ADMIN, ALL_PHARMACISTS, INACTIVE_PHARMACISTS,
                 ALL_PHARMACIES, ALL_PRODUCTS,UPDATING_PHARMACIST_LOGIN, UPDATING_PHARMACIST_FIRST_NAME,
-                UPDATING_PHARMACIST_LAST_NAME, UPDATING_PHARMACIST_EMAIL, UPDATING_PHARMACIST_TELEPHONE);
+                UPDATING_PHARMACIST_LAST_NAME, UPDATING_PHARMACIST_EMAIL, UPDATING_PHARMACIST_TELEPHONE,
+                ADDITION_PICTURE);
 
         customerPages = List.of(MAIN_CUSTOMER);
 

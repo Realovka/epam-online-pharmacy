@@ -1,5 +1,6 @@
 package by.epam.onlinepharmacy.entity;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Blob;
 import java.util.Objects;
@@ -10,13 +11,13 @@ public class Product {
     private String group;
     public BigDecimal price;
     private boolean recipe;
-    private Blob picture;
+    private File picture;
     private String instruction;
 
     public Product() {
     }
 
-    public Product(long productId, String name, String group, BigDecimal price, boolean recipe, Blob picture, String instruction) {
+    public Product(long productId, String name, String group, BigDecimal price, boolean recipe, File picture, String instruction) {
         this.productId = productId;
         this.name = name;
         this.group = group;
@@ -66,11 +67,11 @@ public class Product {
         this.recipe = recipe;
     }
 
-    public Blob getPicture() {
+    public File getPicture() {
         return picture;
     }
 
-    public void setPicture(Blob picture) {
+    public void setPicture(File picture) {
         this.picture = picture;
     }
 
@@ -107,5 +108,53 @@ public class Product {
         builder.append(", instruction='").append(instruction);
         builder.append('}');
         return builder.toString();
+    }
+
+    public static class Builder {
+        private Product newProduct;
+
+        public Builder() {
+            newProduct = new Product();
+        }
+
+        public Product.Builder seProductId(long productId) {
+            newProduct.productId = productId;
+            return this;
+        }
+
+        public Product.Builder setName(String name) {
+            newProduct.name = name;
+            return this;
+        }
+
+        public Product.Builder setGroup(String group) {
+            newProduct.group = group;
+            return this;
+        }
+
+
+        public Product.Builder setPrice(BigDecimal price) {
+            newProduct.price = price;
+            return this;
+        }
+
+        public Product.Builder isRecipe(boolean recipe) {
+            newProduct.recipe = recipe;
+            return this;
+        }
+
+        public Product.Builder setPicture(File picture) {
+            newProduct.picture = picture;
+            return this;
+        }
+
+        public Product.Builder setInstruction(String instruction) {
+            newProduct.instruction = instruction;
+            return this;
+        }
+
+        public Product build() {
+            return newProduct;
+        }
     }
 }

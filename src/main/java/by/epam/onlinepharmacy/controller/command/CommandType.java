@@ -29,6 +29,10 @@ public enum CommandType {
     UPDATING_PHARMACIST_TELEPHONE,
     ALL_PRODUCTS,
     CHANGE_LANGUAGE,
+    ADDITION_PRODUCT,
+    ADDITION_PICTURE_PAGE,
+    ADDITION_PICTURE,
+    ADD_PIC,
 
     //pharmacist
     MAIN_PHARMACIST,
@@ -36,16 +40,4 @@ public enum CommandType {
     //customer
     MAIN_CUSTOMER;
 
-    public static CommandType convertRequestParameterToCommandType(String parameter) {
-        if (parameter == null) {
-            return DEFAULT;
-        }
-        CommandType commandType;
-        try {
-            commandType = CommandType.valueOf(parameter.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            commandType = DEFAULT;
-        }
-        return commandType;
-    }
 }

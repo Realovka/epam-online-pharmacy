@@ -2,8 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent_En_en" />
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
+<fmt:setBundle basename="${sessionScope.currentBundle}" />
 
 <!DOCTYPE html>
 <html>
@@ -13,6 +13,7 @@
     <title><fmt:message key="title.inactive_pharmacists"/></title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center"><fmt:message key="header.list_inactive_pharmacists"/></h1>
 <c:choose>
 <c:when test="${sessionScope.inactivePharmacists.size()>0}">

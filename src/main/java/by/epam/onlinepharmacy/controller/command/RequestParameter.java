@@ -2,6 +2,8 @@ package by.epam.onlinepharmacy.controller.command;
 
 public final class RequestParameter {
     public static final String COMMAND = "command";
+    public static final String LANGUAGE = "lang";
+    public static final String CURRENT_URL = "current_url";
 
     //User
     public static final String LOGIN = "login";

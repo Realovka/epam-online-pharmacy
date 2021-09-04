@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.model.service.ProductService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+import java.math.BigDecimal;
+
 public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
     private static ProductServiceImpl instance = new ProductServiceImpl();
@@ -21,7 +24,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(Product product) throws DaoException {
+    public void createProduct(String name, String group, String price, String recipe, String instruction) throws DaoException {
+        Product product = new Product.Builder()
+                .setName(name)
+                .setGroup(group)
+                .setPrice(BigDecimal.valueOf(Double.parseDouble(price)))
+                .isRecipe(Boolean.parseBoolean(recipe))
+                .setInstruction(instruction)
+                .build();
         productDao.createProduct(product);
+    }
+
+    public void addPicture(File file){
+        try {
+            productDao.addPicture(file);
+        } catch (DaoException e) {
+            e.printStackTrace();
+        }
     }
 }

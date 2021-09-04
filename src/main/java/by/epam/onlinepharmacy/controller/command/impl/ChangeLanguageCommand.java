@@ -2,34 +2,38 @@ package by.epam.onlinepharmacy.controller.command.impl;
 
 import by.epam.onlinepharmacy.controller.command.Command;
 import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.PagePath;
-import org.apache.logging.log4j.core.net.UrlConnectionFactory;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.MalformedURLException;
+import javax.servlet.http.HttpSession;
 import java.net.URL;
-//TODO this class
+import java.util.Enumeration;
+import java.util.Map;
+
+
 public class ChangeLanguageCommand implements Command {
+    private static final String RUSSIAN_LOCALE = "Ru";
+    private static final String ENGLISH_LOCALE = "En";
+    private static final String ENGLISH_BUNDLE = "prop.pagecontent_en_En";
+    private static final String RUSSIAN_BUNDLE = "prop.pagecontent_ru_Ru";
+
     @Override
     public CommandResult execute(HttpServletRequest httpServletRequest) {
-        String contextPath = httpServletRequest.getContextPath();
-        String uri = httpServletRequest.getRequestURI();
-        int startIndex = uri.indexOf(contextPath) + contextPath.length();
-        String substring = uri.substring(startIndex);
-        String queryParameters = httpServletRequest.getQueryString();
-        String queryLine = queryParameters == null ? substring : substring + "?" + queryParameters;
-//        URL url = null;
-//        try {
-//             url = new URL(request.getRequestURL().toString());
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        }
-        String locale = (String) httpServletRequest.getSession().getAttribute("locale");
-        if (locale.equals("ru_Ru")) {
-            httpServletRequest.getSession().setAttribute("locale", "en_En");
+        HttpSession session = httpServletRequest.getSession();
+        String currentUrl = httpServletRequest.getParameter(RequestParameter.CURRENT_URL);
+        String url = currentUrl.substring(21);
+        String language = httpServletRequest.getParameter(RequestParameter.LANGUAGE);
+        if (language.equals(ENGLISH_LOCALE)) {
+            session.setAttribute(SessionAttribute.CURRENT_LOCALE, RUSSIAN_LOCALE);
+            session.setAttribute(SessionAttribute.CURRENT_BUNDLE, RUSSIAN_BUNDLE);
+            session.setAttribute(SessionAttribute.SECOND_LOCALE, ENGLISH_LOCALE);
         } else {
-            httpServletRequest.getSession().setAttribute("locale", "ru_Ru");
+            session.setAttribute(SessionAttribute.CURRENT_LOCALE, ENGLISH_LOCALE);
+            session.setAttribute(SessionAttribute.CURRENT_BUNDLE, ENGLISH_BUNDLE);
+            session.setAttribute(SessionAttribute.SECOND_LOCALE, RUSSIAN_LOCALE);
         }
-        return new CommandResult(queryLine, CommandResult.RoutingType.REDIRECT);
+        return new CommandResult(url, CommandResult.RoutingType.REDIRECT);
     }
 }
+

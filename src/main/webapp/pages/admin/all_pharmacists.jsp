@@ -3,8 +3,8 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="by.epam.onlinepharmacy.entity.Status" %>
 
-<fmt:setLocale value="${sessionScope.locale}" scope="session" />
-<fmt:setBundle basename="properties.pagecontent_En_en" />
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
+<fmt:setBundle basename="${sessionScope.currentBundle}" />
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +14,7 @@
     <title><fmt:message key="header.all_pharmacists"/></title>
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center"><fmt:message key="header.list_all_pharmacists"/></h1>
 <h2 style="text-align: left"><fmt:message key="header.pharmacist_waiting_verification"/></h2>
 <label><fmt:message key="msg.verify.pharmacists"/></label>

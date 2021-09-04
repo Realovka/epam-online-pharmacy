@@ -42,17 +42,16 @@ public class UserServiceImpl implements UserService {
         int result;
         User user = new User();
         if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
-                 user.setRole(Role.valueOf(role));
+            user.setRole(Role.valueOf(role));
         }
-        user = new User.Builder()
-                .setLogin(login)
-                .setPassword(PasswordEncoder.createPasswordEncoded(password))
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setRole(convertRole(role))
-                .setTelephone(telephone)
-                .build();
+
+        user.setLogin(login);
+        user.setPassword(PasswordEncoder.createPasswordEncoded(password));
+        user.setFirstName(firstName);
+        user.setLastName(lastName);
+        user.setEmail(email);
+        user.setTelephone(telephone);
+
         try {
             if (userDao.findByLogin(user.getLogin()).isPresent()) {
                 return Optional.empty();
@@ -218,7 +217,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private Role convertRole(String role) {
-        if(role.equals(ROLE_CUSTOMER_IN_RUSSIAN)) {
+        if (role.equals(ROLE_CUSTOMER_IN_RUSSIAN)) {
             return Role.CUSTOMER;
         } else {
             return Role.PHARMACIST;

@@ -8,29 +8,5 @@
                              http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          id="WebApp_9" version="2.4">
 
-    <servlet>
-        <servlet-name>Controller</servlet-name>
-        <servlet-class>by.epam.onlinepharmacy.controller.Controller</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Controller</servlet-name>
-        <url-pattern>/controller</url-pattern>
-    </servlet-mapping>
-
-    <filter>
-        <filter-name>PageRedirectSecurityFilter</filter-name>
-        <filter-class>by.epam.onlinepharmacy.controller.filter.PageRedirectSecurityFilter</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>PageRedirectSecurityFilter</filter-name>
-        <url-pattern>/pages/*</url-pattern>
-    </filter-mapping>
-
-<!--    <filter-mapping>-->
-<!--        <filter-name>PageRedirectSecurityFilter</filter-name>-->
-<!--        <servlet-name>Controller</servlet-name>-->
-<!--    </filter-mapping>-->
 
 </web-app>

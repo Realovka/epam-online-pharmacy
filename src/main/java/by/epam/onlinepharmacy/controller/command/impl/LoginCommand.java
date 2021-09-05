@@ -38,8 +38,8 @@ public class LoginCommand implements Command {
                     }
                 }
             } else {
-                session.setAttribute(SessionAttribute.LOGIN_ERROR, BundleKey.LOGIN_ERROR);
-                return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
+                request.setAttribute(RequestAttribute.LOGIN_ERROR, BundleKey.LOGIN_ERROR);
+                return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

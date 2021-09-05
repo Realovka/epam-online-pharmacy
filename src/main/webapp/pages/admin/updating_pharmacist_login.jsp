@@ -16,7 +16,12 @@
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center"><fmt:message key="title.update_pharmacist_login"/></h1>
 <form action="${pageContext.request.contextPath}/controller?command=updating_pharmacist_login" method="post">
-    <div>${requestScope.updatingPharmacistLoginError}</div>
+    <c:if test="${requestScope.registrationError != null}">
+        <div class="error"><fmt:message key="error.registration_user"/> </div>
+    </c:if>
+    <c:if test="${requestScope.updatingPharmacistLoginError != null}">
+        <div class="error"><fmt:message key="error.update_user_login"/> </div>
+    </c:if>
     <input type="text" name="newLogin" placeholder="<fmt:message key="placeholder.new_login"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_login"/>"/>
 </form>

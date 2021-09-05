@@ -16,7 +16,9 @@
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center"><fmt:message key="title.update_pharmacist_first_name"/></h1>
 <form action="${pageContext.request.contextPath}/controller?command=updating_pharmacist_first_name" method="post">
-    <p>${requestScope.updatingPharmacistFirstNameError}</p>
+    <c:if test="${requestScope.updatingPharmacistFirstNameError != null}">
+        <div class="error"><fmt:message key="error.update_user_first_name"/> </div>
+    </c:if>
     <input type="text" name="newFirstName" placeholder="<fmt:message key="placeholder.new_first_name"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_first_name"/>"/>
 </form>

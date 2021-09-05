@@ -3,9 +3,11 @@ package by.epam.onlinepharmacy.controller.listener;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.annotation.WebListener;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
+import java.util.Locale;
 
 @WebListener
 public class HttpSessionListenerImpl implements HttpSessionListener {
@@ -19,7 +21,6 @@ public class HttpSessionListenerImpl implements HttpSessionListener {
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {
         HttpSession session = sessionEvent.getSession();
-
         session.setAttribute(SessionAttribute.CURRENT_LOCALE, DEFAULT_LOCALE);
         session.setAttribute(SessionAttribute.SECOND_LOCALE, SECOND_LOCALE);
         session.setAttribute(SessionAttribute.CURRENT_BUNDLE, DEFAULT_BUNDLE);

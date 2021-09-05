@@ -17,13 +17,19 @@
 <h1 style="text-align: center"><fmt:message key="header.all_pharmacies"/></h1>
 <h2 style="text-align: left"><fmt:message key="header.add_pharmacy"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_pharmacy" method="post">
-    <div>${requestScope.numberError}</div><br>
-    <div>${requestScope.stringParametersError}</div><br>
+    <c:if test="${requestScope.numberError!=null}">
+        <div><fmt:message key="error.pharmacy_number"/></div>
+    </c:if>
+    <c:if test="${requestScope.stringParametersError!=null}">
+        <div><fmt:message key="error.pharmacy_string_parameter_error"/></div>
+    </c:if>
+    <c:if test="${requestScope.blockError!=null}">
+        <div><fmt:message key="error.pharmacy_block_error"/></div>
+    </c:if>
     <input type="text" name="number" placeholder="<fmt:message key="placeholder.number"/>"/><br>
     <input type="text" name="city" placeholder="<fmt:message key="placeholder.city"/>"/><br>
     <input type="text" name="street" placeholder="<fmt:message key="placeholder.street"/>"/><br>
     <input type="text" name="house" placeholder="<fmt:message key="placeholder.house"/>"/><br>
-    <div>${requestScope.blockError}</div><br>
     <input type="text" name="block" placeholder="<fmt:message key="placeholder.block"/>"/><br>
     <input type="submit" value="<fmt:message key="button.input_pharmacy"/>">
 </form>

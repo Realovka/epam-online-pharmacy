@@ -19,7 +19,7 @@ public class VerificationCustomerCommand implements Command {
             if (userService.updateCustomerStatus(code)) {
               return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
             } else {
-                session.setAttribute(SessionAttribute.CODE_VERIFICATION_ERROR, BundleKey.CODE_VERIFICATION_ERROR);
+                request.setAttribute(RequestAttribute.CODE_VERIFICATION_ERROR, BundleKey.CODE_VERIFICATION_ERROR);
                 return new CommandResult(PagePath.VERIFICATION_CUSTOMER, CommandResult.RoutingType.REDIRECT);
             }
         } catch (ServiceException e) {

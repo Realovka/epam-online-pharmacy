@@ -6,6 +6,7 @@
 <fmt:setBundle basename="${sessionScope.currentBundle}" />
 
 
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -33,7 +34,9 @@
 <div class="auth">
     <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
         <p>
-        <div class="error"> <fmt:message key="${sessionScope.loginError}"/></div>
+        <c:if test="${requestScope.loginError != null}">
+        <div class="error"><fmt:message key="error.login_user"/> </div>
+        </c:if>
         </p>
         <input type="text" name="login" placeholder="<fmt:message key="placeholder.name.login"/>"/><br>
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"/><br>

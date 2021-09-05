@@ -30,7 +30,7 @@ public class UpdatingPharmacistLoginCommand implements Command {
                 session.setAttribute(SessionAttribute.ALL_PHARMACISTS, pharmacists);
                 return new CommandResult(PagePath.ALL_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
             } else {
-                request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_LOGIN_ERROR, BundleKey.REGISTRATION_ERROR);
+                request.setAttribute(RequestAttribute.REGISTRATION_ERROR, BundleKey.REGISTRATION_ERROR);
                 return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {

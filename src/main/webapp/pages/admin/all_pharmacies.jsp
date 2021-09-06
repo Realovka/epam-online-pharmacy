@@ -26,11 +26,16 @@
     <c:if test="${requestScope.blockError!=null}">
         <div><fmt:message key="error.pharmacy_block_error"/></div>
     </c:if>
-    <input type="text" name="number" placeholder="<fmt:message key="placeholder.number"/>"/><br>
-    <input type="text" name="city" placeholder="<fmt:message key="placeholder.city"/>"/><br>
-    <input type="text" name="street" placeholder="<fmt:message key="placeholder.street"/>"/><br>
-    <input type="text" name="house" placeholder="<fmt:message key="placeholder.house"/>"/><br>
-    <input type="text" name="block" placeholder="<fmt:message key="placeholder.block"/>"/><br>
+    <div class="field"><fmt:message key="label.number"/></div><br>
+    <input type="text" name="number" value="${requestScope.mapData.get("number")}" placeholder="<fmt:message key="placeholder.number"/>" size="35px"/><br>
+    <div class="field"><fmt:message key="label.city"/></div><br>
+    <input type="text" name="city" value="${requestScope.mapData.get("city")}" placeholder="<fmt:message key="placeholder.city"/>" size="35px"/><br>
+    <div class="field"><fmt:message key="label.street"/></div><br>
+    <input type="text" name="street" value="${requestScope.mapData.get("street")}" placeholder="<fmt:message key="placeholder.street"/>" size="35px"/><br>
+    <div class="field"><fmt:message key="label.house"/></div><br>
+    <input type="text" name="house" value="${requestScope.mapData.get("house")}" placeholder="<fmt:message key="placeholder.house"/>" size="35px"/><br>
+    <div class="field"><fmt:message key="label.block"/></div><br>
+    <input type="text" name="block" value="${requestScope.mapData.get("block")}" placeholder="<fmt:message key="placeholder.block"/>" size="35px"/><br>
     <input type="submit" value="<fmt:message key="button.input_pharmacy"/>">
 </form>
 <c:choose>

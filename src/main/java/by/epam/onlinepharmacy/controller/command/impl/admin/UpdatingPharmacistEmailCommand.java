@@ -5,7 +5,7 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
-import by.epam.onlinepharmacy.validation.UserValidator;
+import by.epam.onlinepharmacy.validation.impl.UserValidatorImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,7 +20,7 @@ public class UpdatingPharmacistEmailCommand implements Command {
         HttpSession session = request.getSession();
         List<User> pharmacists;
 
-        if (!UserValidator.isValidEmailRegistrationUser(newEmail)) {
+        if (!UserValidatorImpl.getInstance().isValidEmailRegistrationUser(newEmail)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_EMAIL_ERROR, BundleKey.INCORRECT_EMAIL);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_EMAIL, CommandResult.RoutingType.FORWARD);
         }

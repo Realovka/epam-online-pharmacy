@@ -1,6 +1,5 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
-import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.entity.Role;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
@@ -10,7 +9,7 @@ import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.util.PasswordEncoder;
-import by.epam.onlinepharmacy.validation.UserValidator;
+import by.epam.onlinepharmacy.validation.impl.UserValidatorImpl;
 import by.epam.onlinepharmacy.verification.EmailSending;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -108,7 +107,7 @@ public class UserServiceImpl implements UserService {
         userParameters.put(LAST_NAME, lastName);
         userParameters.put(EMAIL, email);
         userParameters.put(TELEPHONE, telephone);
-        UserValidator.isValidForm(userParameters);
+        UserValidatorImpl.getInstance().isValidForm(userParameters);
         return userParameters;
     }
 

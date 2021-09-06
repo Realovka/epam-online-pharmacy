@@ -1,16 +1,23 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;
 import by.epam.onlinepharmacy.model.dao.impl.PharmacyDaoImpl;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
+import by.epam.onlinepharmacy.validation.impl.PharmacyValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
+
 
 public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
@@ -62,5 +69,16 @@ public class PharmacyServiceImpl implements PharmacyService {
             logger.log(Level.ERROR, "Exception is in method createPharmacy() ", e);
             throw new ServiceException("Exception is in method createPharmacy() ", e);
         }
+    }
+
+    public Map<String, String> isFormValid(String number, String city, String street, String house, String block) {
+        Map<String, String> pharmacyParameters = new HashMap<>();
+        pharmacyParameters.put(NUMBER, number);
+        pharmacyParameters.put(CITY, city);
+        pharmacyParameters.put(STREET, street);
+        pharmacyParameters.put(HOUSE, house);
+        pharmacyParameters.put(BLOCK, block);
+        PharmacyValidatorImpl.getInstance().isValidForm(pharmacyParameters);
+        return pharmacyParameters;
     }
 }

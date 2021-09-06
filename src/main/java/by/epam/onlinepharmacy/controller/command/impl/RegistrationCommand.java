@@ -27,7 +27,7 @@ public class RegistrationCommand implements Command {
 
         UserService userService = UserServiceImpl.getInstance();
         Map<String, String> mapData =  userService.isFormValid(login, password, firstName, lastName, email, telephone);
-        request.setAttribute("mapData", mapData);
+        request.setAttribute(RequestAttribute.MAP_DATA, mapData);
         if (mapData.containsValue(EMPTY_STRING)) {
             request.setAttribute(RequestAttribute.DATA_REGISTRATION_ERROR, BundleKey.DATA_REGISTRATION_ERROR);
             return new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);

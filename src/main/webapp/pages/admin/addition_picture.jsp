@@ -15,11 +15,11 @@
 <body>
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1 style="text-align: center">Add picture</h1>
-<form action="${pageContext.request.contextPath}/controller?command=addition_picture" method="post" enctype="multipart/form-data">
+<form action="${pageContext.request.contextPath}/addImage" method="post" enctype="multipart/form-data">
     <input type="file" name="picture" placeholder="picture"/><br>
     <input type="submit" value="Add"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=add_pic">Add pic</a>
+<a href="${pageContext.request.contextPath}/controller?command=find_picture">See picture</a>
 <a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>

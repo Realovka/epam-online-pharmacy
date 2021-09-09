@@ -45,8 +45,7 @@ public class CommandProvider {
         commands.put(CommandType.ALL_PRODUCTS, new GoToAllProductsPageCommand());
         commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
         commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
-        commands.put(CommandType.ADDITION_PICTURE, new AdditionPictureCommand());
-        commands.put(CommandType.ADD_PIC, new AddPicCommand());
+        commands.put(CommandType.FIND_PICTURE, new FindPictureCommand());
     }
 
     public static CommandProvider getInstance() {

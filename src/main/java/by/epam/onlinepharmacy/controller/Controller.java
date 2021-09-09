@@ -1,9 +1,9 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.controller.command.Command;
-import by.epam.onlinepharmacy.controller.command.CommandProvider;
-import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.*;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -14,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/controller")
-@MultipartConfig(location = "E://epam//onlinepharmacy//pictures", fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 5,
-        maxRequestSize = 1024 * 1024 * 25)
 public class Controller extends HttpServlet {
+    private Logger logger = LogManager.getLogger();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         processRequest(req, resp);
@@ -40,8 +39,8 @@ public class Controller extends HttpServlet {
                 response.sendRedirect(request.getContextPath() + commandResult.getPage());
                 break;
             default:
-//                logger.log(Level.ERROR, "Illegal routing type");
-//                response.sendRedirect(PagePath.ERROR_500_PAGE);
+                logger.log(Level.ERROR, "Illegal routing type");
+                response.sendRedirect(PagePath.ERROR_500_PAGE);
         }
     }
 }

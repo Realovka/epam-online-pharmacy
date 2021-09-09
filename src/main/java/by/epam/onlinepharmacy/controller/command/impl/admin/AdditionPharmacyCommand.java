@@ -5,17 +5,13 @@ import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
-import by.epam.onlinepharmacy.validation.impl.PharmacyValidatorImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class AdditionPharmacyCommand implements Command {
-    private static final String ZERO_STRING = "0";
-    private static final String EMPTY_STRING = "\s";
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -30,9 +26,6 @@ public class AdditionPharmacyCommand implements Command {
 
         Map<String, String> dataPharmacy = pharmacyService.isFormValid(number, city, street, house, block);
 
-        if (dataPharmacy.get(RequestParameter.BLOCK).equals(ZERO_STRING)) {
-            dataPharmacy.put(RequestParameter.BLOCK, EMPTY_STRING);
-        }
 
         if (dataPharmacy.get(RequestParameter.NUMBER).isBlank()) {
             try {

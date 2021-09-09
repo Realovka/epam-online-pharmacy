@@ -21,6 +21,8 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
 
 public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
+    private static final String ZERO_STRING = "0";
+    private static final String EMPTY_STRING = "\s";
     private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
 
@@ -79,6 +81,10 @@ public class PharmacyServiceImpl implements PharmacyService {
         pharmacyParameters.put(HOUSE, house);
         pharmacyParameters.put(BLOCK, block);
         PharmacyValidatorImpl.getInstance().isValidForm(pharmacyParameters);
+
+        if (pharmacyParameters.get(RequestParameter.BLOCK).equals(ZERO_STRING)) {
+            pharmacyParameters.put(RequestParameter.BLOCK, EMPTY_STRING);
+        }
         return pharmacyParameters;
     }
 }

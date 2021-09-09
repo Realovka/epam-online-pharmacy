@@ -8,4 +8,5 @@ import java.util.List;
 public interface PharmacyDao {
     List<Pharmacy> findAllPharmacies() throws DaoException;
     void createPharmacy(Pharmacy pharmacy) throws DaoException;
+
 }

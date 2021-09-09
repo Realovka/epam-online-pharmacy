@@ -10,6 +10,9 @@ public final class SessionAttribute {
     public static final String CURRENT_LOCALE = "currentLocale";
     public static final String SECOND_LOCALE = "secondLocale";
     public static final String CURRENT_BUNDLE = "currentBundle";
+    public static final String ALL_PRODUCTS = "allProducts";
+    public static final String PRODUCT_ID = "productId";
+    public static final String PATH_TO_FILE = "pathToFile";
 
 
     private SessionAttribute() {

@@ -2,8 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
-<fmt:setBundle basename="${sessionScope.currentBundle}" />
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
+<fmt:setBundle basename="${sessionScope.currentBundle}"/>
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +27,6 @@
     <input type="text" name="instruction" placeholder="instruction"/><br>
     <input type="submit" value="Input product">
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=addition_picture_page">Add picture</a>
 <c:choose>
     <c:when test="${sessionScope.allProducts.size()>0}">
 
@@ -36,8 +35,8 @@
             <th>Id</th>
             <th>Name</th>
             <th>Group</th>
+            <th>Price</th>
             <th>Recipe</th>
-            <th>Picture</th>
             <th>Instruction</th>
             </thead>
 
@@ -45,21 +44,26 @@
 
                 <tr>
                     <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&productId=${product.productId}">${product.productId}</a>
+                    </td>
+                    <td>
+                            ${product.name}
 
                     </td>
                     <td>
+                            ${product.group}
 
                     </td>
                     <td>
+                            ${product.price}
 
                     </td>
                     <td>
+                            ${product.recipe}
 
                     </td>
                     <td>
-
-                    </td>
-                    <td>
+                            ${product.instruction}
 
                     </td>
                 </tr>

@@ -3,7 +3,6 @@ package by.epam.onlinepharmacy.model.dao.impl;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
-import by.epam.onlinepharmacy.model.dao.ColumnName;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -37,6 +36,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
             INSERT INTO pharmacies (number, city, street, house, block)
             VALUES(?, ?, ?, ?, ?)
              """;
+
+
 
     @Override
     public List<Pharmacy> findAllPharmacies() throws DaoException {

@@ -31,8 +31,7 @@ public enum CommandType {
     CHANGE_LANGUAGE,
     ADDITION_PRODUCT,
     ADDITION_PICTURE_PAGE,
-    ADDITION_PICTURE,
-    ADD_PIC,
+    FIND_PICTURE,
 
     //pharmacist
     MAIN_PHARMACIST,

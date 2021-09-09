@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class AllPharmaciesCommand implements Command {
+
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();

@@ -26,4 +26,13 @@ public class ColumnName {
     public static final String PHARMACY_HOUSE = "house";
     public static final String PHARMACY_BLOCK = "block";
 
+    //table products
+    public static final String PRODUCT_ID = "product_id";
+    public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_GROUP = "product_group";
+    public static final String PRODUCT_PRICE = "price";
+    public static final String PRODUCT_RECIPE = "recipe";
+    public static final String PRODUCT_PICTURE = "picture";
+    public static final String PRODUCT_INSTRUCTION = "instruction";
+
 }

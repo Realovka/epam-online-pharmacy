@@ -23,7 +23,6 @@ public final class RequestParameter {
     public static final String UPDATING_PHARMACIST_EMAIL = "newEmail";
     public static final String UPDATING_PHARMACIST_TELEPHONE = "newTelephone";
 
-
     //Pharmacy
     public static final String NUMBER = "number";
     public static final String CITY = "city";
@@ -31,6 +30,13 @@ public final class RequestParameter {
     public static final String HOUSE = "house";
     public static final String BLOCK = "block";
 
+    //Product
+    public static final String PRODUCT_ID = "productId";
+    public static final String NAME = "name";
+    public static final String GROUP = "group";
+    public static final String PRICE = "price";
+    public static final String RECIPE = "recipe";
+    public static final String INSTRUCTION = "instruction";
 
 
     private RequestParameter() {

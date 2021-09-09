@@ -1,37 +1,35 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.Command;
-import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.PagePath;
-import by.epam.onlinepharmacy.exception.DaoException;
+import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.entity.Product;
+import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
 import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.Part;
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class AdditionProductCommand implements Command {
 
-    private static final String UPLOAD_DIR = "uploads";
-
     @Override
     public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
         ProductService productService = ProductServiceImpl.getInstance();
-       String name = request.getParameter("name");
-       String group = request.getParameter("group");
-       String price = request.getParameter("price");
-       String recipe = request.getParameter("recipe");
-       String instruction = request.getParameter("instruction");
-
-
+        String name = request.getParameter(RequestParameter.NAME);
+        String group = request.getParameter(RequestParameter.GROUP);
+        String price = request.getParameter(RequestParameter.PRICE);
+        String recipe = request.getParameter(RequestParameter.RECIPE);
+        String instruction = request.getParameter(RequestParameter.INSTRUCTION);
+        List<Product> products;
+        try {
+            productService.createProduct(name,group,price,recipe, instruction);
+            products = productService.findAllProducts();
+        } catch (ServiceException e) {
+            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+        }
+        request.getSession().setAttribute(SessionAttribute.ALL_PRODUCTS, products);
         return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
     }
 }

@@ -17,7 +17,7 @@ public final class PagePath {
     public static final String UPDATING_PHARMACIST_EMAIL = "/pages/admin/updating_pharmacist_email.jsp";
     public static final String UPDATING_PHARMACIST_TELEPHONE = "/pages/admin/updating_pharmacist_telephone.jsp";
     public static final String ADDITION_PICTURE = "/pages/admin/addition_picture.jsp";
-    public static final String ADD_PIC = "/controller=add_picture";
+    public static final String VIEW_PICTURE = "/pages/admin/view_picture.jsp";
 
     public static final String ERROR_500_PAGE = "/pages/error/error500.jsp";
 

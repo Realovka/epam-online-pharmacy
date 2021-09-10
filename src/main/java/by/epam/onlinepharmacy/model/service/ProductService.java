@@ -14,6 +14,6 @@ public interface ProductService {
     Optional<String> findPathToPicture(long id) throws ServiceException;
     Optional<Product> findProductById(String id) throws ServiceException;
     Map<Product, Integer> addProductToOrder(String id, Map<Product, Integer> order) throws ServiceException;
-    Map<Product, Integer> updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order);
+    void updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order);
 
 }

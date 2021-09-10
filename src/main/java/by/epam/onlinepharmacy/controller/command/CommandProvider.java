@@ -51,6 +51,8 @@ public class CommandProvider {
         commands.put(CommandType.ADDITION_PRODUCT_TO_ORDER, new AdditionProductToOrderCommand());
         commands.put(CommandType.BASKET_PAGE, new GoToBasketPageCommand());
         commands.put(CommandType.UPDATING_PRODUCT_QUANTITY, new UpdatingProductQuantityCommand());
+        commands.put(CommandType.CHOOSE_PHARMACY, new GoToPharmaciesForCustomerPageCommand());
+        commands.put(CommandType.ORDER, new GoToOrderPageCommand());
     }
 
     public static CommandProvider getInstance() {

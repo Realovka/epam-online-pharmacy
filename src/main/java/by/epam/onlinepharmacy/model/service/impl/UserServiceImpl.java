@@ -62,8 +62,8 @@ public class UserServiceImpl implements UserService {
         try {
             result = userDao.createUser(user);
         } catch (DaoException ex) {
-            logger.log(Level.ERROR, "Exception is in method createUser(), when create user ", ex);
-            throw new ServiceException("Exception is in method createUser(), when create user ", ex);
+            logger.log(Level.ERROR, "DaoException is in method createUser(), when create user ", ex);
+            throw new ServiceException("DaoException is in method createUser(), when create user ", ex);
         }
         if (user.getRole().
                 equals(Role.CUSTOMER) && result > 0) {
@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
                     EmailSending.sendEmail(userReg.get(), code);
                 }
             } catch (DaoException e) {
-                logger.log(Level.ERROR, "Exception is in method createUser(), when send code", e);
-                throw new ServiceException("Exception is in method createUser(), when send code ", e);
+                logger.log(Level.ERROR, "DaoException is in method createUser(), when send code", e);
+                throw new ServiceException("DaoException is in method createUser(), when send code ", e);
             }
         }
         return Optional.of(user);
@@ -89,8 +89,8 @@ public class UserServiceImpl implements UserService {
         try {
             userFromDb = userDao.findUserByLoginAndPassword(login, passwordEncoded);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method authenticationUser() ", e);
-            throw new ServiceException("Exception is in method authenticationUser() ", e);
+            logger.log(Level.ERROR, "DaoException is in method authenticationUser() ", e);
+            throw new ServiceException("DaoException is in method authenticationUser() ", e);
         }
         if (userFromDb.isEmpty()) {
             userFromDb = Optional.empty();
@@ -117,8 +117,8 @@ public class UserServiceImpl implements UserService {
         try {
             pharmacists = userDao.findAllPharmacists();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findAllPharmacists() ", e);
-            throw new ServiceException("Exception is in method findAllPharmacists() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findAllPharmacists() ", e);
+            throw new ServiceException("DaoException is in method findAllPharmacists() ", e);
         }
         return pharmacists;
     }
@@ -128,8 +128,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateUserStatus(Long.parseLong(id), status);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method  updatePharmacistStatus() ", e);
-            throw new ServiceException("Exception is in method updatePharmacistStatus() ", e);
+            logger.log(Level.ERROR, "DaoException is in method  updatePharmacistStatus() ", e);
+            throw new ServiceException("DaoException is in method updatePharmacistStatus() ", e);
         }
     }
 
@@ -142,8 +142,8 @@ public class UserServiceImpl implements UserService {
                 return true;
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method changeCustomerStatus() ", e);
-            throw new ServiceException("Exception is in method changeCustomerStatus ", e);
+            logger.log(Level.ERROR, "DaoException is in method changeCustomerStatus() ", e);
+            throw new ServiceException("DaoException is in method changeCustomerStatus ", e);
         }
         return false;
     }
@@ -154,8 +154,8 @@ public class UserServiceImpl implements UserService {
         try {
             inactivePharmacists = userDao.findInactivePharmacists();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findInactivePharmacists() ", e);
-            throw new ServiceException("Exception is in method findInactivePharmacists() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findInactivePharmacists() ", e);
+            throw new ServiceException("DaoException is in method findInactivePharmacists() ", e);
         }
         return inactivePharmacists;
     }
@@ -169,8 +169,8 @@ public class UserServiceImpl implements UserService {
                 return true;
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateLogin() ", e);
-            throw new ServiceException("Exception is in method updateLogin() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateLogin() ", e);
+            throw new ServiceException("DaoException is in method updateLogin() ", e);
         }
         return false;
     }
@@ -180,8 +180,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateFirstName(id, firstName);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateFirstName() ", e);
-            throw new ServiceException("Exception is in method updateFirstName() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateFirstName() ", e);
+            throw new ServiceException("DaoException is in method updateFirstName() ", e);
         }
     }
 
@@ -190,8 +190,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateLastName(id, lastName);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateLastName() ", e);
-            throw new ServiceException("Exception is in method updateLastName() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateLastName() ", e);
+            throw new ServiceException("DaoException is in method updateLastName() ", e);
         }
     }
 
@@ -200,8 +200,8 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateEmail(id, email);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateEmail() ", e);
-            throw new ServiceException("Exception is in method updateEmail() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateEmail() ", e);
+            throw new ServiceException("DaoException is in method updateEmail() ", e);
         }
     }
 
@@ -210,11 +210,12 @@ public class UserServiceImpl implements UserService {
         try {
             userDao.updateTelephone(id, telephone);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method updateTelephone() ", e);
-            throw new ServiceException("Exception is in method updateTelephone() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateTelephone() ", e);
+            throw new ServiceException("DaoException is in method updateTelephone() ", e);
         }
     }
 
+    //TODO
     private Role convertRole(String role) {
         if (role.equals(ROLE_CUSTOMER_IN_RUSSIAN)) {
             return Role.CUSTOMER;

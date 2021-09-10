@@ -15,6 +15,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
 
@@ -39,8 +40,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacies = pharmacyDao.findAllPharmacies();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findAllPharmacies() ", e);
-            throw new ServiceException("Exception is in method findAllPharmacies() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findAllPharmacies() ", e);
+            throw new ServiceException("DaoException is in method findAllPharmacies() ", e);
         }
 
         //TODO
@@ -68,11 +69,12 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.createPharmacy(pharmacy);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method createPharmacy() ", e);
-            throw new ServiceException("Exception is in method createPharmacy() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);
+            throw new ServiceException("DaoException is in method createPharmacy() ", e);
         }
     }
 
+    @Override
     public Map<String, String> isFormValid(String number, String city, String street, String house, String block) {
         Map<String, String> pharmacyParameters = new HashMap<>();
         pharmacyParameters.put(NUMBER, number);
@@ -87,4 +89,70 @@ public class PharmacyServiceImpl implements PharmacyService {
         }
         return pharmacyParameters;
     }
+
+    @Override
+    public Optional<Pharmacy> findPharmacyById(String id) throws ServiceException {
+        Optional<Pharmacy> pharmacy;
+        long pharmacyId = Long.parseLong(id);
+        try {
+            pharmacy = pharmacyDao.findPharmacyById(pharmacyId);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findPharmacyById() ", e);
+            throw new ServiceException("DaoException is in method findPharmacyById() ", e);
+        }
+        return pharmacy;
+    }
+
+    @Override
+    public void updateNumber(long id, String number) throws ServiceException {
+        int newNumber = Integer.parseInt(number);
+        try {
+            pharmacyDao.updateNumber(id, newNumber);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateNumber() ", e);
+            throw new ServiceException("DaoException is in method updateNumber() ", e);
+        }
+    }
+
+    @Override
+    public void updateCity(long id, String city) throws ServiceException {
+        try {
+            pharmacyDao.updateCity(id, city);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateCity() ", e);
+            throw new ServiceException("DaoException is in method updateCity() ", e);
+        }
+    }
+
+    @Override
+    public void updateStreet(long id, String street) throws ServiceException {
+        try {
+            pharmacyDao.updateStreet(id, street);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateStreet() ", e);
+            throw new ServiceException("DaoException is in method updateStreet() ", e);
+        }
+    }
+
+    @Override
+    public void updateHouse(long id, String house) throws ServiceException {
+        try {
+            pharmacyDao.updateHouse(id, house);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateHouse() ", e);
+            throw new ServiceException("DaoException is in method updateHouse() ", e);
+        }
+    }
+
+    @Override
+    public void updateBlock(long id, String block) throws ServiceException {
+        int newBlock = Integer.parseInt(block);
+        try {
+            pharmacyDao.updateBlock(id, newBlock);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateBlock() ", e);
+            throw new ServiceException("DaoException is in method updateBlock() ", e);
+        }
+    }
+
 }

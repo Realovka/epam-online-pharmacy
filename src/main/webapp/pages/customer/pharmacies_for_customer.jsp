@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>Products</title>
+    <title>Pharmacies</title>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
@@ -27,47 +27,39 @@
         </li>
     </ul>
 </nav>
-<h1 style="text-align: center">List all products in pharmacies</h1>
-<a href="${pageContext.request.contextPath}/controller?command=basket_page">BASKET</a><br>
-<label>If you want to add position to order, click on id</label>
 <c:choose>
-    <c:when test="${sessionScope.allProducts.size()>0}">
+    <c:when test="${sessionScope.allPharmacies.size()>0}">
 
         <table border="3">
             <thead>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Group</th>
-            <th>Price</th>
-            <th>Recipe</th>
-            <th>About</th>
+            <th><fmt:message key="column.table.id"/></th>
+            <th><fmt:message key="column.table.number"/></th>
+            <th><fmt:message key="column.table.city"/></th>
+            <th><fmt:message key="column.table.street"/></th>
+            <th><fmt:message key="column.table.house"/></th>
+            <th><fmt:message key="column.table.block"/></th>
             </thead>
 
-            <c:forEach items="${sessionScope.allProducts}" var="product">
+            <c:forEach items="${sessionScope.allPharmacies}" var="pharmacy">
 
                 <tr>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=addition_product_to_order&productId=${product.productId}">${product.productId}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=order&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.pharmacyId}</a>
                     </td>
                     <td>
-                            ${product.name}
-
+                            ${pharmacy.number}
                     </td>
                     <td>
-                            ${product.group}
-
+                            ${pharmacy.city}
                     </td>
                     <td>
-                            ${product.price}
-
+                            ${pharmacy.street}
                     </td>
                     <td>
-                            ${product.recipe}
-
+                            ${pharmacy.house}
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=about_product&productId=${product.productId}">Read more</a>
-
+                            ${pharmacy.block}
                     </td>
                 </tr>
             </c:forEach>

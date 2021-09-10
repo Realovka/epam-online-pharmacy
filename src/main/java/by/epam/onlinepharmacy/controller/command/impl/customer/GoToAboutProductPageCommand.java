@@ -28,12 +28,12 @@ public class GoToAboutProductPageCommand implements Command {
         try {
             product = productService.findProductById(id);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "Exception in method execute ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         //TODO may be product.ifPresentOrElse() doesn't work
         if (product.isPresent()) {
-            session.setAttribute(SessionAttribute.PRODUCT, product.get());
+            session.setAttribute(SessionAttribute.PRODUCT, product);
             result = new CommandResult(PagePath.ABOUT_PRODUCT, CommandResult.RoutingType.REDIRECT);
         } else {
             result = new CommandResult(PagePath.ERROR_404_PAGE, CommandResult.RoutingType.REDIRECT);

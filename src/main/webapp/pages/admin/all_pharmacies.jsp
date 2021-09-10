@@ -58,19 +58,19 @@
                             ${pharmacy.pharmacyId}
                     </td>
                     <td>
-                            ${pharmacy.number}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&id=${pharmacy.pharmacyId}">${pharmacy.number}</a>
                     </td>
                     <td>
-                            ${pharmacy.city}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_city_page&id=${pharmacy.pharmacyId}">${pharmacy.city}</a>
                     </td>
                     <td>
-                            ${pharmacy.street}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_street_page&id=${pharmacy.pharmacyId}">${pharmacy.street}</a>
                     </td>
                     <td>
-                            ${pharmacy.house}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_house_page&id=${pharmacy.pharmacyId}">${pharmacy.house}</a>
                     </td>
                     <td>
-                            ${pharmacy.block}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&id=${pharmacy.pharmacyId}">${pharmacy.block}</a>
                     </td>
                 </tr>
             </c:forEach>

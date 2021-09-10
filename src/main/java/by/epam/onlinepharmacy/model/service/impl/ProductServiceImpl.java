@@ -37,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             productDao.createProduct(product);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method createProduct() ", e);
-            throw new ServiceException("Exception is in method createProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
+            throw new ServiceException("DaoException is in method createProduct() ", e);
         }
     }
 
@@ -47,8 +47,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             productDao.addPathToPicture(id, fileName);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method addPathToPicture() ", e);
-            throw new ServiceException("Exception is in method addPathToProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method addPathToPicture() ", e);
+            throw new ServiceException("DaoException is in method addPathToProduct() ", e);
         }
     }
 
@@ -58,8 +58,8 @@ public class ProductServiceImpl implements ProductService {
         try {
           pathToPicture = productDao.findPathToPicture(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findPathToPicture() ", e);
-            throw new ServiceException("Exception is in method findPathToProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findPathToPicture() ", e);
+            throw new ServiceException("DaoException is in method findPathToProduct() ", e);
         }
         return pathToPicture;
     }
@@ -70,8 +70,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             products = productDao.findAllProducts();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findAllProducts() ", e);
-            throw new ServiceException("Exception is in method findAllProducts() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findAllProducts() ", e);
+            throw new ServiceException("DaoException is in method findAllProducts() ", e);
         }
         return products;
     }
@@ -83,8 +83,8 @@ public class ProductServiceImpl implements ProductService {
             long productId = Long.parseLong(id);
             product = productDao.findProductById(productId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method findProductById() ", e);
-            throw new ServiceException("Exception is in method findProductById() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findProductById() ", e);
+            throw new ServiceException("DaoException is in method findProductById() ", e);
         }
         return product;
     }
@@ -96,8 +96,8 @@ public class ProductServiceImpl implements ProductService {
             long productId = Long.parseLong(id);
             product = productDao.findProductForOrderById(productId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Exception is in method addProductToOrder() ", e);
-            throw new ServiceException("Exception is in method addProductToOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method addProductToOrder() ", e);
+            throw new ServiceException("DaoException is in method addProductToOrder() ", e);
         }
         product.ifPresent(productToOrder -> {
             order.put(productToOrder, 1);
@@ -106,13 +106,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Map<Product, Integer> updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order) {
+    public void updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order) {
         long id = Long.parseLong(productId);
         Integer newQuantity = Integer.valueOf(quantity);
         Optional<Product> updatingProduct = order.keySet().stream()
                 .filter(product -> product.getProductId() == id)
                 .findFirst();
         order.put(updatingProduct.get(), newQuantity);
-        return order;
     }
 }

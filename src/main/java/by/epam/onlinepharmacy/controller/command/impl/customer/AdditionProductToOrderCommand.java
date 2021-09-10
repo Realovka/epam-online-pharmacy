@@ -34,7 +34,7 @@ public class AdditionProductToOrderCommand implements Command {
         try {
             order = productService.addProductToOrder(id, order);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "Exception in method execute ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ORDER, order);

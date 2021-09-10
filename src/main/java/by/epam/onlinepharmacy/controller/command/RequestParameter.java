@@ -24,6 +24,7 @@ public final class RequestParameter {
     public static final String UPDATING_PHARMACIST_TELEPHONE = "newTelephone";
 
     //Pharmacy
+    public static final String PHARMACY_ID = "pharmacyId";
     public static final String NUMBER = "number";
     public static final String CITY = "city";
     public static final String STREET = "street";

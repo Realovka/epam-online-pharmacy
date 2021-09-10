@@ -30,3 +30,10 @@
 2021-09-10 15:59:11.644 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-10 16:01:45.447 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-10 16:19:01.929 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 17:56:43.705 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 19:21:42.972 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 21:01:00.221 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 21:04:55.614 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 21:05:53.051 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 21:07:41.763 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-10 21:51:52.710 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

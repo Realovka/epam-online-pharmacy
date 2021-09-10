@@ -37,7 +37,8 @@ public class PageRedirectSecurityFilter implements Filter {
                 ADDITION_PICTURE, VIEW_PICTURE);
 
         customerPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_CUSTOMER, PRODUCTS_FOR_CUSTOMER, ABOUT_PRODUCT,
-                BASKET);
+                BASKET, PHARMACIES_FOR_CUSTOMER, ORDER);
+
 
         pharmacistPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_PHARMACIST);
 

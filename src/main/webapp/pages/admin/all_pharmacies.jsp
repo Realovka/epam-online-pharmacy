@@ -77,7 +77,7 @@
         </table>
     </c:when>
 </c:choose>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

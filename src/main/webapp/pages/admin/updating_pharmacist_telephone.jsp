@@ -22,7 +22,7 @@
     <input type="tel" name="newTelephone" placeholder="<fmt:message key="placeholder.new_telephone"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_telephone"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

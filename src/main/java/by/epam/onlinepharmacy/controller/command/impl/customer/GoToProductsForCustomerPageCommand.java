@@ -1,36 +1,38 @@
-package by.epam.onlinepharmacy.controller.command.impl.admin;
+package by.epam.onlinepharmacy.controller.command.impl.customer;
 
 import by.epam.onlinepharmacy.controller.command.Command;
 import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.PagePath;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
-import by.epam.onlinepharmacy.entity.User;
+import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
-import by.epam.onlinepharmacy.model.service.UserService;
-import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
+import by.epam.onlinepharmacy.model.service.ProductService;
+import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
-public class GoToInactivePharmacistsPageCommand implements Command {
+public class GoToProductsForCustomerPageCommand implements Command {
     private Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) {
+    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        UserService userService = UserServiceImpl.getInstance();
-        List<User> inactivePharmacists;
+        ProductService productService = ProductServiceImpl.getInstance();
+        List<Product> products;
         try {
-            inactivePharmacists = userService.findInactivePharmacists();
+            products = productService.findAllProducts();
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.INACTIVE_PHARMACISTS, inactivePharmacists);
-        return new CommandResult(PagePath.INACTIVE_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
+        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+        return new CommandResult(PagePath.PRODUCTS_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
     }
 }

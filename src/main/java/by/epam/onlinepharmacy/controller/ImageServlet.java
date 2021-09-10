@@ -1,7 +1,9 @@
 package by.epam.onlinepharmacy.controller;
 
+import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.PagePath;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
+import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -16,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+
+import static by.epam.onlinepharmacy.controller.command.PagePath.ERROR_500_PAGE;
 
 @WebServlet(urlPatterns = "/addImage")
 @MultipartConfig(location = "E://epam//onlinepharmacy//src//main//webapp//pictures", fileSizeThreshold = 1024 * 1024,
@@ -36,13 +40,18 @@ public class ImageServlet extends HttpServlet {
                 fileName.append(part.getSubmittedFileName());
             }
         } catch (IOException e) {
-            logger.log(Level.ERROR, e);
+            logger.log(Level.ERROR, "File can't be write ", e);
             resp.sendRedirect(PagePath.ERROR_500_PAGE);
         }
 
         ProductServiceImpl productService = ProductServiceImpl.getInstance();
         long id = (long) req.getSession().getAttribute(SessionAttribute.PRODUCT_ID);
-        productService.addPicture(id, FILE_PATH + fileName);
+        try {
+            productService.addPathToPicture(id, FILE_PATH + fileName);
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            resp.sendRedirect(PagePath.ERROR_500_PAGE);
+        }
         resp.sendRedirect(PagePath.ADDITION_PICTURE);
     }
 }

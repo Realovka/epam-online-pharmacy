@@ -22,7 +22,7 @@
     <input type="email" name="newEmail" placeholder="<fmt:message key="placeholder.new_email"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_email"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

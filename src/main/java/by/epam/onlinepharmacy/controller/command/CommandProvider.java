@@ -2,7 +2,7 @@ package by.epam.onlinepharmacy.controller.command;
 
 import by.epam.onlinepharmacy.controller.command.impl.*;
 import by.epam.onlinepharmacy.controller.command.impl.admin.*;
-import by.epam.onlinepharmacy.controller.command.impl.customer.GoToCustomerMainPageCommand;
+import by.epam.onlinepharmacy.controller.command.impl.customer.*;
 import by.epam.onlinepharmacy.controller.command.impl.pharmacist.GoToPharmacistMainPageCommand;
 
 import java.util.EnumMap;
@@ -46,6 +46,11 @@ public class CommandProvider {
         commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
         commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
         commands.put(CommandType.FIND_PICTURE, new FindPictureCommand());
+        commands.put(CommandType.PRODUCTS_FOR_CUSTOMER, new GoToProductsForCustomerPageCommand());
+        commands.put(CommandType.ABOUT_PRODUCT, new GoToAboutProductPageCommand());
+        commands.put(CommandType.ADDITION_PRODUCT_TO_ORDER, new AdditionProductToOrderCommand());
+        commands.put(CommandType.BASKET_PAGE, new GoToBasketPageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_QUANTITY, new UpdatingProductQuantityCommand());
     }
 
     public static CommandProvider getInstance() {

@@ -4,15 +4,11 @@ import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
-import by.epam.onlinepharmacy.model.dao.ColumnName;
 import by.epam.onlinepharmacy.model.dao.ProductDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,8 +41,15 @@ public class ProductDaoImpl implements ProductDao {
     private static final String FIND_ALL_PRODUCTS = """
             SELECT product_id, product_name, product_group, price, recipe, instruction FROM products
             """;
+    private static final String FIND_PRODUCT_FOR_ORDER = """
+            SELECT product_id, product_name FROM products WHERE product_id = ?
+            """;
 
-    private static final String FIND_PIC = "SELECT picture FROM products WHERE product_id=?";
+    private static final String FIND_PICTURE = "SELECT picture FROM products WHERE product_id=?";
+
+    private static final String FIND_PRODUCT_BY_ID = """
+            SELECT product_name, product_group, price, recipe, instruction, picture FROM products WHERE product_id = ?
+            """;
 
 
     @Override
@@ -62,22 +65,19 @@ public class ProductDaoImpl implements ProductDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createProduct() ", e);
             throw new DaoException("SQLException in method createProduct() ", e);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
         }
     }
 
     @Override
-    public void addPicture(long id, String fileNAme) throws DaoException {
+    public void addPathToPicture(long id, String fileNAme) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(ADD_PICTURE)) {
             ps.setString(1, fileNAme);
             ps.setLong(2, id);
             ps.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createProduct() ", e);
-            throw new DaoException("SQLException in method createProduct() ", e);
+            logger.log(Level.ERROR, "SQLException in method addPathToPicture() ", e);
+            throw new DaoException("SQLException in method addPathToPicture() ", e);
         }
     }
 
@@ -89,7 +89,7 @@ public class ProductDaoImpl implements ProductDao {
             try (ResultSet rs = preparedStatement.executeQuery()) {
                 while (rs.next()) {
                     Product product = new Product.Builder()
-                            .seProductId(rs.getLong(PRODUCT_ID))
+                            .setProductId(rs.getLong(PRODUCT_ID))
                             .setName(rs.getString(PRODUCT_NAME))
                             .setGroup(rs.getString(PRODUCT_GROUP))
                             .setPrice(rs.getBigDecimal(PRODUCT_PRICE))
@@ -105,21 +105,71 @@ public class ProductDaoImpl implements ProductDao {
         return products;
     }
 
-    public String findPic(long id) throws DaoException {
-        String s = null;
+
+
+    @Override
+    public Optional<String> findPathToPicture(long id) throws DaoException {
+        String pathToFile = null;
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PIC)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PICTURE)) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    s = resultSet.getString("picture");
+                    pathToFile = resultSet.getString(PRODUCT_PICTURE);
+                    return Optional.of(pathToFile);
 
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
-            throw new DaoException("SQLException in method createUser() ", e);
+            logger.log(Level.ERROR, "SQLException in method findPathToPicture() ", e);
+            throw new DaoException("SQLException in method findPathToPicture() ", e);
         }
-        return s;
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Product> findProductById(long id) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCT_BY_ID)) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Product product = new Product.Builder()
+                            .setName(resultSet.getString(PRODUCT_NAME))
+                            .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
+                            .setGroup(resultSet.getString(PRODUCT_GROUP))
+                            .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
+                            .setInstruction(resultSet.getString(PRODUCT_INSTRUCTION))
+                            .setPicture(resultSet.getString(PRODUCT_PICTURE))
+                            .build();
+                    return Optional.of(product);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findProductById() ", e);
+            throw new DaoException("SQLException in method findProductById() ", e);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Product> findProductForOrderById(long id) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCT_FOR_ORDER)) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Product product = new Product.Builder()
+                            .setProductId(resultSet.getLong(PRODUCT_ID))
+                            .setName(resultSet.getString(PRODUCT_NAME))
+                            .build();
+                    return Optional.of(product);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findProductForOrderById ", e);
+            throw new DaoException("SQLException in method findProductForOrderById ", e);
+        }
+        return Optional.empty();
     }
 }

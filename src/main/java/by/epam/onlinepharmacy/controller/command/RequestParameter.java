@@ -37,6 +37,7 @@ public final class RequestParameter {
     public static final String PRICE = "price";
     public static final String RECIPE = "recipe";
     public static final String INSTRUCTION = "instruction";
+    public static final String QUANTITY = "quantity";
 
 
     private RequestParameter() {

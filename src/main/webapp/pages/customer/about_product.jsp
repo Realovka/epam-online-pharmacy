@@ -10,8 +10,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title><fmt:message key="title.customer_main"/></title>
+    <title>About product</title>
 </head>
+<body>
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <nav class="menu">
     <ul>
@@ -26,8 +27,10 @@
         </li>
     </ul>
 </nav>
-<h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
-<a href="${pageContext.request.contextPath}/controller?command=products_for_customer">See all products in pharmacies</a><br>
+<label>${sessionScope.product.name}</label><br>
+<img id="account_image" class="rounded-circle account-img" src="<c:url value="${pageContext.request.contextPath}${sessionScope.product.pathToPicture}"/>" alt="no img"/><br>
+<label>${sessionScope.product.instruction}</label><br>
+<a href="${pageContext.request.contextPath}/controller?command=main_customer"><fmt:message key="link.customer_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

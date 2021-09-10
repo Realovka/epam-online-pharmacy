@@ -27,18 +27,19 @@ public class PageRedirectSecurityFilter implements Filter {
     private List<String> guestPages;
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
         availablePages = new EnumMap<>(Role.class);
-        guestPages = List.of(LOGIN, REGISTRATION, VERIFICATION_CUSTOMER);
+        guestPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, LOGIN, REGISTRATION, VERIFICATION_CUSTOMER);
 
-        adminPages = List.of(MAIN_ADMIN, ALL_PHARMACISTS, INACTIVE_PHARMACISTS,
+        adminPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_ADMIN, ALL_PHARMACISTS, INACTIVE_PHARMACISTS,
                 ALL_PHARMACIES, ALL_PRODUCTS,UPDATING_PHARMACIST_LOGIN, UPDATING_PHARMACIST_FIRST_NAME,
                 UPDATING_PHARMACIST_LAST_NAME, UPDATING_PHARMACIST_EMAIL, UPDATING_PHARMACIST_TELEPHONE,
                 ADDITION_PICTURE, VIEW_PICTURE);
 
-        customerPages = List.of(MAIN_CUSTOMER);
+        customerPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_CUSTOMER, PRODUCTS_FOR_CUSTOMER, ABOUT_PRODUCT,
+                BASKET);
 
-        pharmacistPages = List.of(MAIN_PHARMACIST);
+        pharmacistPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_PHARMACIST);
 
         availablePages.put(Role.GUEST, guestPages);
         availablePages.put(Role.ADMIN, adminPages);

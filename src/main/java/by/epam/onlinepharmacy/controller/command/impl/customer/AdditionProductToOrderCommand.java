@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.controller.command.impl.admin;
+package by.epam.onlinepharmacy.controller.command.impl.customer;
 
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.entity.Product;
@@ -11,30 +11,33 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-
-public class AdditionProductCommand implements Command {
+public class AdditionProductToOrderCommand implements Command {
     private Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
-        ProductService productService = ProductServiceImpl.getInstance();
-        String name = request.getParameter(RequestParameter.NAME);
-        String group = request.getParameter(RequestParameter.GROUP);
-        String price = request.getParameter(RequestParameter.PRICE);
-        String recipe = request.getParameter(RequestParameter.RECIPE);
-        String instruction = request.getParameter(RequestParameter.INSTRUCTION);
-        List<Product> products;
+        String id = request.getParameter(RequestParameter.PRODUCT_ID);
+        HttpSession session = request.getSession();
+        Map<Product, Integer> order;
+        if (session.getAttribute(SessionAttribute.ORDER) != null) {
+            order = (Map<Product, Integer>) session.getAttribute(SessionAttribute.ORDER);
+        } else {
+            order = new LinkedHashMap<>();
+
+        }
+            ProductService productService = ProductServiceImpl.getInstance();
         try {
-            productService.createProduct(name,group,price,recipe, instruction);
-            products = productService.findAllProducts();
+            order = productService.addProductToOrder(id, order);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        request.getSession().setAttribute(SessionAttribute.ALL_PRODUCTS, products);
-        return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
+        session.setAttribute(SessionAttribute.ORDER, order);
+        return new CommandResult(PagePath.PRODUCTS_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
     }
 }

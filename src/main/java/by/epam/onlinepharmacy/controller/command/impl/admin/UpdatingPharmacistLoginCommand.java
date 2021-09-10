@@ -6,12 +6,17 @@ import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
 import by.epam.onlinepharmacy.validation.impl.UserValidatorImpl;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class UpdatingPharmacistLoginCommand implements Command {
+    private Logger logger = LogManager.getLogger();
+
     @Override
     public CommandResult execute(HttpServletRequest request) {
         long id = (long) request.getSession().getAttribute(SessionAttribute.PHARMACIST_ID);
@@ -34,6 +39,7 @@ public class UpdatingPharmacistLoginCommand implements Command {
                 return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {
+            logger.log(Level.ERROR, "ServiceException in method execute ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
     }

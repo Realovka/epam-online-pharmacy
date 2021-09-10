@@ -11,19 +11,20 @@ public class Product {
     private String group;
     public BigDecimal price;
     private boolean recipe;
-    private File picture;
+    private String pathToPicture;
     private String instruction;
 
     public Product() {
     }
 
-    public Product(long productId, String name, String group, BigDecimal price, boolean recipe, File picture, String instruction) {
+    public Product(long productId, String name, String group, BigDecimal price, boolean recipe,
+                   String pathToPicture, String instruction) {
         this.productId = productId;
         this.name = name;
         this.group = group;
         this.price = price;
         this.recipe = recipe;
-        this.picture = picture;
+        this.pathToPicture = pathToPicture;
         this.instruction = instruction;
     }
 
@@ -67,12 +68,12 @@ public class Product {
         this.recipe = recipe;
     }
 
-    public File getPicture() {
-        return picture;
+    public String getPathToPicture() {
+        return pathToPicture;
     }
 
-    public void setPicture(File picture) {
-        this.picture = picture;
+    public void setPathToPicture(String pathToPicture) {
+        this.pathToPicture = pathToPicture;
     }
 
     public String getInstruction() {
@@ -90,7 +91,7 @@ public class Product {
         result *= 31 + (group != null ? group.hashCode() : 0);
         result *= 31 + (price != null ? price.hashCode() : 0);
         result *= recipe ? 1 : 0;
-        result *= 31 + (picture != null ? picture.hashCode() : 0);
+        result *= 31 + (pathToPicture != null ? pathToPicture.hashCode() : 0);
         result *= 31 + (instruction != null ? instruction.hashCode() : 0);
         return result;
     }
@@ -104,7 +105,7 @@ public class Product {
         builder.append(", group='").append(group);
         builder.append(", price=").append(price);
         builder.append(", recipe=").append(recipe);
-        builder.append(", picture='").append(picture);
+        builder.append(", picture='").append(pathToPicture);
         builder.append(", instruction='").append(instruction);
         builder.append('}');
         return builder.toString();
@@ -117,7 +118,7 @@ public class Product {
             newProduct = new Product();
         }
 
-        public Product.Builder seProductId(long productId) {
+        public Product.Builder setProductId(long productId) {
             newProduct.productId = productId;
             return this;
         }
@@ -143,8 +144,8 @@ public class Product {
             return this;
         }
 
-        public Product.Builder setPicture(File picture) {
-            newProduct.picture = picture;
+        public Product.Builder setPicture(String pathToPicture) {
+            newProduct.pathToPicture = pathToPicture;
             return this;
         }
 

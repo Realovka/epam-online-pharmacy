@@ -16,6 +16,7 @@ public final class SessionAttribute {
     public static final String PRODUCT = "product";
     public static final String ORDER = "order";
     public static final String PHARMACY = "pharmacy";
+    public static final String PHARMACY_ID = "pharmacyId";
 
 
     private SessionAttribute() {

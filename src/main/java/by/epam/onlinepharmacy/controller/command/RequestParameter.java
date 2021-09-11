@@ -30,6 +30,11 @@ public final class RequestParameter {
     public static final String STREET = "street";
     public static final String HOUSE = "house";
     public static final String BLOCK = "block";
+    public static final String UPDATING_PHARMACY_NUMBER = "newNumber";
+    public static final String UPDATING_PHARMACY_CITY = "newCity";
+    public static final String UPDATING_PHARMACY_STREET = "newStreet";
+    public static final String UPDATING_PHARMACY_HOUSE = "newHouse";
+    public static final String UPDATING_PHARMACY_BLOCK = "newBlock";
 
     //Product
     public static final String PRODUCT_ID = "productId";

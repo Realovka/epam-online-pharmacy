@@ -58,19 +58,19 @@
                             ${pharmacy.pharmacyId}
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&id=${pharmacy.pharmacyId}">${pharmacy.number}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.number}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_city_page&id=${pharmacy.pharmacyId}">${pharmacy.city}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_city_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.city}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_street_page&id=${pharmacy.pharmacyId}">${pharmacy.street}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_street_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.street}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_house_page&id=${pharmacy.pharmacyId}">${pharmacy.house}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_house_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.house}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&id=${pharmacy.pharmacyId}">${pharmacy.block}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_block_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.block}</a>
                     </td>
                 </tr>
             </c:forEach>

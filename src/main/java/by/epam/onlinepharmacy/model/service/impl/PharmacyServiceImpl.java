@@ -146,6 +146,16 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     @Override
     public void updateBlock(long id, String block) throws ServiceException {
+        if (block.isBlank()) {
+            try {
+                pharmacyDao.updateBlock(id, 0);
+            } catch (DaoException e) {
+                logger.log(Level.ERROR, "DaoException is in method updateBlock() ", e);
+                throw new ServiceException("DaoException is in method updateBlock() ", e);
+            }
+            return;
+        }
+
         int newBlock = Integer.parseInt(block);
         try {
             pharmacyDao.updateBlock(id, newBlock);

@@ -14,6 +14,11 @@ public final class RequestAttribute {
     public static final String UPDATING_PHARMACIST_LAST_NAME_ERROR = "updatingPharmacistLastNameError";
     public static final String UPDATING_PHARMACIST_EMAIL_ERROR = "updatingPharmacistEmailError";
     public static final String UPDATING_PHARMACIST_TELEPHONE_ERROR = "updatingPharmacistTelephoneError";
+    public static final String UPDATING_PHARMACY_NUMBER_ERROR = "updatingPharmacyNumberError";
+    public static final String UPDATING_PHARMACY_CITY_ERROR = "updatingPharmacyCityError";
+    public static final String UPDATING_PHARMACY_STREET_ERROR = "updatingPharmacyStreetError";
+    public static final String UPDATING_PHARMACY_HOUSE_ERROR = "updatingPharmacyHouseError";
+    public static final String UPDATING_PHARMACY_BLOCK_ERROR = "updatingPharmacyBlockError";
 
 
     private RequestAttribute() {

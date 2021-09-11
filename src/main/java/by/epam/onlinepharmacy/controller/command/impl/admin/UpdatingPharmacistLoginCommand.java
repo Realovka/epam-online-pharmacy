@@ -5,6 +5,7 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
+import by.epam.onlinepharmacy.validation.UserValidator;
 import by.epam.onlinepharmacy.validation.impl.UserValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -22,10 +23,11 @@ public class UpdatingPharmacistLoginCommand implements Command {
         long id = (long) request.getSession().getAttribute(SessionAttribute.PHARMACIST_ID);
         String newLogin = request.getParameter(RequestParameter.UPDATING_PHARMACIST_LOGIN);
         UserService userService = UserServiceImpl.getInstance();
+        UserValidator userValidator = UserValidatorImpl.getInstance();
         HttpSession session = request.getSession();
         List<User> pharmacists;
 
-        if(!UserValidatorImpl.getInstance().isValidStringParameter(newLogin)) {
+        if(!userValidator.isValidStringParameter(newLogin)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_LOGIN_ERROR, BundleKey.USER_LOGIN_ERROR);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
         }

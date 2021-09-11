@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class PharmacyValidatorImpl implements PharmacyValidator {
 
-    private static final int MIN_FOR_NUMBER = 1;
+    private static final int MIN_FOR_BLOCK_AND_HOUSE = 0;
     private static final int MAX_SYMBOLS_FOR_CITY_AND_STREET = 70;
     private static final int MAX_SYMBOLS_FOR_HOUSE = 20;
     private static final String EMPTY_STRING = "\s";
@@ -42,25 +42,28 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         return !formData.containsValue(EMPTY_STRING);
     }
 
-    private boolean isValidNumber(String number) {
+    public boolean isValidNumber(String number) {
         int pharmacyNumber;
         try {
             pharmacyNumber = Integer.parseInt(number);
         } catch (NumberFormatException e) {
             return false;
         }
-        return pharmacyNumber >= MIN_FOR_NUMBER;
+        return pharmacyNumber > MIN_FOR_BLOCK_AND_HOUSE;
     }
 
-    private boolean isValidCityOrStreet(String parameter) {
+    public boolean isValidCityOrStreet(String parameter) {
         return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET;
     }
 
-    private boolean isValidHouse(String house) {
+    public boolean isValidHouse(String house) {
+        if(house.equals(ZERO_STRING)) {
+            return false;
+        }
         return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE;
     }
 
-    private boolean isValidBlock(Map<String, String> formData) {
+    public boolean isValidBlock(Map<String, String> formData) {
         String block = formData.get(RequestParameter.BLOCK);
         if (block.isBlank()) {
             formData.put(RequestParameter.BLOCK, ZERO_STRING);
@@ -72,6 +75,20 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public boolean isValidNewBlock(String block) {
+        int newBlock;
+        if(block.isBlank()) {
+            return true;
+        }
+        try {
+            newBlock = Integer.parseInt(block);
+        } catch (IllegalArgumentException e) {
+            return false;
+        }
+        return newBlock >= MIN_FOR_BLOCK_AND_HOUSE;
     }
 
 }

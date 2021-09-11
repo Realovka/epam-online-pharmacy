@@ -13,6 +13,7 @@ public final class BundleKey {
     public static final String PHARMACY_NUMBER_ERROR = "pharmacyNumberError";
     public static final String PHARMACY_STRING_PARAMETERS_ERROR = "pharmacyStringParametersError";
     public static final String PHARMACY_BLOCK_ERROR = "pharmacyBlockError";
+    public static final String PHARMACY_HOUSE_ERROR = "pharmacyHouseError";
 
     private BundleKey() {
     }

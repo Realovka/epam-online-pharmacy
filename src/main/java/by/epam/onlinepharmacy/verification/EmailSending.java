@@ -22,6 +22,7 @@ public class EmailSending {
 
         if (!user.getEmail().isEmpty()) {
             String message = String.format(
+                    //TODO
                     "Hello, %s  %s welcome to Alpha Pharmacy. Your activation code is %s",
                     user.getFirstName(),
                     user.getLastName(),

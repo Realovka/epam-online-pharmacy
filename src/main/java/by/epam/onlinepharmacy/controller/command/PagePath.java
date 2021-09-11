@@ -17,6 +17,11 @@ public final class PagePath {
     public static final String UPDATING_PHARMACIST_LAST_NAME = "/pages/admin/updating_pharmacist_last_name.jsp";
     public static final String UPDATING_PHARMACIST_EMAIL = "/pages/admin/updating_pharmacist_email.jsp";
     public static final String UPDATING_PHARMACIST_TELEPHONE = "/pages/admin/updating_pharmacist_telephone.jsp";
+    public static final String UPDATING_PHARMACY_NUMBER = "/pages/admin/updating_pharmacy_number.jsp";
+    public static final String UPDATING_PHARMACY_CITY = "/pages/admin/updating_pharmacy_city.jsp";
+    public static final String UPDATING_PHARMACY_STREET = "/pages/admin/updating_pharmacy_street.jsp";
+    public static final String UPDATING_PHARMACY_HOUSE = "/pages/admin/updating_pharmacy_house.jsp";
+    public static final String UPDATING_PHARMACY_BLOCK = "/pages/admin/updating_pharmacy_block.jsp";
     public static final String ADDITION_PICTURE = "/pages/admin/addition_picture.jsp";
     public static final String VIEW_PICTURE = "/pages/admin/view_picture.jsp";
 

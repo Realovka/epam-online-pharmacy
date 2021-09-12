@@ -32,12 +32,6 @@ public class AdditionPharmacyCommand implements Command {
 
 
         if (dataPharmacy.get(RequestParameter.NUMBER).isBlank()) {
-            try {
-                pharmacies = pharmacyService.findAllPharmacies();
-            } catch (ServiceException e) {
-                return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-            }
-            session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
             request.setAttribute(RequestAttribute.MAP_DATA, dataPharmacy);
             request.setAttribute(RequestAttribute.PHARMACY_NUMBER_ERROR, BundleKey.PHARMACY_NUMBER_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
@@ -45,26 +39,12 @@ public class AdditionPharmacyCommand implements Command {
 
         if (dataPharmacy.get(RequestParameter.CITY).isBlank() || dataPharmacy.get(RequestParameter.STREET).isBlank() ||
                 dataPharmacy.get(RequestParameter.HOUSE).isBlank()) {
-            try {
-                pharmacies = pharmacyService.findAllPharmacies();
-            } catch (ServiceException e) {
-                logger.log(Level.ERROR, "ServiceException in method execute ", e);
-                return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-            }
-            session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
             request.setAttribute(RequestAttribute.MAP_DATA, dataPharmacy);
             request.setAttribute(RequestAttribute.PHARMACY_STRING_PARAMETERS_ERROR, BundleKey.PHARMACY_STRING_PARAMETERS_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
         }
 
-        if (dataPharmacy.get(RequestParameter.BLOCK).isBlank()) {
-            try {
-                pharmacies = pharmacyService.findAllPharmacies();
-            } catch (ServiceException e) {
-                logger.log(Level.ERROR, "ServiceException in method execute ", e);
-                return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-            }
-            session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+        if (dataPharmacy.get(RequestParameter.BLOCK).isEmpty()) {
             request.setAttribute(RequestAttribute.MAP_DATA, dataPharmacy);
             request.setAttribute(RequestAttribute.PHARMACY_BLOCK_ERROR, BundleKey.PHARMACY_BLOCK_ERROR);
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);

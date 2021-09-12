@@ -1,11 +1,15 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.ProductDao;
 import by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl;
 import by.epam.onlinepharmacy.model.service.ProductService;
+import by.epam.onlinepharmacy.validation.ProductValidator;
+import by.epam.onlinepharmacy.validation.impl.PharmacyValidatorImpl;
+import by.epam.onlinepharmacy.validation.impl.ProductValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,6 +44,18 @@ public class ProductServiceImpl implements ProductService {
             logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
             throw new ServiceException("DaoException is in method createProduct() ", e);
         }
+    }
+
+    @Override
+    public Map<String, String> isValidParameters(String name, String group, String price, String instruction) {
+        Map<String, String> productParameters = new HashMap<>();
+        productParameters.put(RequestParameter.NAME, name);
+        productParameters.put(RequestParameter.GROUP, group);
+        productParameters.put(RequestParameter.PRICE, price);
+        productParameters.put(RequestParameter.INSTRUCTION, instruction);
+        ProductValidator productValidator = ProductValidatorImpl.getInstance();
+        productValidator.isValidForm(productParameters);
+        return productParameters;
     }
 
     @Override

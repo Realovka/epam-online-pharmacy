@@ -10,7 +10,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
     private static final int MIN_FOR_BLOCK_AND_HOUSE = 0;
     private static final int MAX_SYMBOLS_FOR_CITY_AND_STREET = 70;
     private static final int MAX_SYMBOLS_FOR_HOUSE = 20;
-    private static final String EMPTY_STRING = "\s";
+    private static final String EMPTY_STRING = "";
     private static final String ZERO_STRING = "0";
 
     private static PharmacyValidatorImpl instance = new PharmacyValidatorImpl();
@@ -42,6 +42,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         return !formData.containsValue(EMPTY_STRING);
     }
 
+    @Override
     public boolean isValidNumber(String number) {
         int pharmacyNumber;
         try {
@@ -52,10 +53,12 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         return pharmacyNumber > MIN_FOR_BLOCK_AND_HOUSE;
     }
 
+    @Override
     public boolean isValidCityOrStreet(String parameter) {
         return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET;
     }
 
+    @Override
     public boolean isValidHouse(String house) {
         if(house.equals(ZERO_STRING)) {
             return false;
@@ -63,18 +66,20 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE;
     }
 
+    @Override
     public boolean isValidBlock(Map<String, String> formData) {
         String block = formData.get(RequestParameter.BLOCK);
         if (block.isBlank()) {
             formData.put(RequestParameter.BLOCK, ZERO_STRING);
             return true;
         }
+        int pharmacyBlock;
         try {
-            Integer.parseInt(block);
+           pharmacyBlock = Integer.parseInt(block);
         } catch (IllegalArgumentException e) {
             return false;
         }
-        return true;
+        return pharmacyBlock >= 0;
     }
 
     @Override

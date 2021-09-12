@@ -1,7 +1,6 @@
 package by.epam.onlinepharmacy.model.dao.impl;
 
 import by.epam.onlinepharmacy.entity.Pharmacy;
-import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;

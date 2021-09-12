@@ -19,6 +19,10 @@ public final class RequestAttribute {
     public static final String UPDATING_PHARMACY_STREET_ERROR = "updatingPharmacyStreetError";
     public static final String UPDATING_PHARMACY_HOUSE_ERROR = "updatingPharmacyHouseError";
     public static final String UPDATING_PHARMACY_BLOCK_ERROR = "updatingPharmacyBlockError";
+    public static final String PRODUCT_NAME_ERROR = "productNameError";
+    public static final String PRODUCT_GROUP_ERROR = "productGroupError";
+    public static final String PRODUCT_PRICE_ERROR = "productPriceError";
+    public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
 
 
     private RequestAttribute() {

@@ -38,6 +38,7 @@
     <input type="text" name="block" value="${requestScope.mapData.get("block")}" placeholder="<fmt:message key="placeholder.block"/>" size="35px"/><br>
     <input type="submit" value="<fmt:message key="button.input_pharmacy"/>">
 </form>
+<label><fmt:message key="msg.click_on_parameter"/></label>
 <c:choose>
     <c:when test="${sessionScope.allPharmacies.size()>0}">
 

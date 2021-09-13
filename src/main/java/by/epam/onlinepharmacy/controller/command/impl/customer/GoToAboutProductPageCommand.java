@@ -16,10 +16,10 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class GoToAboutProductPageCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.PRODUCT_ID);
         HttpSession session = request.getSession();
         CommandResult result;
@@ -28,7 +28,7 @@ public class GoToAboutProductPageCommand implements Command {
         try {
             product = productService.findProductById(id);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method execute ", e);
+            logger.log(Level.ERROR, "Exception in method execute while find product by id ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         //TODO may be product.ifPresentOrElse() doesn't work

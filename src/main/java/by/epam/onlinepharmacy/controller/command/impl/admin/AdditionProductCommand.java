@@ -18,10 +18,10 @@ import java.util.Map;
 
 
 public class AdditionProductCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ProductService productService = ProductServiceImpl.getInstance();
         String name = request.getParameter(RequestParameter.NAME);
@@ -61,7 +61,7 @@ public class AdditionProductCommand implements Command {
             productService.createProduct(name,group,price,recipe, instruction);
             products = productService.findAllProducts();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find all products ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);

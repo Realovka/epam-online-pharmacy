@@ -179,3 +179,4 @@ ALTER TABLE `online_pharmacy`.`products`
     CHANGE COLUMN `picture` `picture` BLOB NULL ;
 ALTER TABLE orders
 ALTER COLUMN order_status_id SET DEFAULT 1;
+SET time_zone='+03:00';

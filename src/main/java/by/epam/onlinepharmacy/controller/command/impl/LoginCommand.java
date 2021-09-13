@@ -5,12 +5,16 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class LoginCommand implements Command {
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request)  {
@@ -41,6 +45,7 @@ public class LoginCommand implements Command {
                 return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {
+            logger.log(Level.ERROR, "Exception in method execute while user authenticate ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         return commandResult;

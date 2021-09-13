@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 public class AdditionPharmacyCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -54,7 +54,7 @@ public class AdditionPharmacyCommand implements Command {
             pharmacyService.createPharmacy(number, city, street, house, block);
             pharmacies = pharmacyService.findAllPharmacies();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);

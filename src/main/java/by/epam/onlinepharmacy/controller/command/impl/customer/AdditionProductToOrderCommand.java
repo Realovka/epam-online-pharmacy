@@ -17,10 +17,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class AdditionProductToOrderCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.PRODUCT_ID);
         HttpSession session = request.getSession();
         Map<Product, Integer> order;
@@ -30,11 +30,11 @@ public class AdditionProductToOrderCommand implements Command {
             order = new LinkedHashMap<>();
 
         }
-            ProductService productService = ProductServiceImpl.getInstance();
+        ProductService productService = ProductServiceImpl.getInstance();
         try {
             order = productService.addProductToOrder(id, order);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method execute ", e);
+            logger.log(Level.ERROR, "Exception in method execute add product to order ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ORDER, order);

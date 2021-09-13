@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class SendingOrderCommand implements Command {
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         return null;
     }
 }

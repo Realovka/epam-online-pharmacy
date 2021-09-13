@@ -10,16 +10,14 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.util.Optional;
 
 public class FindPictureCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         ProductServiceImpl service = ProductServiceImpl.getInstance();
         long id = (long) request.getSession().getAttribute(SessionAttribute.PRODUCT_ID);
         String path;
@@ -27,7 +25,7 @@ public class FindPictureCommand implements Command {
         try {
             pathToFile = service.findPathToPicture(id);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find path to picture ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         path = pathToFile.get();

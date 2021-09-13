@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createOrder(long pharmacyId) throws ServiceException {
        Order order = new Order.Builder()
-               .setDataStarting(new Timestamp(System.currentTimeMillis()))
+               .setDataStarting(new Timestamp.valueOf(LocalDateTime.now("+03:00:00")))
                .setDataEnding(Timestamp.valueOf(LocalDateTime.now().plusHours(24)))
                .setPharmacyId(pharmacyId)
                .build();

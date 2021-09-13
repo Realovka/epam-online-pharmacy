@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class UpdatingPharmacistEmailCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -34,11 +34,11 @@ public class UpdatingPharmacistEmailCommand implements Command {
         try {
             userService.updateEmail(id, newEmail);
             pharmacists = userService.findAllPharmacists();
-            session.setAttribute(SessionAttribute.ALL_PHARMACISTS, pharmacists);
-            return new CommandResult(PagePath.ALL_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while send email or find all pharmacists", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
+        session.setAttribute(SessionAttribute.ALL_PHARMACISTS, pharmacists);
+        return new CommandResult(PagePath.ALL_PHARMACISTS, CommandResult.RoutingType.REDIRECT);
     }
 }

@@ -6,12 +6,16 @@ import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Optional;
 
 public class RegistrationCommand implements Command {
+    private static final Logger logger = LogManager.getLogger();
     private static final String EMPTY_STRING = "\s";
 
     @Override
@@ -48,6 +52,7 @@ public class RegistrationCommand implements Command {
                 commandResult = new CommandResult(PagePath.REGISTRATION, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {
+            logger.log(Level.ERROR, "Exception in method execute while create user ", e);
             commandResult = new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         return commandResult;

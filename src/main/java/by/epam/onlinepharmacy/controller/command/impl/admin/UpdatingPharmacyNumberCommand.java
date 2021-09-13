@@ -18,10 +18,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class UpdatingPharmacyNumberCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         String newNumber = request.getParameter(RequestParameter.UPDATING_PHARMACY_NUMBER);
         HttpSession session = request.getSession();
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
@@ -37,7 +37,7 @@ public class UpdatingPharmacyNumberCommand implements Command {
             pharmacyService.updateNumber(id, newNumber);
             pharmacies = pharmacyService.findAllPharmacies();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while update number or find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);

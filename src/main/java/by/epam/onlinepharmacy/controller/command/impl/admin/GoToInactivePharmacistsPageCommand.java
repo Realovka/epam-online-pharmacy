@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class GoToInactivePharmacistsPageCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -27,7 +27,7 @@ public class GoToInactivePharmacistsPageCommand implements Command {
         try {
             inactivePharmacists = userService.findInactivePharmacists();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find inactive pharmacists ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.INACTIVE_PHARMACISTS, inactivePharmacists);

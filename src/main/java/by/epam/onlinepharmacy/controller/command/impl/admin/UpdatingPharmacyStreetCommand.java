@@ -11,17 +11,15 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.List;
 
 public class UpdatingPharmacyStreetCommand implements Command {
-    private Logger logger = LogManager.getLogger();
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request) throws ServletException, IOException {
+    public CommandResult execute(HttpServletRequest request) {
         String newStreet = request.getParameter(RequestParameter.UPDATING_PHARMACY_STREET);
         HttpSession session = request.getSession();
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
@@ -38,7 +36,7 @@ public class UpdatingPharmacyStreetCommand implements Command {
             pharmacyService.updateStreet(id, newStreet);
             pharmacies = pharmacyService.findAllPharmacies();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while update street or find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);

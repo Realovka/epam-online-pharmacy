@@ -10,7 +10,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Timestamp;
+import java.time.Clock;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.util.TimeZone;
 
 public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
@@ -27,8 +31,8 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public void createOrder(long pharmacyId) throws ServiceException {
        Order order = new Order.Builder()
-               .setDataStarting(new Timestamp.valueOf(LocalDateTime.now("+03:00:00")))
-               .setDataEnding(Timestamp.valueOf(LocalDateTime.now().plusHours(24)))
+               .setDataStarting(Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault())))
+               .setDataEnding(Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault()).plusHours(24)))
                .setPharmacyId(pharmacyId)
                .build();
         try {

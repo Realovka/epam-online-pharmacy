@@ -68,3 +68,15 @@
 2021-09-12 20:12:43.278 [http-nio-8080-exec-12] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-12 20:25:52.616 [http-nio-8080-exec-24] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-12 20:45:40.963 [http-nio-8080-exec-41] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 11:53:43.647 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 12:24:39.669 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 12:46:45.962 [http-nio-8080-exec-12] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 12:59:24.942 [http-nio-8080-exec-30] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:02:11.384 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:05:10.495 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:10:56.558 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:25:58.566 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:39:25.602 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 13:47:28.821 [http-nio-8080-exec-1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 16:24:09.085 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-13 16:27:16.389 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

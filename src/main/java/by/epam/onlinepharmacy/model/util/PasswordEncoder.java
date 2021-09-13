@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.util;
+package by.epam.onlinepharmacy.model.util;
 
 import by.epam.onlinepharmacy.exception.ServiceException;
 import org.apache.logging.log4j.Level;

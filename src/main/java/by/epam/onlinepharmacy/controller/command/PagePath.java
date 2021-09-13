@@ -32,6 +32,7 @@ public final class PagePath {
     public static final String BASKET = "/pages/customer/basket.jsp";
     public static final String PHARMACIES_FOR_CUSTOMER = "/pages/customer/pharmacies_for_customer.jsp";
     public static final String ORDER = "/pages/customer/order.jsp";
+    public static final String ORDER_ACCEPT = "/pages/customer/order_accept.jsp";
 
     //pharmacist
     public static final String MAIN_PHARMACIST = "/pages/pharmacist/pharmacist_main.jsp";

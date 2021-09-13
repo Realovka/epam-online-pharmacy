@@ -57,6 +57,7 @@ public enum CommandType {
     BASKET_PAGE,
     UPDATING_PRODUCT_QUANTITY,
     CHOOSE_PHARMACY,
-    ORDER
+    ORDER,
+    SEND_ORDER
 
 }

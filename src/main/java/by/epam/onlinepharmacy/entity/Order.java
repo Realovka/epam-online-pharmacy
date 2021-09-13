@@ -1,19 +1,20 @@
 package by.epam.onlinepharmacy.entity;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Order {
     private long orderId;
-    private LocalDateTime dataStarting;
-    private LocalDateTime dataEnding;
+    private Timestamp dataStarting;
+    private Timestamp dataEnding;
     private StatusOrder statusOrder;
     private long pharmacyId;
 
     public Order() {
     }
 
-    public Order(long orderId, LocalDateTime dataStarting, LocalDateTime dataEnding, StatusOrder statusOrder, long pharmacyId) {
+    public Order(long orderId, Timestamp dataStarting, Timestamp dataEnding, StatusOrder statusOrder, long pharmacyId) {
         this.orderId = orderId;
         this.dataStarting = dataStarting;
         this.dataEnding = dataEnding;
@@ -29,19 +30,19 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public LocalDateTime getDataStarting() {
+    public Timestamp getDataStarting() {
         return dataStarting;
     }
 
-    public void setDataStarting(LocalDateTime dataStarting) {
+    public void setDataStarting(Timestamp dataStarting) {
         this.dataStarting = dataStarting;
     }
 
-    public LocalDateTime getDataEnding() {
+    public Timestamp getDataEnding() {
         return dataEnding;
     }
 
-    public void setDataEnding(LocalDateTime dataEnding) {
+    public void setDataEnding(Timestamp dataEnding) {
         this.dataEnding = dataEnding;
     }
 
@@ -91,5 +92,43 @@ public class Order {
         builder.append(", pharmacyId=").append(pharmacyId);
         builder.append('}');
         return builder.toString();
+    }
+
+    public static class Builder {
+        private Order newOrder;
+
+        public Builder() {
+            newOrder = new Order();
+        }
+
+        public Order.Builder setOrderId(long orderId) {
+            newOrder.orderId = orderId;
+            return this;
+        }
+
+        public Order.Builder setDataStarting(Timestamp dataStarting) {
+            newOrder.dataStarting = dataStarting;
+            return this;
+        }
+
+        public Order.Builder setDataEnding(Timestamp dataEnding) {
+            newOrder.dataEnding = dataEnding;
+            return this;
+        }
+
+
+        public Order.Builder setStatusOrder(StatusOrder statusOrder) {
+            newOrder.statusOrder = statusOrder;
+            return this;
+        }
+
+        public Order.Builder setPharmacyId(long pharmacyId) {
+            newOrder.pharmacyId = pharmacyId;
+            return this;
+        }
+
+        public Order build() {
+            return newOrder;
+        }
     }
 }

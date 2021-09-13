@@ -2,6 +2,7 @@ package by.epam.onlinepharmacy.controller.command;
 
 import by.epam.onlinepharmacy.controller.command.impl.*;
 import by.epam.onlinepharmacy.controller.command.impl.admin.*;
+import by.epam.onlinepharmacy.controller.command.impl.admin.SendingOrderCommand;
 import by.epam.onlinepharmacy.controller.command.impl.customer.*;
 import by.epam.onlinepharmacy.controller.command.impl.pharmacist.GoToPharmacistMainPageCommand;
 
@@ -63,6 +64,7 @@ public class CommandProvider {
         commands.put(CommandType.UPDATING_PHARMACY_STREET, new UpdatingPharmacyStreetCommand());
         commands.put(CommandType.UPDATING_PHARMACY_HOUSE, new UpdatingPharmacyHouseCommand());
         commands.put(CommandType.UPDATING_PHARMACY_BLOCK, new UpdatingPharmacyBlockCommand());
+        commands.put(CommandType.SEND_ORDER, new SendingOrderCommand());
     }
 
     public static CommandProvider getInstance() {

@@ -55,15 +55,15 @@ public class PharmacyDaoImpl implements PharmacyDao {
         List<Pharmacy> pharmacies = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACIES)) {
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                while (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Pharmacy pharmacy = new Pharmacy.Builder()
-                            .setPharmacyId(rs.getLong(PHARMACY_ID))
-                            .setNumber(rs.getInt(PHARMACY_NUMBER))
-                            .setCity(rs.getString(PHARMACY_CITY))
-                            .setStreet(rs.getString(PHARMACY_STREET))
-                            .setHouse(rs.getString(PHARMACY_HOUSE))
-                            .setBlock(rs.getInt(PHARMACY_BLOCK))
+                            .setPharmacyId(resultSet.getLong(PHARMACY_ID))
+                            .setNumber(resultSet.getInt(PHARMACY_NUMBER))
+                            .setCity(resultSet.getString(PHARMACY_CITY))
+                            .setStreet(resultSet.getString(PHARMACY_STREET))
+                            .setHouse(resultSet.getString(PHARMACY_HOUSE))
+                            .setBlock(resultSet.getInt(PHARMACY_BLOCK))
                             .build();
                     pharmacies.add(pharmacy);
                 }
@@ -78,13 +78,13 @@ public class PharmacyDaoImpl implements PharmacyDao {
     @Override
     public void createPharmacy(Pharmacy pharmacy) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(CREATE_PHARMACY)) {
-            ps.setInt(1, pharmacy.getNumber());
-            ps.setString(2, pharmacy.getCity());
-            ps.setString(3, pharmacy.getStreet());
-            ps.setString(4, pharmacy.getHouse());
-            ps.setInt(5, pharmacy.getBlock());
-            ps.execute();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PHARMACY)) {
+            preparedStatement.setInt(1, pharmacy.getNumber());
+            preparedStatement.setString(2, pharmacy.getCity());
+            preparedStatement.setString(3, pharmacy.getStreet());
+            preparedStatement.setString(4, pharmacy.getHouse());
+            preparedStatement.setInt(5, pharmacy.getBlock());
+            preparedStatement.execute();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createPharmacy() ", e);
             throw new DaoException("SQLException in method createPharmacy() ", e);

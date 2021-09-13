@@ -7,7 +7,7 @@ import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;
 import by.epam.onlinepharmacy.model.dao.impl.PharmacyDaoImpl;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
-import by.epam.onlinepharmacy.validation.impl.PharmacyValidatorImpl;
+import by.epam.onlinepharmacy.model.validation.impl.PharmacyValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -91,11 +91,10 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public Optional<Pharmacy> findPharmacyById(String id) throws ServiceException {
+    public Optional<Pharmacy> findPharmacyById(long id) throws ServiceException {
         Optional<Pharmacy> pharmacy;
-        long pharmacyId = Long.parseLong(id);
         try {
-            pharmacy = pharmacyDao.findPharmacyById(pharmacyId);
+            pharmacy = pharmacyDao.findPharmacyById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findPharmacyById() ", e);
             throw new ServiceException("DaoException is in method findPharmacyById() ", e);

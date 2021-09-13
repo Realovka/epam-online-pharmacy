@@ -177,3 +177,5 @@ ALTER TABLE products RENAME column name TO product_name
 ALTER TABLE `online_pharmacy`.`products`
     CHANGE COLUMN `group` `product_group` VARCHAR(45) NOT NULL ,
     CHANGE COLUMN `picture` `picture` BLOB NULL ;
+ALTER TABLE orders
+ALTER COLUMN order_status_id SET DEFAULT 1;

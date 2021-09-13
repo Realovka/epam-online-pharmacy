@@ -150,12 +150,12 @@ public class UserDaoImpl implements UserDao {
              PreparedStatement preparedStatement = connection.prepareStatement(AUTHORIZE_USER)) {
             preparedStatement.setString(1, login);
             preparedStatement.setString(2, password);
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                if (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
                     return Optional.of(new User.Builder()
-                            .setFirstName(rs.getString(USER_FIRST_NAME))
-                            .setLastName(rs.getString(USER_LAST_NAME))
-                            .setRole(Role.valueOf(rs.getString(ColumnName.USER_ROLE)))
+                            .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(USER_LAST_NAME))
+                            .setRole(Role.valueOf(resultSet.getString(ColumnName.USER_ROLE)))
                             .build());
                 }
             }
@@ -171,16 +171,16 @@ public class UserDaoImpl implements UserDao {
         List<User> pharmacists = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACISTS)) {
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                while (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     User user = new User.Builder()
-                            .setUserId(rs.getLong(USER_ID))
-                            .setLogin(rs.getString(USER_LOGIN))
-                            .setFirstName(rs.getString(USER_FIRST_NAME))
-                            .setLastName(rs.getString(USER_LAST_NAME))
-                            .setTelephone(rs.getString(USER_TELEPHONE))
-                            .setEmail(rs.getString(USER_EMAIL))
-                            .setStatus(Status.valueOf(rs.getString(USER_STATUS)))
+                            .setUserId(resultSet.getLong(USER_ID))
+                            .setLogin(resultSet.getString(USER_LOGIN))
+                            .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(USER_LAST_NAME))
+                            .setTelephone(resultSet.getString(USER_TELEPHONE))
+                            .setEmail(resultSet.getString(USER_EMAIL))
+                            .setStatus(Status.valueOf(resultSet.getString(USER_STATUS)))
                             .build();
                     pharmacists.add(user);
                 }

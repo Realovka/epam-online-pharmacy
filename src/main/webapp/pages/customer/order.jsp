@@ -27,7 +27,10 @@
         </li>
     </ul>
 </nav>
-
+<label>If you want update products in basket</label>
+<a href="${pageContext.request.contextPath}/controller?command=basket_page">click here</a><br>
+<label>If you want choose other pharmacy</label>
+<a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy">click here</a><br>
 <table border="3">
     <thead>
     <th><fmt:message key="column.table.number"/></th>
@@ -78,5 +81,10 @@
         </table>
     </c:when>
 </c:choose>
+<form action="${pageContext.request.contextPath}/controller?command=send_order" method="post">
+    <input type="submit" value="<fmt:message key="button.send_order"/>"/>
+</form>
+<a href="${pageContext.request.contextPath}/controller?command=main_customer"><fmt:message key="link.customer_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

@@ -55,13 +55,13 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void createProduct(Product product) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(CREATE_PRODUCT)) {
-            ps.setString(1, product.getName());
-            ps.setString(2, product.getGroup());
-            ps.setBigDecimal(3, product.getPrice());
-            ps.setBoolean(4, product.isRecipe());
-            ps.setString(5, product.getInstruction());
-            ps.executeUpdate();
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PRODUCT)) {
+            preparedStatement.setString(1, product.getName());
+            preparedStatement.setString(2, product.getGroup());
+            preparedStatement.setBigDecimal(3, product.getPrice());
+            preparedStatement.setBoolean(4, product.isRecipe());
+            preparedStatement.setString(5, product.getInstruction());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createProduct() ", e);
             throw new DaoException("SQLException in method createProduct() ", e);
@@ -71,10 +71,10 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public void addPathToPicture(long id, String fileNAme) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement ps = connection.prepareStatement(ADD_PICTURE)) {
-            ps.setString(1, fileNAme);
-            ps.setLong(2, id);
-            ps.executeUpdate();
+             PreparedStatement preparedStatement = connection.prepareStatement(ADD_PICTURE)) {
+            preparedStatement.setString(1, fileNAme);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method addPathToPicture() ", e);
             throw new DaoException("SQLException in method addPathToPicture() ", e);
@@ -86,14 +86,14 @@ public class ProductDaoImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PRODUCTS)) {
-            try (ResultSet rs = preparedStatement.executeQuery()) {
-                while (rs.next()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
                     Product product = new Product.Builder()
-                            .setProductId(rs.getLong(PRODUCT_ID))
-                            .setName(rs.getString(PRODUCT_NAME))
-                            .setGroup(rs.getString(PRODUCT_GROUP))
-                            .setPrice(rs.getBigDecimal(PRODUCT_PRICE))
-                            .setInstruction(rs.getString(PRODUCT_INSTRUCTION))
+                            .setProductId(resultSet.getLong(PRODUCT_ID))
+                            .setName(resultSet.getString(PRODUCT_NAME))
+                            .setGroup(resultSet.getString(PRODUCT_GROUP))
+                            .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
+                            .setInstruction(resultSet.getString(PRODUCT_INSTRUCTION))
                             .build();
                     products.add(product);
                 }
@@ -109,7 +109,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Optional<String> findPathToPicture(long id) throws DaoException {
-        String pathToFile = null;
+        String pathToFile;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PICTURE)) {
             preparedStatement.setLong(1, id);

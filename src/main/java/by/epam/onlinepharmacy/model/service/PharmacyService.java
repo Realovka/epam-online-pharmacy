@@ -11,7 +11,7 @@ public interface PharmacyService {
     List<Pharmacy> findAllPharmacies() throws ServiceException;
     void createPharmacy(String number, String city, String street, String house, String block) throws ServiceException;
     Map<String, String> isFormValid(String number, String city, String street, String house, String block);
-    Optional<Pharmacy> findPharmacyById(String id) throws ServiceException;
+    Optional<Pharmacy> findPharmacyById(long id) throws ServiceException;
     void updateNumber(long id, String number) throws ServiceException;
     void updateCity(long id, String city) throws ServiceException;
     void updateStreet(long id, String street) throws ServiceException;

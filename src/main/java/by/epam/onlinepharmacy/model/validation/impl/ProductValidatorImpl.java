@@ -1,7 +1,7 @@
-package by.epam.onlinepharmacy.validation.impl;
+package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
-import by.epam.onlinepharmacy.validation.ProductValidator;
+import by.epam.onlinepharmacy.model.validation.ProductValidator;
 
 import java.math.BigInteger;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.verification;
+package by.epam.onlinepharmacy.model.verification;
 
 import by.epam.onlinepharmacy.entity.User;
 

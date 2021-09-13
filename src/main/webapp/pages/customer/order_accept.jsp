@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title><fmt:message key="title.customer_main"/></title>
+    <title>Order accept</title>
 </head>
 <body>
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
@@ -27,34 +27,7 @@
         </li>
     </ul>
 </nav>
-<a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy">Choose pharmacy</a><br>
-<a href="${pageContext.request.contextPath}/controller?command=order">Go to order page</a>
-<c:choose>
-    <c:when test="${sessionScope.order.size()>0}">
-
-        <table border="3">
-            <thead>
-            <th>Name</th>
-            <th>Quantity</th>
-            </thead>
-
-            <c:forEach items="${sessionScope.order}" var="product">
-
-            <tr>
-                <td>
-                        ${product.key.name}
-                </td>
-                <td>
-                        ${product.value}
-                            <form action="${pageContext.request.contextPath}/controller?command=updating_product_quantity&productId=${product.key.productId}" method="post">
-                                <input type="text" name="quantity" placeholder="Update quantity here"/>
-                            </form>
-
-                </td>
-                </c:forEach>
-        </table>
-    </c:when>
-</c:choose>
+<label>Order is accepted</label>
 <a href="${pageContext.request.contextPath}/controller?command=main_customer"><fmt:message key="link.customer_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>

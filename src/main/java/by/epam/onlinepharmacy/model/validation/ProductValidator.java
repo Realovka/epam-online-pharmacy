@@ -1,4 +1,4 @@
-package by.epam.onlinepharmacy.validation;
+package by.epam.onlinepharmacy.model.validation;
 
 import java.util.Map;
 

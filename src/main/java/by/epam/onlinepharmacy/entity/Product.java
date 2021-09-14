@@ -85,6 +85,17 @@ public class Product {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return productId == product.productId && recipe == product.recipe
+                && Objects.equals(name, product.name) && Objects.equals(group, product.group)
+                && Objects.equals(price, product.price) && Objects.equals(pathToPicture, product.pathToPicture)
+                && Objects.equals(instruction, product.instruction);
+    }
+
+    @Override
     public int hashCode() {
         int result = (int) (productId ^ (productId >>> 32));
         result *= 31 + (name != null ? name.hashCode() : 0);

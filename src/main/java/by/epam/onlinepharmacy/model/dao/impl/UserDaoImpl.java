@@ -26,9 +26,10 @@ public class UserDaoImpl implements UserDao {
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static UserDaoImpl instance = new UserDaoImpl();
 
-    private UserDaoImpl(){
+    private UserDaoImpl() {
     }
-    public static UserDaoImpl getInstance(){
+
+    public static UserDaoImpl getInstance() {
         return instance;
     }
 
@@ -44,7 +45,7 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_BY_LOGIN = "SELECT user_id, first_name, last_name, email FROM users WHERE login=?";
 
     private static final String AUTHORIZE_USER = """
-            SELECT u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
+            SELECT u.user_id, u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
             WHERE u.login=? AND u.password=?
             """;
 
@@ -153,6 +154,7 @@ public class UserDaoImpl implements UserDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return Optional.of(new User.Builder()
+                            .setUserId(resultSet.getLong(USER_ID))
                             .setFirstName(resultSet.getString(USER_FIRST_NAME))
                             .setLastName(resultSet.getString(USER_LAST_NAME))
                             .setRole(Role.valueOf(resultSet.getString(ColumnName.USER_ROLE)))
@@ -170,7 +172,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> findAllPharmacists() throws DaoException {
         List<User> pharmacists = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACISTS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACISTS)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     User user = new User.Builder()
@@ -196,7 +198,7 @@ public class UserDaoImpl implements UserDao {
     public int updateUserStatus(long id, Status status) throws DaoException {
         int result;
         try (Connection connection = connectionPool.getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_STATUS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_STATUS)) {
             preparedStatement.setString(1, String.valueOf(status));
             preparedStatement.setLong(2, id);
             result = preparedStatement.executeUpdate();

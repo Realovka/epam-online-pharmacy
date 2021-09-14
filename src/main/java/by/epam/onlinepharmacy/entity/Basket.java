@@ -89,4 +89,42 @@ public class Basket {
         builder.append('}');
         return builder.toString();
     }
+
+    public static class Builder {
+        private Basket newBasket;
+
+        public Builder() {
+            newBasket = new Basket();
+        }
+
+        public Basket.Builder setBasketId(long basketId) {
+            newBasket.basketId = basketId;
+            return this;
+        }
+
+        public Basket.Builder setUserId(long userId) {
+            newBasket.userId = userId;
+            return this;
+        }
+
+        public Basket.Builder setProductId(long productId) {
+            newBasket.productId = productId;
+            return this;
+        }
+
+
+        public Basket.Builder setOrderId(long orderId) {
+            newBasket.orderId = orderId;
+            return this;
+        }
+
+        public Basket.Builder setQuantity(int quantity) {
+            newBasket.quantity = quantity;
+            return this;
+        }
+
+        public Basket build() {
+            return newBasket;
+        }
+    }
 }

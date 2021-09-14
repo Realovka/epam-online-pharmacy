@@ -1,6 +1,6 @@
 package by.epam.onlinepharmacy.model.dao;
 
-public class ColumnName {
+public final class ColumnName {
     //table users
     public static final String USER_ID = "user_id";
     public static final String USER_LOGIN = "login";
@@ -35,4 +35,9 @@ public class ColumnName {
     public static final String PRODUCT_PICTURE = "picture";
     public static final String PRODUCT_INSTRUCTION = "instruction";
 
+    //table orders
+    public static final String ORDER_ID = "order_id";
+
+    private ColumnName() {
+    }
 }

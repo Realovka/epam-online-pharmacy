@@ -2,7 +2,7 @@ package by.epam.onlinepharmacy.controller.command;
 
 import by.epam.onlinepharmacy.controller.command.impl.*;
 import by.epam.onlinepharmacy.controller.command.impl.admin.*;
-import by.epam.onlinepharmacy.controller.command.impl.admin.SendingOrderCommand;
+import by.epam.onlinepharmacy.controller.command.impl.customer.SendingOrderCommand;
 import by.epam.onlinepharmacy.controller.command.impl.customer.*;
 import by.epam.onlinepharmacy.controller.command.impl.pharmacist.GoToPharmacistMainPageCommand;
 

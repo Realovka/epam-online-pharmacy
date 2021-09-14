@@ -60,7 +60,7 @@
 
 </table>
 <c:choose>
-    <c:when test="${sessionScope.order.size()>0}">
+    <c:when test="${sessionScope.products.size()>0}">
 
         <table border="3">
             <thead>
@@ -68,7 +68,7 @@
             <th>Quantity</th>
             </thead>
 
-            <c:forEach items="${sessionScope.order}" var="product">
+            <c:forEach items="${sessionScope.products}" var="product">
 
             <tr>
                 <td>

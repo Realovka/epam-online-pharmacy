@@ -1,88 +1,127 @@
-2021-09-09 16:42:53.504 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 16:45:27.580 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 16:49:00.295 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 19:44:09.811 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 19:46:28.128 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 20:02:13.176 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 20:04:45.545 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 20:06:50.876 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 20:57:34.266 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 21:00:31.179 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-09 21:15:28.921 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:23:48.115 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:36:59.374 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:47:31.058 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:48:12.361 [http-nio-8080-exec-10] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:50:56.258 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:54:33.373 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:56:04.665 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 09:57:01.215 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 10:11:28.707 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 10:14:24.645 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 12:08:18.276 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 12:25:06.687 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 14:00:51.201 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 14:04:02.400 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 14:07:03.623 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 14:09:44.936 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 14:31:34.829 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 15:55:14.765 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 15:59:11.644 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 16:01:45.447 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 16:19:01.929 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 17:56:43.705 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 19:21:42.972 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 21:01:00.221 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 21:04:55.614 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 21:05:53.051 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 21:07:41.763 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-10 21:51:52.710 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 11:00:31.241 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 11:27:29.983 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 14:08:03.941 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 17:30:12.513 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 17:32:40.958 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 17:50:24.390 [http-nio-8080-exec-20] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 18:20:20.711 [http-nio-8080-exec-24] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 18:24:34.643 [http-nio-8080-exec-40] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 18:25:53.151 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 18:34:13.487 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 18:39:37.238 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 19:05:05.166 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 19:35:09.010 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 19:38:05.140 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-11 19:50:31.413 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 09:26:18.515 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 09:28:17.954 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 09:45:46.137 [http-nio-8080-exec-11] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:01:51.041 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:03:09.471 [http-nio-8080-exec-2] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:12:41.027 [http-nio-8080-exec-9] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:16:03.931 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:26:03.709 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:27:16.665 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 10:42:39.614 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 12:21:01.038 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 16:50:40.691 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 17:08:07.221 [http-nio-8080-exec-13] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 20:12:43.278 [http-nio-8080-exec-12] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 20:25:52.616 [http-nio-8080-exec-24] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-12 20:45:40.963 [http-nio-8080-exec-41] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 11:53:43.647 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 12:24:39.669 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 12:46:45.962 [http-nio-8080-exec-12] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 12:59:24.942 [http-nio-8080-exec-30] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:02:11.384 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:05:10.495 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:10:56.558 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:25:58.566 [http-nio-8080-exec-8] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:39:25.602 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 13:47:28.821 [http-nio-8080-exec-1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 16:24:09.085 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 16:27:16.389 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 19:45:30.481 [http-nio-8080-exec-17] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 19:49:53.818 [http-nio-8080-exec-23] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 19:51:19.856 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 19:56:50.424 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 20:03:42.840 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-13 20:12:36.038 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-14 20:15:43.340 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-14 20:16:16.004 [http-nio-8080-exec-1] ERROR onlinepharmacy.model.dao.impl.OrderDaoImpl - SQLException in method createProductInBasket() 
+java.sql.SQLException: No value specified for parameter 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.addBatch(ClientPreparedStatement.java:259) ~[mysql-connector-java-8.0.20.jar:?]
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.createProductsInBasket(OrderDaoImpl.java:78) [classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.createOrder(OrderServiceImpl.java:50) [classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.customer.SendingOrderCommand.execute(SendingOrderCommand.java:32) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at by.epam.onlinepharmacy.controller.filter.EncoderFilter.doFilter(EncoderFilter.java:30) [classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+2021-09-14 20:18:22.758 [http-nio-8080-exec-1] ERROR onlinepharmacy.model.service.impl.OrderServiceImpl - DaoException is in method createOrder() 
+by.epam.onlinepharmacy.exception.DaoException: SQLException in method createProductInBasket() 
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.createProductsInBasket(OrderDaoImpl.java:91) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.createOrder(OrderServiceImpl.java:50) [classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.customer.SendingOrderCommand.execute(SendingOrderCommand.java:32) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at by.epam.onlinepharmacy.controller.filter.EncoderFilter.doFilter(EncoderFilter.java:30) [classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: java.sql.SQLException: No value specified for parameter 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.addBatch(ClientPreparedStatement.java:259) ~[mysql-connector-java-8.0.20.jar:?]
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.createProductsInBasket(OrderDaoImpl.java:78) ~[classes/:?]
+	... 31 more
+2021-09-14 20:18:22.765 [http-nio-8080-exec-1] ERROR controller.command.impl.customer.SendingOrderCommand - ServiceException in method execute while create order 
+by.epam.onlinepharmacy.exception.ServiceException: DaoException is in method createOrder() 
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.createOrder(OrderServiceImpl.java:53) ~[classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.customer.SendingOrderCommand.execute(SendingOrderCommand.java:32) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at by.epam.onlinepharmacy.controller.filter.EncoderFilter.doFilter(EncoderFilter.java:30) [classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: by.epam.onlinepharmacy.exception.DaoException: SQLException in method createProductInBasket() 
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.createProductsInBasket(OrderDaoImpl.java:91) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.createOrder(OrderServiceImpl.java:50) ~[classes/:?]
+	... 30 more
+Caused by: java.sql.SQLException: No value specified for parameter 2
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.addBatch(ClientPreparedStatement.java:259) ~[mysql-connector-java-8.0.20.jar:?]
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.createProductsInBasket(OrderDaoImpl.java:78) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.createOrder(OrderServiceImpl.java:50) ~[classes/:?]
+	... 30 more
+2021-09-14 20:19:04.569 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-14 20:32:24.805 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

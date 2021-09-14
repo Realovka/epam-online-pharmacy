@@ -32,15 +32,12 @@ public class Controller extends HttpServlet {
         Command command = CommandProvider.getInstance().getCommand(commandString);
         CommandResult commandResult = command.execute(request);
         switch (commandResult.getRoutingType()) {
-            case FORWARD:
-                request.getRequestDispatcher(commandResult.getPage()).forward(request, response);
-                break;
-            case REDIRECT:
-                response.sendRedirect(request.getContextPath() + commandResult.getPage());
-                break;
-            default:
+            case FORWARD -> request.getRequestDispatcher(commandResult.getPage()).forward(request, response);
+            case REDIRECT -> response.sendRedirect(request.getContextPath() + commandResult.getPage());
+            default -> {
                 logger.log(Level.ERROR, "Illegal routing type");
                 response.sendRedirect(PagePath.ERROR_500_PAGE);
+            }
         }
     }
 }

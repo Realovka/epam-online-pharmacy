@@ -15,9 +15,9 @@ public class UpdatingProductQuantityCommand implements Command {
         String productId = request.getParameter(RequestParameter.PRODUCT_ID);
         String quantity = request.getParameter(RequestParameter.QUANTITY);
         HttpSession session = request.getSession();
-        Map<Product, Integer> order = (Map<Product, Integer>) session.getAttribute(SessionAttribute.ORDER);
+        Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.PRODUCTS);
         ProductService productService = ProductServiceImpl.getInstance();
-        productService.updateProductQuantityInOrder(productId, quantity, order);
+        productService.updateProductQuantityInOrder(productId, quantity, products);
         return new CommandResult(PagePath.BASKET, CommandResult.RoutingType.REDIRECT);
     }
 }

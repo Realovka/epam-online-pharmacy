@@ -65,6 +65,16 @@ public class CommandProvider {
         commands.put(CommandType.UPDATING_PHARMACY_HOUSE, new UpdatingPharmacyHouseCommand());
         commands.put(CommandType.UPDATING_PHARMACY_BLOCK, new UpdatingPharmacyBlockCommand());
         commands.put(CommandType.SEND_ORDER, new SendingOrderCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_NAME_PAGE, new GoToUpdatingProductNamePageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_GROUP_PAGE, new GoToUpdatingProductGroupPageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_PRICE_PAGE, new GoToUpdatingProductPricePageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_RECIPE_PAGE, new GoToUpdatingProductRecipePageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_INSTRUCTION_PAGE, new GoToUpdatingProductInstructionPageCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_NAME, new UpdatingProductNameCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_GROUP, new UpdatingProductGroupCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_PRICE, new UpdatingProductPriceCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_RECIPE, new UpdatingProductRecipeCommand());
+        commands.put(CommandType.UPDATING_PRODUCT_INSTRUCTION, new UpdatingProductInstructionCommand());
     }
 
     public static CommandProvider getInstance() {

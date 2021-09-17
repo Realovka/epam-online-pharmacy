@@ -43,9 +43,10 @@ public class UserServiceImpl implements UserService {
         if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
             user.setRole(Role.valueOf(role));
         }
+        String encodedPassword = PasswordEncoder.createPasswordEncoded(password);
 
         user.setLogin(login);
-        user.setPassword(PasswordEncoder.createPasswordEncoded(password));
+        user.setPassword(encodedPassword);
         user.setFirstName(firstName);
         user.setLastName(lastName);
         user.setEmail(email);

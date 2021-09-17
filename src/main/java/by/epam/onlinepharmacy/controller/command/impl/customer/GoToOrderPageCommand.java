@@ -45,14 +45,16 @@ public class GoToOrderPageCommand implements Command {
         }
 
         Optional<Pharmacy> pharmacy;
-        //TODO see GoToAboutProductPageCommand
+
         try {
             pharmacy = pharmacyService.findPharmacyById(id);
+            pharmacy.ifPresent(pharmacy1 -> {
+                session.setAttribute(SessionAttribute.PHARMACY, pharmacy.get());
+            } );
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method execute while find pharmacy by id ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.PHARMACY, pharmacy.get());
         return new CommandResult(PagePath.ORDER, CommandResult.RoutingType.REDIRECT);
     }
 }

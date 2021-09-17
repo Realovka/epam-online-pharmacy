@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +51,12 @@ public class ProductDaoImpl implements ProductDao {
     private static final String FIND_PRODUCT_BY_ID = """
             SELECT product_name, product_group, price, recipe, instruction, picture FROM products WHERE product_id = ?
             """;
+
+    private static final String UPDATE_PRODUCT_NAME = "UPDATE products SET product_name=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_GROUP = "UPDATE products SET product_group=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_PRICE = "UPDATE products SET price=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_RECIPE = "UPDATE products SET recipe=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_INSTRUCTION = "UPDATE products SET instruction=? WHERE product_id=?";
 
 
     @Override
@@ -93,6 +100,7 @@ public class ProductDaoImpl implements ProductDao {
                             .setName(resultSet.getString(PRODUCT_NAME))
                             .setGroup(resultSet.getString(PRODUCT_GROUP))
                             .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
+                            .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
                             .setInstruction(resultSet.getString(PRODUCT_INSTRUCTION))
                             .build();
                     products.add(product);
@@ -172,4 +180,70 @@ public class ProductDaoImpl implements ProductDao {
         }
         return Optional.empty();
     }
+
+    @Override
+    public void updateProductName(long id, String name) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_NAME)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductName() ", e);
+            throw new DaoException("SQLException in method updateProductName() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductGroup(long id, String group) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_GROUP)) {
+            preparedStatement.setString(1, group);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductGroup() ", e);
+            throw new DaoException("SQLException in method updateProductGroup() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductPrice(long id, BigDecimal price) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_PRICE)) {
+            preparedStatement.setBigDecimal(1, price);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductPrice() ", e);
+            throw new DaoException("SQLException in method updateProductPrice() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductRecipe(long id, boolean recipe) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_RECIPE)) {
+            preparedStatement.setBoolean(1, recipe);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductRecipe() ", e);
+            throw new DaoException("SQLException in method updateProductRecipe() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductInstruction(long id, String instruction) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_INSTRUCTION)) {
+            preparedStatement.setString(1, instruction);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductInstruction() ", e);
+            throw new DaoException("SQLException in method updateProductInstruction() ", e);
+        }
+    }
+
 }

@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -15,9 +16,12 @@ import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
+    private static final String NEED_RECIPE = "Yes";
+    private static final String DONT_NEED_RECIPE = "No";
     private static ProductServiceImpl instance = new ProductServiceImpl();
     private ProductDao productDao = ProductDaoImpl.getInstance();
 
@@ -30,11 +34,12 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
+        boolean needRecipe = needProductRecipe(recipe);
         Product product = new Product.Builder()
                 .setName(name)
                 .setGroup(group)
                 .setPrice(BigDecimal.valueOf(Double.parseDouble(price)))
-                .isRecipe(Boolean.parseBoolean(recipe))
+                .isRecipe(needRecipe)
                 .setInstruction(instruction)
                 .build();
         try {
@@ -71,7 +76,7 @@ public class ProductServiceImpl implements ProductService {
     public Optional<String> findPathToPicture(long id) throws ServiceException {
         Optional<String> pathToPicture;
         try {
-          pathToPicture = productDao.findPathToPicture(id);
+            pathToPicture = productDao.findPathToPicture(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findPathToPicture() ", e);
             throw new ServiceException("DaoException is in method findPathToProduct() ", e);
@@ -80,10 +85,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findAllProducts() throws ServiceException {
-        List<Product> products;
+    public List<ProductDto> findAllProducts() throws ServiceException {
+        List<ProductDto> products;
         try {
-            products = productDao.findAllProducts();
+            List<Product> productsDb = productDao.findAllProducts();
+            products = productsDb.stream()
+                    .map(product -> new ProductDto.Builder()
+                            .setProductId(product.getProductId())
+                            .setName(product.getName())
+                            .setGroup(product.getGroup())
+                            .setPrice(product.getPrice())
+                            .setRecipe(convertProductRecipe(product.isRecipe()))
+                            .setInstruction(product.getInstruction())
+                            .build()).collect(Collectors.toList());
+
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findAllProducts() ", e);
             throw new ServiceException("DaoException is in method findAllProducts() ", e);
@@ -121,12 +136,94 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public ProductDto findInstructionByProductId(long productId) throws ServiceException {
+        ProductDto productDto;
+        try {
+            Product product = productDao.findProductById(productId).orElse(new Product());
+            productDto = new ProductDto.Builder()
+                    .setInstruction(product.getInstruction())
+                    .build();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findInstructionByProductId() ", e);
+            throw new ServiceException("DaoException is in method findInstructionByProductId() ", e);
+        }
+        return productDto;
+    }
+
+    @Override
     public void updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order) {
         long id = Long.parseLong(productId);
         Integer newQuantity = Integer.valueOf(quantity);
         Optional<Product> updatingProduct = order.keySet().stream()
                 .filter(product -> product.getProductId() == id)
                 .findFirst();
-        order.put(updatingProduct.get(), newQuantity);
+        updatingProduct.ifPresent(product -> {
+            order.put(updatingProduct.get(), newQuantity);
+        });
     }
+
+    @Override
+    public void updateProductName(long productId, String name) throws ServiceException {
+        try {
+            productDao.updateProductName(productId, name);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductName() ", e);
+            throw new ServiceException("DaoException is in method updateProductName() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductGroup(long productId, String group) throws ServiceException {
+        try {
+            productDao.updateProductGroup(productId, group);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductGroup() ", e);
+            throw new ServiceException("DaoException is in method updateProductGroup() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductPrice(long productId, String price) throws ServiceException {
+        BigDecimal newPrice = new BigDecimal(price);
+        try {
+            productDao.updateProductPrice(productId, newPrice);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductPrice() ", e);
+            throw new ServiceException("DaoException is in method updateProductPrice() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductRecipe(long productId, String recipe) throws ServiceException {
+        boolean newIsRecipe = needProductRecipe(recipe);
+        try {
+            productDao.updateProductRecipe(productId, newIsRecipe);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductRecipe() ", e);
+            throw new ServiceException("DaoException is in method updateProductRecipe() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductInstruction(long productId, String instruction) throws ServiceException {
+        try {
+            productDao.updateProductInstruction(productId, instruction);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductInstruction() ", e);
+            throw new ServiceException("DaoException is in method updateProductInstruction() ", e);
+        }
+    }
+
+    private boolean needProductRecipe(String recipe) {
+        return recipe.equals(NEED_RECIPE);
+    }
+
+    private String convertProductRecipe(boolean recipe) {
+        if (recipe) {
+            return NEED_RECIPE;
+        } else {
+            return DONT_NEED_RECIPE;
+        }
+    }
+
 }

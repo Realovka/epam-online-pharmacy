@@ -1,9 +1,6 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.Command;
-import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.PagePath;
-import by.epam.onlinepharmacy.controller.command.SessionAttribute;
+import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -14,24 +11,24 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.util.Optional;
 
-public class GoToAllProductsPageCommand implements Command {
+public class GoToUpdatingProductInstructionPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
+        String productId = request.getParameter(RequestParameter.PRODUCT_ID);
+        long id = Long.parseLong(productId);
+        request.getSession().setAttribute(SessionAttribute.PRODUCT_ID, id);
         ProductService productService = ProductServiceImpl.getInstance();
-        List<ProductDto> products;
         try {
-            products = productService.findAllProducts();
+            ProductDto productDto = productService.findInstructionByProductId(id);
+            request.setAttribute(RequestAttribute.PRODUCT, productDto);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find all products ", e);
+            logger.log(Level.ERROR, "ServiceException while find ProductDto by productId ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
-        return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
+        return new CommandResult(PagePath.UPDATING_PRODUCT_INSTRUCTION, CommandResult.RoutingType.REDIRECT);
     }
 }

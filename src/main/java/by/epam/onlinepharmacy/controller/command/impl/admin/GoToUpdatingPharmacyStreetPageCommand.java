@@ -8,7 +8,8 @@ public class GoToUpdatingPharmacyStreetPageCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.PHARMACY_ID);
-        request.getSession().setAttribute(SessionAttribute.PHARMACY_ID, Long.parseLong(id));
+        long pharmacyId = Long.parseLong(id);
+        request.getSession().setAttribute(SessionAttribute.PHARMACY_ID, pharmacyId);
         return new CommandResult(PagePath.UPDATING_PHARMACY_STREET, CommandResult.RoutingType.REDIRECT);
     }
 }

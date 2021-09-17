@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -29,7 +30,7 @@ public class AdditionProductCommand implements Command {
         String price = request.getParameter(RequestParameter.PRICE);
         String recipe = request.getParameter(RequestParameter.RECIPE);
         String instruction = request.getParameter(RequestParameter.INSTRUCTION);
-        List<Product> products;
+        List<ProductDto> products;
 
 
         Map<String, String> productParameters = productService.isValidParameters(name, group, price, instruction);

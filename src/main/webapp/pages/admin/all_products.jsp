@@ -64,24 +64,20 @@
                         <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&productId=${product.productId}">${product.productId}</a>
                     </td>
                     <td>
-                            ${product.name}
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&productId=${product.productId}">${product.name}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&productId=${product.productId}">${product.group}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&productId=${product.productId}">${product.price}</a>
 
                     </td>
                     <td>
-                            ${product.group}
-
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&productId=${product.productId}">${product.recipe}</a>
                     </td>
                     <td>
-                            ${product.price}
-
-                    </td>
-                    <td>
-                            ${product.recipe}
-
-                    </td>
-                    <td>
-                            ${product.instruction}
-
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&productId=${product.productId}">${product.instruction}</a>
                     </td>
                 </tr>
             </c:forEach>

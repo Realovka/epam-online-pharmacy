@@ -44,6 +44,11 @@ public final class RequestParameter {
     public static final String RECIPE = "recipe";
     public static final String INSTRUCTION = "instruction";
     public static final String QUANTITY = "quantity";
+    public static final String UPDATING_PRODUCT_NAME = "newName";
+    public static final String UPDATING_PRODUCT_GROUP = "newGroup";
+    public static final String UPDATING_PRODUCT_PRICE = "newPrice";
+    public static final String UPDATING_PRODUCT_RECIPE = "newRecipe";
+    public static final String UPDATING_PRODUCT_INSTRUCTION = "newInstruction";
 
 
     private RequestParameter() {

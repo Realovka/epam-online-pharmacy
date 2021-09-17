@@ -24,6 +24,11 @@ public final class PagePath {
     public static final String UPDATING_PHARMACY_BLOCK = "/pages/admin/updating_pharmacy_block.jsp";
     public static final String ADDITION_PICTURE = "/pages/admin/addition_picture.jsp";
     public static final String VIEW_PICTURE = "/pages/admin/view_picture.jsp";
+    public static final String UPDATING_PRODUCT_NAME = "/pages/admin/updating_product_name.jsp";
+    public static final String UPDATING_PRODUCT_GROUP = "/pages/admin/updating_product_group.jsp";
+    public static final String UPDATING_PRODUCT_PRICE = "/pages/admin/updating_product_price.jsp";
+    public static final String UPDATING_PRODUCT_RECIPE = "/pages/admin/updating_product_recipe.jsp";
+    public static final String UPDATING_PRODUCT_INSTRUCTION = "/pages/admin/updating_product_instruction.jsp";
 
     //customer
     public static final String MAIN_CUSTOMER = "/pages/customer/customer_main.jsp";

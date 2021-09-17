@@ -4,6 +4,7 @@ import by.epam.onlinepharmacy.controller.command.Command;
 import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.PagePath;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
+import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -25,7 +26,7 @@ public class GoToProductsForCustomerPageCommand implements Command {
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         ProductService productService = ProductServiceImpl.getInstance();
-        List<Product> products;
+        List<ProductDto> products;
         try {
             products = productService.findAllProducts();
         } catch (ServiceException e) {

@@ -5,6 +5,7 @@ import by.epam.onlinepharmacy.model.validation.ProductValidator;
 
 import java.math.BigInteger;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 public class ProductValidatorImpl implements ProductValidator {
     private static final int MAX_SYMBOLS_FOR_NAME_AND_GROUP = 45;

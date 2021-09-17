@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="/styles/common.css">
     <title><fmt:message key="title.admin_main"/></title>
 </head>
-<body class="other">
+<body>
 <a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
 <h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
-    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists"><fmt:message key="link.all_pharmacists"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies"><fmt:message key="header.all_pharmacies"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=all_products"><fmt:message key="link.all_products"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page"><fmt:message key="link.all_inactive_pharmacists"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists" style="color: #000000"><fmt:message key="link.all_pharmacists"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&currentPage=1" style="color: #000000"><fmt:message key="header.all_pharmacies"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=all_products" style="color: #000000"><fmt:message key="link.all_products"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page" style="color: #000000"><fmt:message key="link.all_inactive_pharmacists"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

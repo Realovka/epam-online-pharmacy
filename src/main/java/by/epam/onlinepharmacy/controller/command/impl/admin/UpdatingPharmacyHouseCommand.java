@@ -17,9 +17,13 @@ import java.util.List;
 
 public class UpdatingPharmacyHouseCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
+    private static final int RECORD_PER_PAGE = 5;
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
+        int currentPage = 1;
+        String currentPageParam = request.getParameter(RequestParameter.CURRENT_PAGE);
+        int currentPageParse = Integer.parseInt(currentPageParam);
         String newHouse = request.getParameter(RequestParameter.UPDATING_PHARMACY_HOUSE);
         HttpSession session = request.getSession();
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
@@ -33,7 +37,7 @@ public class UpdatingPharmacyHouseCommand implements Command {
         }
         try {
             pharmacyService.updateHouse(id, newHouse);
-            pharmacies = pharmacyService.findAllPharmacies();
+            pharmacies = pharmacyService.findAllPharmacies((currentPageParse - 1) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while update house or find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

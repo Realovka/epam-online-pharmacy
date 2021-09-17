@@ -22,7 +22,7 @@ public class UpdatingProductInstructionCommand implements Command {
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         long productId = (long) session.getAttribute(SessionAttribute.PRODUCT_ID);
-        String newInstruction = request.getParameter(RequestParameter.UPDATING_PRODUCT_NAME);
+        String newInstruction = request.getParameter(RequestParameter.UPDATING_PRODUCT_INSTRUCTION);
         ProductService productService = ProductServiceImpl.getInstance();
         ProductValidator productValidator = ProductValidatorImpl.getInstance();
         if(!productValidator.isValidInstruction(newInstruction)) {

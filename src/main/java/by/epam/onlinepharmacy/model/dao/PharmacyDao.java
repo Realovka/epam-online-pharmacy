@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface PharmacyDao {
-    List<Pharmacy> findAllPharmacies() throws DaoException;
+    List<Pharmacy> findAllPharmacies(int startingPharmacy) throws DaoException;
     void createPharmacy(Pharmacy pharmacy) throws DaoException;
     Optional<Pharmacy> findPharmacyById(long id) throws DaoException;
     void updateNumber(long id, int number) throws DaoException;

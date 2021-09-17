@@ -4,6 +4,7 @@ public final class RequestParameter {
     public static final String COMMAND = "command";
     public static final String LANGUAGE = "lang";
     public static final String CURRENT_URL = "current_url";
+    public static final String CURRENT_PAGE = "currentPage";
 
     //User
     public static final String LOGIN = "login";

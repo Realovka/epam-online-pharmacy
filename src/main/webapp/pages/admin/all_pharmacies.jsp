@@ -26,51 +26,50 @@
     <c:if test="${requestScope.blockError!=null}">
         <div><fmt:message key="error.pharmacy_block_error"/></div>
     </c:if>
-    <div class="field"><fmt:message key="label.number"/></div><br>
+    <label class="field"><fmt:message key="label.number"/></label><br>
     <input type="text" name="number" value="${requestScope.mapData.get("number")}" placeholder="<fmt:message key="placeholder.number"/>" size="35px"/><br>
-    <div class="field"><fmt:message key="label.city"/></div><br>
+    <label class="field"><fmt:message key="label.city"/></label><br>
     <input type="text" name="city" value="${requestScope.mapData.get("city")}" placeholder="<fmt:message key="placeholder.city"/>" size="35px"/><br>
-    <div class="field"><fmt:message key="label.street"/></div><br>
+    <label class="field"><fmt:message key="label.street"/></label><br>
     <input type="text" name="street" value="${requestScope.mapData.get("street")}" placeholder="<fmt:message key="placeholder.street"/>" size="35px"/><br>
-    <div class="field"><fmt:message key="label.house"/></div><br>
+    <label class="field"><fmt:message key="label.house"/></label><br>
     <input type="text" name="house" value="${requestScope.mapData.get("house")}" placeholder="<fmt:message key="placeholder.house"/>" size="35px"/><br>
-    <div class="field"><fmt:message key="label.block"/></div><br>
+    <label class="field"><fmt:message key="label.block"/></label><br>
     <input type="text" name="block" value="${requestScope.mapData.get("block")}" placeholder="<fmt:message key="placeholder.block"/>" size="35px"/><br>
     <input type="submit" value="<fmt:message key="button.input_pharmacy"/>">
 </form>
 <label><fmt:message key="msg.click_on_parameter"/></label>
 <c:choose>
     <c:when test="${sessionScope.allPharmacies.size()>0}">
-
         <table border="3">
             <thead>
-            <th><fmt:message key="column.table.id"/></th>
-            <th><fmt:message key="column.table.number"/></th>
-            <th><fmt:message key="column.table.city"/></th>
-            <th><fmt:message key="column.table.street"/></th>
-            <th><fmt:message key="column.table.house"/></th>
-            <th><fmt:message key="column.table.block"/></th>
+            <th width="30"><fmt:message key="column.table.id"/></th>
+            <th width="30"><fmt:message key="column.table.number"/></th>
+            <th width="200"><fmt:message key="column.table.city"/></th>
+            <th width="200"><fmt:message key="column.table.street"/></th>
+            <th width="50"><fmt:message key="column.table.house"/></th>
+            <th width="30"><fmt:message key="column.table.block"/></th>
             </thead>
 
             <c:forEach items="${sessionScope.allPharmacies}" var="pharmacy">
 
                 <tr>
-                    <td>
+                    <td width="30">
                             ${pharmacy.pharmacyId}
                     </td>
-                    <td>
+                    <td width="30">
                         <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_number_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.number}</a>
                     </td>
-                    <td>
+                    <td width="200">
                         <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_city_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.city}</a>
                     </td>
-                    <td>
+                    <td width="200">
                         <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_street_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.street}</a>
                     </td>
-                    <td>
+                    <td width="50">
                         <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_house_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.house}</a>
                     </td>
-                    <td>
+                    <td width="30">
                         <a href="${pageContext.request.contextPath}/controller?command=updating_pharmacy_block_page&pharmacyId=${pharmacy.pharmacyId}">${pharmacy.block}</a>
                     </td>
                 </tr>
@@ -78,7 +77,10 @@
         </table>
     </c:when>
 </c:choose>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<c:if test="${requestScope.nextPharmacies.size() > 0}">
+<a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&currentPage=${requestScope.currentPage+1}">Next</a>
+</c:if>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

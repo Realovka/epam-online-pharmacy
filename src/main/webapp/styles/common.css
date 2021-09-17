@@ -1,14 +1,34 @@
-body{
-    background: url("../img/fon.jpeg")no-repeat center center fixed;
+body {
+    background: url("../img/fon.jpeg") no-repeat center center fixed;
     background-size: cover;
+    font-weight: bold;
+}
+
+A {
+    color: #000080;
+    text-decoration: none;
 }
 
 table {
     background-color: #EEE5DE;
 }
 
-nav{
-    float:right;
+input, textarea {
+    width: 300px;
+    border: 1px solid #999;
+}
+
+textarea {
+    vertical-align: top;
+    height: 5em;
+}
+
+.raw {
+    font-weight: bolder;
+}
+
+nav {
+    float: right;
 }
 
 input {

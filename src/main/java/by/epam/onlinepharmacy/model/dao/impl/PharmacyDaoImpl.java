@@ -30,7 +30,7 @@ public class PharmacyDaoImpl implements PharmacyDao {
     }
 
     private static final String FIND_ALL_PHARMACIES = """
-            SELECT pharmacy_id, number, city, street, house, block FROM pharmacies 
+            SELECT pharmacy_id, number, city, street, house, block FROM pharmacies LIMIT ?, 5
             """;
 
     private static final String CREATE_PHARMACY = """
@@ -51,10 +51,11 @@ public class PharmacyDaoImpl implements PharmacyDao {
 
 
     @Override
-    public List<Pharmacy> findAllPharmacies() throws DaoException {
+    public List<Pharmacy> findAllPharmacies(int startingPharmacy) throws DaoException {
         List<Pharmacy> pharmacies = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACIES)) {
+            preparedStatement.setInt(1, startingPharmacy);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Pharmacy pharmacy = new Pharmacy.Builder()

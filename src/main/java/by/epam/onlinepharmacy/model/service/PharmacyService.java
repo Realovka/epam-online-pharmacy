@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface PharmacyService {
-    List<Pharmacy> findAllPharmacies() throws ServiceException;
+    List<Pharmacy> findAllPharmacies(int startingPharmacy) throws ServiceException;
     void createPharmacy(String number, String city, String street, String house, String block) throws ServiceException;
     Map<String, String> isFormValid(String number, String city, String street, String house, String block);
     Optional<Pharmacy> findPharmacyById(long id) throws ServiceException;

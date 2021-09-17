@@ -16,9 +16,13 @@ import java.util.Map;
 
 public class AdditionPharmacyCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
+    private static final int RECORD_PER_PAGE = 5;
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
+        int currentPage = 1;
+        String currentPageParam = request.getParameter(RequestParameter.CURRENT_PAGE);
+        int currentPageParse = Integer.parseInt(currentPageParam);
         HttpSession session = request.getSession();
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         String number = request.getParameter(RequestParameter.NUMBER);
@@ -52,7 +56,7 @@ public class AdditionPharmacyCommand implements Command {
 
         try {
             pharmacyService.createPharmacy(number, city, street, house, block);
-            pharmacies = pharmacyService.findAllPharmacies();
+            pharmacies = pharmacyService.findAllPharmacies((currentPageParse - 1) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

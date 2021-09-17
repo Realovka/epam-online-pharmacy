@@ -58,6 +58,9 @@ public class ProductValidatorImpl implements ProductValidator {
 
     @Override
     public boolean isValidInstruction(String instruction) {
+        if(instruction == null) {
+            return false;
+        }
         BigInteger instructionLength = new BigInteger(String.valueOf(instruction.length()));
         BigInteger result = instructionLength.max(MAX_SYMBOLS_FOR_INSTRUCTION);
         return result.equals(MAX_SYMBOLS_FOR_INSTRUCTION);

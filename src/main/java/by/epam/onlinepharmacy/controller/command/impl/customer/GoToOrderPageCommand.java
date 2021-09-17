@@ -24,36 +24,36 @@ public class GoToOrderPageCommand implements Command {
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         String pharmacyId = request.getParameter(RequestParameter.PHARMACY_ID);
         if (session.getAttribute(SessionAttribute.PHARMACY_ID) == null && pharmacyId == null) {
-            List<Pharmacy> pharmacies;
-            try {
-                pharmacies = pharmacyService.findAllPharmacies();
-            } catch (ServiceException e) {
-                logger.log(Level.ERROR, "Exception in method execute while find all pharmacies ", e);
-                return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-            }
-            session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
-            return new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
-        }
-
-        if (pharmacyId != null) {
-            id = Long.parseLong(pharmacyId);
-            session.setAttribute(SessionAttribute.PHARMACY_ID, id);
-        }
-
-        if (session.getAttribute(SessionAttribute.PHARMACY_ID) != null) {
-           id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
-        }
-
-        Optional<Pharmacy> pharmacy;
-
-        try {
-            pharmacy = pharmacyService.findPharmacyById(id);
-            pharmacy.ifPresent(pharmacy1 -> {
-                session.setAttribute(SessionAttribute.PHARMACY, pharmacy.get());
-            } );
-        } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method execute while find pharmacy by id ", e);
-            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+//            List<Pharmacy> pharmacies;
+//            try {
+//                pharmacies = pharmacyService.findAllPharmacies();
+//            } catch (ServiceException e) {
+//                logger.log(Level.ERROR, "Exception in method execute while find all pharmacies ", e);
+//                return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+//            }
+//            session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+//            return new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+//        }
+//
+//        if (pharmacyId != null) {
+//            id = Long.parseLong(pharmacyId);
+//            session.setAttribute(SessionAttribute.PHARMACY_ID, id);
+//        }
+//
+//        if (session.getAttribute(SessionAttribute.PHARMACY_ID) != null) {
+//           id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
+//        }
+//
+//        Optional<Pharmacy> pharmacy;
+//
+//        try {
+//            pharmacy = pharmacyService.findPharmacyById(id);
+//            pharmacy.ifPresent(pharmacy1 -> {
+//                session.setAttribute(SessionAttribute.PHARMACY, pharmacy.get());
+//            } );
+//        } catch (ServiceException e) {
+//            logger.log(Level.ERROR, "Exception in method execute while find pharmacy by id ", e);
+//            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         return new CommandResult(PagePath.ORDER, CommandResult.RoutingType.REDIRECT);
     }

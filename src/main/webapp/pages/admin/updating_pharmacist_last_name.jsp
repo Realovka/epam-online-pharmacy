@@ -22,7 +22,7 @@
     <input type="text" name="newLastName" placeholder="<fmt:message key="placeholder.new_last_name"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_last_name"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

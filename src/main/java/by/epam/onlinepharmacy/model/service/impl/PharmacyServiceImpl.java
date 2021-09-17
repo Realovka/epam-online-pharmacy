@@ -35,10 +35,10 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public List<Pharmacy> findAllPharmacies() throws ServiceException {
+    public List<Pharmacy> findAllPharmacies(int startingPharmacy) throws ServiceException {
         List<Pharmacy> pharmacies;
         try {
-            pharmacies = pharmacyDao.findAllPharmacies();
+            pharmacies = pharmacyDao.findAllPharmacies(startingPharmacy);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findAllPharmacies() ", e);
             throw new ServiceException("DaoException is in method findAllPharmacies() ", e);

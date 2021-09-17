@@ -39,22 +39,22 @@
         <c:if test="${requestScope.registrationError!=null}">
             <div><fmt:message key="error.registration_user"/></div>
         </c:if>
-        <div class="field"><fmt:message key="label.login"/></div><br>
+        <label class="field"><fmt:message key="label.login"/></label><br>
         <input type="text" name="login" value="${requestScope.mapData.get("login")}"
                placeholder="<fmt:message key="placeholder.name.login"/>" size="35px"/><br>
-        <div class="field"><fmt:message key="label.password"/></div><br>
+        <label class="field"><fmt:message key="label.password"/></label><br>
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"
                size="35px"/><br>
-        <div class="field"><fmt:message key="label.first_name"/></div><br>
+        <label class="field"><fmt:message key="label.first_name"/></label><br>
         <input type="text" name="firstName" value="${requestScope.mapData.get("firstName")}"
                placeholder="<fmt:message key="placeholder.name.firstName"/>" size="35px"/><br>
-        <div class="field"><fmt:message key="label.last_name"/></div><br>
+        <label class="field"><fmt:message key="label.last_name"/></label><br>
         <input type="text" name="lastName" value="${requestScope.mapData.get("lastName")}"
                placeholder="<fmt:message key="placeholder.name.lastName"/>" size="35px"/><br>
-        <div class="field"><fmt:message key="label.email"/></div><br>
+        <label class="field"><fmt:message key="label.email"/></label><br>
         <input type="email" name="email" value="${requestScope.mapData.get("email")}"
                placeholder="<fmt:message key="placeholder.name.email"/>" size="35px"/><br>
-        <div class="field"><fmt:message key="label.telephone"/></div><br>
+        <label class="field"><fmt:message key="label.telephone"/></label><br>
         <input type="tel" name="telephone" value="${requestScope.mapData.get("telephone")}"
                placeholder="<fmt:message key="placeholder.name.telephone"/>" size="35px"/><br>
         <select name="role">

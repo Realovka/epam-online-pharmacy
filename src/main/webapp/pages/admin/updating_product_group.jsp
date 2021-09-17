@@ -19,10 +19,10 @@
     <c:if test="${requestScope.productGroupError != null}">
         <div class="error"><fmt:message key="error.product_group"/> </div>
     </c:if>
-    <input type="text" name="newGroup" placeholder="<fmt:message key="placeholder.new_group"/>"/><br>
+    <input type="text" name="newGroup" placeholder="<fmt:message key="placeholder.new_group"/>" size="35px"/><br>
     <input type="submit" value="<fmt:message key="button.update_group"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

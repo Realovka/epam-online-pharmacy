@@ -29,19 +29,22 @@
     <c:if test="${requestScope.productInstructionError!=null}">
         <div><fmt:message key="error.product_instruction"/></div>
     </c:if>
-    <div class="field"><fmt:message key="label.name"/></div><br>
-    <input type="text" name="name" value="${requestScope.mapData.get("name")}" placeholder="<fmt:message key="placeholder.product_name"/>"/><br>
-    <div class="field"><fmt:message key="label.group"/></div><br>
-    <input type="text" name="group" value="${requestScope.mapData.get("group")}" placeholder="<fmt:message key="placeholder.product_group"/>"/><br>
-    <div class="field"><fmt:message key="label.price"/></div><br>
-    <input type="text" name="price" value="${requestScope.mapData.get("price")}" placeholder="<fmt:message key="placeholder.product_price"/>"/><br>
-    <div class="field"><fmt:message key="label.recipe"/></div><br>
+    <label class="field"><fmt:message key="label.name"/></label><br>
+    <input type="text" name="name" value="${requestScope.mapData.get("name")}"
+           placeholder="<fmt:message key="placeholder.product_name"/>"/><br>
+    <label class="field"><fmt:message key="label.group"/></><br>
+    <input type="text" name="group" value="${requestScope.mapData.get("group")}"
+           placeholder="<fmt:message key="placeholder.product_group"/>"/><br>
+    <label class="field"><fmt:message key="label.price"/></label><br>
+    <input type="text" name="price" value="${requestScope.mapData.get("price")}"
+           placeholder="<fmt:message key="placeholder.product_price"/>"/><br>
+    <label class="field"><fmt:message key="label.recipe"/></label><br>
     <select name="recipe">
         <option><fmt:message key="select.recipe_yes"/></option>
         <option><fmt:message key="select.recipe_no"/></option>
     </select><br><br>
-    <div class="field"><fmt:message key="label.instruction"/></div><br>
-    <input type="text" name="instruction" value="${requestScope.mapData.get("instruction")}" placeholder="<fmt:message key="placeholder.product_instruction"/>"/><br>
+    <label class="field"><fmt:message key="label.instruction"/></label><br>
+    <textarea name="instruction"></textarea><br><br>
     <input type="submit" value="<fmt:message key="button.input_product"/>">
 </form>
 <c:choose>
@@ -57,34 +60,35 @@
             <th><fmt:message key="column.table_instruction"/></th>
             </thead>
 
-            <c:forEach items="${sessionScope.allProducts}" var="product">
+                <c:forEach items="${sessionScope.allProducts}" var="product">
 
-                <tr>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&productId=${product.productId}">${product.productId}</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&productId=${product.productId}">${product.name}</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&productId=${product.productId}">${product.group}</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&productId=${product.productId}">${product.price}</a>
+                    <tr>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&productId=${product.productId}">${product.productId}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&productId=${product.productId}">${product.name}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&productId=${product.productId}">${product.group}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&productId=${product.productId}">${product.price}</a>
 
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&productId=${product.productId}">${product.recipe}</a>
-                    </td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&productId=${product.productId}">${product.instruction}</a>
-                    </td>
-                </tr>
-            </c:forEach>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&productId=${product.productId}">${product.recipe}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&productId=${product.productId}">${product.instruction}</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
         </table>
     </c:when>
 </c:choose>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

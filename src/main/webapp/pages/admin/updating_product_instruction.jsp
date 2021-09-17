@@ -19,10 +19,10 @@
     <c:if test="${requestScope.productInstructionError != null}">
         <div class="error"><fmt:message key="error.product_instruction"/> </div>
     </c:if>
-    <input type="text" name="newGroup" placeholder="<fmt:message key="${requestScope.product.instruction}"/>"/><br>
+    <textarea name="newInstruction"></textarea><br><br>
     <input type="submit" value="<fmt:message key="button.update_instruction"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

@@ -24,13 +24,13 @@ public class GoToPharmaciesForCustomerPageCommand implements Command {
         HttpSession session = request.getSession();
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         List<Pharmacy> pharmacies;
-        try {
-            pharmacies = pharmacyService.findAllPharmacies();
-        } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method execute while find all pharmacies ", e);
-            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-        }
-        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+//        try {
+//            pharmacies = pharmacyService.findAllPharmacies();
+//        } catch (ServiceException e) {
+//            logger.log(Level.ERROR, "Exception in method execute while find all pharmacies ", e);
+//            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+//        }
+//        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
         return new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
     }
 }

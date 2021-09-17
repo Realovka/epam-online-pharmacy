@@ -19,10 +19,10 @@
     <c:if test="${requestScope.productNameError != null}">
         <div class="error"><fmt:message key="error.product_name"/> </div>
     </c:if>
-    <input type="text" name="newName" placeholder="<fmt:message key="placeholder.new_name"/>"/><br>
+    <input type="text" name="newName" placeholder="<fmt:message key="placeholder.new_name"/>" size="35px"/><br>
     <input type="submit" value="<fmt:message key="button.update_name"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

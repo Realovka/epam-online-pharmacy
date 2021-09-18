@@ -29,6 +29,6 @@ public class GoToUpdatingProductInstructionPageCommand implements Command {
             logger.log(Level.ERROR, "ServiceException while find ProductDto by productId ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        return new CommandResult(PagePath.UPDATING_PRODUCT_INSTRUCTION, CommandResult.RoutingType.FORWARD);
+        return new CommandResult(PagePath.UPDATING_PRODUCT_INSTRUCTION, CommandResult.RoutingType.REDIRECT);
     }
 }

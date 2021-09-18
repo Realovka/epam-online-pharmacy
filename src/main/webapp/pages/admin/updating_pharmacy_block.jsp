@@ -13,7 +13,12 @@
     <title><fmt:message key="title.update_pharmacy_block"/></title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <h1 style="text-align: center"><fmt:message key="title.update_pharmacy_block"/></h1>
 <form action="${pageContext.request.contextPath}/controller?command=updating_pharmacy_block" method="post">
     <c:if test="${requestScope.updatingPharmacyBlockError != null}">
@@ -22,7 +27,7 @@
     <input type="text" name="newBlock" placeholder="<fmt:message key="placeholder.new_block"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_block"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

@@ -37,6 +37,7 @@ public class LoginCommand implements Command {
                         commandResult = new CommandResult(PagePath.MAIN_CUSTOMER, CommandResult.RoutingType.REDIRECT);
                     }
                     case ADMIN -> {
+                        session.setAttribute(SessionAttribute.CURRENT_PAGE, 1);
                         commandResult = new CommandResult(PagePath.MAIN_ADMIN, CommandResult.RoutingType.REDIRECT);
                     }
                 }

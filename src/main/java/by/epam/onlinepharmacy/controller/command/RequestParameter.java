@@ -4,7 +4,9 @@ public final class RequestParameter {
     public static final String COMMAND = "command";
     public static final String LANGUAGE = "lang";
     public static final String CURRENT_URL = "current_url";
-    public static final String CURRENT_PAGE = "currentPage";
+    public static final String CURRENT_PAGE = "current_page";
+    public static final String COUNT_FORWARD = "count_forward";
+    public static final String COUNT_BACK = "count_back";
 
     //User
     public static final String LOGIN = "login";
@@ -25,7 +27,7 @@ public final class RequestParameter {
     public static final String UPDATING_PHARMACIST_TELEPHONE = "newTelephone";
 
     //Pharmacy
-    public static final String PHARMACY_ID = "pharmacyId";
+    public static final String PHARMACY_ID = "pharmacy_id";
     public static final String NUMBER = "number";
     public static final String CITY = "city";
     public static final String STREET = "street";
@@ -38,7 +40,7 @@ public final class RequestParameter {
     public static final String UPDATING_PHARMACY_BLOCK = "newBlock";
 
     //Product
-    public static final String PRODUCT_ID = "productId";
+    public static final String PRODUCT_ID = "product_id";
     public static final String NAME = "name";
     public static final String GROUP = "group";
     public static final String PRICE = "price";

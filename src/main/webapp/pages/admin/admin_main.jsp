@@ -13,10 +13,15 @@
     <title><fmt:message key="title.admin_main"/></title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists" style="color: #000000"><fmt:message key="link.all_pharmacists"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&currentPage=1" style="color: #000000"><fmt:message key="header.all_pharmacies"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies" style="color: #000000"><fmt:message key="header.all_pharmacies"/></a><br>
     <a href="${pageContext.request.contextPath}/controller?command=all_products" style="color: #000000"><fmt:message key="link.all_products"/></a><br>
     <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page" style="color: #000000"><fmt:message key="link.all_inactive_pharmacists"/></a><br>
     <a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>

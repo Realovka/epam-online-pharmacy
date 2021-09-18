@@ -14,7 +14,12 @@
     <title><fmt:message key="page.registration"/></title>
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message
         key="link.name.back_to_login_page"/></a>
 <nav class="menu">

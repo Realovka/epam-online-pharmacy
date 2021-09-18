@@ -16,7 +16,12 @@
 </head>
 
 <body>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <nav class="menu">
     <ul>
         <li>

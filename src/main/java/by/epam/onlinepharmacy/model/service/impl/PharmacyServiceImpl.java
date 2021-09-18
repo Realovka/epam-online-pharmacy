@@ -24,6 +24,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
     private static final String ZERO_STRING = "0";
     private static final String BLANK_STRING = "\s";
+    private static final int RECORD_PER_PAGE = 5;
     private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
 
@@ -38,23 +39,20 @@ public class PharmacyServiceImpl implements PharmacyService {
     public List<Pharmacy> findAllPharmacies(int startingPharmacy) throws ServiceException {
         List<Pharmacy> pharmacies;
         try {
-            pharmacies = pharmacyDao.findAllPharmacies(startingPharmacy);
+            pharmacies = pharmacyDao.findPharmacies(startingPharmacy);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findAllPharmacies() ", e);
             throw new ServiceException("DaoException is in method findAllPharmacies() ", e);
         }
 
-        //TODO
-        for (Pharmacy item : pharmacies) {
-            if (item.getBlock() == 0) {
-                item.setBlock(null);
-            }
-        }
+        changePharmaciesBlocks(pharmacies);
+
         return pharmacies;
     }
 
     @Override
-    public void createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
+    public List<Pharmacy> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
+        List<Pharmacy> pharmacies;
         Pharmacy pharmacy = new Pharmacy.Builder()
                 .setNumber(Integer.parseInt(number))
                 .setCity(city)
@@ -68,10 +66,32 @@ public class PharmacyServiceImpl implements PharmacyService {
         }
         try {
             pharmacyDao.createPharmacy(pharmacy);
+            int pharmaciesNumber = pharmacyDao.findPharmaciesNumber();
+            int pharmaciesOnLastPage = pharmaciesNumber % RECORD_PER_PAGE;
+            int pages = pharmaciesNumber / RECORD_PER_PAGE;
+            if (pharmaciesOnLastPage == 0) {
+                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE -1);
+            } else {
+                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE);
+            }
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);
             throw new ServiceException("DaoException is in method createPharmacy() ", e);
         }
+        changePharmaciesBlocks(pharmacies);
+        return pharmacies;
+    }
+
+    @Override
+    public int findCurrentPage() throws ServiceException {
+        int pharmaciesNumber;
+        try {
+            pharmaciesNumber = pharmacyDao.findPharmaciesNumber();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() ", e);
+            throw new ServiceException("DaoException is in method findCurrentPage() ", e);
+        }
+        return pharmaciesNumber / RECORD_PER_PAGE + 1;
     }
 
     @Override
@@ -162,6 +182,15 @@ public class PharmacyServiceImpl implements PharmacyService {
             logger.log(Level.ERROR, "DaoException is in method updateBlock() ", e);
             throw new ServiceException("DaoException is in method updateBlock() ", e);
         }
+    }
+
+    private List<Pharmacy> changePharmaciesBlocks(List<Pharmacy> pharmacies) {
+        for (Pharmacy item : pharmacies) {
+            if (item.getBlock() == 0) {
+                item.setBlock(null);
+            }
+        }
+        return pharmacies;
     }
 
 }

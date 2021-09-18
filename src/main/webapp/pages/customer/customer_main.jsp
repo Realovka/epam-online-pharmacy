@@ -12,7 +12,12 @@
     <link rel="stylesheet" href="/styles/common.css">
     <title><fmt:message key="title.customer_main"/></title>
 </head>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <nav class="menu">
     <ul>
         <li>

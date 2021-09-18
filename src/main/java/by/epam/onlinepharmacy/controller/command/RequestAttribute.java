@@ -4,8 +4,6 @@ public final class RequestAttribute {
     public static final String REGISTRATION_ERROR = "registrationError";
     public static final String MAP_DATA = "mapData";
     public static final String PRODUCT = "product";
-    public static final String CURRENT_PAGE = "currentPage";
-    public static final String NEXT_PHARMACIES = "nextPharmacies";
     public static final String DATA_REGISTRATION_ERROR = "dataRegistrationError";
     public static final String LOGIN_ERROR = "loginError";
     public static final String CODE_VERIFICATION_ERROR = "codeVerificationError";
@@ -26,6 +24,7 @@ public final class RequestAttribute {
     public static final String PRODUCT_GROUP_ERROR = "productGroupError";
     public static final String PRODUCT_PRICE_ERROR = "productPriceError";
     public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
+
 
 
     private RequestAttribute() {

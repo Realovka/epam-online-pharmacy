@@ -12,8 +12,12 @@
     <link rel="stylesheet" href="/styles/common.css">
     <title><fmt:message key="title.all_products"/></title>
 </head>
-<body>
-<a href="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}&current_url=${pageContext.request.requestURL}">${sessionScope.secondLocale}</a><br>
+
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
+    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+</form>
+
 <h1 style="text-align: center"><fmt:message key="header.list_all_products"/></h1>
 <h2 style="text-align: left"><fmt:message key="header.add_new_product_in_form"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_product" method="post">
@@ -64,23 +68,23 @@
 
                     <tr>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&productId=${product.productId}">${product.productId}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&product_id=${product.productId}">${product.productId}</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&productId=${product.productId}">${product.name}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&product_id=${product.productId}">${product.name}</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&productId=${product.productId}">${product.group}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&product_id=${product.productId}">${product.group}</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&productId=${product.productId}">${product.price}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&product_id=${product.productId}">${product.price}</a>
 
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&productId=${product.productId}">${product.recipe}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&product_id=${product.productId}">${product.recipe}</a>
                         </td>
                         <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&productId=${product.productId}">${product.instruction}</a>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&product_id=${product.productId}">${product.instruction}</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -88,7 +92,7 @@
         </table>
     </c:when>
 </c:choose>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #000000"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message key="link.logout"/></a>
 </body>
 </html>

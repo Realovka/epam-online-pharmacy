@@ -20,9 +20,6 @@ public class AdditionPharmacyCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        int currentPage = 1;
-        String currentPageParam = request.getParameter(RequestParameter.CURRENT_PAGE);
-        int currentPageParse = Integer.parseInt(currentPageParam);
         HttpSession session = request.getSession();
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         String number = request.getParameter(RequestParameter.NUMBER);
@@ -54,14 +51,20 @@ public class AdditionPharmacyCommand implements Command {
             return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.FORWARD);
         }
 
+        int currentPage;
+        List<Pharmacy> previousPharmacies;
         try {
-            pharmacyService.createPharmacy(number, city, street, house, block);
-            pharmacies = pharmacyService.findAllPharmacies((currentPageParse - 1) * RECORD_PER_PAGE);
+            pharmacies = pharmacyService.createPharmacy(number, city, street, house, block);
+            currentPage = pharmacyService.findCurrentPage();
+            previousPharmacies = pharmacyService.findAllPharmacies((currentPage - 2) * RECORD_PER_PAGE);
+
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while find all pharmacies ", e);
-            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+        session.setAttribute(SessionAttribute.PREVIOUS_PHARMACIES, previousPharmacies);
+        session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
         return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.REDIRECT);
     }
 }

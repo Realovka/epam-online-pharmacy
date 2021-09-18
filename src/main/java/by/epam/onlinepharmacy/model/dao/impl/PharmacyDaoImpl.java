@@ -22,9 +22,11 @@ public class PharmacyDaoImpl implements PharmacyDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
     private static PharmacyDaoImpl instance = new PharmacyDaoImpl();
-    private PharmacyDaoImpl(){
+
+    private PharmacyDaoImpl() {
 
     }
+
     public static PharmacyDaoImpl getInstance() {
         return instance;
     }
@@ -38,6 +40,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
             VALUES(?, ?, ?, ?, ?)
              """;
 
+    private static final String COUNT_PHARMACIES = "SELECT COUNT(*) FROM pharmacies";
+
     private static final String FIND_PHARMACY_BY_ID = """
             SELECT number, city, street, house, block FROM pharmacies WHERE pharmacy_id = ?
             """;
@@ -49,9 +53,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
     private static final String UPDATE_PHARMACY_BLOCK = "UPDATE pharmacies SET block =? WHERE pharmacy_id =?";
 
 
-
     @Override
-    public List<Pharmacy> findAllPharmacies(int startingPharmacy) throws DaoException {
+    public List<Pharmacy> findPharmacies(int startingPharmacy) throws DaoException {
         List<Pharmacy> pharmacies = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PHARMACIES)) {
@@ -90,6 +93,23 @@ public class PharmacyDaoImpl implements PharmacyDao {
             logger.log(Level.ERROR, "SQLException in method createPharmacy() ", e);
             throw new DaoException("SQLException in method createPharmacy() ", e);
         }
+    }
+
+    @Override
+    public int findPharmaciesNumber() throws DaoException {
+        int pharmaciesNumber = 0;
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_PHARMACIES)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    pharmaciesNumber = resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findPharmaciesNumber() ", e);
+            throw new DaoException("SQLException in method findPharmaciesNumber() ", e);
+        }
+        return pharmaciesNumber;
     }
 
     @Override
@@ -180,6 +200,4 @@ public class PharmacyDaoImpl implements PharmacyDao {
             throw new DaoException("SQLException in method updateBlock() ", e);
         }
     }
-
-
 }

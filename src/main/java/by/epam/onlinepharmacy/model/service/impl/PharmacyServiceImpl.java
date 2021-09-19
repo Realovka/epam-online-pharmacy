@@ -70,7 +70,7 @@ public class PharmacyServiceImpl implements PharmacyService {
             int pharmaciesOnLastPage = pharmaciesNumber % RECORD_PER_PAGE;
             int pages = pharmaciesNumber / RECORD_PER_PAGE;
             if (pharmaciesOnLastPage == 0) {
-                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE -1);
+                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
             } else {
                 pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE);
             }
@@ -85,13 +85,19 @@ public class PharmacyServiceImpl implements PharmacyService {
     @Override
     public int findCurrentPage() throws ServiceException {
         int pharmaciesNumber;
+        int currentPage;
         try {
             pharmaciesNumber = pharmacyDao.findPharmaciesNumber();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findCurrentPage() ", e);
             throw new ServiceException("DaoException is in method findCurrentPage() ", e);
         }
-        return pharmaciesNumber / RECORD_PER_PAGE + 1;
+        if (pharmaciesNumber % RECORD_PER_PAGE == 0) {
+            currentPage = pharmaciesNumber / RECORD_PER_PAGE;
+        } else {
+            currentPage = pharmaciesNumber / RECORD_PER_PAGE + 1;
+        }
+        return currentPage;
     }
 
     @Override

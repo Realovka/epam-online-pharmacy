@@ -33,7 +33,7 @@ public class ChangeLanguageCommand implements Command {
             session.setAttribute(SessionAttribute.CURRENT_BUNDLE, ENGLISH_BUNDLE);
             session.setAttribute(SessionAttribute.SECOND_LOCALE, RUSSIAN_LOCALE);
         }
-        return new CommandResult(url, CommandResult.RoutingType.FORWARD);
+        return new CommandResult(url, CommandResult.RoutingType.REDIRECT);
     }
 }
 

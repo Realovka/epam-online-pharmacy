@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,6 +54,7 @@ public class AdditionPharmacyCommand implements Command {
 
         int currentPage;
         List<Pharmacy> previousPharmacies;
+        List<Pharmacy> nextPharmacies = new ArrayList<>();
         try {
             pharmacies = pharmacyService.createPharmacy(number, city, street, house, block);
             currentPage = pharmacyService.findCurrentPage();
@@ -64,6 +66,7 @@ public class AdditionPharmacyCommand implements Command {
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
         session.setAttribute(SessionAttribute.PREVIOUS_PHARMACIES, previousPharmacies);
+        session.setAttribute(SessionAttribute.NEXT_PHARMACIES, nextPharmacies);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
         return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.REDIRECT);
     }

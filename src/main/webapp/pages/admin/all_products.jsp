@@ -92,6 +92,14 @@
         </table>
     </c:when>
 </c:choose>
+
+<c:if test="${sessionScope.previousProducts.size() > 0}">
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.previous_products"/> </a>
+</c:if>
+<c:if test="${sessionScope.nextProducts.size() > 0}">
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.next_products"/></a>
+</c:if><br>
+
 <a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message key="link.admin_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message key="link.logout"/></a>
 </body>

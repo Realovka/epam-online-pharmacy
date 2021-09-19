@@ -10,7 +10,8 @@ import java.util.Optional;
 public interface ProductDao {
     void createProduct(Product product) throws DaoException;
     void addPathToPicture(long id, String fileNAme) throws DaoException;
-    List<Product> findAllProducts() throws DaoException;
+    List<Product> findProducts(int startingProduct) throws DaoException;
+    int findProductsNumber() throws DaoException;
     Optional<Product> findProductForOrderById(long id) throws DaoException;
     Optional<String> findPathToPicture(long id) throws DaoException;
     Optional<Product> findProductById(long id) throws DaoException;

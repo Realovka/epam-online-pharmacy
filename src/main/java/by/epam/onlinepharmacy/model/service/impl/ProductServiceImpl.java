@@ -22,6 +22,7 @@ public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
     private static final String NEED_RECIPE = "Yes";
     private static final String DONT_NEED_RECIPE = "No";
+    private static final int RECORD_PER_PAGE = 15;
     private static ProductServiceImpl instance = new ProductServiceImpl();
     private ProductDao productDao = ProductDaoImpl.getInstance();
 
@@ -33,7 +34,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
+    public List<Product> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
+        List<Product> products;
         boolean needRecipe = needProductRecipe(recipe);
         Product product = new Product.Builder()
                 .setName(name)
@@ -44,10 +46,20 @@ public class ProductServiceImpl implements ProductService {
                 .build();
         try {
             productDao.createProduct(product);
+                int productsNumber = productDao.findProductsNumber();
+                int productsOnLastPage = productsNumber % RECORD_PER_PAGE;
+                int pages = productsNumber / RECORD_PER_PAGE;
+                if (productsOnLastPage == 0) {
+                    products = productDao.findProducts(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
+                } else {
+                    products = productDao.findProducts(pages * RECORD_PER_PAGE);
+                }
+
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
             throw new ServiceException("DaoException is in method createProduct() ", e);
         }
+        return products;
     }
 
     @Override
@@ -85,10 +97,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> findAllProducts() throws ServiceException {
+    public List<ProductDto> findListProducts(int startingProduct) throws ServiceException {
         List<ProductDto> products;
         try {
-            List<Product> productsDb = productDao.findAllProducts();
+            List<Product> productsDb = productDao.findProducts(startingProduct);
             products = productsDb.stream()
                     .map(product -> new ProductDto.Builder()
                             .setProductId(product.getProductId())
@@ -100,10 +112,28 @@ public class ProductServiceImpl implements ProductService {
                             .build()).collect(Collectors.toList());
 
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findAllProducts() ", e);
-            throw new ServiceException("DaoException is in method findAllProducts() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findListProducts() ", e);
+            throw new ServiceException("DaoException is in method findListProducts() ", e);
         }
         return products;
+    }
+
+    @Override
+    public int findCurrentPage() throws ServiceException {
+        int productsNumber;
+        int currentPage;
+        try {
+            productsNumber = productDao.findProductsNumber();
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() ", e);
+            throw new ServiceException("DaoException is in method findCurrentPage() ", e);
+        }
+        if (productsNumber % RECORD_PER_PAGE == 0) {
+            currentPage = productsNumber / RECORD_PER_PAGE;
+        } else {
+            currentPage = productsNumber / RECORD_PER_PAGE + 1;
+        }
+        return currentPage;
     }
 
     @Override

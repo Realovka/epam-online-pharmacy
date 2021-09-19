@@ -20,7 +20,7 @@ import java.util.List;
 
 public class UpdatingPharmacyNumberCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
-    private static final int RECORD_PER_PAGE = 5;
+    private static final int RECORD_PER_PAGE = 15;
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
@@ -41,10 +41,10 @@ public class UpdatingPharmacyNumberCommand implements Command {
         try {
             pharmacyService.updateNumber(id, newNumber);
             if (currentPage != 1) {
-                previousPharmacies = pharmacyService.findAllPharmacies((currentPage - 2) * RECORD_PER_PAGE);
+                previousPharmacies = pharmacyService.findListPharmacies((currentPage - 2) * RECORD_PER_PAGE);
             }
-            pharmacies = pharmacyService.findAllPharmacies((currentPage - 1) * RECORD_PER_PAGE);
-            nextPharmacies = pharmacyService.findAllPharmacies((currentPage) * RECORD_PER_PAGE);
+            pharmacies = pharmacyService.findListPharmacies((currentPage - 1) * RECORD_PER_PAGE);
+            nextPharmacies = pharmacyService.findListPharmacies((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while update number or find all pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

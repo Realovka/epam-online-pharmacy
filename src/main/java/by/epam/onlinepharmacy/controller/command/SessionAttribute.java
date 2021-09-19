@@ -6,6 +6,8 @@ public final class SessionAttribute {
     public static final String CURRENT_PAGE = "currentPage";
     public static final String NEXT_PHARMACIES = "nextPharmacies";
     public static final String PREVIOUS_PHARMACIES = "previousPharmacies";
+    public static final String NEXT_PRODUCTS = "nextProducts";
+    public static final String PREVIOUS_PRODUCTS = "previousProducts";
     public static final String INACTIVE_PHARMACISTS = "inactivePharmacists";
     public static final String ALL_PHARMACIES = "allPharmacies";
     public static final String PHARMACIST_ID = "id";

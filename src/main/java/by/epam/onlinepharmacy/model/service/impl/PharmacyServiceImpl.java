@@ -24,7 +24,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
     private static final String ZERO_STRING = "0";
     private static final String BLANK_STRING = "\s";
-    private static final int RECORD_PER_PAGE = 5;
+    private static final int RECORD_PER_PAGE = 15;
     private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
 
@@ -36,7 +36,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public List<Pharmacy> findAllPharmacies(int startingPharmacy) throws ServiceException {
+    public List<Pharmacy> findListPharmacies(int startingPharmacy) throws ServiceException {
         List<Pharmacy> pharmacies;
         try {
             pharmacies = pharmacyDao.findPharmacies(startingPharmacy);

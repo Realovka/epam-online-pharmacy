@@ -23,49 +23,49 @@ public class AdditionProductCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        ProductService productService = ProductServiceImpl.getInstance();
-        String name = request.getParameter(RequestParameter.NAME);
-        String group = request.getParameter(RequestParameter.GROUP);
-        String price = request.getParameter(RequestParameter.PRICE);
-        String recipe = request.getParameter(RequestParameter.RECIPE);
-        String instruction = request.getParameter(RequestParameter.INSTRUCTION);
-        List<ProductDto> products;
-
-
-        Map<String, String> productParameters = productService.isValidParameters(name, group, price, instruction);
-        if (productParameters.get(RequestParameter.NAME).isBlank()) {
-            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
-            request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
-            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
-        }
-
-        if (productParameters.get(RequestParameter.GROUP).isBlank()) {
-            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
-            request.setAttribute(RequestAttribute.PRODUCT_GROUP_ERROR, BundleKey.PRODUCT_GROUP_ERROR);
-            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
-        }
-
-        if (productParameters.get(RequestParameter.PRICE).isBlank()) {
-            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
-            request.setAttribute(RequestAttribute.PRODUCT_PRICE_ERROR, BundleKey.PRODUCT_PRICE_ERROR);
-            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
-        }
-
-        if (productParameters.get(RequestParameter.INSTRUCTION).isBlank()) {
-            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
-            request.setAttribute(RequestAttribute.PRODUCT_INSTRUCTION_ERROR, BundleKey.PRODUCT_INSTRUCTION_ERROR);
-            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
-        }
-
-        try {
-            productService.createProduct(name,group,price,recipe, instruction);
-            products = productService.findAllProducts();
-        } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find all products ", e);
-            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-        }
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+//        HttpSession session = request.getSession();
+//        ProductService productService = ProductServiceImpl.getInstance();
+//        String name = request.getParameter(RequestParameter.NAME);
+//        String group = request.getParameter(RequestParameter.GROUP);
+//        String price = request.getParameter(RequestParameter.PRICE);
+//        String recipe = request.getParameter(RequestParameter.RECIPE);
+//        String instruction = request.getParameter(RequestParameter.INSTRUCTION);
+//        List<ProductDto> products;
+//
+//
+//        Map<String, String> productParameters = productService.isValidParameters(name, group, price, instruction);
+//        if (productParameters.get(RequestParameter.NAME).isBlank()) {
+//            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+//            request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
+//            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+//        }
+//
+//        if (productParameters.get(RequestParameter.GROUP).isBlank()) {
+//            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+//            request.setAttribute(RequestAttribute.PRODUCT_GROUP_ERROR, BundleKey.PRODUCT_GROUP_ERROR);
+//            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+//        }
+//
+//        if (productParameters.get(RequestParameter.PRICE).isBlank()) {
+//            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+//            request.setAttribute(RequestAttribute.PRODUCT_PRICE_ERROR, BundleKey.PRODUCT_PRICE_ERROR);
+//            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+//        }
+//
+//        if (productParameters.get(RequestParameter.INSTRUCTION).isBlank()) {
+//            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+//            request.setAttribute(RequestAttribute.PRODUCT_INSTRUCTION_ERROR, BundleKey.PRODUCT_INSTRUCTION_ERROR);
+//            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+//        }
+//
+//        try {
+//            productService.createProduct(name,group,price,recipe, instruction);
+//            products = productService.findAllProducts();
+//        } catch (ServiceException e) {
+//            logger.log(Level.ERROR, "ServiceException in method execute while find all products ", e);
+//            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+//        }
+//        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
         return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
     }
 }

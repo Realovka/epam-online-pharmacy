@@ -1,7 +1,6 @@
 package by.epam.onlinepharmacy.model.dao.impl;
 
 import by.epam.onlinepharmacy.entity.Product;
-import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
 import by.epam.onlinepharmacy.model.dao.ProductDao;
@@ -37,10 +36,12 @@ public class ProductDaoImpl implements ProductDao {
             INSERT INTO products (product_name, product_group, price, recipe, instruction) VALUES (?,?,?,?,?)
             """;
 
+    private static final String COUNT_PRODUCTS = "SELECT COUNT(*) FROM products";
+
     private static final String ADD_PICTURE = "UPDATE products SET picture=? WHERE product_id=?";
 
-    private static final String FIND_ALL_PRODUCTS = """
-            SELECT product_id, product_name, product_group, price, recipe, instruction FROM products
+    private static final String FIND_PRODUCTS = """
+            SELECT product_id, product_name, product_group, price, recipe, instruction FROM products LIMIT ?, 5
             """;
     private static final String FIND_PRODUCT_FOR_ORDER = """
             SELECT product_id, product_name FROM products WHERE product_id = ?
@@ -89,10 +90,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findAllProducts() throws DaoException {
+    public List<Product> findProducts(int startingProduct) throws DaoException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ALL_PRODUCTS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCTS)) {
+            preparedStatement.setInt(1, startingProduct);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Product product = new Product.Builder()
@@ -111,6 +113,23 @@ public class ProductDaoImpl implements ProductDao {
             throw new DaoException("SQLException in method findAllProducts() ", e);
         }
         return products;
+    }
+
+    @Override
+    public int findProductsNumber() throws DaoException {
+        int productsNumber = 0;
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(COUNT_PRODUCTS)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    productsNumber = resultSet.getInt(1);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findProductsNumber() ", e);
+            throw new DaoException("SQLException in method findProductsNumber() ", e);
+        }
+        return productsNumber;
     }
 
 

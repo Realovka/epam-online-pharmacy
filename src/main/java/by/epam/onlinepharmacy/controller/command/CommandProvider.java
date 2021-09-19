@@ -43,7 +43,7 @@ public class CommandProvider {
         commands.put(CommandType.CHANGE_LANGUAGE, new ChangeLanguageCommand());
         commands.put(CommandType.MAIN_CUSTOMER, new GoToCustomerMainPageCommand());
         commands.put(CommandType.MAIN_PHARMACIST, new GoToPharmacistMainPageCommand());
-        commands.put(CommandType.ALL_PRODUCTS, new GoToAllProductsPageCommand());
+        commands.put(CommandType.ALL_PRODUCTS, new AllProductsPageCommand());
         commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
         commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
         commands.put(CommandType.FIND_PICTURE, new FindPictureCommand());

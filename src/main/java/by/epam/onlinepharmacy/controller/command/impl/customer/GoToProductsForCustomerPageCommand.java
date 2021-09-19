@@ -24,16 +24,16 @@ public class GoToProductsForCustomerPageCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        ProductService productService = ProductServiceImpl.getInstance();
-        List<ProductDto> products;
-        try {
-            products = productService.findAllProducts();
-        } catch (ServiceException e) {
-            logger.log(Level.ERROR, "Exception in method execute while find all products ", e);
-            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-        }
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+//        HttpSession session = request.getSession();
+//        ProductService productService = ProductServiceImpl.getInstance();
+//        List<ProductDto> products;
+//        try {
+//            products = productService.findAllProducts();
+//        } catch (ServiceException e) {
+//            logger.log(Level.ERROR, "Exception in method execute while find all products ", e);
+//            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
+//        }
+//        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
         return new CommandResult(PagePath.PRODUCTS_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
     }
 }

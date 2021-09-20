@@ -90,7 +90,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<Product> findProducts(int startingProduct) throws DaoException {
+    public List<Product> findListProducts(int startingProduct) throws DaoException {
         List<Product> products = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCTS)) {
@@ -109,8 +109,8 @@ public class ProductDaoImpl implements ProductDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findAllProducts() ", e);
-            throw new DaoException("SQLException in method findAllProducts() ", e);
+            logger.log(Level.ERROR, "SQLException in method findListProducts() ", e);
+            throw new DaoException("SQLException in method findListProducts() ", e);
         }
         return products;
     }

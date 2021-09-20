@@ -29,9 +29,9 @@ public class UpdatingProductInstructionCommand implements Command {
         ProductService productService = ProductServiceImpl.getInstance();
         ProductValidator productValidator = ProductValidatorImpl.getInstance();
 
-        List<ProductDto> products;
+        List<ProductDto> currentProducts;
         List<ProductDto> nextProducts;
-        List<ProductDto> previousProduct = new ArrayList<>();
+        List<ProductDto> previousProducts = new ArrayList<>();
 
         if(!productValidator.isValidInstruction(newInstruction)) {
             request.setAttribute(RequestAttribute.PRODUCT_INSTRUCTION_ERROR, BundleKey.PRODUCT_INSTRUCTION_ERROR);
@@ -41,17 +41,17 @@ public class UpdatingProductInstructionCommand implements Command {
         try {
             productService.updateProductInstruction(productId, newInstruction);
             if (currentPage != 1) {
-                products = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
+                previousProducts = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
             }
-            products = productService.findListProducts((currentPage - 1) * RECORD_PER_PAGE);
+            currentProducts = productService.findListProducts((currentPage - 1) * RECORD_PER_PAGE);
             nextProducts = productService.findListProducts((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find list products or update instruction of product", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find list current products or update instruction of product", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProduct);
+        session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProducts);
         session.setAttribute(SessionAttribute.NEXT_PRODUCTS, nextProducts);
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+        session.setAttribute(SessionAttribute.CURRENT_PRODUCTS, currentProducts);
         return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
     }
 }

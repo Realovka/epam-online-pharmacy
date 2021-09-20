@@ -9,13 +9,13 @@ public final class SessionAttribute {
     public static final String NEXT_PRODUCTS = "nextProducts";
     public static final String PREVIOUS_PRODUCTS = "previousProducts";
     public static final String INACTIVE_PHARMACISTS = "inactivePharmacists";
-    public static final String ALL_PHARMACIES = "allPharmacies";
+    public static final String CURRENT_PHARMACIES = "currentPharmacies";
     public static final String PHARMACIST_ID = "id";
     public static final String PREVIOUS_QUERY = "previousQuery";
     public static final String CURRENT_LOCALE = "currentLocale";
     public static final String SECOND_LOCALE = "secondLocale";
     public static final String CURRENT_BUNDLE = "currentBundle";
-    public static final String ALL_PRODUCTS = "allProducts";
+    public static final String CURRENT_PRODUCTS = "currentProducts";
     public static final String PRODUCT_ID = "productId";
     public static final String PATH_TO_FILE = "pathToFile";
     public static final String PRODUCT = "product";

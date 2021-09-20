@@ -28,7 +28,6 @@ public class AdditionPharmacyCommand implements Command {
         String street = request.getParameter(RequestParameter.STREET);
         String house = request.getParameter(RequestParameter.HOUSE);
         String block = request.getParameter(RequestParameter.BLOCK);
-        List<Pharmacy> pharmacies;
 
         Map<String, String> dataPharmacy = pharmacyService.isFormValid(number, city, street, house, block);
 
@@ -53,18 +52,19 @@ public class AdditionPharmacyCommand implements Command {
         }
 
         int currentPage;
+        List<Pharmacy> currentPharmacies;
         List<Pharmacy> previousPharmacies;
         List<Pharmacy> nextPharmacies = new ArrayList<>();
         try {
-            pharmacies = pharmacyService.createPharmacy(number, city, street, house, block);
+            currentPharmacies = pharmacyService.createPharmacy(number, city, street, house, block);
             currentPage = pharmacyService.findCurrentPage();
             previousPharmacies = pharmacyService.findListPharmacies((currentPage - 2) * RECORD_PER_PAGE);
 
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find all pharmacies ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find  current pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
-        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+        session.setAttribute(SessionAttribute.CURRENT_PHARMACIES, currentPharmacies);
         session.setAttribute(SessionAttribute.PREVIOUS_PHARMACIES, previousPharmacies);
         session.setAttribute(SessionAttribute.NEXT_PHARMACIES, nextPharmacies);
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);

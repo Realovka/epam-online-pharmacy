@@ -52,7 +52,7 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     @Override
     public List<Pharmacy> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
-        List<Pharmacy> pharmacies;
+        List<Pharmacy> currentPharmacies;
         Pharmacy pharmacy = new Pharmacy.Builder()
                 .setNumber(Integer.parseInt(number))
                 .setCity(city)
@@ -70,16 +70,16 @@ public class PharmacyServiceImpl implements PharmacyService {
             int pharmaciesOnLastPage = pharmaciesNumber % RECORD_PER_PAGE;
             int pages = pharmaciesNumber / RECORD_PER_PAGE;
             if (pharmaciesOnLastPage == 0) {
-                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
+                currentPharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
             } else {
-                pharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE);
+                currentPharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE);
             }
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);
             throw new ServiceException("DaoException is in method createPharmacy() ", e);
         }
-        changePharmaciesBlocks(pharmacies);
-        return pharmacies;
+        changePharmaciesBlocks(currentPharmacies);
+        return currentPharmacies;
     }
 
     @Override

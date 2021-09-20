@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface ProductService {
-    List<Product> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException;
+    List<ProductDto> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException;
     Map<String, String> isValidParameters(String name, String group, String price, String instruction);
     void addPathToPicture(long id, String fileName) throws ServiceException;
     List<ProductDto> findListProducts(int startingProduct) throws ServiceException;

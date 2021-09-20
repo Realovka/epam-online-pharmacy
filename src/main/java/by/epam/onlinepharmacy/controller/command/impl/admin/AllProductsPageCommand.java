@@ -2,12 +2,8 @@ package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.dto.ProductDto;
-import by.epam.onlinepharmacy.entity.Pharmacy;
-import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
-import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.ProductService;
-import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
 import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -57,7 +53,7 @@ public class AllProductsPageCommand implements Command {
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
         session.setAttribute(SessionAttribute.NEXT_PRODUCTS, nextProducts);
         session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProducts);
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+        session.setAttribute(SessionAttribute.CURRENT_PRODUCTS, products);
         return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
     }
 }

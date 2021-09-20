@@ -53,7 +53,7 @@ public class AllPharmaciesCommand implements Command {
         session.setAttribute(SessionAttribute.CURRENT_PAGE, currentPage);
         session.setAttribute(SessionAttribute.NEXT_PHARMACIES, nextPharmacies);
         session.setAttribute(SessionAttribute.PREVIOUS_PHARMACIES, previousPharmacies);
-        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+        session.setAttribute(SessionAttribute.CURRENT_PHARMACIES, pharmacies);
         return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.REDIRECT);
     }
 }

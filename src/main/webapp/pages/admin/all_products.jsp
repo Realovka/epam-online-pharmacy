@@ -52,7 +52,7 @@
     <input type="submit" value="<fmt:message key="button.input_product"/>">
 </form>
 <c:choose>
-    <c:when test="${sessionScope.allProducts.size()>0}">
+    <c:when test="${sessionScope.currentProducts.size()>0}">
 
         <table border="3">
             <thead>
@@ -64,7 +64,7 @@
             <th><fmt:message key="column.table_instruction"/></th>
             </thead>
 
-                <c:forEach items="${sessionScope.allProducts}" var="product">
+                <c:forEach items="${sessionScope.currentProducts}" var="product">
 
                     <tr>
                         <td>

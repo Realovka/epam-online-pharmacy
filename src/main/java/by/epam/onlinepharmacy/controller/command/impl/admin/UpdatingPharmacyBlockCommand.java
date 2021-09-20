@@ -28,7 +28,7 @@ public class UpdatingPharmacyBlockCommand implements Command {
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         PharmacyValidator pharmacyValidator = PharmacyValidatorImpl.getInstance();
-        List<Pharmacy> pharmacies;
+        List<Pharmacy> currentPharmacies;
         List<Pharmacy> nextPharmacies;
         List<Pharmacy> previousPharmacies = new ArrayList<>();
 
@@ -41,15 +41,15 @@ public class UpdatingPharmacyBlockCommand implements Command {
             if (currentPage != 1) {
                 previousPharmacies = pharmacyService.findListPharmacies((currentPage - 2) * RECORD_PER_PAGE);
             }
-            pharmacies = pharmacyService.findListPharmacies((currentPage - 1) * RECORD_PER_PAGE);
+            currentPharmacies = pharmacyService.findListPharmacies((currentPage - 1) * RECORD_PER_PAGE);
             nextPharmacies = pharmacyService.findListPharmacies((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while update block or find all pharmacies ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while update block or find all current pharmacies ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.PREVIOUS_PHARMACIES, previousPharmacies);
         session.setAttribute(SessionAttribute.NEXT_PHARMACIES, nextPharmacies);
-        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
+        session.setAttribute(SessionAttribute.CURRENT_PHARMACIES, currentPharmacies);
         return new CommandResult(PagePath.ALL_PHARMACIES, CommandResult.RoutingType.REDIRECT);
     }
 }

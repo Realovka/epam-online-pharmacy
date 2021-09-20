@@ -50,7 +50,7 @@
 </form>
 <label><fmt:message key="msg.click_on_parameter"/></label>
 <c:choose>
-    <c:when test="${sessionScope.allPharmacies.size()>0}">
+    <c:when test="${sessionScope.currentPharmacies.size()>0}">
         <table border="3">
             <thead>
             <th width="30"><fmt:message key="column.table.id"/></th>
@@ -61,7 +61,7 @@
             <th width="30"><fmt:message key="column.table.block"/></th>
             </thead>
 
-            <c:forEach items="${sessionScope.allPharmacies}" var="pharmacy">
+            <c:forEach items="${sessionScope.currentPharmacies}" var="pharmacy">
 
                 <tr>
                     <td width="30">

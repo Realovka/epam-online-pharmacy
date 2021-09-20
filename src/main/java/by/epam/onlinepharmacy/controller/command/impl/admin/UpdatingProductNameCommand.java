@@ -29,9 +29,9 @@ public class UpdatingProductNameCommand implements Command {
         ProductValidator productValidator = ProductValidatorImpl.getInstance();
         ProductService productService = ProductServiceImpl.getInstance();
 
-        List<ProductDto> products;
+        List<ProductDto> currentProducts;
         List<ProductDto> nextProducts;
-        List<ProductDto> previousProduct = new ArrayList<>();
+        List<ProductDto> previousProducts = new ArrayList<>();
 
         if(!productValidator.isValidNameOrGroup(newName)) {
             request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
@@ -41,17 +41,17 @@ public class UpdatingProductNameCommand implements Command {
         try {
             productService.updateProductName(productId, newName);
             if (currentPage != 1) {
-                products = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
+                previousProducts = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
             }
-            products = productService.findListProducts((currentPage - 1) * RECORD_PER_PAGE);
+            currentProducts = productService.findListProducts((currentPage - 1) * RECORD_PER_PAGE);
             nextProducts = productService.findListProducts((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find list products or update name of product", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find list current products or update name of product", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProduct);
+        session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProducts);
         session.setAttribute(SessionAttribute.NEXT_PRODUCTS, nextProducts);
-        session.setAttribute(SessionAttribute.ALL_PRODUCTS, products);
+        session.setAttribute(SessionAttribute.CURRENT_PRODUCTS, currentProducts);
         return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.REDIRECT);
     }
 }

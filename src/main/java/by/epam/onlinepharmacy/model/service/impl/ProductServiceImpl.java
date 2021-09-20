@@ -20,9 +20,10 @@ import java.util.stream.Collectors;
 
 public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
-    private static final String NEED_RECIPE = "Yes";
-    private static final String DONT_NEED_RECIPE = "No";
-    private static final int RECORD_PER_PAGE = 15;
+    private static final String NEED_RECIPE_EN = "Yes";
+    private static final String NEED_RECIPE_RU = "Да";
+    private static final String DONT_NEED_RECIPE_EN = "No";
+    private static final int RECORD_PER_PAGE = 5;
     private static ProductServiceImpl instance = new ProductServiceImpl();
     private ProductDao productDao = ProductDaoImpl.getInstance();
 
@@ -34,8 +35,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
-        List<Product> products;
+    public List<ProductDto> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
+        List<Product> currentProducts;
+        List<ProductDto> productDtoList;
         boolean needRecipe = needProductRecipe(recipe);
         Product product = new Product.Builder()
                 .setName(name)
@@ -50,16 +52,25 @@ public class ProductServiceImpl implements ProductService {
                 int productsOnLastPage = productsNumber % RECORD_PER_PAGE;
                 int pages = productsNumber / RECORD_PER_PAGE;
                 if (productsOnLastPage == 0) {
-                    products = productDao.findProducts(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
+                    currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
                 } else {
-                    products = productDao.findProducts(pages * RECORD_PER_PAGE);
+                    currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE);
                 }
+                productDtoList = currentProducts.stream()
+                    .map(product1 -> new ProductDto.Builder()
+                            .setProductId(product1.getProductId())
+                            .setName(product1.getName())
+                            .setGroup(product1.getGroup())
+                            .setPrice(product1.getPrice())
+                            .setRecipe(convertProductRecipe(product1.isRecipe()))
+                            .setInstruction(product1.getInstruction())
+                            .build()).collect(Collectors.toList());
 
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
             throw new ServiceException("DaoException is in method createProduct() ", e);
         }
-        return products;
+        return productDtoList;
     }
 
     @Override
@@ -100,7 +111,7 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductDto> findListProducts(int startingProduct) throws ServiceException {
         List<ProductDto> products;
         try {
-            List<Product> productsDb = productDao.findProducts(startingProduct);
+            List<Product> productsDb = productDao.findListProducts(startingProduct);
             products = productsDb.stream()
                     .map(product -> new ProductDto.Builder()
                             .setProductId(product.getProductId())
@@ -245,14 +256,17 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private boolean needProductRecipe(String recipe) {
-        return recipe.equals(NEED_RECIPE);
+        if(recipe.equals(NEED_RECIPE_EN)) {
+            return true;
+        }
+        return recipe.equals(NEED_RECIPE_RU);
     }
 
     private String convertProductRecipe(boolean recipe) {
         if (recipe) {
-            return NEED_RECIPE;
+            return NEED_RECIPE_EN;
         } else {
-            return DONT_NEED_RECIPE;
+            return DONT_NEED_RECIPE_EN;
         }
     }
 

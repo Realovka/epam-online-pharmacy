@@ -9,6 +9,7 @@ A {
     text-decoration: none;
 }
 
+
 table {
     background-color: #EEE5DE;
 }
@@ -23,6 +24,14 @@ textarea {
     height: 5em;
 }
 
+.error {
+    color:#990000;
+}
+
+.common_link {
+    color: #800000;
+}
+
 .raw {
     font-weight: bolder;
 }
@@ -34,6 +43,7 @@ nav {
 input {
     margin-bottom: 20px;
 }
+
 
 .field {
     font-weight: bold;

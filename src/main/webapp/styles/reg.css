@@ -10,6 +10,10 @@ h1 {
     text-transform: uppercase;
 }
 
+.error {
+   color: #990000;
+}
+
 .reg {
     width: 700px;
     height: 700px;

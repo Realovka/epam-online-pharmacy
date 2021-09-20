@@ -129,3 +129,6 @@ Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL synta
 2021-09-20 15:04:51.228 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-20 15:07:09.122 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-09-20 15:25:16.003 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-20 19:37:18.044 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-20 20:17:22.437 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-20 22:55:21.942 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

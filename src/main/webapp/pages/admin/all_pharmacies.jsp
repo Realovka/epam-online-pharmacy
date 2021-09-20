@@ -22,15 +22,17 @@
 <h1 style="text-align: center"><fmt:message key="header.all_pharmacies"/></h1>
 <h2 style="text-align: left"><fmt:message key="header.add_pharmacy"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_pharmacy" method="post">
+
     <c:if test="${requestScope.numberError!=null}">
-        <div><fmt:message key="error.pharmacy_number"/></div>
+        <div class="error"><fmt:message key="error.pharmacy_number"/></div>
     </c:if>
     <c:if test="${requestScope.stringParametersError!=null}">
-        <div><fmt:message key="error.pharmacy_string_parameter_error"/></div>
+        <div class="error"><fmt:message key="error.pharmacy_string_parameter_error"/></div>
     </c:if>
     <c:if test="${requestScope.blockError!=null}">
-        <div><fmt:message key="error.pharmacy_block_error"/></div>
+        <div class="error"><fmt:message key="error.pharmacy_block_error"/></div>
     </c:if>
+
     <label class="field"><fmt:message key="label.number"/></label><br>
     <input type="text" name="number" value="${requestScope.mapData.get("number")}"
            placeholder="<fmt:message key="placeholder.number"/>" size="35px"/><br>
@@ -94,9 +96,9 @@
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&count_forward=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.next_pharmacies"/></a>
 </c:if><br>
 
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
         key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
         key="link.logout"/></a>
 </body>
 </html>

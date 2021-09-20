@@ -39,10 +39,10 @@
     <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
         <h1><fmt:message key="page.registration"/></h1><br>
         <c:if test="${requestScope.dataRegistrationError!=null}">
-            <div><fmt:message key="error.registration_user_data"/></div>
+            <div class="error"><fmt:message key="error.registration_user_data"/></div>
         </c:if>
         <c:if test="${requestScope.registrationError!=null}">
-            <div><fmt:message key="error.registration_user"/></div>
+            <div class="error"><fmt:message key="error.registration_user"/></div>
         </c:if>
         <label class="field"><fmt:message key="label.login"/></label><br>
         <input type="text" name="login" value="${requestScope.mapData.get("login")}"

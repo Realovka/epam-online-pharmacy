@@ -15,6 +15,9 @@ input {
     margin-bottom: 10px;
 }
 
+.error {
+    color: #ffffff;
+}
 
 .title_first {
     font-size: 40px;

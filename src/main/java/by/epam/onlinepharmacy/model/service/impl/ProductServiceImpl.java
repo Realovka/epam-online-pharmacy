@@ -148,8 +148,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<Product> findProductById(String id) throws ServiceException {
+    public ProductDto findProductById(String id) throws ServiceException {
         Optional<Product> product;
+        Product productDb;
         try {
             long productId = Long.parseLong(id);
             product = productDao.findProductById(productId);
@@ -157,7 +158,15 @@ public class ProductServiceImpl implements ProductService {
             logger.log(Level.ERROR, "DaoException is in method findProductById() ", e);
             throw new ServiceException("DaoException is in method findProductById() ", e);
         }
-        return product;
+        productDb = product.orElse(new Product());
+        ProductDto productDto = new ProductDto.Builder()
+                .setName(productDb.getName())
+                .setGroup(productDb.getGroup())
+                .setPrice(productDb.getPrice())
+                .setRecipe(convertProductRecipe(productDb.isRecipe()))
+                .setInstruction(productDb.getInstruction())
+                .build();
+        return productDto;
     }
 
     @Override

@@ -20,10 +20,10 @@
 </form>
 
 <h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
-    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists" style="color: #000000"><fmt:message key="link.all_pharmacists"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies" style="color: #000000"><fmt:message key="header.all_pharmacies"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=all_products" style="color: #000000"><fmt:message key="link.all_products"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page" style="color: #000000"><fmt:message key="link.all_inactive_pharmacists"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #000000"><fmt:message key="link.logout"/></a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists" class="common_link"><fmt:message key="link.all_pharmacists"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies" class="common_link"><fmt:message key="header.all_pharmacies"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message key="link.all_products"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=inactive_pharmacists_page" class="common_link"><fmt:message key="link.all_inactive_pharmacists"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
 </body>
 </html>

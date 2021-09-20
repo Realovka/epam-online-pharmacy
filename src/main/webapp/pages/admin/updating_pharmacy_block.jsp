@@ -27,7 +27,7 @@
     <input type="text" name="newBlock" placeholder="<fmt:message key="placeholder.new_block"/>"/><br>
     <input type="submit" value="<fmt:message key="button.update_block"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
 </body>
 </html>

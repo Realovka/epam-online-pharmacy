@@ -22,16 +22,16 @@
 <h2 style="text-align: left"><fmt:message key="header.add_new_product_in_form"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_product" method="post">
     <c:if test="${requestScope.productNameError!=null}">
-        <div><fmt:message key="error.product_name"/></div>
+        <div class="error"><fmt:message key="error.product_name"/></div>
     </c:if>
     <c:if test="${requestScope.productGroupError!=null}">
-        <div><fmt:message key="error.product_group"/></div>
+        <div class="error"><fmt:message key="error.product_group"/></div>
     </c:if>
     <c:if test="${requestScope.productPriceError!=null}">
-        <div><fmt:message key="error.product_price"/></div>
+        <div class="error"><fmt:message key="error.product_price"/></div>
     </c:if>
     <c:if test="${requestScope.productInstructionError!=null}">
-        <div><fmt:message key="error.product_instruction"/></div>
+        <div class="error"><fmt:message key="error.product_instruction"/></div>
     </c:if>
     <label class="field"><fmt:message key="label.name"/></label><br>
     <input type="text" name="name" value="${requestScope.mapData.get("name")}"
@@ -50,7 +50,9 @@
     <label class="field"><fmt:message key="label.instruction"/></label><br>
     <textarea name="instruction"></textarea><br><br>
     <input type="submit" value="<fmt:message key="button.input_product"/>">
-</form>
+</form><br>
+<label><fmt:message key="msg.click_on_parameter"/></label><br>
+<label><fmt:message key="msg.click_on_id_if_need_change_picture"/></label>
 <c:choose>
     <c:when test="${sessionScope.currentProducts.size()>0}">
 
@@ -100,7 +102,7 @@
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.next_products"/></a>
 </c:if><br>
 
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" style="color: #800000"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" style="color: #800000"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
 </body>
 </html>

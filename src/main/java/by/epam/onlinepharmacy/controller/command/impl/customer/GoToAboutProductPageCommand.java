@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.controller.command.impl.customer;
 
 import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -22,22 +23,18 @@ public class GoToAboutProductPageCommand implements Command {
     public CommandResult execute(HttpServletRequest request) {
         String id = request.getParameter(RequestParameter.PRODUCT_ID);
         HttpSession session = request.getSession();
-        CommandResult result;
         ProductService productService = ProductServiceImpl.getInstance();
-        Optional<Product> product;
+        ProductDto productDto;
         try {
-            product = productService.findProductById(id);
+            productDto = productService.findProductById(id);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "Exception in method execute while find product by id ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        //TODO may be product.ifPresentOrElse() doesn't work
-        if (product.isPresent()) {
-            session.setAttribute(SessionAttribute.PRODUCT, product);
-            result = new CommandResult(PagePath.ABOUT_PRODUCT, CommandResult.RoutingType.REDIRECT);
-        } else {
-            result = new CommandResult(PagePath.ERROR_404_PAGE, CommandResult.RoutingType.REDIRECT);
-        }
-        return result;
+
+
+            session.setAttribute(SessionAttribute.PRODUCT, productDto);
+            return new CommandResult(PagePath.ABOUT_PRODUCT, CommandResult.RoutingType.REDIRECT);
+
     }
 }

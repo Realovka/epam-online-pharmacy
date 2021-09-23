@@ -46,7 +46,7 @@ public class CommandProvider {
         commands.put(CommandType.ALL_PRODUCTS, new AllProductsPageCommand());
         commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
         commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
-        commands.put(CommandType.FIND_PICTURE, new FindPictureCommand());
+        commands.put(CommandType.SEE_PRODUCT, new SeeProductCommand());
         commands.put(CommandType.PRODUCTS_FOR_CUSTOMER, new GoToProductsForCustomerPageCommand());
         commands.put(CommandType.ABOUT_PRODUCT, new GoToAboutProductPageCommand());
         commands.put(CommandType.ADDITION_PRODUCT_TO_ORDER, new AdditionProductToOrderCommand());

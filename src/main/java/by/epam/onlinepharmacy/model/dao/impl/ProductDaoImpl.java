@@ -33,7 +33,8 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     private static final String CREATE_PRODUCT = """
-            INSERT INTO products (product_name, product_group, price, recipe, instruction) VALUES (?,?,?,?,?)
+            INSERT INTO products (product_name, inpn, product_dose, plant, product_group, price, recipe, instruction) 
+            VALUES (?,?,?,?,?,?,?,?)
             """;
 
     private static final String COUNT_PRODUCTS = "SELECT COUNT(*) FROM products";
@@ -41,7 +42,8 @@ public class ProductDaoImpl implements ProductDao {
     private static final String ADD_PICTURE = "UPDATE products SET picture=? WHERE product_id=?";
 
     private static final String FIND_PRODUCTS = """
-            SELECT product_id, product_name, product_group, price, recipe, instruction FROM products LIMIT ?, 5
+            SELECT product_id, product_name, inpn, product_dose, plant, product_group, price, 
+            recipe, instruction FROM products LIMIT ?, 5
             """;
     private static final String FIND_PRODUCT_FOR_ORDER = """
             SELECT product_id, product_name FROM products WHERE product_id = ?
@@ -50,7 +52,8 @@ public class ProductDaoImpl implements ProductDao {
     private static final String FIND_PICTURE = "SELECT picture FROM products WHERE product_id=?";
 
     private static final String FIND_PRODUCT_BY_ID = """
-            SELECT product_name, product_group, price, recipe, instruction, picture FROM products WHERE product_id = ?
+            SELECT product_name, inpn, product_dose, plant, product_group, price, recipe, instruction, picture
+            FROM products WHERE product_id = ?
             """;
 
     private static final String UPDATE_PRODUCT_NAME = "UPDATE products SET product_name=? WHERE product_id=?";
@@ -65,10 +68,13 @@ public class ProductDaoImpl implements ProductDao {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PRODUCT)) {
             preparedStatement.setString(1, product.getName());
-            preparedStatement.setString(2, product.getGroup());
-            preparedStatement.setBigDecimal(3, product.getPrice());
-            preparedStatement.setBoolean(4, product.isRecipe());
-            preparedStatement.setString(5, product.getInstruction());
+            preparedStatement.setString(2, product.getNonProprietaryName());
+            preparedStatement.setString(3, product.getDose());
+            preparedStatement.setString(4, product.getPlant());
+            preparedStatement.setString(5, product.getGroup());
+            preparedStatement.setBigDecimal(6, product.getPrice());
+            preparedStatement.setBoolean(7, product.isRecipe());
+            preparedStatement.setString(8, product.getInstruction());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createProduct() ", e);
@@ -100,6 +106,9 @@ public class ProductDaoImpl implements ProductDao {
                     Product product = new Product.Builder()
                             .setProductId(resultSet.getLong(PRODUCT_ID))
                             .setName(resultSet.getString(PRODUCT_NAME))
+                            .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
+                            .setDose(resultSet.getString(PRODUCT_DOSE))
+                            .setPlant(resultSet.getString(PRODUCT_PLANT))
                             .setGroup(resultSet.getString(PRODUCT_GROUP))
                             .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
                             .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
@@ -136,68 +145,69 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public Optional<String> findPathToPicture(long id) throws DaoException {
-        String pathToFile;
+        String pathToFile = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PICTURE)) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     pathToFile = resultSet.getString(PRODUCT_PICTURE);
-                    return Optional.of(pathToFile);
-
                 }
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method findPathToPicture() ", e);
             throw new DaoException("SQLException in method findPathToPicture() ", e);
         }
-        return Optional.empty();
+        return Optional.ofNullable(pathToFile);
     }
 
     @Override
     public Optional<Product> findProductById(long id) throws DaoException {
+        Product product = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCT_BY_ID)) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Product product = new Product.Builder()
+                     product = new Product.Builder()
                             .setName(resultSet.getString(PRODUCT_NAME))
+                             .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
+                            .setDose(resultSet.getString(PRODUCT_DOSE))
+                            .setPlant(resultSet.getString(PRODUCT_PLANT))
                             .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
                             .setGroup(resultSet.getString(PRODUCT_GROUP))
                             .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
                             .setInstruction(resultSet.getString(PRODUCT_INSTRUCTION))
                             .setPicture(resultSet.getString(PRODUCT_PICTURE))
                             .build();
-                    return Optional.of(product);
                 }
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method findProductById() ", e);
             throw new DaoException("SQLException in method findProductById() ", e);
         }
-        return Optional.empty();
+        return Optional.ofNullable(product);
     }
 
     @Override
     public Optional<Product> findProductForOrderById(long id) throws DaoException {
+        Product product = null;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCT_FOR_ORDER)) {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    Product product = new Product.Builder()
+                    product = new Product.Builder()
                             .setProductId(resultSet.getLong(PRODUCT_ID))
                             .setName(resultSet.getString(PRODUCT_NAME))
                             .build();
-                    return Optional.of(product);
                 }
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method findProductForOrderById ", e);
             throw new DaoException("SQLException in method findProductForOrderById ", e);
         }
-        return Optional.empty();
+        return Optional.ofNullable(product);
     }
 
     @Override

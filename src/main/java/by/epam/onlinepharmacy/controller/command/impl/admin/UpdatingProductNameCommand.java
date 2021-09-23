@@ -33,7 +33,7 @@ public class UpdatingProductNameCommand implements Command {
         List<ProductDto> nextProducts;
         List<ProductDto> previousProducts = new ArrayList<>();
 
-        if(!productValidator.isValidNameOrGroup(newName)) {
+        if(!productValidator.isValidStringParameters(newName)) {
             request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
             return new CommandResult(PagePath.UPDATING_PRODUCT_NAME, CommandResult.RoutingType.FORWARD);
         }

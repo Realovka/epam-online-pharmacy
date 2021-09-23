@@ -180,3 +180,9 @@ ALTER TABLE `online_pharmacy`.`products`
 ALTER TABLE orders
 ALTER COLUMN order_status_id SET DEFAULT 1;
 SET time_zone='+03:00';
+ALTER TABLE `online_pharmacy`.`products`
+ADD COLUMN `product_dose` VARCHAR(45) NOT NULL AFTER `product_name`;
+ALTER TABLE `online_pharmacy`.`products`
+DROP INDEX `name_UNIQUE` ;
+ALTER TABLE `online_pharmacy`.`products`
+ADD COLUMN `plant` VARCHAR(45) NOT NULL AFTER `product_dose`;

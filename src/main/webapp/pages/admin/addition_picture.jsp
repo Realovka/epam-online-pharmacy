@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>Add picture</title>
+    <title><fmt:message key="title.addition_picture"/></title>
 </head>
 <body>
 
@@ -19,13 +19,13 @@
     <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
 </form>
 
-<h1 style="text-align: center">Add picture</h1>
+<h1 style="text-align: center"><fmt:message key="title.addition_picture"/></h1>
 <form action="${pageContext.request.contextPath}/addImage" method="post" enctype="multipart/form-data">
-    <input type="file" name="picture" placeholder="picture"/><br>
-    <input type="submit" value="Add"/>
+    <input type="file" name="picture"/><br>
+    <input type="submit" value="<fmt:message key="button.add_picture"/>"/>
 </form>
-<a href="${pageContext.request.contextPath}/controller?command=find_picture">See picture</a>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=see_product" class="common_link"><fmt:message key="link.see_page_about_product"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message key="link.admin_main"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
 </body>
 </html>

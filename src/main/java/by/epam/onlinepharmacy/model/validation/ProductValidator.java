@@ -4,7 +4,8 @@ import java.util.Map;
 
 public interface ProductValidator {
     boolean isValidForm(Map<String, String> formData);
-    boolean isValidNameOrGroup(String parameter);
+    boolean isValidStringParameters(String parameter);
+    boolean isValidInpn(String inpn);
     boolean isValidPrice(String price);
     boolean isValidInstruction(String instruction);
 }

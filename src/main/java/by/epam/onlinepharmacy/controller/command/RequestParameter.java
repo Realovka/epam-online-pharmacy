@@ -42,7 +42,10 @@ public final class RequestParameter {
     //Product
     public static final String PRODUCT_ID = "product_id";
     public static final String NAME = "name";
+    public static final String NON_PROPRIETARY_NAME = "nonProprietaryName";
+    public static final String DOSE = "dose";
     public static final String GROUP = "group";
+    public static final String PLANT = "plant";
     public static final String PRICE = "price";
     public static final String RECIPE = "recipe";
     public static final String INSTRUCTION = "instruction";

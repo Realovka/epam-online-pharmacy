@@ -15,7 +15,10 @@ public final class BundleKey {
     public static final String PHARMACY_BLOCK_ERROR = "pharmacyBlockError";
     public static final String PHARMACY_HOUSE_ERROR = "pharmacyHouseError";
     public static final String PRODUCT_NAME_ERROR = "productNameError";
+    public static final String PRODUCT_NON_PROPRIETARY_NAME_ERROR = "productNonProprietaryNameError";
+    public static final String PRODUCT_DOSE_ERROR = "productDoseError";
     public static final String PRODUCT_GROUP_ERROR = "productGroupError";
+    public static final String PRODUCT_PLANT_ERROR = "productPlantError";
     public static final String PRODUCT_PRICE_ERROR = "productNameError";
     public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
 

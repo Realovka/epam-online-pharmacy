@@ -25,15 +25,36 @@ public class AdditionProductCommand implements Command {
         HttpSession session = request.getSession();
         ProductService productService = ProductServiceImpl.getInstance();
         String name = request.getParameter(RequestParameter.NAME);
+        String nonProprietaryName = request.getParameter(RequestParameter.NON_PROPRIETARY_NAME);
+        String dose = request.getParameter(RequestParameter.DOSE);
+        String plant = request.getParameter(RequestParameter.PLANT);
         String group = request.getParameter(RequestParameter.GROUP);
         String price = request.getParameter(RequestParameter.PRICE);
         String recipe = request.getParameter(RequestParameter.RECIPE);
         String instruction = request.getParameter(RequestParameter.INSTRUCTION);
 
-        Map<String, String> productParameters = productService.isValidParameters(name, group, price, instruction);
+        Map<String, String> productParameters = productService.isValidParameters(name, nonProprietaryName, dose, plant, group, price, instruction);
         if (productParameters.get(RequestParameter.NAME).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
             request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
+            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+        }
+
+        if (productParameters.get(RequestParameter.NON_PROPRIETARY_NAME).isBlank()) {
+            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.PRODUCT_NON_PROPRIETARY_NAME_ERROR, BundleKey.PRODUCT_NON_PROPRIETARY_NAME_ERROR);
+            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+        }
+
+        if (productParameters.get(RequestParameter.DOSE).isBlank()) {
+            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.PRODUCT_DOSE_ERROR, BundleKey.PRODUCT_DOSE_ERROR);
+            return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
+        }
+
+        if (productParameters.get(RequestParameter.PLANT).isBlank()) {
+            request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.PRODUCT_PLANT_ERROR, BundleKey.PRODUCT_PLANT_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
@@ -61,7 +82,7 @@ public class AdditionProductCommand implements Command {
         List<ProductDto> previousProducts;
 
         try {
-            currentProducts = productService.createProduct(name,group,price,recipe, instruction);
+            currentProducts = productService.createProduct(name, nonProprietaryName, dose, plant, group,price,recipe, instruction);
             currentPage = productService.findCurrentPage();
             previousProducts = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
 

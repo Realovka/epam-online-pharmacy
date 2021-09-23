@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>About product</title>
+    <title><fmt:message key="title.about_product"/></title>
 </head>
 <body>
 
@@ -18,12 +18,23 @@
     <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
     <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
 </form>
+
+<h1 style="text-align: center"><fmt:message key="title.about_product"/></h1>
+<label><fmt:message key="label.product_name"/></label>
 <div>${sessionScope.product.name}</div><br>
+<label><fmt:message key="label.product_dose"/></label>
+<div>${sessionScope.product.dose}</div><br>
+<label><fmt:message key="label.product_plant"/></label>
+<div>${sessionScope.product.plant}</div><br>
+<label><fmt:message key="label.product_group"/></label>
 <div>${sessionScope.product.group}</div><br>
+<label><fmt:message key="label.product_price"/></label>
 <div>${sessionScope.product.price}</div><br>
+<label><fmt:message key="label.product_recipe"/></label>
 <div>${sessionScope.product.recipe}</div><br>
-<img id="account_image" class="rounded-circle account-img" src="<c:url value="${pageContext.request.contextPath}${sessionScope.pathToFile}"/>" alt="no img"/><br>
-<div>${sessionScope.product.instruction}</div>
+<img id="account_image" class="rounded-circle account-img" width="300px" height="300px" src="<c:url value="${pageContext.request.contextPath}${sessionScope.pathToFile}"/>" alt="no img"/><br>
+<fmt:message key="label.product_instruction"/>
+<label><div>${sessionScope.product.instruction}</div></label>
 <a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message key="link.admin_main"/></a>
 <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
 </body>

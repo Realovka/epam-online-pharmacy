@@ -5,10 +5,9 @@ import by.epam.onlinepharmacy.model.validation.ProductValidator;
 
 import java.math.BigInteger;
 import java.util.Map;
-import java.util.regex.Matcher;
 
 public class ProductValidatorImpl implements ProductValidator {
-    private static final int MAX_SYMBOLS_FOR_NAME_AND_GROUP = 45;
+    private static final int MAX_SYMBOLS_FOR_STRING_PARAMETER = 45;
     private static double MIN_PRICE = 0.0;
     private static BigInteger MAX_SYMBOLS_FOR_INSTRUCTION = new BigInteger("4294967295");
     private static final String EMPTY_STRING = "";
@@ -25,11 +24,20 @@ public class ProductValidatorImpl implements ProductValidator {
 
     @Override
     public boolean isValidForm(Map<String, String> formData) {
-        if (!isValidNameOrGroup(formData.get(RequestParameter.NAME))) {
+        if (!isValidStringParameters(formData.get(RequestParameter.NAME))) {
             formData.put(RequestParameter.NAME, EMPTY_STRING);
         }
-        if (!isValidNameOrGroup(formData.get(RequestParameter.GROUP))) {
+        if (!isValidInpn(formData.get(RequestParameter.NON_PROPRIETARY_NAME))) {
+            formData.put(RequestParameter.NON_PROPRIETARY_NAME, EMPTY_STRING);
+        }
+        if (!isValidStringParameters(formData.get(RequestParameter.DOSE))) {
+            formData.put(RequestParameter.DOSE, EMPTY_STRING);
+        }
+        if (!isValidStringParameters(formData.get(RequestParameter.GROUP))) {
             formData.put(RequestParameter.GROUP, EMPTY_STRING);
+        }
+        if (!isValidStringParameters(formData.get(RequestParameter.PLANT))) {
+            formData.put(RequestParameter.PLANT, EMPTY_STRING);
         }
         if (!isValidPrice(formData.get(RequestParameter.PRICE))) {
             formData.put(RequestParameter.PRICE, EMPTY_STRING);
@@ -41,8 +49,13 @@ public class ProductValidatorImpl implements ProductValidator {
     }
 
     @Override
-    public boolean isValidNameOrGroup(String parameter) {
-        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_NAME_AND_GROUP;
+    public boolean isValidStringParameters(String parameter) {
+        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
+    }
+
+    @Override
+    public boolean isValidInpn(String inpn) {
+        return inpn.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
     }
 
     @Override

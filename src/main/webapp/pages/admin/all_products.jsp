@@ -24,6 +24,15 @@
     <c:if test="${requestScope.productNameError!=null}">
         <div class="error"><fmt:message key="error.product_name"/></div>
     </c:if>
+    <c:if test="${requestScope.productNonProprietaryNameError!=null}">
+        <div class="error"><fmt:message key="error.product_product_non_proprietary_name"/></div>
+    </c:if>
+    <c:if test="${requestScope.productDoseError!=null}">
+        <div class="error"><fmt:message key="error.product_dose"/></div>
+    </c:if>
+    <c:if test="${requestScope.productPlantError!=null}">
+        <div class="error"><fmt:message key="error.product_plant"/></div>
+    </c:if>
     <c:if test="${requestScope.productGroupError!=null}">
         <div class="error"><fmt:message key="error.product_group"/></div>
     </c:if>
@@ -36,6 +45,15 @@
     <label class="field"><fmt:message key="label.name"/></label><br>
     <input type="text" name="name" value="${requestScope.mapData.get("name")}"
            placeholder="<fmt:message key="placeholder.product_name"/>"/><br>
+    <label class="field"><fmt:message key="label.product_non_proprietary_name"/></label><br>
+    <input type="text" name="nonProprietaryName" value="${requestScope.mapData.get("nonProprietaryName")}"
+           placeholder="<fmt:message key="placeholder.product_non_proprietary_name"/>"/><br>
+    <label class="field"><fmt:message key="label.dose"/></label><br>
+    <input type="text" name="dose" value="${requestScope.mapData.get("dose")}"
+           placeholder="<fmt:message key="placeholder.product_dose"/>"/><br>
+    <label class="field"><fmt:message key="label.plant"/></label><br>
+    <input type="text" name="plant" value="${requestScope.mapData.get("plant")}"
+           placeholder="<fmt:message key="placeholder.product_plant"/>"/><br>
     <label class="field"><fmt:message key="label.group"/></><br>
     <input type="text" name="group" value="${requestScope.mapData.get("group")}"
            placeholder="<fmt:message key="placeholder.product_group"/>"/><br>
@@ -60,6 +78,9 @@
             <thead>
             <th><fmt:message key="column.table.id"/></th>
             <th><fmt:message key="column.table_name"/></th>
+            <th><fmt:message key="column.table_product_non_proprietary_name"/></th>
+            <th><fmt:message key="column.table_dose"/></th>
+            <th><fmt:message key="column.table_plant"/></th>
             <th><fmt:message key="column.table_group"/></th>
             <th><fmt:message key="column.table_price"/></th>
             <th><fmt:message key="column.table_recipe"/></th>
@@ -74,6 +95,15 @@
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&product_id=${product.productId}">${product.name}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_product_non_proprietary_name_page&product_id=${product.productId}">${product.nonProprietaryName}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_dose_page&product_id=${product.productId}">${product.dose}</a>
+                        </td>
+                        <td>
+                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_plant_page&product_id=${product.productId}">${product.plant}</a>
                         </td>
                         <td>
                             <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&product_id=${product.productId}">${product.group}</a>

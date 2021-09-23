@@ -29,6 +29,9 @@ public final class ColumnName {
     //table products
     public static final String PRODUCT_ID = "product_id";
     public static final String PRODUCT_NAME = "product_name";
+    public static final String PRODUCT_NON_PROPRIETARY_NAME = "inpn";
+    public static final String PRODUCT_DOSE = "product_dose";
+    public static final String PRODUCT_PLANT = "plant";
     public static final String PRODUCT_GROUP = "product_group";
     public static final String PRODUCT_PRICE = "price";
     public static final String PRODUCT_RECIPE = "recipe";

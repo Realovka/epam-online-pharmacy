@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
-public class FindPictureCommand implements Command {
+public class SeeProductCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
@@ -34,9 +34,9 @@ public class FindPictureCommand implements Command {
             logger.log(Level.ERROR, "ServiceException in method execute while find path to picture ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        path = pathToFile.get();
+        path = pathToFile.orElse("");
         request.getSession().setAttribute(SessionAttribute.PATH_TO_FILE, path);
         request.getSession().setAttribute(SessionAttribute.PRODUCT, product);
-        return new CommandResult(PagePath.VIEW_PICTURE, CommandResult.RoutingType.REDIRECT);
+        return new CommandResult(PagePath.SEE_PRODUCT, CommandResult.RoutingType.REDIRECT);
     }
 }

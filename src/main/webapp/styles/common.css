@@ -9,13 +9,17 @@ A {
     text-decoration: none;
 }
 
+h1 {
+    text-align: center;
+}
+
 
 table {
     background-color: #EEE5DE;
 }
 
 input, textarea {
-    width: 300px;
+    width: 400px;
     border: 1px solid #999;
 }
 

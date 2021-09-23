@@ -35,12 +35,16 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> createProduct(String name, String group, String price, String recipe, String instruction) throws ServiceException {
+    public List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String group, String plant, String price,
+                                          String recipe, String instruction) throws ServiceException {
         List<Product> currentProducts;
         List<ProductDto> productDtoList;
         boolean needRecipe = needProductRecipe(recipe);
         Product product = new Product.Builder()
                 .setName(name)
+                .setNonProprietaryName(nonProprietaryName)
+                .setDose(dose)
+                .setPlant(plant)
                 .setGroup(group)
                 .setPrice(BigDecimal.valueOf(Double.parseDouble(price)))
                 .isRecipe(needRecipe)
@@ -60,6 +64,9 @@ public class ProductServiceImpl implements ProductService {
                     .map(product1 -> new ProductDto.Builder()
                             .setProductId(product1.getProductId())
                             .setName(product1.getName())
+                            .setNonProprietaryName(product1.getNonProprietaryName())
+                            .setDose(product1.getDose())
+                            .setPlant(product1.getPlant())
                             .setGroup(product1.getGroup())
                             .setPrice(product1.getPrice())
                             .setRecipe(convertProductRecipe(product1.isRecipe()))
@@ -74,9 +81,13 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Map<String, String> isValidParameters(String name, String group, String price, String instruction) {
+    public Map<String, String> isValidParameters(String name, String nonProprietaryName, String dose, String plant,
+                                                 String group, String price, String instruction) {
         Map<String, String> productParameters = new HashMap<>();
         productParameters.put(RequestParameter.NAME, name);
+        productParameters.put(RequestParameter.NON_PROPRIETARY_NAME, nonProprietaryName);
+        productParameters.put(RequestParameter.DOSE, dose);
+        productParameters.put(RequestParameter.PLANT, plant);
         productParameters.put(RequestParameter.GROUP, group);
         productParameters.put(RequestParameter.PRICE, price);
         productParameters.put(RequestParameter.INSTRUCTION, instruction);
@@ -116,6 +127,9 @@ public class ProductServiceImpl implements ProductService {
                     .map(product -> new ProductDto.Builder()
                             .setProductId(product.getProductId())
                             .setName(product.getName())
+
+                            .setDose(product.getDose())
+                            .setPlant(product.getPlant())
                             .setGroup(product.getGroup())
                             .setPrice(product.getPrice())
                             .setRecipe(convertProductRecipe(product.isRecipe()))
@@ -161,6 +175,8 @@ public class ProductServiceImpl implements ProductService {
         productDb = product.orElse(new Product());
         ProductDto productDto = new ProductDto.Builder()
                 .setName(productDb.getName())
+                .setDose(productDb.getDose())
+                .setPlant(productDb.getPlant())
                 .setGroup(productDb.getGroup())
                 .setPrice(productDb.getPrice())
                 .setRecipe(convertProductRecipe(productDb.isRecipe()))

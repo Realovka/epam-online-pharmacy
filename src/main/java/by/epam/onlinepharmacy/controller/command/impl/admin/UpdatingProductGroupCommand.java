@@ -33,7 +33,7 @@ public class UpdatingProductGroupCommand implements Command {
         List<ProductDto> nextProducts;
         List<ProductDto> previousProducts = new ArrayList<>();
 
-        if(!productValidator.isValidNameOrGroup(newGroup)) {
+        if(!productValidator.isValidStringParameters(newGroup)) {
             request.setAttribute(RequestAttribute.PRODUCT_GROUP_ERROR, BundleKey.PRODUCT_GROUP_ERROR);
             return new CommandResult(PagePath.UPDATING_PRODUCT_GROUP, CommandResult.RoutingType.FORWARD);
         }

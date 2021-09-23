@@ -1,17 +1,18 @@
-2021-09-20 14:47:36.232 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 14:52:48.256 [http-nio-8080-exec-5] ERROR onlinepharmacy.model.dao.impl.ProductDaoImpl - SQLException in method findListProducts() 
-java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5, 5' at line 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+2021-09-23 21:06:02.462 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:06:05.269 [http-nio-8080-exec-5] ERROR onlinepharmacy.model.dao.impl.ProductDaoImpl - SQLException in method findListProducts() 
+java.sql.SQLException: Column 'product_plant' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003) ~[mysql-connector-java-8.0.20.jar:?]
-	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:98) [classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:114) [classes/:?]
-	at by.epam.onlinepharmacy.controller.command.impl.admin.AdditionProductCommand.execute(AdditionProductCommand.java:66) [classes/:?]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:556) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:863) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:109) [classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:121) [classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.admin.AllProductsPageCommand.execute(AllProductsPageCommand.java:47) [classes/:?]
 	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
-	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at by.epam.onlinepharmacy.controller.Controller.doGet(Controller.java:22) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [servlet-api.jar:?]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
@@ -38,14 +39,14 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
 	at java.lang.Thread.run(Thread.java:831) [?:?]
-2021-09-20 14:52:49.170 [http-nio-8080-exec-5] ERROR onlinepharmacy.model.service.impl.ProductServiceImpl - DaoException is in method findListProducts() 
+2021-09-23 21:06:05.299 [http-nio-8080-exec-5] ERROR onlinepharmacy.model.service.impl.ProductServiceImpl - DaoException is in method findListProducts() 
 by.epam.onlinepharmacy.exception.DaoException: SQLException in method findListProducts() 
-	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:113) ~[classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:114) [classes/:?]
-	at by.epam.onlinepharmacy.controller.command.impl.admin.AdditionProductCommand.execute(AdditionProductCommand.java:66) [classes/:?]
+	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:120) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:121) [classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.admin.AllProductsPageCommand.execute(AllProductsPageCommand.java:47) [classes/:?]
 	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
-	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at by.epam.onlinepharmacy.controller.Controller.doGet(Controller.java:22) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [servlet-api.jar:?]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
@@ -72,21 +73,22 @@ by.epam.onlinepharmacy.exception.DaoException: SQLException in method findListPr
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
 	at java.lang.Thread.run(Thread.java:831) [?:?]
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5, 5' at line 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+Caused by: java.sql.SQLException: Column 'product_plant' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003) ~[mysql-connector-java-8.0.20.jar:?]
-	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:98) ~[classes/:?]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:556) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:863) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:109) ~[classes/:?]
 	... 31 more
-2021-09-20 14:52:49.190 [http-nio-8080-exec-5] ERROR controller.command.impl.admin.AdditionProductCommand - ServiceException in method execute while find current products 
+2021-09-23 21:06:05.301 [http-nio-8080-exec-5] ERROR controller.command.impl.admin.AllProductsPageCommand - ServiceException in method execute while find list products 
 by.epam.onlinepharmacy.exception.ServiceException: DaoException is in method findListProducts() 
-	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:127) ~[classes/:?]
-	at by.epam.onlinepharmacy.controller.command.impl.admin.AdditionProductCommand.execute(AdditionProductCommand.java:66) [classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:135) ~[classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.admin.AllProductsPageCommand.execute(AllProductsPageCommand.java:47) [classes/:?]
 	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
-	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
+	at by.epam.onlinepharmacy.controller.Controller.doGet(Controller.java:22) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [servlet-api.jar:?]
 	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
@@ -114,21 +116,23 @@ by.epam.onlinepharmacy.exception.ServiceException: DaoException is in method fin
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
 	at java.lang.Thread.run(Thread.java:831) [?:?]
 Caused by: by.epam.onlinepharmacy.exception.DaoException: SQLException in method findListProducts() 
-	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:113) ~[classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:114) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:120) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:121) ~[classes/:?]
 	... 30 more
-Caused by: java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '-5, 5' at line 1
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+Caused by: java.sql.SQLException: Column 'product_plant' not found.
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
 	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeQuery(ClientPreparedStatement.java:1003) ~[mysql-connector-java-8.0.20.jar:?]
-	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:98) ~[classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:114) ~[classes/:?]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.findColumn(ResultSetImpl.java:556) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:863) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at by.epam.onlinepharmacy.model.dao.impl.ProductDaoImpl.findListProducts(ProductDaoImpl.java:109) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl.findListProducts(ProductServiceImpl.java:121) ~[classes/:?]
 	... 30 more
-2021-09-20 15:04:51.228 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 15:07:09.122 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 15:25:16.003 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 19:37:18.044 [http-nio-8080-exec-6] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 20:17:22.437 [http-nio-8080-exec-3] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-09-20 22:55:21.942 [http-nio-8080-exec-7] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:07:18.083 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:21:01.577 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:21:50.964 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:25:00.281 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 21:37:06.073 [http-nio-8080-exec-5] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 23:14:15.340 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-09-23 23:18:40.016 [http-nio-8080-exec-4] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

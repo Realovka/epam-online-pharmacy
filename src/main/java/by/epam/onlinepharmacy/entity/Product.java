@@ -1,13 +1,14 @@
 package by.epam.onlinepharmacy.entity;
 
-import java.io.File;
 import java.math.BigDecimal;
-import java.sql.Blob;
 import java.util.Objects;
 
 public class Product {
     private long productId;
     private String name;
+    private String nonProprietaryName;
+    private String dose;
+    private String plant;
     private String group;
     public BigDecimal price;
     private boolean recipe;
@@ -17,10 +18,14 @@ public class Product {
     public Product() {
     }
 
-    public Product(long productId, String name, String group, BigDecimal price, boolean recipe,
-                   String pathToPicture, String instruction) {
+    public Product(long productId, String name, String nonProprietaryName,
+                   String dose, String plant, String group, BigDecimal price,
+                   boolean recipe, String pathToPicture, String instruction) {
         this.productId = productId;
         this.name = name;
+        this.nonProprietaryName = nonProprietaryName;
+        this.dose = dose;
+        this.plant = plant;
         this.group = group;
         this.price = price;
         this.recipe = recipe;
@@ -42,6 +47,30 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNonProprietaryName() {
+        return nonProprietaryName;
+    }
+
+    public void setNonProprietaryName(String nonProprietaryName) {
+        this.nonProprietaryName = nonProprietaryName;
+    }
+
+    public String getDose() {
+        return dose;
+    }
+
+    public void setDose(String dose) {
+        this.dose = dose;
+    }
+
+    public String getPlant() {
+        return plant;
+    }
+
+    public void setPlant(String plant) {
+        this.plant = plant;
     }
 
     public String getGroup() {
@@ -90,8 +119,13 @@ public class Product {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
         return productId == product.productId && recipe == product.recipe
-                && Objects.equals(name, product.name) && Objects.equals(group, product.group)
-                && Objects.equals(price, product.price) && Objects.equals(pathToPicture, product.pathToPicture)
+                && Objects.equals(name, product.name)
+                && Objects.equals(nonProprietaryName, product.nonProprietaryName)
+                && Objects.equals(dose, product.dose)
+                && Objects.equals(plant, product.plant)
+                && Objects.equals(group, product.group)
+                && Objects.equals(price, product.price)
+                && Objects.equals(pathToPicture, product.pathToPicture)
                 && Objects.equals(instruction, product.instruction);
     }
 
@@ -99,6 +133,9 @@ public class Product {
     public int hashCode() {
         int result = (int) (productId ^ (productId >>> 32));
         result *= 31 + (name != null ? name.hashCode() : 0);
+        result *= 31 + (nonProprietaryName != null ? nonProprietaryName.hashCode() : 0);
+        result *= 31 + (dose != null ? dose.hashCode() : 0);
+        result *= 31 + (plant != null ? plant.hashCode() : 0);
         result *= 31 + (group != null ? group.hashCode() : 0);
         result *= 31 + (price != null ? price.hashCode() : 0);
         result *= recipe ? 1 : 0;
@@ -112,12 +149,15 @@ public class Product {
         StringBuilder builder = new StringBuilder();
         builder.append("Product{");
         builder.append("productId=").append(productId);
-        builder.append(", name='").append(name);
-        builder.append(", group='").append(group);
+        builder.append(", name=").append(name);
+        builder.append(", nonProprietaryName=").append(nonProprietaryName);
+        builder.append(", dose=").append(dose);
+        builder.append(", plant=").append(plant);
+        builder.append(", group=").append(group);
         builder.append(", price=").append(price);
         builder.append(", recipe=").append(recipe);
-        builder.append(", picture='").append(pathToPicture);
-        builder.append(", instruction='").append(instruction);
+        builder.append(", picture=").append(pathToPicture);
+        builder.append(", instruction=").append(instruction);
         builder.append('}');
         return builder.toString();
     }
@@ -136,6 +176,21 @@ public class Product {
 
         public Product.Builder setName(String name) {
             newProduct.name = name;
+            return this;
+        }
+
+        public Product.Builder setNonProprietaryName(String nonProprietaryName) {
+            newProduct.nonProprietaryName = nonProprietaryName;
+            return this;
+        }
+
+        public Product.Builder setDose(String dose) {
+            newProduct.dose = dose;
+            return this;
+        }
+
+        public Product.Builder setPlant(String plant) {
+            newProduct.plant = plant;
             return this;
         }
 

@@ -32,7 +32,8 @@
     </ul>
 </nav>
 <h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
-<a href="${pageContext.request.contextPath}/controller?command=products_for_customer">See all products in pharmacies</a><br>
+<a href="${pageContext.request.contextPath}/controller?command=search_products_by_name_page">Search by name</a><br>
+<a href="${pageContext.request.contextPath}/controller?command=search_products_by_non_proprietary_name_page">Search by inpn</a><br>
 <a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
 </body>
 </html>

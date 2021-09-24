@@ -1,19 +1,21 @@
-package by.epam.onlinepharmacy.entity;
+package by.epam.onlinepharmacy.dto;
+
+import by.epam.onlinepharmacy.entity.Pharmacy;
 
 import java.util.Objects;
 
-public class Pharmacy {
+public class PharmacyDto {
     private long pharmacyId;
     private int number;
     private String city;
     private String street;
     private String house;
-    private Integer block;
+    private String block;
 
-    public Pharmacy() {
+    public PharmacyDto() {
     }
 
-    public Pharmacy(long pharmacyId, int number, String city, String street, String house, Integer block) {
+    public PharmacyDto(long pharmacyId, int number, String city, String street, String house, String block) {
         this.pharmacyId = pharmacyId;
         this.number = number;
         this.city = city;
@@ -30,7 +32,7 @@ public class Pharmacy {
         this.pharmacyId = pharmacyId;
     }
 
-    public Integer getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -62,11 +64,11 @@ public class Pharmacy {
         this.house = house;
     }
 
-    public Integer getBlock() {
+    public String getBlock() {
         return block;
     }
 
-    public void setBlock(Integer block) {
+    public void setBlock(String block) {
         this.block = block;
     }
 
@@ -74,7 +76,7 @@ public class Pharmacy {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Pharmacy pharmacy = (Pharmacy) o;
+        PharmacyDto pharmacy = (PharmacyDto) o;
         return pharmacyId == pharmacy.pharmacyId && number == pharmacy.number && Objects.equals(city, pharmacy.city)
                 && Objects.equals(street, pharmacy.street) && Objects.equals(house, pharmacy.house)
                 && Objects.equals(block, pharmacy.block);
@@ -101,49 +103,49 @@ public class Pharmacy {
         builder.append(", street=").append(street);
         builder.append(", house=").append(house);
         builder.append(", block=").append(block);
-        builder.append("}");
+        builder.append('}');
         return builder.toString();
     }
 
     public static class Builder {
-        private Pharmacy newPharmacy;
+        private PharmacyDto newPharmacy;
 
         public Builder() {
-            newPharmacy = new Pharmacy();
+            newPharmacy = new PharmacyDto();
         }
 
-        public Pharmacy.Builder setPharmacyId(long pharmacyId) {
+        public PharmacyDto.Builder setPharmacyId(long pharmacyId) {
             newPharmacy.pharmacyId = pharmacyId;
             return this;
         }
 
-        public Pharmacy.Builder setNumber(int number) {
+        public PharmacyDto.Builder setNumber(int number) {
             newPharmacy.number = number;
             return this;
         }
 
-        public Pharmacy.Builder setCity(String city) {
+        public PharmacyDto.Builder setCity(String city) {
             newPharmacy.city = city;
             return this;
         }
 
 
-        public Pharmacy.Builder setStreet(String street) {
+        public PharmacyDto.Builder setStreet(String street) {
             newPharmacy.street = street;
             return this;
         }
 
-        public Pharmacy.Builder setHouse(String house) {
+        public PharmacyDto.Builder setHouse(String house) {
             newPharmacy.house = house;
             return this;
         }
 
-        public Pharmacy.Builder setBlock(Integer block) {
+        public PharmacyDto.Builder setBlock(String block) {
             newPharmacy.block = block;
             return this;
         }
 
-        public Pharmacy build() {
+        public PharmacyDto build() {
             return newPharmacy;
         }
     }

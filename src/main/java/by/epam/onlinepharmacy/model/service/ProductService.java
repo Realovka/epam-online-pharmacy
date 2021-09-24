@@ -15,6 +15,8 @@ public interface ProductService {
                                           String dose, String plant, String group, String price, String instruction);
     void addPathToPicture(long id, String fileName) throws ServiceException;
     List<ProductDto> findListProducts(int startingProduct) throws ServiceException;
+    List<ProductDto> findListProductsByName(String productName) throws ServiceException;
+    List<ProductDto> findListProductsByNonProprietaryName(String nonProprietaryName) throws ServiceException;
     int findCurrentPage() throws ServiceException;
     Optional<String> findPathToPicture(long id) throws ServiceException;
     ProductDto findProductById(String id) throws ServiceException;

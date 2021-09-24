@@ -35,23 +35,35 @@
 <a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy">Choose pharmacy</a><br>
 <a href="${pageContext.request.contextPath}/controller?command=order">Go to order page</a>
 <c:choose>
-    <c:when test="${sessionScope.products.size()>0}">
+    <c:when test="${sessionScope.listProductsInBasket.size()>0}">
 
         <table border="3">
             <thead>
             <th>Name</th>
+            <th>Dose</th>
+            <th>Plant</th>
+            <th>Price</th>
             <th>Quantity</th>
             </thead>
 
-            <c:forEach items="${sessionScope.products}" var="product">
+            <c:forEach items="${sessionScope.listProductsInBasket}" var="product">
 
             <tr>
                 <td>
                         ${product.key.name}
                 </td>
                 <td>
+                        ${product.key.dose}
+                </td>
+                <td>
+                        ${product.key.plant}
+                </td>
+                <td>
+                        ${product.key.price}
+                </td>
+                <td>
                         ${product.value}
-                            <form action="${pageContext.request.contextPath}/controller?command=updating_product_quantity&productId=${product.key.productId}" method="post">
+                            <form action="${pageContext.request.contextPath}/controller?command=updating_product_quantity&product_id=${product.key.productId}" method="post">
                                 <input type="text" name="quantity" placeholder="Update quantity here"/>
                             </form>
 

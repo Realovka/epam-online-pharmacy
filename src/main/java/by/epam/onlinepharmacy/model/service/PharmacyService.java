@@ -1,5 +1,6 @@
 package by.epam.onlinepharmacy.model.service;
 
+import by.epam.onlinepharmacy.dto.PharmacyDto;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 
@@ -8,11 +9,12 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface PharmacyService {
-    List<Pharmacy> findListPharmacies(int startingPharmacy) throws ServiceException;
-    List<Pharmacy> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException;
+    List<PharmacyDto> findListPharmacies(int startingPharmacy) throws ServiceException;
+    List<PharmacyDto> findListPharmaciesByCity(String city) throws ServiceException;
+    List<PharmacyDto> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException;
     int findCurrentPage() throws ServiceException;
     Map<String, String> isFormValid(String number, String city, String street, String house, String block);
-    Optional<Pharmacy> findPharmacyById(long id) throws ServiceException;
+    PharmacyDto findPharmacyById(long id) throws ServiceException;
     void updateNumber(long id, String number) throws ServiceException;
     void updateCity(long id, String city) throws ServiceException;
     void updateStreet(long id, String street) throws ServiceException;

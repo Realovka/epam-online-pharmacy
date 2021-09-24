@@ -32,7 +32,8 @@ public final class PagePath {
 
     //customer
     public static final String MAIN_CUSTOMER = "/pages/customer/customer_main.jsp";
-    public static final String PRODUCTS_FOR_CUSTOMER = "/pages/customer/products_for_customer.jsp";
+    public static final String SEARCH_PRODUCTS_BY_NAME = "/pages/customer/products_by_name.jsp";
+    public static final String SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME = "/pages/customer/products_by_non_proprietary_name.jsp";
     public static final String ABOUT_PRODUCT = "/pages/customer/about_product.jsp";
     public static final String BASKET = "/pages/customer/basket.jsp";
     public static final String PHARMACIES_FOR_CUSTOMER = "/pages/customer/pharmacies_for_customer.jsp";

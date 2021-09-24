@@ -21,11 +21,13 @@ public class AdditionProductToOrderCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        String id = request.getParameter(RequestParameter.PRODUCT_ID);
         HttpSession session = request.getSession();
+        String id = request.getParameter(RequestParameter.PRODUCT_ID);
+        String url = request.getParameter(RequestParameter.CURRENT_URL);
+
         Map<Product, Integer> products;
-        if (session.getAttribute(SessionAttribute.PRODUCTS) != null) {
-            products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.PRODUCTS);
+        if (session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET) != null) {
+            products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
         } else {
             products = new LinkedHashMap<>();
         }
@@ -36,7 +38,7 @@ public class AdditionProductToOrderCommand implements Command {
             logger.log(Level.ERROR, "Exception in method execute add product to order ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        session.setAttribute(SessionAttribute.PRODUCTS, products);
-        return new CommandResult(PagePath.PRODUCTS_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+        session.setAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET, products);
+        return new CommandResult(url, CommandResult.RoutingType.REDIRECT);
     }
 }

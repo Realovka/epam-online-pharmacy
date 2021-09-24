@@ -158,7 +158,7 @@ public class Product {
         builder.append(", recipe=").append(recipe);
         builder.append(", picture=").append(pathToPicture);
         builder.append(", instruction=").append(instruction);
-        builder.append('}');
+        builder.append("}");
         return builder.toString();
     }
 

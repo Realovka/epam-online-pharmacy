@@ -47,8 +47,12 @@ public class CommandProvider {
         commands.put(CommandType.ADDITION_PRODUCT, new AdditionProductCommand());
         commands.put(CommandType.ADDITION_PICTURE_PAGE, new GoToAdditionPicturePageCommand());
         commands.put(CommandType.SEE_PRODUCT, new SeeProductCommand());
-        commands.put(CommandType.PRODUCTS_FOR_CUSTOMER, new GoToProductsForCustomerPageCommand());
+        commands.put(CommandType.SEARCH_PRODUCTS_BY_NAME_PAGE, new GoToSearchProductsByNamePageCommand());
+        commands.put(CommandType.SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME_PAGE, new GoToSearchProductsByNonProprietaryNameCommand());
+        commands.put(CommandType.SEARCH_PRODUCTS_BY_NAME, new SearchProductsByNameCommand());
+        commands.put(CommandType.SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME, new SearchProductsByNonProprietaryNameCommand());
         commands.put(CommandType.ABOUT_PRODUCT, new GoToAboutProductPageCommand());
+        commands.put(CommandType.SEARCH_PHARMACIES_BY_CITY, new SearchPharmaciesByCityCommand());
         commands.put(CommandType.ADDITION_PRODUCT_TO_ORDER, new AdditionProductToOrderCommand());
         commands.put(CommandType.BASKET_PAGE, new GoToBasketPageCommand());
         commands.put(CommandType.UPDATING_PRODUCT_QUANTITY, new UpdatingProductQuantityCommand());

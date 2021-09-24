@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>Pharmacies</title>
+    <title>Products</title>
 </head>
 <body>
 
@@ -32,41 +32,61 @@
         </li>
     </ul>
 </nav>
-
-<form action="${pageContext.request.contextPath}/controller?command=search_pharmacies_by_city" method="post">
-    <input type="text" name="cityForSearchPharmacies" placeholder="enter city here"><br>
-    <input type="submit" value="Search" class="button">
+<h1 style="text-align: center">Search products by name</h1>
+<a href="${pageContext.request.contextPath}/controller?command=basket_page">BASKET</a><br>
+<form action="${pageContext.request.contextPath}/controller?command=search_products_by_name" method="post">
+<input type="text" name="nameForSearchProducts" placeholder="enter name here"><br>
+<input type="submit" value="Search" class="button">
 </form>
 
 <c:choose>
-    <c:when test="${sessionScope.listPharmaciesByCity.size()>0}">
-
+    <c:when test="${sessionScope.listProductsByName.size()>0}">
+        <label>If you want to add position to order, click on name</label>
         <table border="3">
             <thead>
-            <th><fmt:message key="column.table.number"/></th>
-            <th><fmt:message key="column.table.city"/></th>
-            <th><fmt:message key="column.table.street"/></th>
-            <th><fmt:message key="column.table.house"/></th>
-            <th><fmt:message key="column.table.block"/></th>
+            <th>Name</th>
+            <th>Dose</th>
+            <th>INPN</th>
+            <th>Plant</th>
+            <th>Group</th>
+            <th>Price</th>
+            <th>Recipe</th>
+            <th>About</th>
             </thead>
 
-            <c:forEach items="${sessionScope.listPharmaciesByCity}" var="pharmacy">
+            <c:forEach items="${sessionScope.listProductsByName}" var="product">
 
                 <tr>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=order&pharmacy_id=${pharmacy.pharmacyId}">${pharmacy.number}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=addition_product_to_order&product_id=${product.productId}&current_url=${pageContext.request.requestURL}">${product.name}</a>
                     </td>
                     <td>
-                            ${pharmacy.city}
+                            ${product.dose}
+
                     </td>
                     <td>
-                            ${pharmacy.street}
+                            ${product.nonProprietaryName}
+
                     </td>
                     <td>
-                            ${pharmacy.house}
+                            ${product.plant}
+
                     </td>
                     <td>
-                            ${pharmacy.block}
+                            ${product.group}
+
+                    </td>
+                    <td>
+                            ${product.price}
+
+                    </td>
+                    <td>
+                            ${product.recipe}
+
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=about_product&product_id=${product.productId}">Read more</a>
+
                     </td>
                 </tr>
             </c:forEach>

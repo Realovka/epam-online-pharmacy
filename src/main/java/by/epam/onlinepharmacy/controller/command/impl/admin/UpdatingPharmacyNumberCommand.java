@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.dto.PharmacyDto;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
@@ -28,9 +29,9 @@ public class UpdatingPharmacyNumberCommand implements Command {
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         PharmacyValidator pharmacyValidator = PharmacyValidatorImpl.getInstance();
-        List<Pharmacy> currentPharmacies;
-        List<Pharmacy> nextPharmacies;
-        List<Pharmacy> previousPharmacies = new ArrayList<>();
+        List<PharmacyDto> currentPharmacies;
+        List<PharmacyDto> nextPharmacies;
+        List<PharmacyDto> previousPharmacies = new ArrayList<>();
 
         if (!pharmacyValidator.isValidNumber(newNumber)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACY_NUMBER_ERROR, BundleKey.PHARMACY_NUMBER_ERROR);

@@ -86,7 +86,7 @@ public class Basket {
         builder.append(", productId=").append(productId);
         builder.append(", orderId=").append(orderId);
         builder.append(", quantity=").append(quantity);
-        builder.append('}');
+        builder.append("}");
         return builder.toString();
     }
 

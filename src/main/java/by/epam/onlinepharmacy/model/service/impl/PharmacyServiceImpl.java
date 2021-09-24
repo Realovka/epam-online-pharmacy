@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.dto.PharmacyDto;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
 
@@ -36,22 +38,35 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public List<Pharmacy> findListPharmacies(int startingPharmacy) throws ServiceException {
-        List<Pharmacy> pharmacies;
+    public List<PharmacyDto> findListPharmacies(int startingPharmacy) throws ServiceException {
+        List<Pharmacy> pharmaciesDb;
         try {
-            pharmacies = pharmacyDao.findPharmacies(startingPharmacy);
+            pharmaciesDb = pharmacyDao.findPharmacies(startingPharmacy);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findAllPharmacies() ", e);
-            throw new ServiceException("DaoException is in method findAllPharmacies() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findListPharmacies() ", e);
+            throw new ServiceException("DaoException is in method findListPharmacies() ", e);
         }
 
-        changePharmaciesBlocks(pharmacies);
-
+        List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(pharmaciesDb);
         return pharmacies;
     }
 
     @Override
-    public List<Pharmacy> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
+    public List<PharmacyDto> findListPharmaciesByCity(String city) throws ServiceException {
+        List<Pharmacy> pharmaciesDb;
+        try {
+            pharmaciesDb = pharmacyDao.findPharmaciesByCity(city);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findListPharmaciesByCity() ", e);
+            throw new ServiceException("DaoException is in method findListPharmaciesByCity() ", e);
+        }
+
+        List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(pharmaciesDb);
+        return pharmacies;
+    }
+
+    @Override
+    public List<PharmacyDto> createPharmacy(String number, String city, String street, String house, String block) throws ServiceException {
         List<Pharmacy> currentPharmacies;
         Pharmacy pharmacy = new Pharmacy.Builder()
                 .setNumber(Integer.parseInt(number))
@@ -78,8 +93,8 @@ public class PharmacyServiceImpl implements PharmacyService {
             logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);
             throw new ServiceException("DaoException is in method createPharmacy() ", e);
         }
-        changePharmaciesBlocks(currentPharmacies);
-        return currentPharmacies;
+        List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(currentPharmacies);
+        return pharmacies;
     }
 
     @Override
@@ -117,16 +132,19 @@ public class PharmacyServiceImpl implements PharmacyService {
     }
 
     @Override
-    public Optional<Pharmacy> findPharmacyById(long id) throws ServiceException {
-        Optional<Pharmacy> pharmacy;
+    public PharmacyDto findPharmacyById(long id) throws ServiceException {
+        Pharmacy pharmacyDb;
         try {
-            pharmacy = pharmacyDao.findPharmacyById(id);
+            pharmacyDb = pharmacyDao.findPharmacyById(id).orElse(new Pharmacy());
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findPharmacyById() ", e);
             throw new ServiceException("DaoException is in method findPharmacyById() ", e);
         }
+        PharmacyDto pharmacy = convertPharmacyToPharmacyDto(pharmacyDb);
         return pharmacy;
     }
+
+
 
     @Override
     public void updateNumber(long id, String number) throws ServiceException {
@@ -190,13 +208,31 @@ public class PharmacyServiceImpl implements PharmacyService {
         }
     }
 
-    private List<Pharmacy> changePharmaciesBlocks(List<Pharmacy> pharmacies) {
-        for (Pharmacy item : pharmacies) {
-            if (item.getBlock() == 0) {
-                item.setBlock(null);
-            }
-        }
-        return pharmacies;
+    private String convertBlock(Integer block) {
+        return (block == 0) ? null : String.valueOf(block);
+    }
+
+    private List<PharmacyDto> convertListPharmacyListToPharmacyDto(List<Pharmacy> pharmacies) {
+        return pharmacies.stream()
+                .map(pharmacy -> new PharmacyDto.Builder()
+                        .setPharmacyId(pharmacy.getPharmacyId())
+                        .setNumber(pharmacy.getNumber())
+                        .setCity(pharmacy.getCity())
+                        .setStreet(pharmacy.getStreet())
+                        .setHouse(pharmacy.getHouse())
+                        .setBlock(convertBlock(pharmacy.getBlock()))
+                        .build()).collect(Collectors.toList());
+    }
+
+    private PharmacyDto convertPharmacyToPharmacyDto(Pharmacy pharmacy) {
+        return  new PharmacyDto.Builder()
+                .setPharmacyId(pharmacy.getPharmacyId())
+                .setNumber(pharmacy.getNumber())
+                .setCity(pharmacy.getCity())
+                .setStreet(pharmacy.getStreet())
+                .setHouse(pharmacy.getHouse())
+                .setBlock(convertBlock(pharmacy.getBlock()))
+                .build();
     }
 
 }

@@ -13,13 +13,14 @@
     <title><fmt:message key="title.all_products"/></title>
 </head>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
+      method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
+    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
 </form>
 
-<h1 style="text-align: center"><fmt:message key="header.list_all_products"/></h1>
-<h2 style="text-align: left"><fmt:message key="header.add_new_product_in_form"/></h2>
+<h1><fmt:message key="header.list_all_products"/></h1>
+<h2><fmt:message key="header.add_new_product_in_form"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_product" method="post">
     <c:if test="${requestScope.productNameError!=null}">
         <div class="error"><fmt:message key="error.product_name"/></div>
@@ -67,8 +68,9 @@
     </select><br><br>
     <label class="field"><fmt:message key="label.instruction"/></label><br>
     <textarea name="instruction"></textarea><br><br>
-    <input type="submit" value="<fmt:message key="button.input_product"/>">
-</form><br>
+    <input type="submit" value="<fmt:message key="button.input_product"/>" class="button">
+</form>
+<br>
 <label><fmt:message key="msg.click_on_parameter"/></label><br>
 <label><fmt:message key="msg.click_on_id_if_need_change_picture"/></label>
 <c:choose>
@@ -78,8 +80,8 @@
             <thead>
             <th><fmt:message key="column.table.id"/></th>
             <th><fmt:message key="column.table_name"/></th>
-            <th><fmt:message key="column.table_product_non_proprietary_name"/></th>
             <th><fmt:message key="column.table_dose"/></th>
+            <th><fmt:message key="column.table_product_non_proprietary_name"/></th>
             <th><fmt:message key="column.table_plant"/></th>
             <th><fmt:message key="column.table_group"/></th>
             <th><fmt:message key="column.table_price"/></th>
@@ -87,52 +89,56 @@
             <th><fmt:message key="column.table_instruction"/></th>
             </thead>
 
-                <c:forEach items="${sessionScope.currentProducts}" var="product">
+            <c:forEach items="${sessionScope.currentProducts}" var="product">
 
-                    <tr>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&product_id=${product.productId}">${product.productId}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&product_id=${product.productId}">${product.name}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_product_non_proprietary_name_page&product_id=${product.productId}">${product.nonProprietaryName}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_dose_page&product_id=${product.productId}">${product.dose}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_plant_page&product_id=${product.productId}">${product.plant}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&product_id=${product.productId}">${product.group}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&product_id=${product.productId}">${product.price}</a>
+                <tr>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=addition_picture_page&product_id=${product.productId}">${product.productId}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_name_page&product_id=${product.productId}">${product.name}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_dose_page&product_id=${product.productId}">${product.dose}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_product_non_proprietary_name_page&product_id=${product.productId}">${product.nonProprietaryName}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_plant_page&product_id=${product.productId}">${product.plant}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_group_page&product_id=${product.productId}">${product.group}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_price_page&product_id=${product.productId}">${product.price}</a>
 
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&product_id=${product.productId}">${product.recipe}</a>
-                        </td>
-                        <td>
-                            <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&product_id=${product.productId}">${product.instruction}</a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_recipe_page&product_id=${product.productId}">${product.recipe}</a>
+                    </td>
+                    <td>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_instruction_page&product_id=${product.productId}">${product.instruction}</a>
+                    </td>
+                </tr>
+            </c:forEach>
 
         </table>
     </c:when>
 </c:choose>
 
 <c:if test="${sessionScope.previousProducts.size() > 0}">
-    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.previous_products"/> </a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}"
+       style="color: #800000"><fmt:message key="link.previous_products"/> </a>
 </c:if>
 <c:if test="${sessionScope.nextProducts.size() > 0}">
-    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}" style="color: #800000"><fmt:message key="link.next_products"/></a>
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}"
+       style="color: #800000"><fmt:message key="link.next_products"/></a>
 </c:if><br>
 
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message key="link.admin_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message key="link.logout"/></a>
+<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
+        key="link.admin_main"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
+        key="link.logout"/></a>
 </body>
 </html>

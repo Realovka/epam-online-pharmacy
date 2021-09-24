@@ -35,10 +35,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String group, String plant, String price,
+    public List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String group,
+                                          String plant, String price,
                                           String recipe, String instruction) throws ServiceException {
         List<Product> currentProducts;
-        List<ProductDto> productDtoList;
         boolean needRecipe = needProductRecipe(recipe);
         Product product = new Product.Builder()
                 .setName(name)
@@ -52,32 +52,21 @@ public class ProductServiceImpl implements ProductService {
                 .build();
         try {
             productDao.createProduct(product);
-                int productsNumber = productDao.findProductsNumber();
-                int productsOnLastPage = productsNumber % RECORD_PER_PAGE;
-                int pages = productsNumber / RECORD_PER_PAGE;
-                if (productsOnLastPage == 0) {
-                    currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
-                } else {
-                    currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE);
-                }
-                productDtoList = currentProducts.stream()
-                    .map(product1 -> new ProductDto.Builder()
-                            .setProductId(product1.getProductId())
-                            .setName(product1.getName())
-                            .setNonProprietaryName(product1.getNonProprietaryName())
-                            .setDose(product1.getDose())
-                            .setPlant(product1.getPlant())
-                            .setGroup(product1.getGroup())
-                            .setPrice(product1.getPrice())
-                            .setRecipe(convertProductRecipe(product1.isRecipe()))
-                            .setInstruction(product1.getInstruction())
-                            .build()).collect(Collectors.toList());
+            int productsNumber = productDao.findProductsNumber();
+            int productsOnLastPage = productsNumber % RECORD_PER_PAGE;
+            int pages = productsNumber / RECORD_PER_PAGE;
+            if (productsOnLastPage == 0) {
+                currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
+            } else {
+                currentProducts = productDao.findListProducts(pages * RECORD_PER_PAGE);
+            }
 
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
             throw new ServiceException("DaoException is in method createProduct() ", e);
         }
-        return productDtoList;
+        List<ProductDto> products = convertListProductToListProductDto(currentProducts);
+        return products;
     }
 
     @Override
@@ -120,26 +109,42 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDto> findListProducts(int startingProduct) throws ServiceException {
-        List<ProductDto> products;
+        List<Product> productsDb;
         try {
-            List<Product> productsDb = productDao.findListProducts(startingProduct);
-            products = productsDb.stream()
-                    .map(product -> new ProductDto.Builder()
-                            .setProductId(product.getProductId())
-                            .setName(product.getName())
-
-                            .setDose(product.getDose())
-                            .setPlant(product.getPlant())
-                            .setGroup(product.getGroup())
-                            .setPrice(product.getPrice())
-                            .setRecipe(convertProductRecipe(product.isRecipe()))
-                            .setInstruction(product.getInstruction())
-                            .build()).collect(Collectors.toList());
+            productsDb = productDao.findListProducts(startingProduct);
 
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findListProducts() ", e);
             throw new ServiceException("DaoException is in method findListProducts() ", e);
         }
+        List<ProductDto> products = convertListProductToListProductDto(productsDb);
+        return products;
+    }
+
+    @Override
+    public List<ProductDto> findListProductsByName(String productName) throws ServiceException {
+        List<Product> productsDb;
+        try {
+            productsDb = productDao.findListProductsByName(productName);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findListProductsByName() ", e);
+            throw new ServiceException("DaoException is in method findListProductsByName() ", e);
+        }
+        List<ProductDto> products = convertListProductToListProductDto(productsDb);
+        return products;
+    }
+
+    @Override
+    public List<ProductDto> findListProductsByNonProprietaryName(String nonProprietaryName) throws ServiceException {
+        List<Product> productsDb;
+        try {
+            productsDb = productDao.findListProductsByNonProprietaryName(nonProprietaryName);
+
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findListProductsByNonProprietaryName() ", e);
+            throw new ServiceException("DaoException is in method findListProductsByNonProprietaryName() ", e);
+        }
+        List<ProductDto> products = convertListProductToListProductDto(productsDb);
         return products;
     }
 
@@ -173,15 +178,7 @@ public class ProductServiceImpl implements ProductService {
             throw new ServiceException("DaoException is in method findProductById() ", e);
         }
         productDb = product.orElse(new Product());
-        ProductDto productDto = new ProductDto.Builder()
-                .setName(productDb.getName())
-                .setDose(productDb.getDose())
-                .setPlant(productDb.getPlant())
-                .setGroup(productDb.getGroup())
-                .setPrice(productDb.getPrice())
-                .setRecipe(convertProductRecipe(productDb.isRecipe()))
-                .setInstruction(productDb.getInstruction())
-                .build();
+        ProductDto productDto = convertProductToProductDto(productDb);
         return productDto;
     }
 
@@ -281,7 +278,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private boolean needProductRecipe(String recipe) {
-        if(recipe.equals(NEED_RECIPE_EN)) {
+        if (recipe.equals(NEED_RECIPE_EN)) {
             return true;
         }
         return recipe.equals(NEED_RECIPE_RU);
@@ -295,4 +292,32 @@ public class ProductServiceImpl implements ProductService {
         }
     }
 
+    private List<ProductDto> convertListProductToListProductDto(List<Product> products) {
+        return products.stream()
+                .map(product -> new ProductDto.Builder()
+                        .setProductId(product.getProductId())
+                        .setName(product.getName())
+                        .setNonProprietaryName(product.getNonProprietaryName())
+                        .setDose(product.getDose())
+                        .setPlant(product.getPlant())
+                        .setGroup(product.getGroup())
+                        .setPrice(product.getPrice())
+                        .setRecipe(convertProductRecipe(product.isRecipe()))
+                        .setInstruction(product.getInstruction())
+                        .build()).collect(Collectors.toList());
+
+    }
+
+    private ProductDto convertProductToProductDto(Product productDb) {
+        return  new ProductDto.Builder()
+                .setName(productDb.getName())
+                .setNonProprietaryName(productDb.getNonProprietaryName())
+                .setDose(productDb.getDose())
+                .setPlant(productDb.getPlant())
+                .setGroup(productDb.getGroup())
+                .setPrice(productDb.getPrice())
+                .setRecipe(convertProductRecipe(productDb.isRecipe()))
+                .setInstruction(productDb.getInstruction())
+                .build();
+    }
 }

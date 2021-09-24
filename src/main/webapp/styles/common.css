@@ -11,6 +11,11 @@ A {
 
 h1 {
     text-align: center;
+    color: #822222;
+}
+
+h2 {
+    text-align: left;
 }
 
 
@@ -32,12 +37,26 @@ textarea {
     color:#990000;
 }
 
+.lang {
+    background-color: dimgrey;
+    color: white;
+    width: 30px
+}
+
 .common_link {
     color: #800000;
 }
 
+.button {
+    width: 150px;
+}
+
 .raw {
     font-weight: bolder;
+}
+
+.change_data {
+    width: 200px;
 }
 
 nav {

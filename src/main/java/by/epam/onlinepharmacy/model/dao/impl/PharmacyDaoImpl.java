@@ -35,6 +35,10 @@ public class PharmacyDaoImpl implements PharmacyDao {
             SELECT pharmacy_id, number, city, street, house, block FROM pharmacies LIMIT ?, 15
             """;
 
+    private static final String FIND_PHARMACIES_BY_CITY = """
+            SELECT pharmacy_id, number, city, street, house, block FROM pharmacies WHERE city=?
+            """;
+
     private static final String CREATE_PHARMACY = """
             INSERT INTO pharmacies (number, city, street, house, block)
             VALUES(?, ?, ?, ?, ?)
@@ -75,6 +79,32 @@ public class PharmacyDaoImpl implements PharmacyDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method findAllPharmacies() ", e);
             throw new DaoException("SQLException in method findAllPharmacies() ", e);
+        }
+        return pharmacies;
+    }
+
+    @Override
+    public List<Pharmacy> findPharmaciesByCity(String city) throws DaoException {
+        List<Pharmacy> pharmacies = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PHARMACIES_BY_CITY)) {
+            preparedStatement.setString(1, city);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Pharmacy pharmacy = new Pharmacy.Builder()
+                            .setPharmacyId(resultSet.getLong(PHARMACY_ID))
+                            .setNumber(resultSet.getInt(PHARMACY_NUMBER))
+                            .setCity(resultSet.getString(PHARMACY_CITY))
+                            .setStreet(resultSet.getString(PHARMACY_STREET))
+                            .setHouse(resultSet.getString(PHARMACY_HOUSE))
+                            .setBlock(resultSet.getInt(PHARMACY_BLOCK))
+                            .build();
+                    pharmacies.add(pharmacy);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findAllPharmaciesByCity() ", e);
+            throw new DaoException("SQLException in method findAllPharmaciesByCity() ", e);
         }
         return pharmacies;
     }

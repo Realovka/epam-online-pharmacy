@@ -33,7 +33,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     private static final String CREATE_PRODUCT = """
-            INSERT INTO products (product_name, inpn, product_dose, plant, product_group, price, recipe, instruction) 
+            INSERT INTO products (product_name, inpn, product_dose, product_group, plant, price, recipe, instruction) 
             VALUES (?,?,?,?,?,?,?,?)
             """;
 
@@ -45,8 +45,19 @@ public class ProductDaoImpl implements ProductDao {
             SELECT product_id, product_name, inpn, product_dose, plant, product_group, price, 
             recipe, instruction FROM products LIMIT ?, 5
             """;
+
+    private static final String FIND_PRODUCTS_BY_NAME = """
+            SELECT product_id, product_name, inpn, product_dose, plant, product_group, price, 
+            recipe FROM products WHERE product_name = ?
+            """;
+
+    private static final String FIND_PRODUCTS_BY_NON_PROPRIETARY_NAME = """
+            SELECT product_id, product_name, inpn, product_dose, plant, product_group, price, 
+            recipe FROM products WHERE inpn = ?
+            """;
+
     private static final String FIND_PRODUCT_FOR_ORDER = """
-            SELECT product_id, product_name FROM products WHERE product_id = ?
+            SELECT product_id, product_name, product_dose, plant, price FROM products WHERE product_id = ?
             """;
 
     private static final String FIND_PICTURE = "SELECT picture FROM products WHERE product_id=?";
@@ -83,10 +94,10 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void addPathToPicture(long id, String fileNAme) throws DaoException {
+    public void addPathToPicture(long id, String fileName) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(ADD_PICTURE)) {
-            preparedStatement.setString(1, fileNAme);
+            preparedStatement.setString(1, fileName);
             preparedStatement.setLong(2, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -123,6 +134,63 @@ public class ProductDaoImpl implements ProductDao {
         }
         return products;
     }
+
+    @Override
+    public List<Product> findListProductsByName(String productName) throws DaoException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCTS_BY_NAME)) {
+            preparedStatement.setString(1, productName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product.Builder()
+                            .setProductId(resultSet.getLong(PRODUCT_ID))
+                            .setName(resultSet.getString(PRODUCT_NAME))
+                            .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
+                            .setDose(resultSet.getString(PRODUCT_DOSE))
+                            .setPlant(resultSet.getString(PRODUCT_PLANT))
+                            .setGroup(resultSet.getString(PRODUCT_GROUP))
+                            .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
+                            .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
+                            .build();
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findListProductsByName() ", e);
+            throw new DaoException("SQLException in method findListProductsByName() ", e);
+        }
+        return products;
+    }
+
+    @Override
+    public List<Product> findListProductsByNonProprietaryName(String nonProprietaryName) throws DaoException {
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PRODUCTS_BY_NON_PROPRIETARY_NAME)) {
+            preparedStatement.setString(1, nonProprietaryName);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Product product = new Product.Builder()
+                            .setProductId(resultSet.getLong(PRODUCT_ID))
+                            .setName(resultSet.getString(PRODUCT_NAME))
+                            .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
+                            .setDose(resultSet.getString(PRODUCT_DOSE))
+                            .setPlant(resultSet.getString(PRODUCT_PLANT))
+                            .setGroup(resultSet.getString(PRODUCT_GROUP))
+                            .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
+                            .isRecipe(resultSet.getBoolean(PRODUCT_RECIPE))
+                            .build();
+                    products.add(product);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findListProductsByNonProprietaryName() ", e);
+            throw new DaoException("SQLException in method findListProductsByNonProprietaryName() ", e);
+        }
+        return products;
+    }
+
 
     @Override
     public int findProductsNumber() throws DaoException {
@@ -200,6 +268,9 @@ public class ProductDaoImpl implements ProductDao {
                     product = new Product.Builder()
                             .setProductId(resultSet.getLong(PRODUCT_ID))
                             .setName(resultSet.getString(PRODUCT_NAME))
+                            .setDose(resultSet.getString(PRODUCT_DOSE))
+                            .setPlant(resultSet.getString(PRODUCT_PLANT))
+                            .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
                             .build();
                 }
             }

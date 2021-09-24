@@ -29,7 +29,7 @@ public class SeeProductCommand implements Command {
 
         try {
             pathToFile = productService.findPathToPicture(id);
-           product = productService.findProductById(productId);
+            product = productService.findProductById(productId);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while find path to picture ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

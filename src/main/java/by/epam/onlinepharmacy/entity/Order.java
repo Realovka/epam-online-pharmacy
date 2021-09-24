@@ -90,7 +90,7 @@ public class Order {
         builder.append(", dataEnding=").append(dataEnding);
         builder.append(", statusOrder=").append(statusOrder);
         builder.append(", pharmacyId=").append(pharmacyId);
-        builder.append('}');
+        builder.append("}");
         return builder.toString();
     }
 

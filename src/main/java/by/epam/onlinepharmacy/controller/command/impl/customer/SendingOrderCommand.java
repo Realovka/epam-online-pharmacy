@@ -23,11 +23,11 @@ public class SendingOrderCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         OrderService orderService = OrderServiceImpl.getInstance();
+        long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         User auth =(User) session.getAttribute(SessionAttribute.USER_AUTH);
         long userId = auth.getUserId();
-        Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.PRODUCTS);
+        Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
         try {
             orderService.createOrder(pharmacyId, userId, products);
         } catch (ServiceException e) {

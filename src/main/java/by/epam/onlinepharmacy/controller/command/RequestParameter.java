@@ -55,6 +55,9 @@ public final class RequestParameter {
     public static final String UPDATING_PRODUCT_PRICE = "newPrice";
     public static final String UPDATING_PRODUCT_RECIPE = "newRecipe";
     public static final String UPDATING_PRODUCT_INSTRUCTION = "newInstruction";
+    public static final String NAME_FOR_SEARCH_PRODUCTS = "nameForSearchProducts";
+    public static final String NON_PROPRIETARY_NAME_FOR_SEARCH_PRODUCTS = "nonProprietaryNameForSearchProducts";
+    public static final String CITY_FOR_SEARCH_PHARMACIES = "cityForSearchPharmacies";
 
 
     private RequestParameter() {

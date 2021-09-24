@@ -132,15 +132,15 @@ public class User {
         StringBuilder builder = new StringBuilder();
         builder.append("User{");
         builder.append("userId=").append(userId);
-        builder.append(", login='").append(login);
-        builder.append(", password='").append(password);
-        builder.append(", firstName='").append(firstName);
-        builder.append(", lastName='").append(lastName);
-        builder.append(", email='").append(email);
-        builder.append(", telephone='").append(telephone);
+        builder.append(", login=").append(login);
+        builder.append(", password=").append(password);
+        builder.append(", firstName=").append(firstName);
+        builder.append(", lastName=").append(lastName);
+        builder.append(", email=").append(email);
+        builder.append(", telephone=").append(telephone);
         builder.append(", role=").append(role);
         builder.append(", status=").append(status);
-        builder.append('}');
+        builder.append("}");
         return builder.toString();
     }
 

@@ -17,20 +17,9 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public class GoToPharmaciesForCustomerPageCommand implements Command {
-    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
-        List<Pharmacy> pharmacies;
-//        try {
-//            pharmacies = pharmacyService.findAllPharmacies();
-//        } catch (ServiceException e) {
-//            logger.log(Level.ERROR, "Exception in method execute while find all pharmacies ", e);
-//            return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
-//        }
-//        session.setAttribute(SessionAttribute.ALL_PHARMACIES, pharmacies);
         return new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
     }
 }

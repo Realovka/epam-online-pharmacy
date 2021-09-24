@@ -1,6 +1,7 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
 import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.dto.PharmacyDto;
 import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
@@ -52,9 +53,9 @@ public class AdditionPharmacyCommand implements Command {
         }
 
         int currentPage;
-        List<Pharmacy> currentPharmacies;
-        List<Pharmacy> previousPharmacies;
-        List<Pharmacy> nextPharmacies = new ArrayList<>();
+        List<PharmacyDto> currentPharmacies;
+        List<PharmacyDto> previousPharmacies;
+        List<PharmacyDto> nextPharmacies = new ArrayList<>();
         try {
             currentPharmacies = pharmacyService.createPharmacy(number, city, street, house, block);
             currentPage = pharmacyService.findCurrentPage();

@@ -15,12 +15,12 @@
 <body>
 
 <form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
+    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
 </form>
 
-<h1 style="text-align: center"><fmt:message key="header.all_pharmacies"/></h1>
-<h2 style="text-align: left"><fmt:message key="header.add_pharmacy"/></h2>
+<h1><fmt:message key="header.all_pharmacies"/></h1>
+<h2><fmt:message key="header.add_pharmacy"/></h2>
 <form action="${pageContext.request.contextPath}/controller?command=addition_pharmacy" method="post">
 
     <c:if test="${requestScope.numberError!=null}">
@@ -48,11 +48,12 @@
     <label class="field"><fmt:message key="label.block"/></label><br>
     <input type="text" name="block" value="${requestScope.mapData.get("block")}"
            placeholder="<fmt:message key="placeholder.block"/>" size="35px"/><br>
-    <input type="submit" value="<fmt:message key="button.input_pharmacy"/>">
+    <input type="submit" value="<fmt:message key="button.input_pharmacy"/>" class="button">
 </form>
-<label><fmt:message key="msg.click_on_parameter"/></label>
+
 <c:choose>
     <c:when test="${sessionScope.currentPharmacies.size()>0}">
+        <label><fmt:message key="msg.click_on_parameter"/></label>
         <table border="3">
             <thead>
             <th width="30"><fmt:message key="column.table.id"/></th>
@@ -97,7 +98,7 @@
 </c:if><br>
 
 <a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
-        key="link.admin_main"/></a>
+        key="link.admin_main"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
         key="link.logout"/></a>
 </body>

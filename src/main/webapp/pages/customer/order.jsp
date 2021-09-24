@@ -47,37 +47,49 @@
 
         <tr>
             <td>
-                    ${sessionScope.pharmacy.number}
+                    ${sessionScope.pharmacyOrder.number}
             </td>
             <td>
-                    ${sessionScope.pharmacy.city}
+                    ${sessionScope.pharmacyOrder.city}
             </td>
             <td>
-                    ${sessionScope.pharmacy.street}
+                    ${sessionScope.pharmacyOrder.street}
             </td>
             <td>
-                    ${sessionScope.pharmacy.house}
+                    ${sessionScope.pharmacyOrder.house}
             </td>
             <td>
-                    ${sessionScope.pharmacy.block}
+                    ${sessionScope.pharmacyOrder.block}
             </td>
         </tr>
 
 </table>
 <c:choose>
-    <c:when test="${sessionScope.products.size()>0}">
+    <c:when test="${sessionScope.listProductsInBasket.size()>0}">
 
         <table border="3">
             <thead>
             <th>Name</th>
+            <th>Dose</th>
+            <th>Plant</th>
+            <th>Price</th>
             <th>Quantity</th>
             </thead>
 
-            <c:forEach items="${sessionScope.products}" var="product">
+            <c:forEach items="${sessionScope.listProductsInBasket}" var="product">
 
             <tr>
                 <td>
                         ${product.key.name}
+                </td>
+                <td>
+                        ${product.key.dose}
+                </td>
+                <td>
+                        ${product.key.plant}
+                </td>
+                <td>
+                        ${product.key.price}
                 </td>
                 <td>
                         ${product.value}

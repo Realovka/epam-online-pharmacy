@@ -25,8 +25,8 @@
     <c:if test="${requestScope.productInstructionError != null}">
         <div class="error"><fmt:message key="error.product_instruction"/></div>
     </c:if>
-    <textarea name="newInstruction"></textarea><br><br>
-    <input type="submit" value="<fmt:message key="button.update_instruction"/>" class="button"/>
+    <textarea name="newInstruction"  class="input_instruction" >${sessionScope.product.instruction}</textarea><br><br>
+    <input type="submit" value="<fmt:message key="button.update_instruction"/>" class="button_product_update"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>

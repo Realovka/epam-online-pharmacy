@@ -26,7 +26,7 @@
         <div class="error"><fmt:message key="error.product_group"/></div>
     </c:if>
     <input type="text" name="newGroup" placeholder="<fmt:message key="placeholder.new_group"/>"/><br>
-    <input type="submit" value="<fmt:message key="button.update_group"/>" class="button"/>
+    <input type="submit" value="<fmt:message key="button.update_group"/>" class="button_product_update"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>

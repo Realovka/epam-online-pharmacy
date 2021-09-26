@@ -26,7 +26,7 @@
         <div class="error"><fmt:message key="error.product_price"/></div>
     </c:if>
     <input type="text" name="newPrice" placeholder="<fmt:message key="placeholder.new_price"/>"/><br>
-    <input type="submit" value="<fmt:message key="button.update_price"/>" class="button"/>
+    <input type="submit" value="<fmt:message key="button.update_price"/>" class="button_product_update"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>

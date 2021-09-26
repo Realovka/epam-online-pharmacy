@@ -9,9 +9,9 @@ import java.util.Map;
 import java.util.Optional;
 
 public interface ProductService {
-    List<ProductDto> createProduct(String name, String inpn, String dose, String plant,
+    List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String plant,
                                    String group, String price, String recipe, String instruction) throws ServiceException;
-    Map<String, String> isValidParameters(String name, String inpn,
+    Map<String, String> isValidParameters(String name, String nonProprietaryName,
                                           String dose, String plant, String group, String price, String instruction);
     void addPathToPicture(long id, String fileName) throws ServiceException;
     List<ProductDto> findListProducts(int startingProduct) throws ServiceException;
@@ -23,6 +23,9 @@ public interface ProductService {
     Map<Product, Integer> addProductToOrder(String id, Map<Product, Integer> order) throws ServiceException;
     void updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order);
     void updateProductName(long productId, String name) throws ServiceException;
+    void updateProductNonProprietaryName(long productId, String nonProprietaryName) throws ServiceException;
+    void updateProductDose(long productId, String dose) throws ServiceException;
+    void updateProductPlant(long productId, String plant) throws ServiceException;
     void updateProductGroup(long productId, String group) throws ServiceException;
     void updateProductPrice(long productId, String price) throws ServiceException;
     void updateProductRecipe(long productId, String recipe) throws ServiceException;

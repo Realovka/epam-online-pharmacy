@@ -5,7 +5,7 @@ import java.util.Map;
 public interface ProductValidator {
     boolean isValidForm(Map<String, String> formData);
     boolean isValidStringParameters(String parameter);
-    boolean isValidInpn(String inpn);
+    boolean isValidNonProprietyName(String nonProprietyName);
     boolean isValidPrice(String price);
     boolean isValidInstruction(String instruction);
 }

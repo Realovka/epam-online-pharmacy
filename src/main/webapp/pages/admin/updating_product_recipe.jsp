@@ -26,7 +26,7 @@
         <option><fmt:message key="select.recipe_yes"/></option>
         <option><fmt:message key="select.recipe_no"/></option>
     </select><br>
-    <input type="submit" value="<fmt:message key="button.update_prescription"/>" class="button"/>
+    <input type="submit" value="<fmt:message key="button.update_prescription"/>" class="button_product_update"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>

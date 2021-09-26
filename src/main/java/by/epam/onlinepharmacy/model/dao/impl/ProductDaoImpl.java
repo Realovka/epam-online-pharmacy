@@ -68,6 +68,10 @@ public class ProductDaoImpl implements ProductDao {
             """;
 
     private static final String UPDATE_PRODUCT_NAME = "UPDATE products SET product_name=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_NON_PROPRIETARY_NAME = """
+            UPDATE products SET inpn=? WHERE product_id=?""";
+    private static final String UPDATE_PRODUCT_DOSE = "UPDATE products SET product_dose=? WHERE product_id=?";
+    private static final String UPDATE_PRODUCT_PLANT = "UPDATE products SET plant=? WHERE product_id=?";
     private static final String UPDATE_PRODUCT_GROUP = "UPDATE products SET product_group=? WHERE product_id=?";
     private static final String UPDATE_PRODUCT_PRICE = "UPDATE products SET price=? WHERE product_id=?";
     private static final String UPDATE_PRODUCT_RECIPE = "UPDATE products SET recipe=? WHERE product_id=?";
@@ -210,7 +214,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
 
-
     @Override
     public Optional<String> findPathToPicture(long id) throws DaoException {
         String pathToFile = null;
@@ -237,9 +240,9 @@ public class ProductDaoImpl implements ProductDao {
             preparedStatement.setLong(1, id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                     product = new Product.Builder()
+                    product = new Product.Builder()
                             .setName(resultSet.getString(PRODUCT_NAME))
-                             .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
+                            .setNonProprietaryName(resultSet.getString(PRODUCT_NON_PROPRIETARY_NAME))
                             .setDose(resultSet.getString(PRODUCT_DOSE))
                             .setPlant(resultSet.getString(PRODUCT_PLANT))
                             .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
@@ -291,6 +294,46 @@ public class ProductDaoImpl implements ProductDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateProductName() ", e);
             throw new DaoException("SQLException in method updateProductName() ", e);
+        }
+    }
+
+
+    @Override
+    public void updateProductNonProprietaryName(long id, String nonProprietaryName) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_NON_PROPRIETARY_NAME)) {
+            preparedStatement.setString(1, nonProprietaryName);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductNonProprietaryName() ", e);
+            throw new DaoException("SQLException in method updateProductNonProprietaryName ", e);
+        }
+    }
+
+    @Override
+    public void updateProductDose(long id, String dose) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_DOSE)) {
+            preparedStatement.setString(1, dose);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductDose ", e);
+            throw new DaoException("SQLException in method updateProductDose ", e);
+        }
+    }
+
+    @Override
+    public void updateProductPlant(long id, String plant) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PRODUCT_PLANT)) {
+            preparedStatement.setString(1, plant);
+            preparedStatement.setLong(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateProductPlant() ", e);
+            throw new DaoException("SQLException in method updateProductPlant() ", e);
         }
     }
 

@@ -21,30 +21,30 @@
 </form>
 
 <h1><fmt:message key="title.about_product"/></h1>
-<label><fmt:message key="label.product_name"/></label>
+<img id="account_image" class="pic"
+     src="<c:url value="${pageContext.request.contextPath}${sessionScope.pathToFile}"/>" alt="no img"/><br>
+<label class="product"><fmt:message key="label.product_name"/></label>
 <div>${sessionScope.product.name}</div>
 <br>
-<label><fmt:message key="label.product_non_proprietary_name"/></label>
+<label class="product"><fmt:message key="label.product_non_proprietary_name"/></label>
 <div>${sessionScope.product.nonProprietaryName}</div>
 <br>
-<label><fmt:message key="label.product_dose"/></label>
+<label class="product"><fmt:message key="label.product_dose"/></label>
 <div>${sessionScope.product.dose}</div>
 <br>
-<label><fmt:message key="label.product_plant"/></label>
+<label class="product"><fmt:message key="label.product_plant"/></label>
 <div>${sessionScope.product.plant}</div>
 <br>
-<label><fmt:message key="label.product_group"/></label>
+<label class="product"><fmt:message key="label.product_group"/></label>
 <div>${sessionScope.product.group}</div>
 <br>
-<label><fmt:message key="label.product_price"/></label>
+<label class="product"><fmt:message key="label.product_price"/></label>
 <div>${sessionScope.product.price}</div>
 <br>
-<label><fmt:message key="label.product_recipe"/></label>
+<label class="product"><fmt:message key="label.product_recipe"/></label>
 <div>${sessionScope.product.recipe}</div>
 <br>
-<img id="account_image" class="rounded-circle account-img" width="300px" height="300px"
-     src="<c:url value="${pageContext.request.contextPath}${sessionScope.pathToFile}"/>" alt="no img"/><br>
-<label><fmt:message key="label.product_instruction"/></label>
+<label class="product"><fmt:message key="label.product_instruction"/></label>
 <div>${sessionScope.product.instruction}</div>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>

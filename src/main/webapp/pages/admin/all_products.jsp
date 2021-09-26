@@ -26,7 +26,7 @@
         <div class="error"><fmt:message key="error.product_name"/></div>
     </c:if>
     <c:if test="${requestScope.productNonProprietaryNameError!=null}">
-        <div class="error"><fmt:message key="error.product_product_non_proprietary_name"/></div>
+        <div class="error"><fmt:message key="error.product_non_proprietary_name"/></div>
     </c:if>
     <c:if test="${requestScope.productDoseError!=null}">
         <div class="error"><fmt:message key="error.product_dose"/></div>
@@ -67,12 +67,22 @@
         <option><fmt:message key="select.recipe_no"/></option>
     </select><br><br>
     <label class="field"><fmt:message key="label.instruction"/></label><br>
-    <textarea name="instruction"></textarea><br><br>
-    <input type="submit" value="<fmt:message key="button.input_product"/>" class="button">
+    <textarea name="instruction" class="input_instruction"></textarea><br><br>
+    <input type="submit" value="<fmt:message key="button.input_product"/>" class="button_product_update">
 </form>
 <br>
 <label><fmt:message key="msg.click_on_parameter"/></label><br>
-<label><fmt:message key="msg.click_on_id_if_need_change_picture"/></label>
+<label><fmt:message key="msg.click_on_id_if_need_change_picture"/></label><br>
+
+<c:if test="${sessionScope.previousProducts.size() > 0}">
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}"
+       style="color: #800000"><fmt:message key="link.previous_products"/> </a>
+</c:if>
+<c:if test="${sessionScope.nextProducts.size() > 0}">
+    <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}"
+       style="color: #800000"><fmt:message key="link.next_products"/></a>
+</c:if><br>
+
 <c:choose>
     <c:when test="${sessionScope.currentProducts.size()>0}">
 
@@ -102,7 +112,7 @@
                         <a href="${pageContext.request.contextPath}/controller?command=updating_product_dose_page&product_id=${product.productId}">${product.dose}</a>
                     </td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_product_non_proprietary_name_page&product_id=${product.productId}">${product.nonProprietaryName}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=updating_product_non_proprietary_name_page&product_id=${product.productId}">${product.nonProprietaryName}</a>
                     </td>
                     <td>
                         <a href="${pageContext.request.contextPath}/controller?command=updating_product_plant_page&product_id=${product.productId}">${product.plant}</a>

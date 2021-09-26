@@ -29,6 +29,9 @@ public final class PagePath {
     public static final String UPDATING_PRODUCT_PRICE = "/pages/admin/updating_product_price.jsp";
     public static final String UPDATING_PRODUCT_RECIPE = "/pages/admin/updating_product_recipe.jsp";
     public static final String UPDATING_PRODUCT_INSTRUCTION = "/pages/admin/updating_product_instruction.jsp";
+    public static final String UPDATING_PRODUCT_NON_PROPRIETARY_NAME = "/pages/admin/updating_product_non_proprietary_name.jsp";
+    public static final String UPDATING_PRODUCT_DOSE = "/pages/admin/updating_product_dose.jsp";
+    public static final String UPDATING_PRODUCT_PLANT = "/pages/admin/updating_product_plant.jsp";
 
     //customer
     public static final String MAIN_CUSTOMER = "/pages/customer/customer_main.jsp";

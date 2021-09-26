@@ -18,6 +18,19 @@ h2 {
     text-align: left;
 }
 
+h3 {
+    text-align: center;
+    color: #800000;
+}
+
+.input_instruction {
+    width: 1000px;
+    height: 500px;
+}
+
+.product {
+    color: #800000;
+}
 
 table {
     background-color: #EEE5DE;
@@ -49,6 +62,17 @@ textarea {
 
 .button {
     width: 150px;
+}
+
+.button_product_update {
+    width: 300px;
+}
+
+.pic {
+    float: left;
+    margin: 15px 15px 15px 15px ;
+    width: 350px;
+    height: 350px;
 }
 
 .raw {

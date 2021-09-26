@@ -236,6 +236,36 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public void updateProductNonProprietaryName(long productId, String nonProprietaryName) throws ServiceException {
+        try {
+            productDao.updateProductNonProprietaryName(productId, nonProprietaryName);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductNonProprietaryName() ", e);
+            throw new ServiceException("DaoException is in method updateProductNonProprietaryName() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductDose(long productId, String dose) throws ServiceException {
+        try {
+            productDao.updateProductDose(productId, dose);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductDose() ", e);
+            throw new ServiceException("DaoException is in method updateProductDose() ", e);
+        }
+    }
+
+    @Override
+    public void updateProductPlant(long productId, String plant) throws ServiceException {
+        try {
+            productDao.updateProductPlant(productId, plant);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method updateProductPlant() ", e);
+            throw new ServiceException("DaoException is in method updateProductPlant() ", e);
+        }
+    }
+
+    @Override
     public void updateProductGroup(long productId, String group) throws ServiceException {
         try {
             productDao.updateProductGroup(productId, group);

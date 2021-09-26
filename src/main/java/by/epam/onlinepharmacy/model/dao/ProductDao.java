@@ -18,6 +18,9 @@ public interface ProductDao {
     Optional<String> findPathToPicture(long id) throws DaoException;
     Optional<Product> findProductById(long id) throws DaoException;
     void updateProductName(long id, String name) throws DaoException;
+    void updateProductNonProprietaryName(long id, String nonProprietaryName) throws DaoException;
+    void updateProductDose(long id, String dose) throws DaoException;
+    void updateProductPlant(long id, String plant) throws DaoException;
     void updateProductGroup(long id, String group) throws DaoException;
     void updateProductPrice(long id, BigDecimal price) throws DaoException;
     void updateProductRecipe(long id, boolean recipe) throws DaoException;

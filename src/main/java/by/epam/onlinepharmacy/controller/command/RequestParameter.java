@@ -51,6 +51,9 @@ public final class RequestParameter {
     public static final String INSTRUCTION = "instruction";
     public static final String QUANTITY = "quantity";
     public static final String UPDATING_PRODUCT_NAME = "newName";
+    public static final String UPDATING_PRODUCT_DOSE = "newDose";
+    public static final String UPDATING_PRODUCT_NON_PROPRIETARY_NAME = "newNonProprietaryName";
+    public static final String UPDATING_PRODUCT_PLANT = "newPlant";
     public static final String UPDATING_PRODUCT_GROUP = "newGroup";
     public static final String UPDATING_PRODUCT_PRICE = "newPrice";
     public static final String UPDATING_PRODUCT_RECIPE = "newRecipe";
@@ -58,6 +61,7 @@ public final class RequestParameter {
     public static final String NAME_FOR_SEARCH_PRODUCTS = "nameForSearchProducts";
     public static final String NON_PROPRIETARY_NAME_FOR_SEARCH_PRODUCTS = "nonProprietaryNameForSearchProducts";
     public static final String CITY_FOR_SEARCH_PHARMACIES = "cityForSearchPharmacies";
+
 
 
     private RequestParameter() {

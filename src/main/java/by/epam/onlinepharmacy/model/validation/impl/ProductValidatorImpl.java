@@ -27,7 +27,7 @@ public class ProductValidatorImpl implements ProductValidator {
         if (!isValidStringParameters(formData.get(RequestParameter.NAME))) {
             formData.put(RequestParameter.NAME, EMPTY_STRING);
         }
-        if (!isValidInpn(formData.get(RequestParameter.NON_PROPRIETARY_NAME))) {
+        if (!isValidNonProprietyName(formData.get(RequestParameter.NON_PROPRIETARY_NAME))) {
             formData.put(RequestParameter.NON_PROPRIETARY_NAME, EMPTY_STRING);
         }
         if (!isValidStringParameters(formData.get(RequestParameter.DOSE))) {
@@ -54,8 +54,8 @@ public class ProductValidatorImpl implements ProductValidator {
     }
 
     @Override
-    public boolean isValidInpn(String inpn) {
-        return inpn.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
+    public boolean isValidNonProprietyName(String nonProprietyName) {
+        return nonProprietyName.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
     }
 
     @Override

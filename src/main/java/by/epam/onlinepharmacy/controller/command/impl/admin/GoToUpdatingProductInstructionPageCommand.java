@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 public class GoToUpdatingProductInstructionPageCommand implements Command {
@@ -18,17 +19,19 @@ public class GoToUpdatingProductInstructionPageCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         String productId = request.getParameter(RequestParameter.PRODUCT_ID);
         long id = Long.parseLong(productId);
-        request.getSession().setAttribute(SessionAttribute.PRODUCT_ID, id);
+        session.setAttribute(SessionAttribute.PRODUCT_ID, id);
         ProductService productService = ProductServiceImpl.getInstance();
+        ProductDto product;
         try {
-            ProductDto productDto = productService.findInstructionByProductId(id);
-            request.setAttribute(RequestAttribute.PRODUCT, productDto);
+            product = productService.findInstructionByProductId(id);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException while find ProductDto by productId ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
+        session.setAttribute(SessionAttribute.PRODUCT, product);
         return new CommandResult(PagePath.UPDATING_PRODUCT_INSTRUCTION, CommandResult.RoutingType.REDIRECT);
     }
 }

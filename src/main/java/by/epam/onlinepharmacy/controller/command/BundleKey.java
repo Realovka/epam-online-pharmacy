@@ -2,6 +2,7 @@ package by.epam.onlinepharmacy.controller.command;
 
 public final class BundleKey {
     public static final String REGISTRATION_ERROR = "registrationError";
+    public static final String VERIFICATION_ERROR = "verificationError";
     public static final String LOGIN_ERROR = "loginError";
     public static final String CODE_VERIFICATION_ERROR = "codeVerificationError";
     public static final String DATA_REGISTRATION_ERROR = "dataRegistrationError";

@@ -2,9 +2,8 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<fmt:setLocale value="${sessionScope.currentLocale}" scope="session" />
-<fmt:setBundle basename="${sessionScope.currentBundle}" />
-
+<fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
+<fmt:setBundle basename="${sessionScope.currentBundle}"/>
 
 
 <!DOCTYPE html>
@@ -17,9 +16,11 @@
 
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
+      method="post">
     <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px" value="${sessionScope.secondLocale}">
+    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px"
+           value="${sessionScope.secondLocale}">
 </form>
 
 <nav class="menu">
@@ -39,16 +40,21 @@
 <div class="auth">
     <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
         <p>
-        <c:if test="${requestScope.loginError != null}">
-        <div class="error"><fmt:message key="error.login_user"/> </div>
+            <c:if test="${requestScope.loginError != null}">
+        <div class="error"><fmt:message key="error.login_user"/></div>
+        </c:if>
+        <c:if test="${requestScope.verificationError != null}">
+            <div class="error"><fmt:message key="error.verification"/></div>
         </c:if>
         </p>
         <input type="text" name="login" placeholder="<fmt:message key="placeholder.name.login"/>"/><br>
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"/><br>
         <input type="submit" value="<fmt:message key="button.name.enter"/>"/><br>
     </form>
-    <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message key="page.registration"/></a><br>
-    <a href="${pageContext.request.contextPath}/controller?command=verification_customer_page"><fmt:message key="link.name.verification_customer"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message
+            key="page.registration"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=verification_customer_page"><fmt:message
+            key="link.name.verification_customer"/></a><br>
 </div>
 <div class="titles">
     <div class="title_first">

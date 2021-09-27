@@ -9,6 +9,7 @@ public class CommandResult {
         this.page = page;
     }
 
+
     public RoutingType getRoutingType() {
         return routingType;
     }

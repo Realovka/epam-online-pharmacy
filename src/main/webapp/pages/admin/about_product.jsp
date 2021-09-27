@@ -22,7 +22,7 @@
 
 <h1><fmt:message key="title.about_product"/></h1>
 <img id="account_image" class="pic"
-     src="<c:url value="${pageContext.request.contextPath}${sessionScope.pathToFile}"/>" alt="no img"/><br>
+     src="/addImage?product_id=${sessionScope.productId}" alt="no img"/><br>
 <label class="product"><fmt:message key="label.product_name"/></label>
 <div>${sessionScope.product.name}</div>
 <br>

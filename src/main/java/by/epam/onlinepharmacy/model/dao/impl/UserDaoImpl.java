@@ -45,8 +45,8 @@ public class UserDaoImpl implements UserDao {
     private static final String FIND_BY_LOGIN = "SELECT user_id, first_name, last_name, email FROM users WHERE login=?";
 
     private static final String AUTHORIZE_USER = """
-            SELECT u.user_id, u.first_name, u.last_name, ur.role FROM users u JOIN user_role ur ON u.role_id=ur.role_id
-            WHERE u.login=? AND u.password=?
+            SELECT u.user_id, u.first_name, u.last_name, ur.role, us.status FROM users u JOIN user_role ur ON u.role_id=ur.role_id
+            JOIN user_status us ON u.status_id=us.status_id WHERE u.login=? AND u.password=?
             """;
 
     private static final String FIND_ALL_PHARMACISTS = """
@@ -158,6 +158,7 @@ public class UserDaoImpl implements UserDao {
                             .setFirstName(resultSet.getString(USER_FIRST_NAME))
                             .setLastName(resultSet.getString(USER_LAST_NAME))
                             .setRole(Role.valueOf(resultSet.getString(ColumnName.USER_ROLE)))
+                            .setStatus(Status.valueOf(resultSet.getString(USER_STATUS)))
                             .build());
                 }
             }

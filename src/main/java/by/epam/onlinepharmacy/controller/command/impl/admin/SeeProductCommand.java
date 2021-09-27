@@ -13,6 +13,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Optional;
 
 public class SeeProductCommand implements Command {
@@ -22,20 +24,15 @@ public class SeeProductCommand implements Command {
     public CommandResult execute(HttpServletRequest request) {
         ProductService productService = ProductServiceImpl.getInstance();
         long id = (long) request.getSession().getAttribute(SessionAttribute.PRODUCT_ID);
-        String path;
-        Optional<String> pathToFile;
         String productId = String.valueOf(id);
         ProductDto product;
 
         try {
-            pathToFile = productService.findPathToPicture(id);
             product = productService.findProductById(productId);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find path to picture ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find product by id ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
-        path = pathToFile.orElse("");
-        request.getSession().setAttribute(SessionAttribute.PATH_TO_FILE, path);
         request.getSession().setAttribute(SessionAttribute.PRODUCT, product);
         return new CommandResult(PagePath.SEE_PRODUCT, CommandResult.RoutingType.REDIRECT);
     }

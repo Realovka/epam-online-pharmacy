@@ -1,7 +1,7 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.controller.command.CommandResult;
 import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;
@@ -17,22 +17,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import static by.epam.onlinepharmacy.controller.command.PagePath.ERROR_500_PAGE;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Properties;
 
 @WebServlet(urlPatterns = "/addImage")
-@MultipartConfig(location = "E://epam//onlinepharmacy//src//main//webapp//pictures", fileSizeThreshold = 1024 * 1024,
+@MultipartConfig(location = "E:/epam/img/", fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,
         maxRequestSize = 1024 * 1024 * 25)
 public class ImageServlet extends HttpServlet {
-    private Logger logger = LogManager.getLogger();
-    private static final String UPLOAD_DIR = "E://epam//onlinepharmacy//src//main//webapp//pictures";
-    private static final String FILE_PATH = "/pictures/";
+    private static  final Logger logger = LogManager.getLogger();
+    private static final Properties properties = new Properties();
+    private static final String DATABASE_PROPERTIES = "prop/picture.properties";
+    private static final String UPLOAD_DIR = "image.path";
+    private static final String CONTENT_TYPE = "image/jpeg";
+    private static final String PATH;
+
+    static {
+        try (InputStream inputStream = ImageServlet.class.getClassLoader().getResourceAsStream(DATABASE_PROPERTIES)) {
+            properties.load(inputStream);
+            PATH = properties.getProperty(UPLOAD_DIR);
+        } catch (FileNotFoundException e) {
+            logger.log(Level.ERROR, "File with properties" + DATABASE_PROPERTIES + " not found " + e);
+            throw new RuntimeException("File with properties" + DATABASE_PROPERTIES + " not found: " + e);
+        } catch (IOException e) {
+            logger.log(Level.ERROR, "Reading error: ", e);
+            throw new RuntimeException("Reading error: ", e);
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        File file = new File(UPLOAD_DIR);
+        File file = new File(PATH);
         StringBuilder fileName = new StringBuilder();
         try {
             for (Part part : req.getParts()) {
@@ -47,11 +66,28 @@ public class ImageServlet extends HttpServlet {
         ProductServiceImpl productService = ProductServiceImpl.getInstance();
         long id = (long) req.getSession().getAttribute(SessionAttribute.PRODUCT_ID);
         try {
-            productService.addPathToPicture(id, FILE_PATH + fileName);
+            productService.addPathToPicture(id, PATH + fileName);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while added path to picture ", e);
             resp.sendRedirect(PagePath.ERROR_500_PAGE);
         }
         resp.sendRedirect(PagePath.ADDITION_PICTURE);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String productId = req.getParameter(RequestParameter.PRODUCT_ID);
+        ProductServiceImpl productService = ProductServiceImpl.getInstance();
+        String path = null;
+        try {
+            path = productService.findPathToPicture(productId);
+        } catch (ServiceException e) {
+            logger.log(Level.ERROR, "ServiceException in method doGet while found path to picture ", e);
+            resp.sendRedirect(PagePath.ERROR_500_PAGE);
+        }
+        byte[] imageBytes = Files.readAllBytes(Paths.get(path));
+        resp.setContentType(CONTENT_TYPE);
+        resp.setContentLength(imageBytes.length);
+        resp.getOutputStream().write(imageBytes);
     }
 }

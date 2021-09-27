@@ -18,7 +18,7 @@ public interface ProductService {
     List<ProductDto> findListProductsByName(String productName) throws ServiceException;
     List<ProductDto> findListProductsByNonProprietaryName(String nonProprietaryName) throws ServiceException;
     int findCurrentPage() throws ServiceException;
-    Optional<String> findPathToPicture(long id) throws ServiceException;
+    String findPathToPicture(String productId) throws ServiceException;
     ProductDto findProductById(String id) throws ServiceException;
     Map<Product, Integer> addProductToOrder(String id, Map<Product, Integer> order) throws ServiceException;
     void updateProductQuantityInOrder(String productId, String quantity, Map<Product, Integer> order);

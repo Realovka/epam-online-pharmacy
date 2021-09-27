@@ -24,6 +24,7 @@ public class ProductServiceImpl implements ProductService {
     private static final String NEED_RECIPE_RU = "Да";
     private static final String DONT_NEED_RECIPE_EN = "No";
     private static final int RECORD_PER_PAGE = 5;
+    private static final String EMPTY_STRING = "\s";
     private static ProductServiceImpl instance = new ProductServiceImpl();
     private ProductDao productDao = ProductDaoImpl.getInstance();
 
@@ -96,7 +97,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Optional<String> findPathToPicture(long id) throws ServiceException {
+    public String findPathToPicture(String productId) throws ServiceException {
+        long id = Long.parseLong(productId);
         Optional<String> pathToPicture;
         try {
             pathToPicture = productDao.findPathToPicture(id);
@@ -104,7 +106,8 @@ public class ProductServiceImpl implements ProductService {
             logger.log(Level.ERROR, "DaoException is in method findPathToPicture() ", e);
             throw new ServiceException("DaoException is in method findPathToProduct() ", e);
         }
-        return pathToPicture;
+        String path = pathToPicture.orElse(EMPTY_STRING);
+        return path;
     }
 
     @Override
@@ -112,7 +115,6 @@ public class ProductServiceImpl implements ProductService {
         List<Product> productsDb;
         try {
             productsDb = productDao.findListProducts(startingProduct);
-
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findListProducts() ", e);
             throw new ServiceException("DaoException is in method findListProducts() ", e);

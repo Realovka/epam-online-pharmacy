@@ -8,4 +8,7 @@
                              http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
          id="WebApp_9" version="2.4">
 
+<session-config>
+    <session-timeout>60</session-timeout>
+</session-config>
 </web-app>

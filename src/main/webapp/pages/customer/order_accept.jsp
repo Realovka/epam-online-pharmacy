@@ -10,13 +10,14 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>Order accept</title>
+    <title><fmt:message key="title.order_is_accepted"/></title>
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: dimgrey; color: white; width: 30px" value="${sessionScope.secondLocale}">
+<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
+      method="post">
+    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
+    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
 </form>
 
 <nav class="menu">
@@ -32,8 +33,10 @@
         </li>
     </ul>
 </nav>
-<label>Order is accepted</label>
-<a href="${pageContext.request.contextPath}/controller?command=main_customer"><fmt:message key="link.customer_main"/></a>
-<a href="${pageContext.request.contextPath}/controller?command=logout"><fmt:message key="link.logout"/></a>
+<label style="text-align: center"><fmt:message key="title.order_is_accepted"/></label><br>
+<a href="${pageContext.request.contextPath}/controller?command=main_customer" class="common_link"><fmt:message
+        key="link.customer_main"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
+        key="link.logout"/></a>
 </body>
 </html>

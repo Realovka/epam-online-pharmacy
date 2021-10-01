@@ -26,10 +26,9 @@ public class SendingOrderCommand implements Command {
         OrderService orderService = OrderServiceImpl.getInstance();
         long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         User auth =(User) session.getAttribute(SessionAttribute.USER_AUTH);
-        long userId = auth.getUserId();
         Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
         try {
-            orderService.createOrder(pharmacyId, userId, products);
+            orderService.createOrder(pharmacyId, auth, products);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while create order ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);

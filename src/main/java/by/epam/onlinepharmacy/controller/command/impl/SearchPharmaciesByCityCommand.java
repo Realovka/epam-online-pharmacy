@@ -1,7 +1,9 @@
-package by.epam.onlinepharmacy.controller.command.impl.customer;
+package by.epam.onlinepharmacy.controller.command.impl;
 
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.dto.PharmacyDto;
+import by.epam.onlinepharmacy.entity.Role;
+import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
@@ -18,6 +20,7 @@ public class SearchPharmaciesByCityCommand implements Command {
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
+        CommandResult commandResult;
         HttpSession session = request.getSession();
         String city = request.getParameter(RequestParameter.CITY_FOR_SEARCH_PHARMACIES);
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
@@ -29,6 +32,13 @@ public class SearchPharmaciesByCityCommand implements Command {
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
         session.setAttribute(SessionAttribute.LIST_PHARMACIES_BY_CITY, pharmacies);
-        return new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+        User auth = (User) session.getAttribute(SessionAttribute.USER_AUTH);
+        Role role = auth.getRole();
+        if (role.equals(Role.CUSTOMER)) {
+            commandResult = new CommandResult(PagePath.PHARMACIES_FOR_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+        } else {
+            commandResult = new CommandResult(PagePath.MAIN_PHARMACIST, CommandResult.RoutingType.REDIRECT);
+        }
+        return commandResult;
     }
 }

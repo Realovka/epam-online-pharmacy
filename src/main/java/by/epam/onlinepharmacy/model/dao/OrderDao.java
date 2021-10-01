@@ -7,6 +7,8 @@ import by.epam.onlinepharmacy.exception.DaoException;
 import java.util.List;
 
 public interface OrderDao {
-    long createOrder(Order order) throws DaoException;
+    Order createOrder(Order order) throws DaoException;
     void createProductsInBasket(List<Basket> basket) throws DaoException;
+    List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId) throws DaoException;
+    List<Basket> findBasketForOrder(long orderId) throws DaoException;
 }

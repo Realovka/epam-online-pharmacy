@@ -45,6 +45,8 @@ public final class PagePath {
 
     //pharmacist
     public static final String MAIN_PHARMACIST = "/pages/pharmacist/pharmacist_main.jsp";
+    public static final String ALL_PROCESSING_ORDERS = "/pages/pharmacist/all_processing_orders.jsp";
+    public static final String BASKET_FOR_ORDER = "/pages/pharmacist/basket_for_order.jsp";
 
     //error
     public static final String ERROR_500_PAGE = "/pages/error/error500.jsp";

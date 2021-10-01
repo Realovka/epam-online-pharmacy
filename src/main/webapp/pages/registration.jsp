@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -69,5 +70,6 @@
         <input type="submit" value="<fmt:message key="button.registration"/>">
     </form>
 </div>
+<ftg:footer/>
 </body>
 </html>

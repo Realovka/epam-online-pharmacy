@@ -17,15 +17,15 @@ public final class SessionAttribute {
     public static final String CURRENT_BUNDLE = "currentBundle";
     public static final String CURRENT_PRODUCTS = "currentProducts";
     public static final String PRODUCT_ID = "productId";
-    public static final String PATH_TO_FILE = "pathToFile";
     public static final String PRODUCT = "product";
-    public static final String PRODUCTS = "products";
     public static final String PHARMACY_ID = "pharmacyId";
     public static final String LIST_PRODUCTS_IN_BASKET = "listProductsInBasket";
     public static final String LIST_PRODUCTS_BY_NAME = "listProductsByName";
     public static final String LIST_PRODUCTS_BY_NON_PROPRIETARY_NAME = "listProductsByNonProprietaryName";
     public static final String LIST_PHARMACIES_BY_CITY = "listPharmaciesByCity";
     public static final String PHARMACY_ORDER = "pharmacyOrder";
+    public static final String LIST_PROCESSING_ORDERS = "listProcessingOrders";
+    public static final String BASKET = "basket";
 
 
 

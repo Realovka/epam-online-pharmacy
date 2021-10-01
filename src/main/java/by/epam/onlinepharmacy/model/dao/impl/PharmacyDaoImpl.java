@@ -47,7 +47,7 @@ public class PharmacyDaoImpl implements PharmacyDao {
     private static final String COUNT_PHARMACIES = "SELECT COUNT(*) FROM pharmacies";
 
     private static final String FIND_PHARMACY_BY_ID = """
-            SELECT number, city, street, house, block FROM pharmacies WHERE pharmacy_id = ?
+            SELECT pharmacy_id, number, city, street, house, block FROM pharmacies WHERE pharmacy_id = ?
             """;
 
     private static final String UPDATE_PHARMACY_NUMBER = "UPDATE pharmacies SET number =? WHERE pharmacy_id =?";
@@ -150,6 +150,7 @@ public class PharmacyDaoImpl implements PharmacyDao {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     Pharmacy pharmacy = new Pharmacy.Builder()
+                            .setPharmacyId(resultSet.getLong(PHARMACY_ID))
                             .setNumber(resultSet.getInt(PHARMACY_NUMBER))
                             .setCity(resultSet.getString(PHARMACY_CITY))
                             .setStreet(resultSet.getString(PHARMACY_STREET))

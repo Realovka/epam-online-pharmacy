@@ -40,6 +40,14 @@ public final class ColumnName {
 
     //table orders
     public static final String ORDER_ID = "order_id";
+    public static final String DATA_STARTING = "data_starting";
+    public static final String DATA_ENDING = "data_ending";
+
+    //table order_status
+    public static final String ORDER_STATUS = "status";
+
+    //table basket
+    public static final String QUANTITY = "quantity";
 
     private ColumnName() {
     }

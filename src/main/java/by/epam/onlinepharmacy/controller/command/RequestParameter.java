@@ -62,6 +62,9 @@ public final class RequestParameter {
     public static final String NON_PROPRIETARY_NAME_FOR_SEARCH_PRODUCTS = "nonProprietaryNameForSearchProducts";
     public static final String CITY_FOR_SEARCH_PHARMACIES = "cityForSearchPharmacies";
 
+    //Order
+    public static final String ORDER_ID = "order_id";
+
 
 
     private RequestParameter() {

@@ -2,19 +2,19 @@ package by.epam.onlinepharmacy.entity;
 
 public class Basket {
     private long basketId;
-    private long userId;
-    private long productId;
-    private long orderId;
+    private User user;
+    private Product product;
+    private Order order;
     private int quantity;
 
     public Basket() {
     }
 
-    public Basket(long basketId, long userId, long productId, long orderId, int quantity) {
+    public Basket(long basketId, User user, Product product, Order order, int quantity) {
         this.basketId = basketId;
-        this.userId = userId;
-        this.productId = productId;
-        this.orderId = orderId;
+        this.user = user;
+        this.product = product;
+        this.order = order;
         this.quantity = quantity;
     }
 
@@ -26,28 +26,28 @@ public class Basket {
         this.basketId = basketId;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public long getProductId() {
-        return productId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public long getOrderId() {
-        return orderId;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public int getQuantity() {
@@ -63,16 +63,16 @@ public class Basket {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Basket basket = (Basket) o;
-        return basketId == basket.basketId && userId == basket.userId && productId == basket.productId
-                && orderId == basket.orderId && quantity == basket.quantity;
+        return basketId == basket.basketId && user == basket.user && product == basket.product
+                && order == basket.order && quantity == basket.quantity;
     }
 
     @Override
     public int hashCode() {
         int result = (int) (basketId ^ (basketId >>> 32));
-        result *= (int) (userId ^ (userId >>> 32));
-        result *= (int) (productId ^ (productId >>> 32));
-        result *= (int) (orderId ^ (orderId >>> 32));
+        result *= 31 + (user != null ? user.hashCode() : 0);
+        result *= 31 + (product != null ? product.hashCode() : 0);
+        result *= 31 + (order != null ? order.hashCode() : 0);
         result *= quantity;
         return result;
     }
@@ -82,9 +82,9 @@ public class Basket {
         StringBuilder builder = new StringBuilder();
         builder.append("Basket{");
         builder.append("basketId=").append(basketId);
-        builder.append(", userId=").append(userId);
-        builder.append(", productId=").append(productId);
-        builder.append(", orderId=").append(orderId);
+        builder.append(", user=").append(user);
+        builder.append(", product=").append(product);
+        builder.append(", order=").append(order);
         builder.append(", quantity=").append(quantity);
         builder.append("}");
         return builder.toString();
@@ -102,19 +102,19 @@ public class Basket {
             return this;
         }
 
-        public Basket.Builder setUserId(long userId) {
-            newBasket.userId = userId;
+        public Basket.Builder setUser(User user) {
+            newBasket.user = user;
             return this;
         }
 
-        public Basket.Builder setProductId(long productId) {
-            newBasket.productId = productId;
+        public Basket.Builder setProduct(Product product) {
+            newBasket.product = product;
             return this;
         }
 
 
-        public Basket.Builder setOrderId(long orderId) {
-            newBasket.orderId = orderId;
+        public Basket.Builder setOrder(Order order) {
+            newBasket.order = order;
             return this;
         }
 

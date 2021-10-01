@@ -20,8 +20,9 @@ public final class BundleKey {
     public static final String PRODUCT_DOSE_ERROR = "productDoseError";
     public static final String PRODUCT_GROUP_ERROR = "productGroupError";
     public static final String PRODUCT_PLANT_ERROR = "productPlantError";
-    public static final String PRODUCT_PRICE_ERROR = "productNameError";
+    public static final String PRODUCT_PRICE_ERROR = "productPriceError";
     public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
+    public static final String NO_SUCH_PRODUCTS_IN_SEARCH = "noSuchProductsInSearch";
 
     private BundleKey() {
     }

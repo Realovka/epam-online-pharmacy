@@ -27,6 +27,7 @@ public final class RequestAttribute {
     public static final String PRODUCT_GROUP_ERROR = "productGroupError";
     public static final String PRODUCT_PRICE_ERROR = "productPriceError";
     public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
+    public static final String NO_SUCH_PRODUCTS_IN_SEARCH = "noSuchProductsInSearch";
 
 
 

@@ -64,6 +64,8 @@ public enum CommandType {
 
     //pharmacist
     MAIN_PHARMACIST,
+    ALL_PROCESSING_ORDERS,
+    BASKET_FOR_ORDER,
 
     //customer
     MAIN_CUSTOMER,

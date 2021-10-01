@@ -25,8 +25,12 @@ public class SearchProductsByNonProprietaryNameCommand implements Command {
         try {
             products = productService.findListProductsByNonProprietaryName(productNonProprietaryName);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find list products by non proprietary name ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find list products by non-proprietary name ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
+        }
+        if(products.isEmpty()) {
+            request.setAttribute(RequestAttribute.NO_SUCH_PRODUCTS_IN_SEARCH, BundleKey.NO_SUCH_PRODUCTS_IN_SEARCH);
+            return new CommandResult(PagePath.SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME, CommandResult.RoutingType.FORWARD);
         }
         session.setAttribute(SessionAttribute.LIST_PRODUCTS_BY_NON_PROPRIETARY_NAME, products);
         return new CommandResult(PagePath.SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME, CommandResult.RoutingType.REDIRECT);

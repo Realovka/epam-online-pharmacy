@@ -9,17 +9,17 @@ public class Order {
     private Timestamp dataStarting;
     private Timestamp dataEnding;
     private StatusOrder statusOrder;
-    private long pharmacyId;
+    private Pharmacy pharmacy;
 
     public Order() {
     }
 
-    public Order(long orderId, Timestamp dataStarting, Timestamp dataEnding, StatusOrder statusOrder, long pharmacyId) {
+    public Order(long orderId, Timestamp dataStarting, Timestamp dataEnding, StatusOrder statusOrder, Pharmacy pharmacy) {
         this.orderId = orderId;
         this.dataStarting = dataStarting;
         this.dataEnding = dataEnding;
         this.statusOrder = statusOrder;
-        this.pharmacyId = pharmacyId;
+        this.pharmacy = pharmacy;
     }
 
     public long getOrderId() {
@@ -54,12 +54,12 @@ public class Order {
         this.statusOrder = statusOrder;
     }
 
-    public long getPharmacyId() {
-        return pharmacyId;
+    public Pharmacy getPharmacy() {
+        return pharmacy;
     }
 
-    public void setPharmacyId(long pharmacyId) {
-        this.pharmacyId = pharmacyId;
+    public void setPharmacy(Pharmacy pharmacy) {
+        this.pharmacy = pharmacy;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return orderId == order.orderId && pharmacyId == order.pharmacyId && Objects.equals(dataStarting, order.dataStarting)
+        return orderId == order.orderId && pharmacy == order.pharmacy && Objects.equals(dataStarting, order.dataStarting)
                 && Objects.equals(dataEnding, order.dataEnding) && statusOrder == order.statusOrder;
     }
 
@@ -77,7 +77,7 @@ public class Order {
         result *= 31 + (dataStarting != null ? dataStarting.hashCode() : 0);
         result *= 31 + (dataEnding != null ? dataEnding.hashCode() : 0);
         result *= 31 + (statusOrder != null ? statusOrder.hashCode() : 0);
-        result *= (int) (pharmacyId ^ (pharmacyId >>> 32));
+        result *= 31 + (pharmacy != null ? pharmacy.hashCode() : 0);
         return result;
     }
 
@@ -89,7 +89,7 @@ public class Order {
         builder.append(", dataStarting=").append(dataStarting);
         builder.append(", dataEnding=").append(dataEnding);
         builder.append(", statusOrder=").append(statusOrder);
-        builder.append(", pharmacyId=").append(pharmacyId);
+        builder.append(", pharmacy=").append(pharmacy);
         builder.append("}");
         return builder.toString();
     }
@@ -122,8 +122,8 @@ public class Order {
             return this;
         }
 
-        public Order.Builder setPharmacyId(long pharmacyId) {
-            newOrder.pharmacyId = pharmacyId;
+        public Order.Builder setPharmacy(Pharmacy pharmacy) {
+            newOrder.pharmacy = pharmacy;
             return this;
         }
 

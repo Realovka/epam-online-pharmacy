@@ -44,7 +44,7 @@ public class PageRedirectSecurityFilter implements Filter {
                 BASKET, PHARMACIES_FOR_CUSTOMER, ORDER, ORDER_ACCEPT);
 
 
-        pharmacistPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_PHARMACIST);
+        pharmacistPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_PHARMACIST, ALL_PROCESSING_ORDERS, BASKET_FOR_ORDER);
 
         availablePages.put(Role.GUEST, guestPages);
         availablePages.put(Role.ADMIN, adminPages);

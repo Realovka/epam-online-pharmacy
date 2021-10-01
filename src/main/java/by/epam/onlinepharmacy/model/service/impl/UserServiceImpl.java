@@ -9,6 +9,7 @@ import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.util.PasswordEncoder;
+import by.epam.onlinepharmacy.model.validation.UserValidator;
 import by.epam.onlinepharmacy.model.validation.impl.UserValidatorImpl;
 import by.epam.onlinepharmacy.model.verification.EmailSending;
 import org.apache.logging.log4j.Level;
@@ -22,22 +23,22 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
-    private static UserServiceImpl instance;
     private UserDao userDao = UserDaoImpl.getInstance();
+    private UserValidator userValidator = UserValidatorImpl.getInstance();
 
     private UserServiceImpl() {
 
     }
+    private static UserServiceImpl instance = new UserServiceImpl();
 
     public static UserServiceImpl getInstance() {
-        if (instance == null) {
-            instance = new UserServiceImpl();
-        }
         return instance;
     }
 
     @Override
-    public Optional<User> createUser(String login, String password, String firstName, String lastName, String email, String telephone, String role) throws ServiceException {
+    public Optional<User> createUser(String login, String password,
+                                     String firstName, String lastName, String email, String telephone,
+                                     String role) throws ServiceException {
         int result;
         User user = new User();
         if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
@@ -100,7 +101,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Map<String, String> isFormValid(String login, String password, String firstName, String lastName, String email, String telephone) {
+    public Map<String, String> isFormValid(String login, String password, String firstName,
+                                           String lastName, String email, String telephone) {
         Map<String, String> userParameters = new HashMap<>();
         userParameters.put(LOGIN, login);
         userParameters.put(PASSWORD, password);
@@ -108,7 +110,7 @@ public class UserServiceImpl implements UserService {
         userParameters.put(LAST_NAME, lastName);
         userParameters.put(EMAIL, email);
         userParameters.put(TELEPHONE, telephone);
-        UserValidatorImpl.getInstance().isValidForm(userParameters);
+        userValidator.isValidForm(userParameters);
         return userParameters;
     }
 

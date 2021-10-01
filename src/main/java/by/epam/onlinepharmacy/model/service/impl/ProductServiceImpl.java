@@ -25,11 +25,13 @@ public class ProductServiceImpl implements ProductService {
     private static final String DONT_NEED_RECIPE_EN = "No";
     private static final int RECORD_PER_PAGE = 5;
     private static final String EMPTY_STRING = "\s";
-    private static ProductServiceImpl instance = new ProductServiceImpl();
     private ProductDao productDao = ProductDaoImpl.getInstance();
+    private ProductValidator productValidator = ProductValidatorImpl.getInstance();
 
     private ProductServiceImpl() {
     }
+
+    private static ProductServiceImpl instance = new ProductServiceImpl();
 
     public static ProductServiceImpl getInstance() {
         return instance;
@@ -81,7 +83,6 @@ public class ProductServiceImpl implements ProductService {
         productParameters.put(RequestParameter.GROUP, group);
         productParameters.put(RequestParameter.PRICE, price);
         productParameters.put(RequestParameter.INSTRUCTION, instruction);
-        ProductValidator productValidator = ProductValidatorImpl.getInstance();
         productValidator.isValidForm(productParameters);
         return productParameters;
     }

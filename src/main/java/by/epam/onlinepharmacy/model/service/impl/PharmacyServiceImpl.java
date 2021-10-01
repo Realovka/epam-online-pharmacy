@@ -8,6 +8,7 @@ import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;
 import by.epam.onlinepharmacy.model.dao.impl.PharmacyDaoImpl;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
+import by.epam.onlinepharmacy.model.validation.PharmacyValidator;
 import by.epam.onlinepharmacy.model.validation.impl.PharmacyValidatorImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -27,11 +28,13 @@ public class PharmacyServiceImpl implements PharmacyService {
     private static final String ZERO_STRING = "0";
     private static final String BLANK_STRING = "\s";
     private static final int RECORD_PER_PAGE = 15;
-    private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
+    private PharmacyValidator pharmacyValidator = PharmacyValidatorImpl.getInstance();
 
     private PharmacyServiceImpl() {
     }
+
+    private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
 
     public static PharmacyServiceImpl getInstance() {
         return instance;
@@ -123,7 +126,7 @@ public class PharmacyServiceImpl implements PharmacyService {
         pharmacyParameters.put(STREET, street);
         pharmacyParameters.put(HOUSE, house);
         pharmacyParameters.put(BLOCK, block);
-        PharmacyValidatorImpl.getInstance().isValidForm(pharmacyParameters);
+        pharmacyValidator.isValidForm(pharmacyParameters);
 
         if (pharmacyParameters.get(RequestParameter.BLOCK).equals(ZERO_STRING)) {
             pharmacyParameters.put(RequestParameter.BLOCK, BLANK_STRING);

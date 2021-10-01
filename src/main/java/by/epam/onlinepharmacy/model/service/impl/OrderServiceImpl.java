@@ -22,20 +22,21 @@ import java.util.Optional;
 
 public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
+    private OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
+    private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
 
     private OrderServiceImpl() {
     }
 
     private static OrderServiceImpl instance = new OrderServiceImpl();
-    public OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
 
     public static OrderServiceImpl getInstance() {
         return instance;
     }
 
+
     @Override
     public void createOrder(long pharmacyId, User auth, Map<Product, Integer> products) throws ServiceException {
-        PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
         Optional<Pharmacy> pharmacyDb;
         try {
          pharmacyDb = pharmacyDao.findPharmacyById(pharmacyId);
@@ -98,5 +99,35 @@ public class OrderServiceImpl implements OrderService {
             throw new ServiceException("DaoException is in method findAllProductsInOrder() ", e);
         }
         return basket;
+    }
+
+    @Override
+    public Order findOrderById(String orderId) throws ServiceException {
+        long id = Long.parseLong(orderId);
+        Optional<Order> orderDb;
+        try {
+           orderDb = orderDao.findOrderById(id);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method findOrderById() ", e);
+            throw new ServiceException("DaoException is in method findOrderById() ", e);
+        }
+        Order order = orderDb.orElse(new Order());
+        return order;
+    }
+
+    @Override
+    public Order updateStatusOrder(String statusOrderId, String orderId) throws ServiceException {
+        int statusOrder = Integer.parseInt(statusOrderId);
+        long id = Long.parseLong(orderId);
+        Optional<Order> orderDb;
+        try {
+            orderDao.updateStatusOrder(statusOrder, id);
+            orderDb = orderDao.findOrderById(id);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method  updateStatusOrder() ", e);
+            throw new ServiceException("DaoException is in method updateStatusOrder() ", e);
+        }
+        Order order = orderDb.orElse(new Order());
+        return order;
     }
 }

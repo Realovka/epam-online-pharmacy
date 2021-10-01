@@ -23,9 +23,17 @@
 <c:choose>
     <c:when test="${sessionScope.basket.size()>0}">
 
-        ${sessionScope.basket.get(0).user.firstName}
-        ${sessionScope.basket.get(0).user.lastName}
-        ${sessionScope.basket.get(0).user.telephone}
+        <div>${sessionScope.basket.get(0).user.firstName} ${sessionScope.basket.get(0).user.lastName}</div>
+        <br>
+        <div> ${sessionScope.basket.get(0).user.telephone}</div>
+        <br>
+        <div>${sessionScope.order.orderId}</div>
+        <br>
+        <div> ${sessionScope.order.dataStarting}</div>
+        <br>
+        <div>${sessionScope.order.dataEnding}</div>
+        <br>
+        <div>${sessionScope.order.statusOrder}</div>
 
         <table border="3">
             <thead>
@@ -58,6 +66,22 @@
             </c:forEach>
         </table>
     </c:when>
-</c:choose>
+</c:choose><br>
+<form action="${pageContext.request.contextPath}/controller?command=updating_order_status_to_prepared"
+      method="post">
+    <input type="hidden" name="order_id" value="${sessionScope.order.orderId}"/>
+    <input type="hidden" name="order_status_id" value="2"/>
+    <input type="submit" value="Prepared" class="button"/>
+</form>
+<br>
+<form action="${pageContext.request.contextPath}/controller?command=updating_order_status_to_deleted"
+      method="post">
+    <input type="hidden" name="order_id" value="${sessionScope.order.orderId}"/>
+    <input type="hidden" name="order_status_id" value="4"/>
+    <input type="submit" value="Deleted" class="button"/>
+</form>
+<br>
+<a href="${pageContext.request.contextPath}/controller?command=all_processing_orders&pharmacy_id=${sessionScope.order.pharmacy.pharmacyId}">To
+    list of orders</a>
 </body>
 </html>

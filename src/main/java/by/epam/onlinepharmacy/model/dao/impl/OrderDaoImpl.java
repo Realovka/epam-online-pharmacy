@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
 
@@ -53,6 +54,15 @@ public class OrderDaoImpl implements OrderDao {
             b.quantity FROM basket b JOIN users u ON b.user_id = u.user_id
             JOIN products p ON b.product_id = p.product_id
             WHERE order_id = ?
+            """;
+
+    private static final String FIND_ORDER_BY_ID = """
+            SELECT o.order_id, o.data_starting, o.data_ending, o.pharmacy_id, os.status FROM orders o JOIN order_status os
+            ON o.order_status_id = os.order_status_id WHERE order_id = ?
+            """;
+
+    private static final String UPDATE_ORDER_STATUS = """
+            UPDATE orders set order_status_id = ? WHERE order_id = ?
             """;
 
     @Override
@@ -156,4 +166,42 @@ public class OrderDaoImpl implements OrderDao {
         return basket;
     }
 
+    @Override
+    public Optional<Order> findOrderById(long orderId) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ORDER_BY_ID)) {
+            preparedStatement.setLong(1, orderId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    Order order = new Order.Builder()
+                            .setOrderId(resultSet.getLong(ORDER_ID))
+                            .setDataStarting(resultSet.getTimestamp(DATA_STARTING))
+                            .setDataEnding(resultSet.getTimestamp(DATA_ENDING))
+                            .setPharmacy(new Pharmacy.Builder()
+                                    .setPharmacyId(resultSet.getLong(PHARMACY_ID))
+                                    .build())
+                            .setStatusOrder(StatusOrder.valueOf(resultSet.getString(ORDER_STATUS)))
+                            .build();
+                    return Optional.of(order);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findOrderById() ", e);
+            throw new DaoException("SQLException in method findOrderById() ", e);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public void updateStatusOrder(int statusId, long orderId) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_STATUS)) {
+            preparedStatement.setInt(1, statusId);
+            preparedStatement.setLong(2, orderId);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method updateStatusOrder() ", e);
+            throw new DaoException("SQLException in method updateStatusOrder() ", e);
+        }
+    }
 }

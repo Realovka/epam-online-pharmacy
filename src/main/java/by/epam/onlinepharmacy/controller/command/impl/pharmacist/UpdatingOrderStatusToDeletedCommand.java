@@ -23,7 +23,7 @@ public class UpdatingOrderStatusToDeletedCommand implements Command {
         OrderService orderService = OrderServiceImpl.getInstance();
         Order order;
         try {
-            order = orderService.updateStatusOrder(orderStatusId, orderId);
+            order = orderService.updateStatusOrder(orderStatusId, orderId, null);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while update order status", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);

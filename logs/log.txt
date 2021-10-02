@@ -89,3 +89,9 @@ ON o.order_status_id = os.order_statu' at line 1
 	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.findOrderById(OrderServiceImpl.java:109) ~[classes/:?]
 	... 30 more
 2021-10-01 22:39:21.565 [RMI TCP Connection(19)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 19:32:26.055 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 22:27:45.739 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 22:31:23.793 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 22:35:15.978 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 22:37:19.682 [RMI TCP Connection(5)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-02 22:39:54.390 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

@@ -12,6 +12,7 @@ import by.epam.onlinepharmacy.model.util.PasswordEncoder;
 import by.epam.onlinepharmacy.model.validation.UserValidator;
 import by.epam.onlinepharmacy.model.validation.impl.UserValidatorImpl;
 import by.epam.onlinepharmacy.model.verification.EmailSending;
+import by.epam.onlinepharmacy.model.verification.impl.EmailSendingImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,12 +24,18 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
+    private static final String HEADER_FOR_VERIFICATION_CUSTOMER = "Activation from Alpha Pharmacy";
+    private static final String MESSAGE_FOR_VERIFICATION_CUSTOMER = """
+            Hello, %s  %s welcome to Alpha Pharmacy. Your activation code is %s
+            """;
     private UserDao userDao = UserDaoImpl.getInstance();
     private UserValidator userValidator = UserValidatorImpl.getInstance();
+    private EmailSending emailSending = EmailSendingImpl.getInstance();
 
     private UserServiceImpl() {
 
     }
+
     private static UserServiceImpl instance = new UserServiceImpl();
 
     public static UserServiceImpl getInstance() {
@@ -74,7 +81,8 @@ public class UserServiceImpl implements UserService {
                 if (userReg.isPresent()) {
                     String code = UUID.randomUUID().toString();
                     userDao.createCodeActivation(userReg.get().getUserId(), code);
-                    EmailSending.sendEmail(userReg.get(), code);
+                    emailSending.sendEmail(userReg.get(), code, HEADER_FOR_VERIFICATION_CUSTOMER,
+                            MESSAGE_FOR_VERIFICATION_CUSTOMER);
                 }
             } catch (DaoException e) {
                 logger.log(Level.ERROR, "DaoException is in method createUser(), when send code", e);

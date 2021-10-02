@@ -5,9 +5,13 @@ import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.OrderDao;
 import by.epam.onlinepharmacy.model.dao.PharmacyDao;
+import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl;
 import by.epam.onlinepharmacy.model.dao.impl.PharmacyDaoImpl;
+import by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl;
 import by.epam.onlinepharmacy.model.service.OrderService;
+import by.epam.onlinepharmacy.model.verification.EmailSending;
+import by.epam.onlinepharmacy.model.verification.impl.EmailSendingImpl;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -22,8 +26,14 @@ import java.util.Optional;
 
 public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
+    private static final String HEADER_FOR_PREPARED_ORDER = "Information about your order";
+    private static final String MESSAGE_FOR_PREPARED_ORDER = """
+            Hello, %s  %s! Your order number %s is prepared.
+            """;
     private OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
+    private EmailSending emailSending = EmailSendingImpl.getInstance();
+    private UserDao userDao = UserDaoImpl.getInstance();
 
     private OrderServiceImpl() {
     }
@@ -116,7 +126,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order updateStatusOrder(String statusOrderId, String orderId) throws ServiceException {
+    public Order updateStatusOrder(String statusOrderId, String orderId, Basket basket) throws ServiceException {
         int statusOrder = Integer.parseInt(statusOrderId);
         long id = Long.parseLong(orderId);
         Optional<Order> orderDb;
@@ -128,6 +138,14 @@ public class OrderServiceImpl implements OrderService {
             throw new ServiceException("DaoException is in method updateStatusOrder() ", e);
         }
         Order order = orderDb.orElse(new Order());
+        if (statusOrder == 2) {
+            User whoDidOrder = basket.getUser();
+            sendConfirmingEmailToCustomer(whoDidOrder, orderId);
+        }
         return order;
+    }
+
+    private void sendConfirmingEmailToCustomer(User user, String orderId){
+      emailSending.sendEmail(user, orderId, HEADER_FOR_PREPARED_ORDER, MESSAGE_FOR_PREPARED_ORDER);
     }
 }

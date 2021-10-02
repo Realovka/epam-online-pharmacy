@@ -49,7 +49,7 @@ public class OrderDaoImpl implements OrderDao {
             """;
 
     private static final String FIND_PRODUCTS_IN_ORDER = """
-            SELECT u.first_name, u.last_name, u.telephone,
+            SELECT u.first_name, u.last_name, u.telephone, u.email,
             p.product_name, p.product_dose, p.plant, p.price,
             b.quantity FROM basket b JOIN users u ON b.user_id = u.user_id
             JOIN products p ON b.product_id = p.product_id
@@ -153,6 +153,7 @@ public class OrderDaoImpl implements OrderDao {
                                     .setFirstName(resultSet.getString(USER_FIRST_NAME))
                                     .setLastName(resultSet.getString(USER_LAST_NAME))
                                     .setTelephone(resultSet.getString(USER_TELEPHONE))
+                                    .setEmail(resultSet.getString(USER_EMAIL))
                                     .build())
                             .setQuantity(resultSet.getInt(QUANTITY))
                             .build();

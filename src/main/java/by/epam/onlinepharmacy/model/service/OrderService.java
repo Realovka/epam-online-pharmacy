@@ -15,5 +15,5 @@ public interface OrderService {
     List<Order> findAllProcessingOrdersForPharmacies(String pharmacyId) throws ServiceException;
     List<Basket> findBasketForOrder(String orderId) throws ServiceException;
     Order findOrderById(String orderId) throws ServiceException;
-    Order updateStatusOrder(String statusOrderId, String orderId) throws ServiceException;
+    Order updateStatusOrder(String statusOrderId, String orderId, Basket basket) throws ServiceException;
 }

@@ -42,11 +42,17 @@ public class UserDaoImpl implements UserDao {
 
     private static final String FIND_CUSTOMER = "SELECT user_id FROM code_activation WHERE code_value = ?";
 
-    private static final String FIND_BY_LOGIN = "SELECT user_id, first_name, last_name, email FROM users WHERE login=?";
+    private static final String FIND_USER_BY_LOGIN = """
+            SELECT user_id, first_name, last_name, email FROM users WHERE login = ?
+            """;
+
+    private static final String FIND_USER_BY_ID = """
+                SELECT user_id, first_name, last_name, email FROM users WHERE user_id = ?
+            """;
 
     private static final String AUTHORIZE_USER = """
             SELECT u.user_id, u.first_name, u.last_name, ur.role, us.status FROM users u JOIN user_role ur ON u.role_id=ur.role_id
-            JOIN user_status us ON u.status_id=us.status_id WHERE u.login=? AND u.password=?
+            JOIN user_status us ON u.status_id=us.status_id WHERE u.login = ? AND u.password = ?
             """;
 
     private static final String FIND_ALL_PHARMACISTS = """
@@ -94,7 +100,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findByLogin(String login) throws DaoException {
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_LOGIN)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_LOGIN)) {
             preparedStatement.setString(1, login);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -108,8 +114,31 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
-            throw new DaoException("SQLException in method createUser() ", e);
+            logger.log(Level.ERROR, "SQLException in method findByLogin() ", e);
+            throw new DaoException("SQLException in method findByLogin() ", e);
+        }
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<User> findById(long id) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_ID)) {
+            preparedStatement.setLong(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User.Builder()
+                            .setUserId(resultSet.getLong(USER_ID))
+                            .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                            .setLastName(resultSet.getString(USER_LAST_NAME))
+                            .setEmail(resultSet.getString(USER_EMAIL))
+                            .build();
+                    return Optional.of(user);
+                }
+            }
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method findById() ", e);
+            throw new DaoException("SQLException in method findById() ", e);
         }
         return Optional.empty();
     }

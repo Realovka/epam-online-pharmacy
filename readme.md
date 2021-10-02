@@ -29,6 +29,8 @@ The application has 4 roles: guest, administrator, customer and pharmacist.
   5. sending the order to the pharmacy<br>
 
 ###Capabilities of **pharmacist** are:
+   
+  1.
 
 
 

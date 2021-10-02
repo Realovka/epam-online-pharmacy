@@ -5,6 +5,9 @@ public final class PagePath {
     public static final String LOGIN = "/pages/login.jsp";
     public static final String REGISTRATION = "/pages/registration.jsp";
     public static final String VERIFICATION_CUSTOMER = "/pages/verification_customer.jsp";
+    public static final String HOW_TO_DO_ORDER = "/pages/how_to_do_order.jsp";
+    public static final String QUESTIONS = "/pages/questions.jsp";
+    public static final String ABOUT_US = "/pages/about_us.jsp";
 
     //admin
     public static final String MAIN_ADMIN = "/pages/admin/admin_main.jsp";

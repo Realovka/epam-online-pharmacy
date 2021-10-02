@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/reg.css">
     <link rel="stylesheet" href="/styles/common_menu.css">
-    <title><fmt:message key="page.registration"/></title>
+    <title><fmt:message key="title.how_to_do_order"/></title>
 </head>
 <body>
 
@@ -26,9 +26,6 @@
 <nav class="menu">
     <ul>
         <li>
-            <a href="#"><fmt:message key="link.name.how_to_do_order"/></a>
-        </li>
-        <li>
             <a href="#"><fmt:message key="link.name.about_us"/></a>
         </li>
         <li>
@@ -36,6 +33,7 @@
         </li>
     </ul>
 </nav>
-
+<h1><fmt:message key="title.how_to_do_order"/></h1>
+<p><fmt:message key="p.choose_link"/><fmt:message key="p.enter_name"/></p>
 </body>
 </html>

@@ -29,7 +29,8 @@ public class PageRedirectSecurityFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) {
         availablePages = new EnumMap<>(Role.class);
-        guestPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, LOGIN, REGISTRATION, VERIFICATION_CUSTOMER);
+        guestPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, LOGIN, REGISTRATION, VERIFICATION_CUSTOMER,
+                HOW_TO_DO_ORDER, ABOUT_US, QUESTIONS);
 
         adminPages = List.of(ERROR_500_PAGE, ERROR_404_PAGE, MAIN_ADMIN, ALL_PHARMACISTS, INACTIVE_PHARMACISTS,
                 ALL_PHARMACIES, ALL_PRODUCTS,UPDATING_PHARMACIST_LOGIN, UPDATING_PHARMACIST_FIRST_NAME,

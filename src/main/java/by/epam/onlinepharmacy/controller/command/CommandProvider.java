@@ -89,6 +89,9 @@ public class CommandProvider {
         commands.put(CommandType.BASKET_FOR_ORDER, new BasketForOrderCommand());
         commands.put(CommandType.UPDATING_ORDER_STATUS_TO_PREPARED, new UpdatingOrderStatusToPreparedCommand());
         commands.put(CommandType.UPDATING_ORDER_STATUS_TO_DELETED, new UpdatingOrderStatusToDeletedCommand());
+        commands.put(CommandType.HOW_TO_DO_ORDER_PAGE, new GoToHowToDoOrderPageCommand());
+        commands.put(CommandType.ABOUT_US_PAGE, new GoToAboutUsPageCommand());
+        commands.put(CommandType.QUESTIONS_PAGE, new GoToQuestionsPageCommand());
     }
 
     public static CommandProvider getInstance() {

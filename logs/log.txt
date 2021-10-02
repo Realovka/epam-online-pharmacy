@@ -95,3 +95,7 @@ ON o.order_status_id = os.order_statu' at line 1
 2021-10-02 22:35:15.978 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-10-02 22:37:19.682 [RMI TCP Connection(5)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
 2021-10-02 22:39:54.390 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-03 00:17:18.256 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-03 00:20:13.215 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-03 00:23:20.464 [RMI TCP Connection(6)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-03 00:28:13.214 [RMI TCP Connection(9)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

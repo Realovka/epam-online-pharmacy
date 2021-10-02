@@ -13,9 +13,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Optional;
 
 public class SeeProductCommand implements Command {
     private static final Logger logger = LogManager.getLogger();

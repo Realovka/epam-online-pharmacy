@@ -1,7 +1,5 @@
 # Alpha pharmacy ordering products
 
-The application is for ordering products from pharmacies of Alfa pharmacy chain. # Alpha pharmacy ordering products
-
 The application is for ordering products from pharmacies of Alfa pharmacy chain.
 The application has 4 roles: guest, administrator, customer and pharmacist.
 

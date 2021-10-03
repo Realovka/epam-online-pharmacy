@@ -20,7 +20,7 @@
 <form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
       method="post">
     <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px"
+    <input type="submit" class="lang"
            value="${sessionScope.secondLocale}">
 </form>
 <nav class="menu">
@@ -35,7 +35,7 @@
         </li>
         <li>
             <a href="${pageContext.request.contextPath}/controller?command=questions_page"><fmt:message
-                    key="link.name.questions"/></a>
+                    key="link.name.faq"/></a>
         </li>
     </ul>
 </nav>

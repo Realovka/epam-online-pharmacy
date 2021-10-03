@@ -21,3 +21,9 @@ nav{
     color: #fff;
     font-size: 14px;
 }
+
+.lang {
+    background-color: dimgrey;
+    color: white;
+    width: 30px
+}

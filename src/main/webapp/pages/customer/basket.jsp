@@ -24,16 +24,20 @@
 <nav class="menu">
     <ul>
         <li>
-            <a href="#"><fmt:message key="link.name.how_to_do_order"/></a>
+            <a href="${pageContext.request.contextPath}/controller?command=how_to_do_order_page"><fmt:message
+                    key="link.name.how_to_do_order"/></a>
         </li>
         <li>
-            <a href="#"><fmt:message key="link.name.about_us"/></a>
+            <a href="${pageContext.request.contextPath}/controller?command=about_us_page"><fmt:message
+                    key="link.name.about_us"/></a>
         </li>
         <li>
-            <a href="#"><fmt:message key="link.name.questions"/></a>
+            <a href="${pageContext.request.contextPath}/controller?command=questions_page"><fmt:message
+                    key="link.name.faq"/></a>
         </li>
     </ul>
 </nav>
+
 <a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy"><fmt:message
         key="link.choose_pharmacy"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=order"><fmt:message key="link.go_to_order_page"/></a>

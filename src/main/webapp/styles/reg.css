@@ -48,3 +48,14 @@ a {
     color: #fff;
     text-decoration: none;
 }
+
+.static_text {
+    font-size: 22px;
+    text-align: justify;
+    color: #ffffff;
+    margin: 10px 200px;
+}
+
+.static_header {
+    color: #CDAA7D;
+}

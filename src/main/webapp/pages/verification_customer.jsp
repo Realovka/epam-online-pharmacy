@@ -10,14 +10,32 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/common_menu.css">
     <title><fmt:message key="title.verification.customer"/></title>
 </head>
 <body>
 
 <form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"  method="post">
     <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" style="background-color: ghostwhite; color: black; width: 30px" value="${sessionScope.secondLocale}">
+    <input type="submit" class="lang" value="${sessionScope.secondLocale}">
 </form>
+
+<nav class="menu">
+    <ul>
+        <li>
+            <a href="${pageContext.request.contextPath}/controller?command=how_to_do_order_page"><fmt:message
+                    key="link.name.how_to_do_order"/></a>
+        </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/controller?command=about_us_page"><fmt:message
+                    key="link.name.about_us"/></a>
+        </li>
+        <li>
+            <a href="${pageContext.request.contextPath}/controller?command=questions_page"><fmt:message
+                    key="link.name.faq"/></a>
+        </li>
+    </ul>
+</nav>
 
 <p>
     <fmt:message key="msg.finish.registration"/>

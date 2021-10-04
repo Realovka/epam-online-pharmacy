@@ -23,6 +23,9 @@ public final class BundleKey {
     public static final String PRODUCT_PRICE_ERROR = "productPriceError";
     public static final String PRODUCT_INSTRUCTION_ERROR = "productInstructionError";
     public static final String NO_SUCH_PRODUCTS_IN_SEARCH = "noSuchProductsInSearch";
+    public static final String PRODUCT_QUANTITY_ERROR = "productQuantityError";
+    public static final String BASKET_IS_EMPTY_ERROR = "basketIsEmptyError";
+    public static final String NEED_CHOOSE_PRODUCTS_ERROR = "needChooseProductsError";
 
     private BundleKey() {
     }

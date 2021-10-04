@@ -1,9 +1,6 @@
 package by.epam.onlinepharmacy.controller.command.impl.customer;
 
-import by.epam.onlinepharmacy.controller.command.Command;
-import by.epam.onlinepharmacy.controller.command.CommandResult;
-import by.epam.onlinepharmacy.controller.command.PagePath;
-import by.epam.onlinepharmacy.controller.command.SessionAttribute;
+import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
@@ -27,6 +24,10 @@ public class SendingOrderCommand implements Command {
         long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         User auth =(User) session.getAttribute(SessionAttribute.USER_AUTH);
         Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
+        if (products.isEmpty()) {
+            request.setAttribute(RequestAttribute.BASKET_IS_EMPTY_ERROR, BundleKey.BASKET_IS_EMPTY_ERROR);
+            return new CommandResult(PagePath.ORDER, CommandResult.RoutingType.FORWARD);
+        }
         try {
             orderService.createOrder(pharmacyId, auth, products);
         } catch (ServiceException e) {

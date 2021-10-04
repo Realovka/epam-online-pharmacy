@@ -39,11 +39,18 @@
 </nav>
 
 <h1><fmt:message key="title.order"/></h1>
+
+<c:if test="${requestScope.basketIsEmptyError != null}">
+    <div class="error"><fmt:message key="error.basket_is_empty"/></div>
+</c:if>
+<br>
 <label><fmt:message key="msg.if_you_want_update_products_in_basket"/></label>
 <a href="${pageContext.request.contextPath}/controller?command=basket_page"><fmt:message key="link.click_here"/></a><br>
 <label><fmt:message key="msg.if_you_want_choose_other_pharmacy"/></label>
 <a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy"><fmt:message key="link.click_here"/></a><br><br>
 <label><fmt:message key="msg.the_pharmacy_where_your_order_will_be_delivered"/></label>
+
+
 <table border="3">
     <thead>
     <th><fmt:message key="column.table.number"/></th>

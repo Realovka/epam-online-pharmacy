@@ -3,6 +3,7 @@ package by.epam.onlinepharmacy.controller.command.impl.customer;
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.dto.PharmacyDto;
 import by.epam.onlinepharmacy.entity.Pharmacy;
+import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
@@ -13,6 +14,7 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class GoToOrderPageCommand implements Command {
@@ -22,6 +24,12 @@ public class GoToOrderPageCommand implements Command {
     public CommandResult execute(HttpServletRequest request) {
         long id = 0;
         HttpSession session = request.getSession();
+        Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
+        if(products == null) {
+            request.setAttribute(RequestAttribute.NEED_CHOOSE_PRODUCTS_ERROR, BundleKey.NEED_CHOOSE_PRODUCTS_ERROR);
+            return new CommandResult(PagePath.MAIN_CUSTOMER, CommandResult.RoutingType.FORWARD);
+        }
+        removeIfProductQuantityIsZero(products);
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();
         String pharmacyId = request.getParameter(RequestParameter.PHARMACY_ID);
         if (session.getAttribute(SessionAttribute.PHARMACY_ID) == null && pharmacyId == null) {
@@ -47,5 +55,9 @@ public class GoToOrderPageCommand implements Command {
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         return new CommandResult(PagePath.ORDER, CommandResult.RoutingType.REDIRECT);
+    }
+
+    private void removeIfProductQuantityIsZero(Map<Product, Integer> products) {
+        products.values().remove(0);
     }
 }

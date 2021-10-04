@@ -38,6 +38,11 @@
 </nav>
 
 <h1><fmt:message key="msg.hello"/> ${sessionScope.authUser.firstName} ${sessionScope.authUser.lastName}</h1>
+
+<c:if test="${requestScope.needChooseProductsError != null}">
+    <div class="error"><fmt:message key="error.need_choose_products"/></div>
+</c:if>
+
 <ul>
     <li>
         <a href="${pageContext.request.contextPath}/controller?command=search_products_by_name_page"

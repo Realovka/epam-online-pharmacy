@@ -44,6 +44,9 @@
 
 <h1><fmt:message key="title.basket"/></h1>
 
+<c:if test="${requestScope.productQuantityError != null}">
+    <div class="error"><fmt:message key="error.product_quantity"/></div>
+</c:if>
 
 <c:choose>
     <c:when test="${sessionScope.listProductsInBasket.size()>0}">

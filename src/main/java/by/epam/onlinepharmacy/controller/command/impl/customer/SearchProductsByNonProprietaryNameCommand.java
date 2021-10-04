@@ -19,6 +19,7 @@ public class SearchProductsByNonProprietaryNameCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
+        session.removeAttribute(SessionAttribute.LIST_PRODUCTS_BY_NON_PROPRIETARY_NAME);
         String productNonProprietaryName = request.getParameter(RequestParameter.NON_PROPRIETARY_NAME_FOR_SEARCH_PRODUCTS);
         ProductService productService = ProductServiceImpl.getInstance();
         List<ProductDto> products;

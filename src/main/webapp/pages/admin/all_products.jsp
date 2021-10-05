@@ -48,7 +48,7 @@
     <input type="text" name="name" value="${requestScope.mapData.get("name")}"
            placeholder="<fmt:message key="placeholder.product_name"/>"/><br>
     <label class="field"><fmt:message key="label.product_non_proprietary_name"/></label><br>
-    <input type="text" name="nonProprietaryName" value="${requestScope.mapData.get("nonProprietaryName")}"
+    <input type="text" name="nonProprietaryName" value="${requestScope.nonProprietaryName}"
            placeholder="<fmt:message key="placeholder.product_non_proprietary_name"/>"/><br>
     <label class="field"><fmt:message key="label.dose"/></label><br>
     <input type="text" name="dose" value="${requestScope.mapData.get("dose")}"

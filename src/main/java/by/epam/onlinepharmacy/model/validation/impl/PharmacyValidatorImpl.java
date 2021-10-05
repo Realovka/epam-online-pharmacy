@@ -10,7 +10,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
     private static final int MIN_FOR_BLOCK_AND_HOUSE = 0;
     private static final int MAX_SYMBOLS_FOR_CITY_AND_STREET = 70;
     private static final int MAX_SYMBOLS_FOR_HOUSE = 20;
-    private static final String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = "\s";
     private static final String ZERO_STRING = "0";
 
     private static PharmacyValidatorImpl instance = new PharmacyValidatorImpl();

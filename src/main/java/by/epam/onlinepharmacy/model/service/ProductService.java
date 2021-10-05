@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface ProductService {
     List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String plant,
                                    String group, String price, String recipe, String instruction) throws ServiceException;
-    Map<String, String> isValidParameters(String name, String nonProprietaryName,
-                                          String dose, String plant, String group, String price, String instruction);
+    Map<String, String> isValidParameters(String name, String dose, String plant, String group, String price, String instruction);
+    boolean isValidNonProprietaryName(String nonProprietaryName);
     void addPathToPicture(long id, String fileName) throws ServiceException;
     List<ProductDto> findListProducts(int startingProduct) throws ServiceException;
     List<ProductDto> findListProductsByName(String productName) throws ServiceException;

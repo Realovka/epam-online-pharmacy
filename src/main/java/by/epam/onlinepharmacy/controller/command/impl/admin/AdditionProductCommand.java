@@ -33,14 +33,15 @@ public class AdditionProductCommand implements Command {
         String recipe = request.getParameter(RequestParameter.RECIPE);
         String instruction = request.getParameter(RequestParameter.INSTRUCTION);
 
-        Map<String, String> productParameters = productService.isValidParameters(name, nonProprietaryName, dose, plant, group, price, instruction);
+        Map<String, String> productParameters = productService.isValidParameters(name, dose, plant, group, price, instruction);
         if (productParameters.get(RequestParameter.NAME).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
-        if (productParameters.get(RequestParameter.NON_PROPRIETARY_NAME).isBlank()) {
+        if (!productService.isValidNonProprietaryName(nonProprietaryName)) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
             request.setAttribute(RequestAttribute.PRODUCT_NON_PROPRIETARY_NAME_ERROR, BundleKey.PRODUCT_NON_PROPRIETARY_NAME_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
@@ -48,30 +49,35 @@ public class AdditionProductCommand implements Command {
 
         if (productParameters.get(RequestParameter.DOSE).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_DOSE_ERROR, BundleKey.PRODUCT_DOSE_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
         if (productParameters.get(RequestParameter.PLANT).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_PLANT_ERROR, BundleKey.PRODUCT_PLANT_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
         if (productParameters.get(RequestParameter.GROUP).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_GROUP_ERROR, BundleKey.PRODUCT_GROUP_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
         if (productParameters.get(RequestParameter.PRICE).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_PRICE_ERROR, BundleKey.PRODUCT_PRICE_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }
 
         if (productParameters.get(RequestParameter.INSTRUCTION).isBlank()) {
             request.setAttribute(RequestAttribute.MAP_DATA, productParameters);
+            request.setAttribute(RequestAttribute.NON_PROPRIETARY_NAME, nonProprietaryName);
             request.setAttribute(RequestAttribute.PRODUCT_INSTRUCTION_ERROR, BundleKey.PRODUCT_INSTRUCTION_ERROR);
             return new CommandResult(PagePath.ALL_PRODUCTS, CommandResult.RoutingType.FORWARD);
         }

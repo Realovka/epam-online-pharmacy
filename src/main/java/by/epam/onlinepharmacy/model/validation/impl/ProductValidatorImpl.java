@@ -10,7 +10,7 @@ public class ProductValidatorImpl implements ProductValidator {
     private static final int MAX_SYMBOLS_FOR_STRING_PARAMETER = 45;
     private static double MIN_PRICE = 0.0;
     private static BigInteger MAX_SYMBOLS_FOR_INSTRUCTION = new BigInteger("4294967295");
-    private static final String EMPTY_STRING = "";
+    private static final String EMPTY_STRING = "\s";
 
 
     private ProductValidatorImpl() {
@@ -26,9 +26,6 @@ public class ProductValidatorImpl implements ProductValidator {
     public boolean isValidForm(Map<String, String> formData) {
         if (!isValidStringParameters(formData.get(RequestParameter.NAME))) {
             formData.put(RequestParameter.NAME, EMPTY_STRING);
-        }
-        if (!isValidNonProprietyName(formData.get(RequestParameter.NON_PROPRIETARY_NAME))) {
-            formData.put(RequestParameter.NON_PROPRIETARY_NAME, EMPTY_STRING);
         }
         if (!isValidStringParameters(formData.get(RequestParameter.DOSE))) {
             formData.put(RequestParameter.DOSE, EMPTY_STRING);
@@ -71,7 +68,7 @@ public class ProductValidatorImpl implements ProductValidator {
 
     @Override
     public boolean isValidInstruction(String instruction) {
-        if(instruction == null) {
+        if(instruction.isBlank()) {
             return false;
         }
         BigInteger instructionLength = new BigInteger(String.valueOf(instruction.length()));

@@ -18,7 +18,7 @@ public class UpdatingProductQuantityCommand implements Command {
         String productId = request.getParameter(RequestParameter.PRODUCT_ID);
         String quantity = request.getParameter(RequestParameter.QUANTITY);
 
-        if(!basketValidator.isProductQuantityValid(quantity)) {
+        if(!basketValidator.isValidProductQuantity(quantity)) {
             request.setAttribute(RequestAttribute.PRODUCT_QUANTITY_ERROR, BundleKey.PRODUCT_QUANTITY_ERROR);
             return new CommandResult(PagePath.BASKET, CommandResult.RoutingType.FORWARD);
         }

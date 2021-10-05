@@ -14,7 +14,7 @@ public class BasketValidatorImpl implements BasketValidator {
     }
 
     @Override
-    public boolean isProductQuantityValid(String quantity) {
+    public boolean isValidProductQuantity(String quantity) {
         int productQuantity;
         try {
           productQuantity = Integer.parseInt(quantity);

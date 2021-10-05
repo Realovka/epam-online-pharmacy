@@ -73,11 +73,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Map<String, String> isValidParameters(String name, String nonProprietaryName, String dose, String plant,
+    public Map<String, String> isValidParameters(String name, String dose, String plant,
                                                  String group, String price, String instruction) {
         Map<String, String> productParameters = new HashMap<>();
         productParameters.put(RequestParameter.NAME, name);
-        productParameters.put(RequestParameter.NON_PROPRIETARY_NAME, nonProprietaryName);
         productParameters.put(RequestParameter.DOSE, dose);
         productParameters.put(RequestParameter.PLANT, plant);
         productParameters.put(RequestParameter.GROUP, group);
@@ -85,6 +84,11 @@ public class ProductServiceImpl implements ProductService {
         productParameters.put(RequestParameter.INSTRUCTION, instruction);
         productValidator.isValidForm(productParameters);
         return productParameters;
+    }
+
+    @Override
+    public boolean isValidNonProprietaryName(String nonProprietaryName) {
+       return productValidator.isValidNonProprietyName(nonProprietaryName);
     }
 
     @Override

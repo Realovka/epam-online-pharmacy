@@ -34,6 +34,6 @@ public class BasketForOrderCommand implements Command {
         }
         session.setAttribute(SessionAttribute.BASKET, basket);
         session.setAttribute(SessionAttribute.ORDER, order);
-        return new CommandResult(PagePath.BASKET_FOR_ORDER, CommandResult.RoutingType.REDIRECT);
+        return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PROCESSING, CommandResult.RoutingType.REDIRECT);
     }
 }

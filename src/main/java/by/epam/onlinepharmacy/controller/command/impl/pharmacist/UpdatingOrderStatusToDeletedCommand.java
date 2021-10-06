@@ -29,6 +29,6 @@ public class UpdatingOrderStatusToDeletedCommand implements Command {
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
         session.setAttribute(SessionAttribute.ORDER, order);
-        return new CommandResult(PagePath.BASKET_FOR_ORDER, CommandResult.RoutingType.REDIRECT);
+        return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PROCESSING, CommandResult.RoutingType.REDIRECT);
     }
 }

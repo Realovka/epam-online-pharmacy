@@ -52,7 +52,7 @@
         </table>
     </c:when>
     <c:otherwise>
-        <label><fmt:message key="msg.no_inactive_pharmacists"/></label><br>
+        <p><fmt:message key="msg.no_inactive_pharmacists"/></p><br>
     </c:otherwise>
 </c:choose>
 <a href="${pageContext.request.contextPath}/controller?command=all_pharmacists" class="common_link"><fmt:message

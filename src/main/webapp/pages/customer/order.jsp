@@ -44,11 +44,11 @@
     <div class="error"><fmt:message key="error.basket_is_empty"/></div>
 </c:if>
 <br>
-<label><fmt:message key="msg.if_you_want_update_products_in_basket"/></label>
+<p><fmt:message key="msg.if_you_want_update_products_in_basket"/></p>
 <a href="${pageContext.request.contextPath}/controller?command=basket_page"><fmt:message key="link.click_here"/></a><br>
-<label><fmt:message key="msg.if_you_want_choose_other_pharmacy"/></label>
+<p><fmt:message key="msg.if_you_want_choose_other_pharmacy"/></p>
 <a href="${pageContext.request.contextPath}/controller?command=choose_pharmacy"><fmt:message key="link.click_here"/></a><br><br>
-<label><fmt:message key="msg.the_pharmacy_where_your_order_will_be_delivered"/></label>
+<p><fmt:message key="msg.the_pharmacy_where_your_order_will_be_delivered"/></p>
 
 
 <table border="3">

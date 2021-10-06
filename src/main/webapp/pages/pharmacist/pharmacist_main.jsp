@@ -28,9 +28,11 @@
     <input type="submit" value="<fmt:message key="button.search"/>" class="button">
 </form>
 
+
+
 <c:choose>
     <c:when test="${sessionScope.listPharmaciesByCity.size()>0}">
-
+        <p><fmt:message key="msg.click_on_the_pharmacy_number"/></p>
         <table border="3">
             <thead>
             <th><fmt:message key="column.table.number"/></th>
@@ -44,7 +46,7 @@
 
                 <tr>
                     <td>
-                        <a href="${pageContext.request.contextPath}/controller?command=all_processing_orders&pharmacy_id=${pharmacy.pharmacyId}">${pharmacy.number}</a>
+                        <a href="${pageContext.request.contextPath}/controller?command=all_orders_in_pharmacy_page&pharmacy_id=${pharmacy.pharmacyId}">${pharmacy.number}</a>
                     </td>
                     <td>
                             ${pharmacy.city}

@@ -19,7 +19,7 @@ public class AllProcessingOrdersForPharmacyCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String pharmacyId = request.getParameter(RequestParameter.PHARMACY_ID);
+        long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         OrderService orderService = OrderServiceImpl.getInstance();
         List<Order> orders;
         try {

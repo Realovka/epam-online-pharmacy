@@ -48,8 +48,11 @@ public final class PagePath {
 
     //pharmacist
     public static final String MAIN_PHARMACIST = "/pages/pharmacist/pharmacist_main.jsp";
+    public static final String MENU = "/pages/pharmacist/menu.jsp";
     public static final String ALL_PROCESSING_ORDERS = "/pages/pharmacist/all_processing_orders.jsp";
-    public static final String BASKET_FOR_ORDER = "/pages/pharmacist/basket_for_order.jsp";
+    public static final String ALL_PREPARED_ORDERS = "/pages/pharmacist/all_prepared_orders.jsp";
+    public static final String BASKET_FOR_ORDER_STATUS_PROCESSING = "/pages/pharmacist/basket_for_order_status_processing.jsp";
+    public static final String BASKET_FOR_ORDER_STATUS_PREPARED = "/pages/pharmacist/basket_for_order_status_prepared.jsp";
 
     //error
     public static final String ERROR_500_PAGE = "/pages/error/error500.jsp";

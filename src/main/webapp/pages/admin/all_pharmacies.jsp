@@ -55,7 +55,7 @@
 
 <c:choose>
     <c:when test="${sessionScope.currentPharmacies.size()>0}">
-        <label><fmt:message key="msg.click_on_parameter"/></label>
+        <p><fmt:message key="msg.click_on_parameter"/></p>
         <table border="3">
             <thead>
             <th width="30"><fmt:message key="column.table.id"/></th>

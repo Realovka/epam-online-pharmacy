@@ -72,8 +72,8 @@
     <input type="submit" value="<fmt:message key="button.input_product"/>" class="button_product_update">
 </form>
 <br>
-<label><fmt:message key="msg.click_on_parameter"/></label><br>
-<label><fmt:message key="msg.click_on_id_if_need_change_picture"/></label><br>
+<p><fmt:message key="msg.click_on_parameter"/></p><br>
+<p><fmt:message key="msg.click_on_id_if_need_change_picture"/></p><br>
 
 <c:if test="${sessionScope.previousProducts.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}"

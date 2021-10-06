@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title><fmt:message key="title.order_is_accepted"/></title>
+    <title><fmt:message key="title.menu"/></title>
 </head>
 <body>
 
@@ -21,28 +21,12 @@
     <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
 </form>
 
-<nav class="menu">
-    <ul>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=how_to_do_order_page"><fmt:message
-                    key="link.name.how_to_do_order"/></a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=about_us_page"><fmt:message
-                    key="link.name.about_us"/></a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=questions_page"><fmt:message
-                    key="link.name.faq"/></a>
-        </li>
-    </ul>
-</nav>
-
-<p style="text-align: center"><fmt:message key="title.order_is_accepted"/></p><br>
-<a href="${pageContext.request.contextPath}/controller?command=main_customer" class="common_link"><fmt:message
-        key="link.customer_main"/></a><br>
+<h1><fmt:message key="title.menu"/></h1>
+<a href="${pageContext.request.contextPath}/controller?command=all_processing_orders" class="common_link"><fmt:message
+        key="link.all_processing_orders"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=all_prepared_orders" class="common_link"><fmt:message
+        key="link.all_prepared_orders"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
         key="link.logout"/></a>
-<ftg:footer/>
 </body>
 </html>

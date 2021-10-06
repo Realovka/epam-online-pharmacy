@@ -84,12 +84,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllProcessingOrdersForPharmacies(String pharmacyId) throws ServiceException {
-        long id = Long.parseLong(pharmacyId);
+    public List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId) throws ServiceException {
         List<Order> orders;
         OrderDao orderDao = OrderDaoImpl.getInstance();
         try {
-         orders = orderDao.findAllProcessingOrdersForPharmacies(id);
+         orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findAllProcessingOrdersForPharmacies() ", e);
             throw new ServiceException("DaoException is in method findAllProcessingOrdersForPharmacies() ", e);

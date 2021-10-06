@@ -50,7 +50,7 @@
 
 <c:choose>
     <c:when test="${sessionScope.listProductsByNonProprietaryName.size()>0}">
-        <label><fmt:message key="msg.if_you_want_to_add_position_to_order_click_on_name"/></label>
+        <p><fmt:message key="msg.if_you_want_to_add_position_to_order_click_on_name"/></p>
         <table border="3">
             <thead>
             <th><fmt:message key="column.table_name"/></th>

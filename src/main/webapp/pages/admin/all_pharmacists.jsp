@@ -27,7 +27,7 @@
 
 
 <c:if test="${sessionScope.allPharmacists.size()>0}">
-    <label><fmt:message key="msg.verify.pharmacists"/></label>
+    <p><fmt:message key="msg.verify.pharmacists"/></p>
     <table border="3">
         <thead>
         <th><fmt:message key="column.table.id"/></th>

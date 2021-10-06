@@ -92,6 +92,7 @@ public class CommandProvider {
         commands.put(CommandType.HOW_TO_DO_ORDER_PAGE, new GoToHowToDoOrderPageCommand());
         commands.put(CommandType.ABOUT_US_PAGE, new GoToAboutUsPageCommand());
         commands.put(CommandType.QUESTIONS_PAGE, new GoToQuestionsPageCommand());
+        commands.put(CommandType.ALL_ORDERS_IN_PHARMACY_PAGE, new GoToMenuPageCommand());
     }
 
     public static CommandProvider getInstance() {

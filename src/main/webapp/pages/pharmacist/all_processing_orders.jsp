@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/styles/common.css">
-    <title>All processing orders</title>
+    <title><fmt:message key="title.all_processing_orders"/></title>
 </head>
 <body>
 
@@ -20,16 +20,21 @@
     <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
     <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
 </form>
+
+<h1><fmt:message key="title.all_processing_orders"/></h1>
+
 <c:choose>
     <c:when test="${sessionScope.listProcessingOrders.size()>0}">
 
+        <p><fmt:message key="msg.click_on_order_id"/></p>
+
         <table border="3">
             <thead>
-            <th>Order id</th>
-            <th>Start</th>
-            <th>End</th>
-            <th>Pharmacy</th>
-            <th>Status</th>
+            <th><fmt:message key="column.table.order_id"/></th>
+            <th><fmt:message key="column.table.start"/></th>
+            <th><fmt:message key="column.table.end"/></th>
+            <th><fmt:message key="column.table.pharmacy_number"/></th>
+            <th><fmt:message key="column.table.status"/></th>
             </thead>
 
             <c:forEach items="${sessionScope.listProcessingOrders}" var="order">
@@ -55,5 +60,11 @@
         </table>
     </c:when>
 </c:choose>
+<a href="${pageContext.request.contextPath}/controller?command=all_orders_in_pharmacy_page&pharmacy_id=${sessionScope.pharmacyId}"
+   class="common_link"><fmt:message key="link.to_menu"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=main_pharmacist" class="common_link"><fmt:message
+        key="link.pharmacist_main"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
+        key="link.logout"/></a>
 </body>
 </html>

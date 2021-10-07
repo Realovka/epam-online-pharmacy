@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestProductValidatorImpl {
+public class ProductValidatorImplTest {
     ProductValidator productValidator;
     String correctParameter;
     String emptyString;
@@ -46,162 +46,162 @@ public class TestProductValidatorImpl {
     }
 
     @Test
-    public void testIsValidForm() {
+    public void isValidFormTest() {
        boolean result = productValidator.isValidForm(data);
        assertTrue(result);
     }
 
     @Test
-    public void testIsValidFormFalseNameEmpty() {
+    public void isValidFormFalseNameEmptyTest() {
         data.put("name", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseNameLong() {
+    public void isValidFormFalseNameLongTest() {
         data.put("name", longString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseDoseEmpty() {
+    public void isValidFormFalseDoseEmptyTest() {
         data.put("dose", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseDoseLong() {
+    public void isValidFormFalseDoseLongTest() {
         data.put("dose", longString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseGroupEmpty() {
+    public void isValidFormFalseGroupEmptyTest() {
         data.put("group", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseGroupLong() {
+    public void isValidFormFalseGroupLongTest() {
         data.put("group", longString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalsePlantEmpty() {
+    public void isValidFormFalsePlantEmptyTest() {
         data.put("plant", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalsePlantLong() {
+    public void isValidFormFalsePlantLongTest() {
         data.put("plant", longString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalsePriceEmpty() {
+    public void isValidFormFalsePriceEmptyTest() {
         data.put("price", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalsePriceIncorrect() {
+    public void isValidFormFalsePriceIncorrectTest() {
         data.put("price", negativeNumber);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseInstructionEmpty() {
+    public void isValidFormFalseInstructionEmptyTest() {
         data.put("instruction", emptyString);
         boolean result = productValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidStringParameter() {
+    public void isValidStringParameterTest() {
         boolean result = productValidator.isValidStringParameters(correctParameter);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidStringParameterFalseEmptyParameter() {
+    public void isValidStringParameterFalseEmptyParameterTest() {
         boolean result = productValidator.isValidStringParameters(emptyString);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidStringParameterFalseLongParameter() {
+    public void isValidStringParameterFalseLongParameterTest() {
         boolean result = productValidator.isValidStringParameters(longString);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidNonProprietyName() {
+    public void isValidNonProprietyNameTest() {
         boolean result = productValidator.isValidNonProprietyName(correctParameter);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidNonProprietyNameEmptyString() {
+    public void isValidNonProprietyNameEmptyStringTest() {
         boolean result = productValidator.isValidNonProprietyName(emptyString);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidNonProprietyNameFalseLongString() {
+    public void isValidNonProprietyNameFalseLongStringTest() {
         boolean result = productValidator.isValidNonProprietyName(longString);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidPrice() {
+    public void isValidPriceTest() {
         boolean result = productValidator.isValidPrice(correctPrice);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidPriceParameterZero() {
+    public void isValidPriceParameterZeroTest() {
         boolean result = productValidator.isValidPrice(zero);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidPriceFalseTextParameter() {
+    public void isValidPriceFalseTextParameterTest() {
         boolean result = productValidator.isValidPrice(correctParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidPriceFalseNegativeNumber() {
+    public void isValidPriceFalseNegativeNumberTest() {
         boolean result = productValidator.isValidPrice(negativeNumber);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidPriceFalseEmptyString() {
+    public void isValidPriceFalseEmptyStringTest() {
         boolean result = productValidator.isValidPrice(emptyString);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidInstruction() {
+    public void isValidInstructionTest() {
         boolean result = productValidator.isValidInstruction(longString);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidInstructionFalse() {
+    public void isValidInstructionFalseTest() {
         boolean result = productValidator.isValidInstruction(emptyString);
         assertFalse(result);
     }

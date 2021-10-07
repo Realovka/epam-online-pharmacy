@@ -65,6 +65,7 @@ public final class RequestParameter {
     //Order
     public static final String ORDER_ID = "order_id";
     public static final String ORDER_STATUS_ID = "order_status_id";
+    public static final String OLD_ORDER_STATUS_ID = "old_order_status_id";
 
 
 

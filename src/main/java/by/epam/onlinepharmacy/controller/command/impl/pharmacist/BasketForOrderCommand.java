@@ -3,6 +3,7 @@ package by.epam.onlinepharmacy.controller.command.impl.pharmacist;
 import by.epam.onlinepharmacy.controller.command.*;
 import by.epam.onlinepharmacy.entity.Basket;
 import by.epam.onlinepharmacy.entity.Order;
+import by.epam.onlinepharmacy.entity.StatusOrder;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.OrderService;
 import by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl;
@@ -34,6 +35,10 @@ public class BasketForOrderCommand implements Command {
         }
         session.setAttribute(SessionAttribute.BASKET, basket);
         session.setAttribute(SessionAttribute.ORDER, order);
-        return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PROCESSING, CommandResult.RoutingType.REDIRECT);
+        if(order.getStatusOrder().equals(StatusOrder.PROCESSING)) {
+            return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PROCESSING, CommandResult.RoutingType.REDIRECT);
+        } else {
+            return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PREPARED, CommandResult.RoutingType.REDIRECT);
+        }
     }
 }

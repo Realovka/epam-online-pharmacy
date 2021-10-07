@@ -151,14 +151,14 @@ public class UserDaoImpl implements UserDao {
             preparedStatement.setString(2, code);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method createUser() ", e);
-            throw new DaoException("SQLException in method createUser() ", e);
+            logger.log(Level.ERROR, "SQLException in method createCodeActivation() ", e);
+            throw new DaoException("SQLException in method createCodeActivation() ", e);
         }
     }
 
     @Override
     public long findIdForVerificationCustomer(String code) throws DaoException {
-        long id = 0L;
+        long id = 0;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_CUSTOMER)) {
             preparedStatement.setString(1, code);
@@ -168,8 +168,8 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findIdForActivationCustomer() ", e);
-            throw new DaoException("SQLException in method findIdForActivationCustomer() ", e);
+            logger.log(Level.ERROR, "SQLException in method findIdForVerificationCustomer() ", e);
+            throw new DaoException("SQLException in method findIdForVerificationCustomer() ", e);
         }
         return id;
     }
@@ -192,8 +192,8 @@ public class UserDaoImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method authenticationUser() ", e);
-            throw new DaoException("SQLException in method authenticationUser() ", e);
+            logger.log(Level.ERROR, "SQLException in method findUserByLoginAndPassword() ", e);
+            throw new DaoException("SQLException in method findUserByLoginAndPassword() ", e);
         }
         return Optional.empty();
     }
@@ -263,67 +263,77 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void updateLogin(long id, String login) throws DaoException {
+    public int updateLogin(long id, String login) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_LOGIN)) {
             preparedStatement.setString(1, login);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateLogin() ", e);
             throw new DaoException("SQLException in method updateLogin() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateFirstName(long id, String firstName) throws DaoException {
+    public int updateFirstName(long id, String firstName) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_FIRST_NAME)) {
             preparedStatement.setString(1, firstName);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateFirstName() ", e);
             throw new DaoException("SQLException in method updateFirstName() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateLastName(long id, String lastName) throws DaoException {
+    public int updateLastName(long id, String lastName) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_LAST_NAME)) {
             preparedStatement.setString(1, lastName);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateLastName() ", e);
             throw new DaoException("SQLException in method updateLastName() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateEmail(long id, String email) throws DaoException {
+    public int updateEmail(long id, String email) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_EMAIL)) {
             preparedStatement.setString(1, email);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateEmail() ", e);
             throw new DaoException("SQLException in method updateEmail() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateTelephone(long id, String telephone) throws DaoException {
+    public int updateTelephone(long id, String telephone) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_USER_TELEPHONE)) {
             preparedStatement.setString(1, telephone);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateTelephone() ", e);
             throw new DaoException("SQLException in method updateTelephone() ", e);
         }
+        return result;
     }
 }

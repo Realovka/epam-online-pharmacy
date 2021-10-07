@@ -11,24 +11,29 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
-public class UpdatingOrderStatusToDeletedCommand implements Command {
+public class AllOrdersInNeededStatusForPharmacyCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        String orderStatusId = request.getParameter(RequestParameter.ORDER_STATUS_ID);
-        String orderId = request.getParameter(RequestParameter.ORDER_ID);
+        String statusId = request.getParameter(RequestParameter.ORDER_STATUS_ID);
+        long pharmacyId = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         OrderService orderService = OrderServiceImpl.getInstance();
-        Order order;
+        List<Order> orders;
         try {
-            order = orderService.updateStatusOrder(orderStatusId, orderId, null);
+            orders = orderService.findAllOrdersInNeededStatusForPharmacies(pharmacyId, statusId);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while update order status", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find all orders in needed status ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
-        session.setAttribute(SessionAttribute.ORDER, order);
-        return new CommandResult(PagePath.BASKET_FOR_ORDER_STATUS_PROCESSING, CommandResult.RoutingType.REDIRECT);
+        session.setAttribute(SessionAttribute.LIST_ORDERS_IN_NEEDED_STATUS, orders);
+        if (statusId.equals("1")) {
+            return new CommandResult(PagePath.ALL_PROCESSING_ORDERS, CommandResult.RoutingType.REDIRECT);
+        } else {
+            return new CommandResult(PagePath.ALL_PREPARED_ORDERS, CommandResult.RoutingType.REDIRECT);
+        }
     }
 }

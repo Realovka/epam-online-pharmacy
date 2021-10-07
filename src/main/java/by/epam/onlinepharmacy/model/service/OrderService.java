@@ -12,7 +12,7 @@ import java.util.Map;
 
 public interface OrderService {
     void createOrder(long pharmacyId, User auth, Map<Product, Integer> products) throws ServiceException;
-    List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId) throws ServiceException;
+    List<Order> findAllOrdersInNeededStatusForPharmacies(long pharmacyId, String statusId) throws ServiceException;
     List<Basket> findBasketForOrder(String orderId) throws ServiceException;
     Order findOrderById(String orderId) throws ServiceException;
     Order updateStatusOrder(String statusOrderId, String orderId, Basket basket) throws ServiceException;

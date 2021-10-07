@@ -24,7 +24,7 @@ public final class SessionAttribute {
     public static final String LIST_PRODUCTS_BY_NON_PROPRIETARY_NAME = "listProductsByNonProprietaryName";
     public static final String LIST_PHARMACIES_BY_CITY = "listPharmaciesByCity";
     public static final String PHARMACY_ORDER = "pharmacyOrder";
-    public static final String LIST_PROCESSING_ORDERS = "listProcessingOrders";
+    public static final String LIST_ORDERS_IN_NEEDED_STATUS = "listOrders";
     public static final String BASKET = "basket";
     public static final String ORDER = "order";
 

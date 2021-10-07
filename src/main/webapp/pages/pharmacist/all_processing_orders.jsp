@@ -24,7 +24,7 @@
 <h1><fmt:message key="title.all_processing_orders"/></h1>
 
 <c:choose>
-    <c:when test="${sessionScope.listProcessingOrders.size()>0}">
+    <c:when test="${sessionScope.listOrders.size()>0}">
 
         <p><fmt:message key="msg.click_on_order_id"/></p>
 
@@ -37,7 +37,7 @@
             <th><fmt:message key="column.table.status"/></th>
             </thead>
 
-            <c:forEach items="${sessionScope.listProcessingOrders}" var="order">
+            <c:forEach items="${sessionScope.listOrders}" var="order">
 
                 <tr>
                     <td>

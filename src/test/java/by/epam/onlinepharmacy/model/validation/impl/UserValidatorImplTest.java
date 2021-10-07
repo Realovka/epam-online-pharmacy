@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class TestUserValidatorImpl {
+public class UserValidatorImplTest {
     UserValidator userValidator;
     String correctParameter;
     String emptyParameter;
@@ -48,41 +48,41 @@ public class TestUserValidatorImpl {
     }
 
     @Test
-    public void testIsValidForm() {
+    public void isValidFormTest() {
        boolean result = userValidator.isValidForm(data);
        assertTrue(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyLogin() {
+    public void isValidFormFalseEmptyLoginTest() {
         data.put("login", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLogin() {
+    public void isValidFormFalseLoginTest() {
         data.put("login", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyPassword() {
+    public void isValidFormFalseEmptyPasswordTest() {
         data.put("password", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyFirstName() {
+    public void isValidFormFalseEmptyFirstNameTest() {
         data.put("firstName", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyLastName() {
+    public void isValidFormFalseEmptyLastNameTest() {
         data.put("lastName", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
@@ -90,83 +90,83 @@ public class TestUserValidatorImpl {
 
 
     @Test
-    public void testIsValidStringParameter() {
+    public void isValidStringParameterTest() {
         boolean result = userValidator.isValidStringParameter(correctParameter);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyEmail() {
+    public void isValidFormFalseEmptyEmailTest() {
         data.put("email", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseEmptyTelephone() {
+    public void isValidFormFalseEmptyTelephoneTest() {
         data.put("telephone", emptyParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongLogin() {
+    public void isValidFormFalseLongLoginTest() {
         data.put("login", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongPassword() {
+    public void isValidFormFalseLongPasswordTest() {
         data.put("password", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongFirstName() {
+    public void isValidFormFalseLongFirstNameTest() {
         data.put("firstName", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongLastName() {
+    public void isValidFormFalseLongLastNameTest() {
         data.put("lastName", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongEmail() {
+    public void isValidFormFalseLongEmailTest() {
         data.put("email", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongTelephone() {
+    public void isValidFormFalseLongTelephoneTest() {
         data.put("telephone", longParameter);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseIncorrectEmail() {
+    public void isValidFormFalseIncorrectEmailTest() {
         data.put("email", incorrectEmail);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseIncorrectTelephone() {
+    public void isValidFormFalseIncorrectTelephoneTest() {
         data.put("telephone", incorrectTelephone);
         boolean result = userValidator.isValidForm(data);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidFormFalseLongEmailIncorrectTelephone() {
+    public void isValidFormFalseLongEmailIncorrectTelephoneTest() {
         data.put("email", longParameter);
         data.put("telephone", incorrectTelephone);
         boolean result = userValidator.isValidForm(data);
@@ -174,61 +174,61 @@ public class TestUserValidatorImpl {
     }
 
     @Test
-    public void testIsValidStringParameterFalseParameterIsEmpty() {
+    public void isValidStringParameterFalseParameterIsEmptyTest() {
         boolean result = userValidator.isValidStringParameter(emptyParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidStringParameterFalseParameterIsLong() {
+    public void isValidStringParameterFalseParameterIsLongTest() {
         boolean result = userValidator.isValidStringParameter(longParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidEmailRegistrationUser() {
+    public void isValidEmailRegistrationUserTest() {
         boolean result = userValidator.isValidEmailRegistrationUser(correctEmail);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidEmailRegistrationUserFalseParameterIsEmpty() {
+    public void isValidEmailRegistrationUserFalseParameterIsEmptyTest() {
         boolean result = userValidator.isValidEmailRegistrationUser(emptyParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidEmailRegistrationUserFalseParameterIsLong() {
+    public void isValidEmailRegistrationUserFalseParameterIsLongTest() {
         boolean result = userValidator.isValidEmailRegistrationUser(longParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidEmailRegistrationUserParameterFalseIsIncorrect() {
+    public void isValidEmailRegistrationUserParameterFalseIsIncorrectTest() {
         boolean result = userValidator.isValidEmailRegistrationUser(incorrectEmail);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidTelephoneRegistrationUser() {
+    public void isValidTelephoneRegistrationUserTest() {
         boolean result = userValidator.isValidTelephoneRegistrationUser(correctTelephone);
         assertTrue(result);
     }
 
     @Test
-    public void testIsValidTelephoneRegistrationUserFalseParameterIsEmpty() {
+    public void isValidTelephoneRegistrationUserFalseParameterIsEmptyTest() {
         boolean result = userValidator.isValidTelephoneRegistrationUser(emptyParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidTelephoneRegistrationUserFalseParameterIsLong() {
+    public void isValidTelephoneRegistrationUserFalseParameterIsLongTest() {
         boolean result = userValidator.isValidTelephoneRegistrationUser(longParameter);
         assertFalse(result);
     }
 
     @Test
-    public void testIsValidTelephoneRegistrationUserFalseParameterIsIncorrect() {
+    public void isValidTelephoneRegistrationUserFalseParameterIsIncorrectTest() {
         boolean result = userValidator.isValidTelephoneRegistrationUser(incorrectTelephone);
         assertFalse(result);
     }

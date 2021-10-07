@@ -42,10 +42,10 @@ public class OrderDaoImpl implements OrderDao {
             INSERT INTO basket (user_id, product_id, order_id, quantity) VALUES (?, ?, ?, ?)
             """;
 
-    private static final String FIND_PROCESSING_ORDERS = """
+    private static final String FIND_ORDERS_IN_NEED_STATUS = """
             SELECT o.order_id, o.data_starting, o.data_ending, p.number, os.status FROM
             orders o JOIN pharmacies p ON o.pharmacy_id=p.pharmacy_id
-            JOIN order_status os ON o.order_status_id = os.order_status_id WHERE o.pharmacy_id = ? AND os.order_status_id = 1
+            JOIN order_status os ON o.order_status_id = os.order_status_id WHERE o.pharmacy_id = ? AND os.order_status_id = ?
             """;
 
     private static final String FIND_PRODUCTS_IN_ORDER = """
@@ -108,11 +108,12 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId) throws DaoException {
+    public List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId, int statusId) throws DaoException {
         List<Order> orders = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(FIND_PROCESSING_ORDERS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(FIND_ORDERS_IN_NEED_STATUS)) {
             preparedStatement.setLong(1, pharmacyId);
+            preparedStatement.setInt(2, statusId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Order order = new Order.Builder()
@@ -149,15 +150,17 @@ public class OrderDaoImpl implements OrderDao {
                                     .setPlant(resultSet.getString(PRODUCT_PLANT))
                                     .setPrice(resultSet.getBigDecimal(PRODUCT_PRICE))
                                     .build())
-                            .setUser(new User.Builder()
-                                    .setFirstName(resultSet.getString(USER_FIRST_NAME))
-                                    .setLastName(resultSet.getString(USER_LAST_NAME))
-                                    .setTelephone(resultSet.getString(USER_TELEPHONE))
-                                    .setEmail(resultSet.getString(USER_EMAIL))
-                                    .build())
                             .setQuantity(resultSet.getInt(QUANTITY))
                             .build();
                     basket.add(basketDB);
+                    while (basket.get(0).getUser() == null) {
+                        basket.get(0).setUser((new User.Builder()
+                                .setFirstName(resultSet.getString(USER_FIRST_NAME))
+                                .setLastName(resultSet.getString(USER_LAST_NAME))
+                                .setTelephone(resultSet.getString(USER_TELEPHONE))
+                                .setEmail(resultSet.getString(USER_EMAIL))
+                                .build()));
+                    }
                 }
             }
         } catch (SQLException e) {

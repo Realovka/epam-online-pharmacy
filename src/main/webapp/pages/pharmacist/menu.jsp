@@ -22,10 +22,12 @@
 </form>
 
 <h1><fmt:message key="title.menu"/></h1>
-<a href="${pageContext.request.contextPath}/controller?command=all_processing_orders" class="common_link"><fmt:message
+<a href="${pageContext.request.contextPath}/controller?command=all_orders_in_needed_status&order_status_id=1" class="common_link"><fmt:message
         key="link.all_processing_orders"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=all_prepared_orders" class="common_link"><fmt:message
+<a href="${pageContext.request.contextPath}/controller?command=all_orders_in_needed_status&order_status_id=2" class="common_link"><fmt:message
         key="link.all_prepared_orders"/></a><br>
+<a href="${pageContext.request.contextPath}/controller?command=main_pharmacist" class="common_link"><fmt:message
+        key="link.pharmacist_main"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
         key="link.logout"/></a>
 </body>

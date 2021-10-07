@@ -1,6 +1,5 @@
 package by.epam.onlinepharmacy.model.dao;
 
-import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.entity.Status;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
@@ -18,9 +17,9 @@ public interface UserDao {
     List<User> findAllPharmacists() throws DaoException;
     int updateUserStatus(long id, Status status) throws DaoException;
     List<User> findInactivePharmacists() throws DaoException;
-    void updateLogin(long id, String login) throws DaoException;
-    void updateFirstName(long id, String firstName) throws DaoException;
-    void updateLastName(long id, String lastName) throws DaoException;
-    void updateEmail(long id, String email) throws DaoException;
-    void updateTelephone(long id, String telephone) throws DaoException;
+    int updateLogin(long id, String login) throws DaoException;
+    int updateFirstName(long id, String firstName) throws DaoException;
+    int updateLastName(long id, String lastName) throws DaoException;
+    int updateEmail(long id, String email) throws DaoException;
+    int updateTelephone(long id, String telephone) throws DaoException;
 }

@@ -27,23 +27,23 @@
 <c:choose>
     <c:when test="${sessionScope.basket.size()>0}">
         <label><fmt:message key="label.customer_name"/></label>
-        <div>${sessionScope.basket.get(0).user.firstName} ${sessionScope.basket.get(0).user.lastName}</div>
-        <br>
+        <label>${sessionScope.basket.get(0).user.firstName} ${sessionScope.basket.get(0).user.lastName}</label>
+        <br><br>
         <label><fmt:message key="label.customer_telephone"/></label>
-        <div> ${sessionScope.basket.get(0).user.telephone}</div>
-        <br>
+        <label> ${sessionScope.basket.get(0).user.telephone}</label>
+        <br><br>
         <label><fmt:message key="label.order_id"/></label>
-        <div>${sessionScope.order.orderId}</div>
-        <br>
+        <label>${sessionScope.order.orderId}</label>
+        <br><br>
         <label><fmt:message key="label.data_starting_order"/></label>
-        <div> ${sessionScope.order.dataStarting}</div>
-        <br>
+        <label> ${sessionScope.order.dataStarting}</label>
+        <br><br>
         <label><fmt:message key="label.data_ending_order"/></label>
-        <div>${sessionScope.order.dataEnding}</div>
-        <br>
+        <label>${sessionScope.order.dataEnding}</label>
+        <br><br>
         <label><fmt:message key="label.status_order"/></label>
-        <div>${sessionScope.order.statusOrder}</div>
-        <br>
+        <label>${sessionScope.order.statusOrder}</label>
+        <br><br>
 
         <table border="3">
             <thead>
@@ -78,9 +78,10 @@
     </c:when>
 </c:choose><br>
 <c:if test="${sessionScope.order.statusOrder.equals(StatusOrder.PROCESSING)}">
-    <form action="${pageContext.request.contextPath}/controller?command=updating_order_status_to_prepared"
+    <form action="${pageContext.request.contextPath}/controller?command=updating_order_status"
           method="post">
         <input type="hidden" name="order_id" value="${sessionScope.order.orderId}"/>
+        <input type="hidden" name="old_order_status_id" value="1">
         <input type="hidden" name="order_status_id" value="2"/>
         <input type="submit" value="<fmt:message key="button.prepare"/>" class="button"/>
     </form>
@@ -88,9 +89,10 @@
 <br>
 
 <c:if test="${sessionScope.order.statusOrder.equals(StatusOrder.PROCESSING)}">
-    <form action="${pageContext.request.contextPath}/controller?command=updating_order_status_to_deleted"
+    <form action="${pageContext.request.contextPath}/controller?command=updating_order_status"
           method="post">
         <input type="hidden" name="order_id" value="${sessionScope.order.orderId}"/>
+        <input type="hidden" name="old_order_status_id" value="1">
         <input type="hidden" name="order_status_id" value="4"/>
         <input type="submit" value="<fmt:message key="button.delete"/>" class="button"/>
     </form>
@@ -98,7 +100,7 @@
 <br>
 
 
-<a href="${pageContext.request.contextPath}/controller?command=all_processing_orders&pharmacy_id=${sessionScope.order.pharmacy.pharmacyId}"
+<a href="${pageContext.request.contextPath}/controller?command=all_orders_in_needed_status&order_status_id=1&pharmacy_id=${sessionScope.order.pharmacy.pharmacyId}"
    class="common_link">
     <fmt:message key="link.to_list_processing_orders"/> </a><br>
 <a href="${pageContext.request.contextPath}/controller?command=all_orders_in_pharmacy_page&pharmacy_id=${sessionScope.pharmacyId}"

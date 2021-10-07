@@ -49,7 +49,7 @@ public class OrderServiceImpl implements OrderService {
     public void createOrder(long pharmacyId, User auth, Map<Product, Integer> products) throws ServiceException {
         Optional<Pharmacy> pharmacyDb;
         try {
-         pharmacyDb = pharmacyDao.findPharmacyById(pharmacyId);
+            pharmacyDb = pharmacyDao.findPharmacyById(pharmacyId);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findPharmacyByIdr() ", e);
             throw new ServiceException("DaoException is in method findPharmacyById() ", e);
@@ -84,11 +84,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId) throws ServiceException {
+    public List<Order> findAllOrdersInNeededStatusForPharmacies(long pharmacyId, String statusId) throws ServiceException {
+        int statusOrderId = Integer.parseInt(statusId);
         List<Order> orders;
         OrderDao orderDao = OrderDaoImpl.getInstance();
         try {
-         orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId);
+            orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId, statusOrderId);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findAllProcessingOrdersForPharmacies() ", e);
             throw new ServiceException("DaoException is in method findAllProcessingOrdersForPharmacies() ", e);
@@ -115,7 +116,7 @@ public class OrderServiceImpl implements OrderService {
         long id = Long.parseLong(orderId);
         Optional<Order> orderDb;
         try {
-           orderDb = orderDao.findOrderById(id);
+            orderDb = orderDao.findOrderById(id);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findOrderById() ", e);
             throw new ServiceException("DaoException is in method findOrderById() ", e);
@@ -144,7 +145,7 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-    private void sendConfirmingEmailToCustomer(User user, String orderId){
-      emailSending.sendEmail(user, orderId, HEADER_FOR_PREPARED_ORDER, MESSAGE_FOR_PREPARED_ORDER);
+    private void sendConfirmingEmailToCustomer(User user, String orderId) {
+        emailSending.sendEmail(user, orderId, HEADER_FOR_PREPARED_ORDER, MESSAGE_FOR_PREPARED_ORDER);
     }
 }

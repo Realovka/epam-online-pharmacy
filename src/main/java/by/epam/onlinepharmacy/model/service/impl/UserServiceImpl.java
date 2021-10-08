@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
                 if (userReg.isPresent()) {
                     String code = UUID.randomUUID().toString();
                     userDao.createCodeActivation(userReg.get().getUserId(), code);
-                    emailSending.sendEmail(userReg.get(), code, HEADER_FOR_VERIFICATION_CUSTOMER,
+                    emailSending.sendEmailVerifyCustomer(userReg.get(), code, HEADER_FOR_VERIFICATION_CUSTOMER,
                             MESSAGE_FOR_VERIFICATION_CUSTOMER);
                 }
             } catch (DaoException e) {

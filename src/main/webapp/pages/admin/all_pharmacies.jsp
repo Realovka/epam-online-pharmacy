@@ -15,11 +15,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
-    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
-</form>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/header.jsp"/>
 
 <h1><fmt:message key="header.all_pharmacies"/></h1>
 <h2><fmt:message key="header.add_pharmacy"/></h2>
@@ -98,13 +94,11 @@
 </c:if>
 <c:if test="${sessionScope.nextPharmacies.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&count_forward=true&current_page=${sessionScope.currentPage}"
-       style="color: #800000"><fmt:message key="link.next_pharmacies"/></a>
+       class="common_link"><fmt:message key="link.next_pharmacies"/></a>
 </c:if><br>
 
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
-        key="link.admin_main"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
-        key="link.logout"/></a>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
+
 <ftg:footer/>
 </body>
 </html>

@@ -30,7 +30,8 @@ public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
     private static final String HEADER_FOR_PREPARED_ORDER = "Information about your order";
     private static final String MESSAGE_FOR_PREPARED_ORDER = """
-            Hello, %s  %s! Your order number %s is prepared.
+            Hello, %s  %s! Your order number %s is prepared. You can pick up your order today before the end
+            of the working day of the pharmacy at address %s %s %s %s %s
             """;
     private OrderDaoImpl orderDao = OrderDaoImpl.getInstance();
     private PharmacyDao pharmacyDao = PharmacyDaoImpl.getInstance();
@@ -56,8 +57,7 @@ public class OrderServiceImpl implements OrderService {
             logger.log(Level.ERROR, "DaoException is in method findPharmacyByIdr() ", e);
             throw new ServiceException("DaoException is in method findPharmacyById() ", e);
         }
-        //TODO
-        Pharmacy pharmacy = pharmacyDb.orElse(new Pharmacy());
+        Pharmacy pharmacy = pharmacyDb.get();
         LocalDate date = LocalDate.now();
         Order order = new Order.Builder()
                 .setDataStarting(Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault())))
@@ -137,13 +137,14 @@ public class OrderServiceImpl implements OrderService {
             orderDao.updateStatusOrder(statusOrder, id);
             orderDb = orderDao.findOrderById(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method  updateStatusOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateStatusOrder() ", e);
             throw new ServiceException("DaoException is in method updateStatusOrder() ", e);
         }
-        Order order = orderDb.orElse(new Order());
-        if (statusOrder == 2) {
+        Order order = orderDb.get();
+        if (statusOrder == 2) { //TODO
             User whoDidOrder = basket.getUser();
-            sendConfirmingEmailToCustomer(whoDidOrder, orderId);
+            Pharmacy pharmacy = order.getPharmacy();
+            sendConfirmingEmailToCustomer(whoDidOrder, orderId, pharmacy);
         }
         return order;
     }
@@ -158,7 +159,7 @@ public class OrderServiceImpl implements OrderService {
         }
     }
 
-    private void sendConfirmingEmailToCustomer(User user, String orderId) {
-        emailSending.sendEmail(user, orderId, HEADER_FOR_PREPARED_ORDER, MESSAGE_FOR_PREPARED_ORDER);
+    private void sendConfirmingEmailToCustomer(User user, String orderId, Pharmacy pharmacy) {
+        emailSending.sendEmailPrepareOrder(user, orderId, pharmacy, HEADER_FOR_PREPARED_ORDER, MESSAGE_FOR_PREPARED_ORDER);
     }
 }

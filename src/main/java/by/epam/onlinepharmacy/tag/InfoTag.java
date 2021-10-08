@@ -15,8 +15,8 @@ public class InfoTag extends TagSupport {
     @Override
     public int doStartTag() throws JspException {
         String footer = """
-                <footer style="position: absolute; left: 0; bottom: 0;
-                height: 30px;  width: 100%">LLL</footer>
+                <footer style="margin-top: auto
+              ">LLL</footer>
                    """;
 
         try {

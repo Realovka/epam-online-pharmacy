@@ -16,32 +16,12 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" class="lang"
-           value="${sessionScope.secondLocale}">
-</form>
+<jsp:include page="static_part/header.jsp"/>
 
 <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message
         key="link.name.back_to_login_page"/></a>
 
-<nav class="menu">
-    <ul>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=how_to_do_order_page"><fmt:message
-                    key="link.name.how_to_do_order"/></a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=about_us_page"><fmt:message
-                    key="link.name.about_us"/></a>
-        </li>
-        <li>
-            <a href="${pageContext.request.contextPath}/controller?command=questions_page"><fmt:message
-                    key="link.name.faq"/></a>
-        </li>
-    </ul>
-</nav>
+<jsp:include page="static_part/menu_for_customer.jsp"/>
 
 <div class="reg">
     <form action="${pageContext.request.contextPath}/controller?command=registration" method="post">
@@ -77,6 +57,8 @@
         <input type="submit" value="<fmt:message key="button.registration"/>">
     </form>
 </div>
+
 <ftg:footer/>
 </body>
+
 </html>

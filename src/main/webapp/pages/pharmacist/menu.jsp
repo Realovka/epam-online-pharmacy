@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
@@ -15,20 +15,15 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
-    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
-</form>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/header.jsp"/>
 
 <h1><fmt:message key="title.menu"/></h1>
 <a href="${pageContext.request.contextPath}/controller?command=all_orders_in_needed_status&order_status_id=1" class="common_link"><fmt:message
         key="link.all_processing_orders"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=all_orders_in_needed_status&order_status_id=2" class="common_link"><fmt:message
         key="link.all_prepared_orders"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=main_pharmacist" class="common_link"><fmt:message
-        key="link.pharmacist_main"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
-        key="link.logout"/></a>
+
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_pharmacist.jsp"/>
+
 </body>
 </html>

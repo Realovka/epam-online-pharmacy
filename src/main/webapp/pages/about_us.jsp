@@ -16,12 +16,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}">
-    <input type="submit" class="lang"
-           value="${sessionScope.secondLocale}">
-</form>
+<jsp:include page="static_part/header.jsp"/>
 
 <c:if test="${sessionScope.authUser == null}">
     <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message

@@ -15,11 +15,7 @@
 </head>
 <body>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
-    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
-</form>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/header.jsp"/>
 
 <h1><fmt:message key="title.addition_picture"/></h1>
 <form action="${pageContext.request.contextPath}/addImage" method="post" enctype="multipart/form-data">
@@ -30,10 +26,9 @@
         key="link.see_page_about_product"/></a><br>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
         key="link.all_products"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
-        key="link.admin_main"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
-        key="link.logout"/></a>
+
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
+
 <ftg:footer/>
 </body>
 </html>

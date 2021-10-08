@@ -15,6 +15,7 @@ public class CommandProvider {
 
     private CommandProvider() {
         commands = new EnumMap<>(CommandType.class);
+        commands.put(CommandType.DEFAULT, new DefaultCommand());
         commands.put(CommandType.LOGIN, new LoginCommand());
         commands.put(CommandType.REGISTRATION_PAGE, new GoToRegistrationPageCommand());
         commands.put(CommandType.VERIFICATION_CUSTOMER_PAGE, new GoToVerificationCustomerPageCommand());

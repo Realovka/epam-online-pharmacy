@@ -1,5 +1,5 @@
-<%@page contentType="text/html;charset=UTF-8" language="java" %>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
@@ -14,11 +14,7 @@
     <title><fmt:message key="title.all_products"/></title>
 </head>
 
-<form action="${pageContext.request.contextPath}/controller?command=change_language&lang=${sessionScope.currentLocale}"
-      method="post">
-    <input type="hidden" name="current_url" value="${pageContext.request.requestURL}"/>
-    <input type="submit" value="${sessionScope.secondLocale}" class="lang"/>
-</form>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/header.jsp"/>
 
 <h1><fmt:message key="header.list_all_products"/></h1>
 <h2><fmt:message key="header.add_new_product_in_form"/></h2>
@@ -144,13 +140,11 @@
 </c:if>
 <c:if test="${sessionScope.nextProducts.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}"
-       style="color: #800000"><fmt:message key="link.next_products"/></a>
+       class="common_link"><fmt:message key="link.next_products"/></a>
 </c:if><br>
 
-<a href="${pageContext.request.contextPath}/controller?command=main_admin" class="common_link"><fmt:message
-        key="link.admin_main"/></a><br>
-<a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
-        key="link.logout"/></a>
+<jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
+
 <ftg:footer/>
 </body>
 </html>

@@ -9,10 +9,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +60,10 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String UPDATE_ORDER_STATUS = """
             UPDATE orders set order_status_id = ? WHERE order_id = ?
+            """;
+
+    private static final String DELETE_ORDERS = """
+            UPDATE orders set order_status_id = 4 WHERE data_ending < ? AND order_status_id = 2
             """;
 
     @Override
@@ -206,6 +207,18 @@ public class OrderDaoImpl implements OrderDao {
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateStatusOrder() ", e);
             throw new DaoException("SQLException in method updateStatusOrder() ", e);
+        }
+    }
+
+    @Override
+    public void deleteOrders(Timestamp timestamp) throws DaoException {
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDERS)) {
+            preparedStatement.setTimestamp(1, timestamp);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            logger.log(Level.ERROR, "SQLException in method deleteOrders() ", e);
+            throw new DaoException("SQLException in method deleteOrders() ", e);
         }
     }
 }

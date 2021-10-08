@@ -17,7 +17,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +58,10 @@ public class OrderServiceImpl implements OrderService {
         }
         //TODO
         Pharmacy pharmacy = pharmacyDb.orElse(new Pharmacy());
+        LocalDate date = LocalDate.now();
         Order order = new Order.Builder()
                 .setDataStarting(Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault())))
-                .setDataEnding(Timestamp.valueOf(LocalDateTime.now(ZoneId.systemDefault()).plusHours(24)))
+                .setDataEnding(Timestamp.valueOf(LocalDateTime.of(date, LocalTime.MIDNIGHT).plusDays(1)))
                 .setPharmacy(pharmacy)
                 .build();
         Order orderDB;
@@ -143,6 +146,16 @@ public class OrderServiceImpl implements OrderService {
             sendConfirmingEmailToCustomer(whoDidOrder, orderId);
         }
         return order;
+    }
+
+    @Override
+    public void deleteOrders(Timestamp timestamp) throws ServiceException {
+        try {
+            orderDao.deleteOrders(timestamp);
+        } catch (DaoException e) {
+            logger.log(Level.ERROR, "DaoException is in method deleteOrders() ", e);
+            throw new ServiceException("DaoException is in method deleteOrders() ", e);
+        }
     }
 
     private void sendConfirmingEmailToCustomer(User user, String orderId) {

@@ -7,7 +7,7 @@ The application has 4 roles: guest, administrator, customer and pharmacist.
 
 1. registration<br>
 2. sending a verification code if the user register as a customer<br>
-3. view pages "how to do order", "about us", "questions"<br>
+3. view pages "how to do order", "about us", "faq"<br>
 
 ### Capabilities of **administrator** are:
 

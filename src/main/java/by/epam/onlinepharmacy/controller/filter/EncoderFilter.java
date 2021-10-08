@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/*"})
+@WebFilter(urlPatterns = {"/pages/*"})
 public class EncoderFilter implements Filter {
 
     private static final String DEFAULT_ENCODING = "UTF-8";
@@ -28,5 +28,10 @@ public class EncoderFilter implements Filter {
             servletResponse.setCharacterEncoding(encoding);
         }
         filterChain.doFilter(servletRequest, servletResponse);
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }

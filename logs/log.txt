@@ -1,4 +1,5 @@
-2021-10-07 23:31:58.691 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-07 23:32:56.047 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-07 23:33:58.755 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-07 23:36:36.558 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-08 17:19:25.712 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-08 17:28:50.343 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-08 17:29:19.272 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-08 17:33:05.192 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-08 17:41:26.659 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

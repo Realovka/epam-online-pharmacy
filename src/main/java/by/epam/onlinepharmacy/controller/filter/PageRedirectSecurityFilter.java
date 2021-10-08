@@ -88,4 +88,9 @@ public class PageRedirectSecurityFilter implements Filter {
         }
         chain.doFilter(request, response);
     }
+
+    @Override
+    public void destroy() {
+
+    }
 }

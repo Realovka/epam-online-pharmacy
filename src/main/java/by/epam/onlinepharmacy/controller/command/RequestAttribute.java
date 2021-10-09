@@ -33,7 +33,6 @@ public final class RequestAttribute {
     public static final String BASKET_IS_EMPTY_ERROR = "basketIsEmptyError";
     public static final String NEED_CHOOSE_PRODUCTS_ERROR = "needChooseProductsError";
 
-
     private RequestAttribute() {
     }
 }

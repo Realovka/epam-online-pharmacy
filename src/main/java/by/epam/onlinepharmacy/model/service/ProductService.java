@@ -6,7 +6,6 @@ import by.epam.onlinepharmacy.exception.ServiceException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public interface ProductService {
     List<ProductDto> createProduct(String name, String nonProprietaryName, String dose, String plant,

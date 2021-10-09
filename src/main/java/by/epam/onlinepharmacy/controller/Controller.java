@@ -1,12 +1,15 @@
 package by.epam.onlinepharmacy.controller;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandProvider;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

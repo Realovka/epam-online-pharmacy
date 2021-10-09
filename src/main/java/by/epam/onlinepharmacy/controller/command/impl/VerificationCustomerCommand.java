@@ -1,6 +1,11 @@
 package by.epam.onlinepharmacy.controller.command.impl;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.service.impl.UserServiceImpl;
@@ -9,7 +14,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 public class VerificationCustomerCommand implements Command {
     private static final Logger logger = LogManager.getLogger();

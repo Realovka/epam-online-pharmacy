@@ -17,9 +17,18 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
 
-import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.EMAIL;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.FIRST_NAME;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.LAST_NAME;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.LOGIN;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.PASSWORD;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.TELEPHONE;
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();

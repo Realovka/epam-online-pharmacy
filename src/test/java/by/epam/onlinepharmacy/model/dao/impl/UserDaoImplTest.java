@@ -25,11 +25,11 @@ public class UserDaoImplTest {
 
     @Mock
     private UserDaoImpl userDao;
-    User user;
-    User testUser;
-    User incorrectUser;
-    List<User> users;
-    List<User> testUsers;
+    private User user;
+    private User testUser;
+    private User incorrectUser;
+    private List<User> users;
+    private List<User> testUsers;
 
     @BeforeEach
     void setUp() {
@@ -71,7 +71,6 @@ public class UserDaoImplTest {
         users.add(testUser);
 
     }
-
 
     @Test
     public void createUserTrueTest() throws DaoException {

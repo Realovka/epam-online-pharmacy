@@ -1,8 +1,11 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.PharmacyDto;
-import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;

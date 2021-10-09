@@ -1,6 +1,10 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -38,7 +42,8 @@ public class UpdatingProductRecipeCommand implements Command {
             currentProducts = productService.findListProducts((currentPage - 1) * RECORD_PER_PAGE);
             nextProducts = productService.findListProducts((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute while find list current products or update recipe of product", e);
+            logger.log(Level.ERROR, """
+            ServiceException in method execute while find list current products or update recipe of product""", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProducts);

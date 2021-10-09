@@ -7,6 +7,7 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 import javax.servlet.http.HttpServletRequest;
 
 public class DefaultCommand implements Command {
+
     @Override
     public CommandResult execute(HttpServletRequest request) {
         return new CommandResult(PagePath.ERROR_404_PAGE, CommandResult.RoutingType.REDIRECT);

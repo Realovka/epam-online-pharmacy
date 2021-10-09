@@ -17,10 +17,13 @@ import org.apache.logging.log4j.Logger;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static by.epam.onlinepharmacy.controller.command.RequestParameter.*;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.BLOCK;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.CITY;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.HOUSE;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.NUMBER;
+import static by.epam.onlinepharmacy.controller.command.RequestParameter.STREET;
 
 
 public class PharmacyServiceImpl implements PharmacyService {
@@ -44,7 +47,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     public List<PharmacyDto> findListPharmacies(int startingPharmacy) throws ServiceException {
         List<Pharmacy> pharmaciesDb;
         try {
-            pharmaciesDb = pharmacyDao.findPharmacies(startingPharmacy);
+            pharmaciesDb = pharmacyDao.findListPharmacies(startingPharmacy);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findListPharmacies() ", e);
             throw new ServiceException("DaoException is in method findListPharmacies() ", e);
@@ -88,9 +91,9 @@ public class PharmacyServiceImpl implements PharmacyService {
             int pharmaciesOnLastPage = pharmaciesNumber % RECORD_PER_PAGE;
             int pages = pharmaciesNumber / RECORD_PER_PAGE;
             if (pharmaciesOnLastPage == 0) {
-                currentPharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
+                currentPharmacies = pharmacyDao.findListPharmacies(pages * RECORD_PER_PAGE - RECORD_PER_PAGE);
             } else {
-                currentPharmacies = pharmacyDao.findPharmacies(pages * RECORD_PER_PAGE);
+                currentPharmacies = pharmacyDao.findListPharmacies(pages * RECORD_PER_PAGE);
             }
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);

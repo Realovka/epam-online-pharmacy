@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -35,7 +41,7 @@ public class UpdatingPharmacistTelephoneCommand implements Command {
             userService.updateTelephone(id, newTelephone);
             pharmacists = userService.findAllPharmacists();
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute update telephone or find all pharmacists ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while update telephone or find all pharmacists ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.ALL_PHARMACISTS, pharmacists);

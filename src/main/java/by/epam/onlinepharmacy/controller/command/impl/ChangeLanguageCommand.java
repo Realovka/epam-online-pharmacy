@@ -7,10 +7,6 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.URL;
-import java.util.Enumeration;
-import java.util.Map;
-
 
 public class ChangeLanguageCommand implements Command {
     private static final String RUSSIAN_LOCALE = "Ru";

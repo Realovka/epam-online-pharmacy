@@ -1,8 +1,13 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.PharmacyDto;
-import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
 import by.epam.onlinepharmacy.model.service.impl.PharmacyServiceImpl;
@@ -24,7 +29,7 @@ public class UpdatingPharmacyStreetCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        int currentPage = (int)session.getAttribute(SessionAttribute.CURRENT_PAGE);
+        int currentPage = (int) session.getAttribute(SessionAttribute.CURRENT_PAGE);
         String newStreet = request.getParameter(RequestParameter.UPDATING_PHARMACY_STREET);
         long id = (long) session.getAttribute(SessionAttribute.PHARMACY_ID);
         PharmacyService pharmacyService = PharmacyServiceImpl.getInstance();

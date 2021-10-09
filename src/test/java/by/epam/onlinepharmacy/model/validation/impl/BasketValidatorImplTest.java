@@ -8,12 +8,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasketValidatorImplTest {
-    BasketValidator basketValidator;
-    String quantity;
-    String negativeQuantity;
-    String fractionalQuantity;
-    String zero;
-    String word;
+    private BasketValidator basketValidator;
+    private String quantity;
+    private String negativeQuantity;
+    private String fractionalQuantity;
+    private String zero;
+    private String word;
 
     @BeforeEach
     public void setUp() {

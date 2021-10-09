@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserValidatorImplTest {
-    UserValidator userValidator;
-    String correctParameter;
-    String emptyParameter;
-    String longParameter;
-    String correctEmail;
-    String incorrectEmail;
-    String correctTelephone;
-    String incorrectTelephone;
-    Map<String, String> data;
+    private UserValidator userValidator;
+    private String correctParameter;
+    private String emptyParameter;
+    private String longParameter;
+    private String correctEmail;
+    private String incorrectEmail;
+    private String correctTelephone;
+    private String incorrectTelephone;
+    private Map<String, String> data;
 
     @BeforeEach
     public void setUp() {

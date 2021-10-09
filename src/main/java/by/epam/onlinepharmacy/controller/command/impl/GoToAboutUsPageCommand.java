@@ -7,6 +7,7 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 import javax.servlet.http.HttpServletRequest;
 
 public class GoToAboutUsPageCommand implements Command {
+
     @Override
     public CommandResult execute(HttpServletRequest request) {
         return new CommandResult(PagePath.ABOUT_US, CommandResult.RoutingType.REDIRECT);

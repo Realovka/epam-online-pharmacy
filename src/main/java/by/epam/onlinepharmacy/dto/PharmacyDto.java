@@ -1,7 +1,5 @@
 package by.epam.onlinepharmacy.dto;
 
-import by.epam.onlinepharmacy.entity.Pharmacy;
-
 import java.util.Objects;
 
 public class PharmacyDto {

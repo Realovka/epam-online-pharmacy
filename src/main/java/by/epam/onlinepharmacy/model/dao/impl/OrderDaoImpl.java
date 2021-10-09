@@ -1,6 +1,11 @@
 package by.epam.onlinepharmacy.model.dao.impl;
 
-import by.epam.onlinepharmacy.entity.*;
+import by.epam.onlinepharmacy.entity.Basket;
+import by.epam.onlinepharmacy.entity.Order;
+import by.epam.onlinepharmacy.entity.Pharmacy;
+import by.epam.onlinepharmacy.entity.Product;
+import by.epam.onlinepharmacy.entity.StatusOrder;
+import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
 import by.epam.onlinepharmacy.model.dao.ColumnName;
@@ -9,12 +14,30 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.DATA_ENDING;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.DATA_STARTING;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.ORDER_ID;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.ORDER_STATUS;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_ID;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_NUMBER;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_DOSE;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_NAME;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_PLANT;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_PRICE;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.QUANTITY;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_EMAIL;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_FIRST_NAME;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LAST_NAME;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_TELEPHONE;
 
 public class OrderDaoImpl implements OrderDao {
     private Logger logger = LogManager.getLogger();

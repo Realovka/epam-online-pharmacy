@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.UserService;
@@ -27,7 +33,7 @@ public class UpdatingPharmacistLoginCommand implements Command {
         HttpSession session = request.getSession();
         List<User> pharmacists;
 
-        if(!userValidator.isValidStringParameter(newLogin)) {
+        if (!userValidator.isValidStringParameter(newLogin)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACIST_LOGIN_ERROR, BundleKey.USER_LOGIN_ERROR);
             return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
         }
@@ -41,7 +47,7 @@ public class UpdatingPharmacistLoginCommand implements Command {
                 return new CommandResult(PagePath.UPDATING_PHARMACIST_LOGIN, CommandResult.RoutingType.FORWARD);
             }
         } catch (ServiceException e) {
-            logger.log(Level.ERROR, "ServiceException in method execute find all pharmacists ", e);
+            logger.log(Level.ERROR, "ServiceException in method execute while find all pharmacists ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
     }

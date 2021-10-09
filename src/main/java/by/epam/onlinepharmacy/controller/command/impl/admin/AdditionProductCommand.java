@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -88,7 +94,7 @@ public class AdditionProductCommand implements Command {
         List<ProductDto> previousProducts;
 
         try {
-            currentProducts = productService.createProduct(name, nonProprietaryName, dose, plant, group,price,recipe, instruction);
+            currentProducts = productService.createProduct(name, nonProprietaryName, dose, plant, group, price, recipe, instruction);
             currentPage = productService.findCurrentPage();
             previousProducts = productService.findListProducts((currentPage - 2) * RECORD_PER_PAGE);
 

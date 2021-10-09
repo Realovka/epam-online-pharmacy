@@ -1,10 +1,15 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class GoToUpdatingProductGroupPageCommand implements Command {
+
     @Override
     public CommandResult execute(HttpServletRequest request) {
         String productId = request.getParameter(RequestParameter.PRODUCT_ID);

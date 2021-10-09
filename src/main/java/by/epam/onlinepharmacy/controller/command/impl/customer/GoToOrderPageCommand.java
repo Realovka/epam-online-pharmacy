@@ -1,8 +1,13 @@
 package by.epam.onlinepharmacy.controller.command.impl.customer;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.PharmacyDto;
-import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.PharmacyService;
@@ -13,9 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class GoToOrderPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
@@ -25,7 +28,7 @@ public class GoToOrderPageCommand implements Command {
         long id = 0;
         HttpSession session = request.getSession();
         Map<Product, Integer> products = (Map<Product, Integer>) session.getAttribute(SessionAttribute.LIST_PRODUCTS_IN_BASKET);
-        if(products == null) {
+        if (products == null) {
             request.setAttribute(RequestAttribute.NEED_CHOOSE_PRODUCTS_ERROR, BundleKey.NEED_CHOOSE_PRODUCTS_ERROR);
             return new CommandResult(PagePath.MAIN_CUSTOMER, CommandResult.RoutingType.FORWARD);
         }

@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.admin;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -23,7 +29,7 @@ public class UpdatingProductNameCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        int currentPage = (int)session.getAttribute(SessionAttribute.CURRENT_PAGE);
+        int currentPage = (int) session.getAttribute(SessionAttribute.CURRENT_PAGE);
         long productId = (long) session.getAttribute(SessionAttribute.PRODUCT_ID);
         String newName = request.getParameter(RequestParameter.UPDATING_PRODUCT_NAME);
         ProductValidator productValidator = ProductValidatorImpl.getInstance();
@@ -33,7 +39,7 @@ public class UpdatingProductNameCommand implements Command {
         List<ProductDto> nextProducts;
         List<ProductDto> previousProducts = new ArrayList<>();
 
-        if(!productValidator.isValidStringParameters(newName)) {
+        if (!productValidator.isValidStringParameters(newName)) {
             request.setAttribute(RequestAttribute.PRODUCT_NAME_ERROR, BundleKey.PRODUCT_NAME_ERROR);
             return new CommandResult(PagePath.UPDATING_PRODUCT_NAME, CommandResult.RoutingType.FORWARD);
         }

@@ -19,7 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_EMAIL;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_FIRST_NAME;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_ID;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LAST_NAME;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LOGIN;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_STATUS;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_TELEPHONE;
 
 public class UserDaoImpl implements UserDao {
     private Logger logger = LogManager.getLogger();

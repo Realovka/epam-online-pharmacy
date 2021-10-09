@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.customer;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.dto.ProductDto;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.service.ProductService;
@@ -29,7 +35,7 @@ public class SearchProductsByNameCommand implements Command {
             logger.log(Level.ERROR, "ServiceException in method execute while find list products by name ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);
         }
-        if(products.isEmpty()) {
+        if (products.isEmpty()) {
             request.setAttribute(RequestAttribute.NO_SUCH_PRODUCTS_IN_SEARCH, BundleKey.NO_SUCH_PRODUCTS_IN_SEARCH);
             return new CommandResult(PagePath.SEARCH_PRODUCTS_BY_NAME, CommandResult.RoutingType.FORWARD);
         }

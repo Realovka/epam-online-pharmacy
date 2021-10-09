@@ -28,10 +28,6 @@ public final class SessionAttribute {
     public static final String BASKET = "basket";
     public static final String ORDER = "order";
 
-
-
-
-
     private SessionAttribute() {
     }
 }

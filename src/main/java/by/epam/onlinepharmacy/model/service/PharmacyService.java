@@ -1,12 +1,10 @@
 package by.epam.onlinepharmacy.model.service;
 
 import by.epam.onlinepharmacy.dto.PharmacyDto;
-import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.exception.ServiceException;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public interface PharmacyService {
     List<PharmacyDto> findListPharmacies(int startingPharmacy) throws ServiceException;

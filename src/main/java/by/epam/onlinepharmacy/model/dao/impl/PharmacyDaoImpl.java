@@ -16,7 +16,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static by.epam.onlinepharmacy.model.dao.ColumnName.*;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_BLOCK;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_CITY;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_HOUSE;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_ID;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_NUMBER;
+import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_STREET;
 
 public class PharmacyDaoImpl implements PharmacyDao {
     private Logger logger = LogManager.getLogger();
@@ -58,7 +63,7 @@ public class PharmacyDaoImpl implements PharmacyDao {
 
 
     @Override
-    public List<Pharmacy> findPharmacies(int startingPharmacy) throws DaoException {
+    public List<Pharmacy> findListPharmacies(int startingPharmacy) throws DaoException {
         List<Pharmacy> pharmacies = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_PHARMACIES)) {
@@ -77,8 +82,8 @@ public class PharmacyDaoImpl implements PharmacyDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findAllPharmacies() ", e);
-            throw new DaoException("SQLException in method findAllPharmacies() ", e);
+            logger.log(Level.ERROR, "SQLException in method findListPharmacies() ", e);
+            throw new DaoException("SQLException in method findListPharmacies() ", e);
         }
         return pharmacies;
     }
@@ -103,14 +108,15 @@ public class PharmacyDaoImpl implements PharmacyDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findAllPharmaciesByCity() ", e);
-            throw new DaoException("SQLException in method findAllPharmaciesByCity() ", e);
+            logger.log(Level.ERROR, "SQLException in method findPharmaciesByCity() ", e);
+            throw new DaoException("SQLException in method findPharmaciesByCity() ", e);
         }
         return pharmacies;
     }
 
     @Override
-    public void createPharmacy(Pharmacy pharmacy) throws DaoException {
+    public boolean createPharmacy(Pharmacy pharmacy) throws DaoException {
+        boolean result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(CREATE_PHARMACY)) {
             preparedStatement.setInt(1, pharmacy.getNumber());
@@ -118,11 +124,12 @@ public class PharmacyDaoImpl implements PharmacyDao {
             preparedStatement.setString(3, pharmacy.getStreet());
             preparedStatement.setString(4, pharmacy.getHouse());
             preparedStatement.setInt(5, pharmacy.getBlock());
-            preparedStatement.execute();
+            result = preparedStatement.execute();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createPharmacy() ", e);
             throw new DaoException("SQLException in method createPharmacy() ", e);
         }
+        return result;
     }
 
     @Override
@@ -168,67 +175,77 @@ public class PharmacyDaoImpl implements PharmacyDao {
     }
 
     @Override
-    public void updateNumber(long id, int number) throws DaoException {
+    public int updateNumber(long id, int number) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACY_NUMBER)) {
             preparedStatement.setInt(1, number);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateNumber() ", e);
             throw new DaoException("SQLException in method updateNumber() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateCity(long id, String city) throws DaoException {
+    public int updateCity(long id, String city) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACY_CITY)) {
             preparedStatement.setString(1, city);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateCity() ", e);
             throw new DaoException("SQLException in method updateCity() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateStreet(long id, String street) throws DaoException {
+    public int updateStreet(long id, String street) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACY_STREET)) {
             preparedStatement.setString(1, street);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateStreet() ", e);
             throw new DaoException("SQLException in method updateStreet() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateHouse(long id, String house) throws DaoException {
+    public int updateHouse(long id, String house) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACY_HOUSE)) {
             preparedStatement.setString(1, house);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateHouse() ", e);
             throw new DaoException("SQLException in method updateHouse() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateBlock(long id, int block) throws DaoException {
+    public int updateBlock(long id, int block) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PHARMACY_BLOCK)) {
             preparedStatement.setInt(1, block);
             preparedStatement.setLong(2, id);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateBlock() ", e);
             throw new DaoException("SQLException in method updateBlock() ", e);
         }
+        return result;
     }
 }

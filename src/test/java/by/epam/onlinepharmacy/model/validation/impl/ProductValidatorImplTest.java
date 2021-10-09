@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ProductValidatorImplTest {
-    ProductValidator productValidator;
-    String correctParameter;
-    String emptyString;
-    String longString;
-    String correctPrice;
-    String zero;
-    String negativeNumber;
-    Map<String, String> data;
+    private ProductValidator productValidator;
+    private String correctParameter;
+    private String emptyString;
+    private String longString;
+    private String correctPrice;
+    private String zero;
+    private String negativeNumber;
+    private Map<String, String> data;
 
     @BeforeEach
     public void setUp() {

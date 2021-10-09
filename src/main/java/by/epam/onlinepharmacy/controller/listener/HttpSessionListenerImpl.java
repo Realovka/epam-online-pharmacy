@@ -3,20 +3,16 @@ package by.epam.onlinepharmacy.controller.listener;
 import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
-import java.util.Locale;
 
 @WebListener
 public class HttpSessionListenerImpl implements HttpSessionListener {
-
     private static final String DEFAULT_LOCALE = "En";
     private static final String SECOND_LOCALE = "Ru";
     private static final String DEFAULT_BUNDLE = "prop.pagecontent_en_En";
     private static final String DEFAULT_PREVIOUS_QUERY = "/pages/login.jsp";
-
 
     @Override
     public void sessionCreated(HttpSessionEvent sessionEvent) {

@@ -1,6 +1,10 @@
 package by.epam.onlinepharmacy.model.service.impl;
 
-import by.epam.onlinepharmacy.entity.*;
+import by.epam.onlinepharmacy.entity.Basket;
+import by.epam.onlinepharmacy.entity.Order;
+import by.epam.onlinepharmacy.entity.Pharmacy;
+import by.epam.onlinepharmacy.entity.Product;
+import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.exception.ServiceException;
 import by.epam.onlinepharmacy.model.dao.OrderDao;

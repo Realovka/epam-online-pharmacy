@@ -1,6 +1,12 @@
 package by.epam.onlinepharmacy.controller.command.impl.customer;
 
-import by.epam.onlinepharmacy.controller.command.*;
+import by.epam.onlinepharmacy.controller.command.BundleKey;
+import by.epam.onlinepharmacy.controller.command.Command;
+import by.epam.onlinepharmacy.controller.command.CommandResult;
+import by.epam.onlinepharmacy.controller.command.PagePath;
+import by.epam.onlinepharmacy.controller.command.RequestAttribute;
+import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import by.epam.onlinepharmacy.entity.Product;
 import by.epam.onlinepharmacy.model.service.ProductService;
 import by.epam.onlinepharmacy.model.service.impl.ProductServiceImpl;

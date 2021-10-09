@@ -20,7 +20,7 @@ public class AllPharmacistsCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public CommandResult execute(HttpServletRequest request)  {
+    public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
         UserService userService = UserServiceImpl.getInstance();
         List<User> pharmacists;

@@ -27,7 +27,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         if (!isValidNumber(formData.get(RequestParameter.NUMBER))) {
             formData.put(RequestParameter.NUMBER, EMPTY_STRING);
         }
-        if(!isValidCityOrStreet(formData.get(RequestParameter.CITY))) {
+        if (!isValidCityOrStreet(formData.get(RequestParameter.CITY))) {
             formData.put(RequestParameter.CITY, EMPTY_STRING);
         }
         if (!isValidCityOrStreet(formData.get(RequestParameter.STREET))) {

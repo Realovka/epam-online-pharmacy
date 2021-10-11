@@ -221,27 +221,31 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public void updateStatusOrder(int statusId, long orderId) throws DaoException {
+    public int updateStatusOrder(int statusId, long orderId) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_ORDER_STATUS)) {
             preparedStatement.setInt(1, statusId);
             preparedStatement.setLong(2, orderId);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method updateStatusOrder() ", e);
             throw new DaoException("SQLException in method updateStatusOrder() ", e);
         }
+        return result;
     }
 
     @Override
-    public void deleteOrders(Timestamp timestamp) throws DaoException {
+    public int deleteOrders(Timestamp timestamp) throws DaoException {
+        int result;
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(DELETE_ORDERS)) {
             preparedStatement.setTimestamp(1, timestamp);
-            preparedStatement.executeUpdate();
+            result = preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method deleteOrders() ", e);
             throw new DaoException("SQLException in method deleteOrders() ", e);
         }
+        return result;
     }
 }

@@ -14,7 +14,7 @@ public interface OrderDao {
     List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId, int statusId) throws DaoException;
     List<Basket> findBasketForOrder(long orderId) throws DaoException;
     Optional<Order> findOrderById(long orderId) throws DaoException;
-    void updateStatusOrder(int statusId, long orderId) throws DaoException;
-    void deleteOrders(Timestamp timestamp) throws DaoException;
+    int updateStatusOrder(int statusId, long orderId) throws DaoException;
+    int deleteOrders(Timestamp timestamp) throws DaoException;
 
 }

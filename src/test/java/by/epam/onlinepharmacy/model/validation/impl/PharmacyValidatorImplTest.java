@@ -12,6 +12,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PharmacyValidatorImplTest {
     private static final String BLOCK = "block";
+    private static final String NUMBER = "number";
+    private static final String CITY = "city";
+    private static final String STREET = "street";
+    private static final String HOUSE = "house";
     private PharmacyValidator pharmacyValidator;
     private Map<String, String> mapData;
     private String number;
@@ -22,18 +26,26 @@ public class PharmacyValidatorImplTest {
     private String emptyString;
     private String longText;
     private String city;
+    private String street;
+    private String house;
 
     @BeforeEach
     public void setUp() {
         pharmacyValidator = PharmacyValidatorImpl.getInstance();
         number = "10";
         city = "Brest";
+        street = "Minskaya";
+        house = "10a";
         incorrectNumber = "Hello";
         longNumber = "158621431845632";
         negativeNumber = "-2";
         zero = "0";
         emptyString = "\s";
         mapData = new LinkedHashMap<>();
+        mapData.put(NUMBER, number);
+        mapData.put(CITY, city);
+        mapData.put(STREET, street);
+        mapData.put(HOUSE, house);
         mapData.put(BLOCK, number);
         longText = """
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
@@ -44,6 +56,19 @@ public class PharmacyValidatorImplTest {
                 qui officia deserunt mollit anim id est laborum.
                 """;
 
+    }
+
+    @Test
+    public void isValidFormTest() {
+        boolean actualResult = pharmacyValidator.isValidForm(mapData);
+        assertTrue(actualResult);
+    }
+
+    @Test
+    public void isValidFormFalseTest() {
+        mapData.put(STREET, emptyString);
+        boolean actualResult = pharmacyValidator.isValidForm(mapData);
+        assertFalse(actualResult);
     }
 
     @Test

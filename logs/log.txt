@@ -1,111 +1,17 @@
-2021-10-08 22:16:51.349 [http-nio-8080-exec-7] ERROR controller.command.impl.admin.UpdatingPharmacistLoginCommand - ServiceException in method execute find all pharmacists 
-by.epam.onlinepharmacy.exception.ServiceException: DaoException is in method updateLogin() 
-	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateLogin(UserServiceImpl.java:184) ~[classes/:?]
-	at by.epam.onlinepharmacy.controller.command.impl.admin.UpdatingPharmacistLoginCommand.execute(UpdatingPharmacistLoginCommand.java:35) [classes/:?]
-	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
-	at by.epam.onlinepharmacy.controller.Controller.doPost(Controller.java:27) [classes/:?]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652) [servlet-api.jar:?]
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
-	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
-	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
-	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
-	at java.lang.Thread.run(Thread.java:831) [?:?]
-Caused by: by.epam.onlinepharmacy.exception.DaoException: SQLException in method updateLogin() 
-	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.updateLogin(UserDaoImpl.java:275) ~[classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateLogin(UserServiceImpl.java:179) ~[classes/:?]
-	... 27 more
-Caused by: java.sql.SQLSyntaxErrorException: Unknown column 'logi' in 'field list'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.20.jar:8.0.20]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347) ~[mysql-connector-java-8.0.20.jar:?]
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025) ~[mysql-connector-java-8.0.20.jar:?]
-	at by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl.updateLogin(UserDaoImpl.java:272) ~[classes/:?]
-	at by.epam.onlinepharmacy.model.service.impl.UserServiceImpl.updateLogin(UserServiceImpl.java:179) ~[classes/:?]
-	... 27 more
-2021-10-08 22:32:17.479 [RMI TCP Connection(6)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-08 23:26:49.986 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-08 23:33:47.630 [RMI TCP Connection(6)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 14:18:18.336 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 14:20:06.615 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 14:46:55.014 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 14:47:32.163 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 15:42:28.397 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 15:53:20.259 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 15:55:46.495 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 15:56:19.262 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 16:13:31.512 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 16:13:44.079 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 16:16:45.201 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:12:45.959 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:28:50.333 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:29:35.454 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:30:30.339 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:31:26.924 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:32:32.954 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:33:36.066 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:34:59.124 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:35:14.588 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:36:29.699 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:38:04.315 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 18:40:23.250 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:24:17.806 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:24:51.480 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:33:12.610 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:50:46.659 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:53:42.673 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 20:56:57.799 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 21:59:23.936 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:02:48.148 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:04:07.219 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:06:30.037 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:07:09.296 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:09:48.858 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:13:30.243 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:19:25.239 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:20:49.889 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:22:46.953 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:23:08.786 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:26:15.132 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:27:02.859 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:31:56.941 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:34:06.272 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:34:15.803 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:46:28.575 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:47:39.714 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:50:22.616 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:52:17.313 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:54:04.784 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 22:54:51.829 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:00:51.490 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:01:42.759 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:03:06.798 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:03:43.792 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:05:56.516 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:06:33.541 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:09:10.865 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:09:47.257 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:11:30.508 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:12:04.794 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
-2021-10-09 23:12:24.711 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 11:34:36.655 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 11:38:21.474 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 11:40:01.074 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 11:52:35.844 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 12:27:04.232 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 12:28:12.786 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 14:37:20.863 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-10 16:53:10.625 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 10:37:51.314 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 10:59:57.031 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:06:19.815 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:07:15.850 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:08:46.339 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:09:15.243 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:09:46.522 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:10:29.609 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-11 11:11:45.319 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

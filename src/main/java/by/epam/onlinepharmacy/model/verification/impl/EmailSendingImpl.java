@@ -4,6 +4,9 @@ import by.epam.onlinepharmacy.entity.Pharmacy;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.model.verification.EmailSending;
 import by.epam.onlinepharmacy.model.verification.MailSender;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -11,6 +14,7 @@ import java.util.Properties;
 
 
 public class EmailSendingImpl implements EmailSending {
+    private static final Logger logger = LogManager.getLogger();
     private static EmailSendingImpl instance = new EmailSendingImpl();
 
     private EmailSendingImpl() {
@@ -43,7 +47,7 @@ public class EmailSendingImpl implements EmailSending {
                     message,
                     user.getFirstName(),
                     user.getLastName(),
-                    code, pharmacy.getCity(), pharmacy.getNumber(), pharmacy.getStreet(), pharmacy.getHouse(), pharmacy.getBlock()
+                    code, pharmacy.getNumber(), pharmacy.getCity(), pharmacy.getStreet(), pharmacy.getHouse()
             );
             MailSender sender = new MailSender(user.getEmail(), header, sendMessage, properties);
             sender.send();
@@ -54,10 +58,8 @@ public class EmailSendingImpl implements EmailSending {
         Properties properties = new Properties();
         try {
             properties.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("prop/mail.properties"));
-            //TODO
-            properties.load(new FileReader("E://epam//onlinepharmacy//src//main//resources//prop//mail.properties"));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.log(Level.ERROR, "IOException in method getProp read properties ", e);
         }
         return properties;
     }

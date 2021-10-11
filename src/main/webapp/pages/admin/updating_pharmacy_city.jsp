@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -22,7 +21,8 @@
     <c:if test="${requestScope.updatingPharmacyCityError != null}">
         <div class="error"><fmt:message key="error.pharmacy_city"/></div>
     </c:if>
-    <input type="text" name="newCity" placeholder="<fmt:message key="placeholder.new_city"/>" class="change_data"/><br>
+    <input type="text" name="newCity" placeholder="<fmt:message key="placeholder.new_city"/>"
+           minlength="1" maxlength="70" class="change_data"/><br>
     <input type="submit" value="<fmt:message key="button.update_city"/>" class="button"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies" class="common_link"><fmt:message
@@ -30,6 +30,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-<ftg:footer/>
 </body>
 </html>

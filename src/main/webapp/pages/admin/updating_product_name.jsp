@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -22,7 +21,7 @@
     <c:if test="${requestScope.productNameError != null}">
         <div class="error"><fmt:message key="error.product_name"/></div>
     </c:if>
-    <input type="text" name="newName" placeholder="<fmt:message key="placeholder.new_name"/>"/><br>
+    <input type="text" name="newName" placeholder="<fmt:message key="placeholder.new_name"/>" minlength="1" maxlength="70"/><br>
     <input type="submit" value="<fmt:message key="button.update_name"/>" class="button_product_update"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_products" class="common_link"><fmt:message
@@ -30,6 +29,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-<ftg:footer/>
 </body>
 </html>

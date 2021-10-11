@@ -34,22 +34,25 @@
         </c:if>
         <label class="field"><fmt:message key="label.login"/></label><br>
         <input type="text" name="login" value="${requestScope.mapData.get("login")}"
-               placeholder="<fmt:message key="placeholder.name.login"/>" size="35px"/><br>
+               placeholder="<fmt:message key="placeholder.name.login"/>" minlength="1" maxlength="45" size="35px"/><br>
         <label class="field"><fmt:message key="label.password"/></label><br>
         <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"
-               size="35px"/><br>
+               minlength="1" maxlength="45" size="35px"/><br>
         <label class="field"><fmt:message key="label.first_name"/></label><br>
         <input type="text" name="firstName" value="${requestScope.mapData.get("firstName")}"
-               placeholder="<fmt:message key="placeholder.name.firstName"/>" size="35px"/><br>
+               placeholder="<fmt:message key="placeholder.name.firstName"/>" minlength="1" maxlength="45"
+               size="35px"/><br>
         <label class="field"><fmt:message key="label.last_name"/></label><br>
         <input type="text" name="lastName" value="${requestScope.mapData.get("lastName")}"
-               placeholder="<fmt:message key="placeholder.name.lastName"/>" size="35px"/><br>
+               placeholder="<fmt:message key="placeholder.name.lastName"/>" minlength="1" maxlength="45"
+               size="35px"/><br>
         <label class="field"><fmt:message key="label.email"/></label><br>
         <input type="email" name="email" value="${requestScope.mapData.get("email")}"
-               placeholder="<fmt:message key="placeholder.name.email"/>" size="35px"/><br>
+               placeholder="<fmt:message key="placeholder.name.email"/>" pattern="^[\w.!#$%&’*+/=?^_`{|}~-]+@\w+\.\w+$"
+               maxlength="45" size="35px"/><br>
         <label class="field"><fmt:message key="label.telephone"/></label><br>
         <input type="tel" name="telephone" value="${requestScope.mapData.get("telephone")}"
-               placeholder="<fmt:message key="placeholder.name.telephone"/>" size="35px"/><br>
+               placeholder="<fmt:message key="placeholder.name.telephone"/>" pattern="^\+[0-9]{12}$" size="35px"/><br>
         <select name="role">
             <option><fmt:message key="role.customer"/></option>
             <option><fmt:message key="role.pharmacist"/></option>
@@ -60,5 +63,4 @@
 
 <ftg:footer/>
 </body>
-
 </html>

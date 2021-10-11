@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -36,13 +35,13 @@
            placeholder="<fmt:message key="placeholder.number"/>" size="35px"/><br>
     <label class="field"><fmt:message key="label.city"/></label><br>
     <input type="text" name="city" value="${requestScope.mapData.get("city")}"
-           placeholder="<fmt:message key="placeholder.city"/>" size="35px"/><br>
+           placeholder="<fmt:message key="placeholder.city"/>" minlength="1" maxlength="70" size="35px"/><br>
     <label class="field"><fmt:message key="label.street"/></label><br>
     <input type="text" name="street" value="${requestScope.mapData.get("street")}"
-           placeholder="<fmt:message key="placeholder.street"/>" size="35px"/><br>
+           placeholder="<fmt:message key="placeholder.street"/>" minlength="1" maxlength="70" size="35px"/><br>
     <label class="field"><fmt:message key="label.house"/></label><br>
     <input type="text" name="house" value="${requestScope.mapData.get("house")}"
-           placeholder="<fmt:message key="placeholder.house"/>" size="35px"/><br>
+           placeholder="<fmt:message key="placeholder.house"/>" minlength="1" maxlength="70" size="35px"/><br>
     <label class="field"><fmt:message key="label.block"/></label><br>
     <input type="text" name="block" value="${requestScope.mapData.get("block")}"
            placeholder="<fmt:message key="placeholder.block"/>" size="35px"/><br>
@@ -90,7 +89,7 @@
 </c:choose>
 <c:if test="${sessionScope.previousPharmacies.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&count_back=true&current_page=${sessionScope.currentPage}"
-       style="color: #800000"><fmt:message key="link.previous_pharmacies"/> </a>
+       class="common_link"><fmt:message key="link.previous_pharmacies"/> </a>
 </c:if>
 <c:if test="${sessionScope.nextPharmacies.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies&count_forward=true&current_page=${sessionScope.currentPage}"
@@ -99,6 +98,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-<ftg:footer/>
 </body>
 </html>

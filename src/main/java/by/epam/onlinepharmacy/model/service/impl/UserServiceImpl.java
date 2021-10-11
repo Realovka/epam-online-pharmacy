@@ -33,6 +33,9 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.TELEPHO
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
+    private static final String ROLE_CUSTOMER_IN_ENGLISH = "CUSTOMER";
+    private static final String ROLE_PHARMACIST_IN_ENGLISH = "PHARMACIST";
+    private static final String ROLE_PHARMACIST_IN_RUSSIAN = "СОТРУДНИК АПТЕКИ";
     private static final String HEADER_FOR_VERIFICATION_CUSTOMER = "Activation from Alpha Pharmacy";
     private static final String MESSAGE_FOR_VERIFICATION_CUSTOMER = """
             Hello, %s  %s welcome to Alpha Pharmacy. Your activation code is %s
@@ -57,6 +60,7 @@ public class UserServiceImpl implements UserService {
                                      String role) throws ServiceException {
         int result;
         User user = new User();
+        role = convertRole(role);
         if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
             user.setRole(Role.valueOf(role));
         }
@@ -83,6 +87,7 @@ public class UserServiceImpl implements UserService {
             logger.log(Level.ERROR, "DaoException is in method createUser(), when create user ", ex);
             throw new ServiceException("DaoException is in method createUser(), when create user ", ex);
         }
+
         if (user.getRole().
                 equals(Role.CUSTOMER) && result > 0) {
             try {
@@ -235,12 +240,11 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //TODO
-    private Role convertRole(String role) {
-        if (role.equals(ROLE_CUSTOMER_IN_RUSSIAN)) {
-            return Role.CUSTOMER;
-        } else {
-            return Role.PHARMACIST;
+    private String convertRole(String role) {
+        switch (role) {
+            case ROLE_CUSTOMER_IN_RUSSIAN -> role = ROLE_CUSTOMER_IN_ENGLISH;
+            case ROLE_PHARMACIST_IN_RUSSIAN -> role = ROLE_PHARMACIST_IN_ENGLISH;
         }
+        return role;
     }
 }

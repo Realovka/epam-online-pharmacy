@@ -70,5 +70,6 @@
         <br>
     </ol>
 </div>
+<ftg:footer/>
 </body>
 </html>

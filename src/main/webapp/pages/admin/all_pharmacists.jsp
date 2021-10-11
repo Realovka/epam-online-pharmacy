@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 <%@ page import="by.epam.onlinepharmacy.entity.Status" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
@@ -101,6 +100,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-</div>
 </body>
 </html>

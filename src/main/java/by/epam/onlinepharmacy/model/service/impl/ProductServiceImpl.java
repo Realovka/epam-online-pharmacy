@@ -187,7 +187,7 @@ public class ProductServiceImpl implements ProductService {
             logger.log(Level.ERROR, "DaoException is in method findProductById() ", e);
             throw new ServiceException("DaoException is in method findProductById() ", e);
         }
-        productDb = product.orElse(new Product());
+        productDb = product.get();
         ProductDto productDto = convertProductToProductDto(productDb);
         return productDto;
     }

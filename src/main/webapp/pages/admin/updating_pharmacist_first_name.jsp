@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -22,7 +21,8 @@
     <c:if test="${requestScope.updatingPharmacistFirstNameError != null}">
         <div class="error"><fmt:message key="error.update_user_first_name"/></div>
     </c:if>
-    <input type="text" name="newFirstName" placeholder="<fmt:message key="placeholder.new_first_name"/>"
+    <input type="text" name="newFirstName" placeholder="<fmt:message key="placeholder.new_first_name"/>" minlength="1"
+           maxlength="45"
            class="change_data"/><br>
     <input type="submit" value="<fmt:message key="button.update_first_name"/>" class="button"/>
 </form>
@@ -31,6 +31,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-<ftg:footer/>
 </body>
 </html>

@@ -49,5 +49,6 @@
     <fmt:message key="div.order_page"/><fmt:message key="div.check_data"/>
     <fmt:message key="div.sending_order"/><fmt:message key="div.email_about_product"/>
     <fmt:message key="div.questions_from_pharmacists"/></div>
+<ftg:footer/>
 </body>
 </html>

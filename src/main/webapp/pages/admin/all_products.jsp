@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="ftg" uri="/WEB-INF/tld/footer.tld" %>
 
 <fmt:setLocale value="${sessionScope.currentLocale}" scope="session"/>
 <fmt:setBundle basename="${sessionScope.currentBundle}"/>
@@ -42,19 +41,19 @@
     </c:if>
     <label class="field"><fmt:message key="label.name"/></label><br>
     <input type="text" name="name" value="${requestScope.mapData.get("name")}"
-           placeholder="<fmt:message key="placeholder.product_name"/>"/><br>
+           placeholder="<fmt:message key="placeholder.product_name"/>" minlength="1" maxlength="45"/><br>
     <label class="field"><fmt:message key="label.product_non_proprietary_name"/></label><br>
     <input type="text" name="nonProprietaryName" value="${requestScope.nonProprietaryName}"
-           placeholder="<fmt:message key="placeholder.product_non_proprietary_name"/>"/><br>
+           placeholder="<fmt:message key="placeholder.product_non_proprietary_name"/>" maxlength="70"/><br>
     <label class="field"><fmt:message key="label.dose"/></label><br>
     <input type="text" name="dose" value="${requestScope.mapData.get("dose")}"
-           placeholder="<fmt:message key="placeholder.product_dose"/>"/><br>
+           placeholder="<fmt:message key="placeholder.product_dose"/>" minlength="1" maxlength="70"/><br>
     <label class="field"><fmt:message key="label.plant"/></label><br>
     <input type="text" name="plant" value="${requestScope.mapData.get("plant")}"
-           placeholder="<fmt:message key="placeholder.product_plant"/>"/><br>
+           placeholder="<fmt:message key="placeholder.product_plant"/>" minlength="1" maxlength="70"/><br>
     <label class="field"><fmt:message key="label.group"/></><br>
     <input type="text" name="group" value="${requestScope.mapData.get("group")}"
-           placeholder="<fmt:message key="placeholder.product_group"/>"/><br>
+           placeholder="<fmt:message key="placeholder.product_group"/>" minlength="1" maxlength="70"/><br>
     <label class="field"><fmt:message key="label.price"/></label><br>
     <input type="text" name="price" value="${requestScope.mapData.get("price")}"
            placeholder="<fmt:message key="placeholder.product_price"/>"/><br>
@@ -77,7 +76,7 @@
 </c:if>
 <c:if test="${sessionScope.nextProducts.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}"
-       style="color: #800000"><fmt:message key="link.next_products"/></a>
+       class="common_link"><fmt:message key="link.next_products"/></a>
 </c:if><br>
 
 <c:choose>
@@ -136,7 +135,7 @@
 
 <c:if test="${sessionScope.previousProducts.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_back=true&current_page=${sessionScope.currentPage}"
-       style="color: #800000"><fmt:message key="link.previous_products"/> </a>
+       class="common_link"><fmt:message key="link.previous_products"/> </a>
 </c:if>
 <c:if test="${sessionScope.nextProducts.size() > 0}">
     <a href="${pageContext.request.contextPath}/controller?command=all_products&count_forward=true&current_page=${sessionScope.currentPage}"
@@ -145,6 +144,5 @@
 
 <jsp:include page="${pageContext.request.contextPath}/pages/static_part/links_for_admin.jsp"/>
 
-<ftg:footer/>
 </body>
 </html>

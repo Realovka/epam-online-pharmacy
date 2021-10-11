@@ -20,34 +20,37 @@
 <jsp:include page="static_part/menu_for_customer.jsp"/>
 
 
-    <h2><fmt:message key="page.name.auth"/></h2>
-    <div class="auth">
-        <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
-            <p>
-                <c:if test="${requestScope.loginError != null}">
-            <div class="error"><fmt:message key="error.login_user"/></div>
-            </c:if>
-            <c:if test="${requestScope.verificationError != null}">
-                <div class="error"><fmt:message key="error.verification"/></div>
-            </c:if>
-            </p>
-            <input type="text" name="login" placeholder="<fmt:message key="placeholder.name.login"/>"/><br>
-            <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"/><br>
-            <input type="submit" value="<fmt:message key="button.name.enter"/>"/><br>
-        </form>
-        <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message
-                key="page.registration"/></a><br>
-        <a href="${pageContext.request.contextPath}/controller?command=verification_customer_page"><fmt:message
-                key="link.name.verification_customer"/></a><br>
+<h2><fmt:message key="page.name.auth"/></h2>
+<div class="auth">
+    <form action="${pageContext.request.contextPath}/controller?command=login" method="post">
+        <p>
+            <c:if test="${requestScope.loginError != null}">
+        <div class="error"><fmt:message key="error.login_user"/></div>
+        </c:if>
+        <c:if test="${requestScope.verificationError != null}">
+            <div class="error"><fmt:message key="error.verification"/></div>
+        </c:if>
+        </p>
+        <input type="text" name="login" placeholder="<fmt:message key="placeholder.name.login"/>"
+               minlength="1" maxlength="45"/><br>
+        <input type="password" name="password" placeholder="<fmt:message key="placeholder.name.password"/>"
+               minlength="1" maxlength="45"/><br>
+        <input type="submit" value="<fmt:message key="button.name.enter"/>"/><br>
+    </form>
+    <a href="${pageContext.request.contextPath}/controller?command=registration_page"><fmt:message
+            key="page.registration"/></a><br>
+    <a href="${pageContext.request.contextPath}/controller?command=verification_customer_page"><fmt:message
+            key="link.name.verification_customer"/></a><br>
+</div>
+<div class="titles">
+    <div class="title_first">
+        <fmt:message key="upper.title.page.login"/>
     </div>
-    <div class="titles">
-        <div class="title_first">
-            <fmt:message key="upper.title.page.login"/>
-        </div>
-        <h1>
-            <fmt:message key="company.name"/>
-        </h1>
-    </div>
+    <h1>
+        <fmt:message key="company.name"/>
+    </h1>
+</div>
+<ftg:footer/>
 </body>
 </html>
 

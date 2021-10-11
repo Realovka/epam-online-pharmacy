@@ -1,6 +1,10 @@
 package by.epam.onlinepharmacy.model.verification;
 
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -11,6 +15,8 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class MailSender {
+    private static final Logger logger = LogManager.getLogger();
+
     private MimeMessage message;
     private String sendToEmail;
     private String mailSubject;
@@ -24,15 +30,14 @@ public class MailSender {
         this.properties = properties;
     }
 
-    //TODO
     public void send() {
         try {
             initMessage();
             Transport.send(message);
         } catch (AddressException e) {
-
+            logger.log(Level.ERROR, "AddressException in method send while mail send ", e);
         } catch (MessagingException e) {
-
+            logger.log(Level.ERROR, "MessagingException in method send while mail send ", e);
         }
     }
 

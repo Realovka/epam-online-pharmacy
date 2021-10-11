@@ -62,5 +62,6 @@
         </li>
     </ul>
 </div>
+<ftg:footer/>
 </body>
 </html>

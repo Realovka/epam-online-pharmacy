@@ -1,6 +1,7 @@
 body {
     background: url("../img/back_reg.jpeg") no-repeat center center fixed;
     background-size: cover;
+    color: #fff;
 }
 
 h1 {
@@ -32,6 +33,7 @@ h1 {
 
 .field {
     font-weight: bold;
+    color: #000000;
 }
 
 input {

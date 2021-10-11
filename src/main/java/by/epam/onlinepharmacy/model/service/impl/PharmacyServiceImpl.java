@@ -141,7 +141,7 @@ public class PharmacyServiceImpl implements PharmacyService {
     public PharmacyDto findPharmacyById(long id) throws ServiceException {
         Pharmacy pharmacyDb;
         try {
-            pharmacyDb = pharmacyDao.findPharmacyById(id).orElse(new Pharmacy());
+            pharmacyDb = pharmacyDao.findPharmacyById(id).get();
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method findPharmacyById() ", e);
             throw new ServiceException("DaoException is in method findPharmacyById() ", e);

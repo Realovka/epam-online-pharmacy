@@ -28,7 +28,7 @@
     <div class="error"><fmt:message key="error.verification_customer"/></div>
     </c:if>
     </p>
-    <input type="text" name="code" placeholder="<fmt:message key="placeholder.code"/>"/><br>
+    <input type="text" name="code" placeholder="<fmt:message key="placeholder.code"/>" minlength="1" maxlength="45"/><br>
     <input type="submit" value="<fmt:message key="button.send"/>"/><br>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=login_page"><fmt:message

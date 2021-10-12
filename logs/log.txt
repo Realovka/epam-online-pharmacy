@@ -96,3 +96,17 @@ Caused by: java.net.ConnectException: Connection refused: connect
 	at com.sun.mail.util.SocketFetcher.getSocket(SocketFetcher.java:238) ~[javax.mail-1.6.2.jar:1.6.2]
 	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2175) ~[javax.mail-1.6.2.jar:1.6.2]
 	... 39 more
+2021-10-12 10:07:23.380 [RMI TCP Connection(2)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:08:52.113 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:11:53.309 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:12:35.027 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:20:33.212 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:22:51.720 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 10:28:34.331 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 11:38:18.060 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 11:48:03.771 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 11:50:25.519 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 11:52:42.646 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 11:56:06.639 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 12:05:51.176 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-12 12:08:13.492 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

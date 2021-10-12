@@ -1,12 +1,13 @@
 package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.model.validation.CommonValidator;
 import by.epam.onlinepharmacy.model.validation.ProductValidator;
 
 import java.math.BigInteger;
 import java.util.Map;
 
-public class ProductValidatorImpl implements ProductValidator {
+public class ProductValidatorImpl implements ProductValidator, CommonValidator {
     private static final int MAX_SYMBOLS_FOR_STRING_PARAMETER = 45;
     private static double MIN_PRICE = 0.0;
     private static BigInteger MAX_SYMBOLS_FOR_INSTRUCTION = new BigInteger("4294967295");
@@ -47,12 +48,12 @@ public class ProductValidatorImpl implements ProductValidator {
 
     @Override
     public boolean isValidStringParameters(String parameter) {
-        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
+        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER && isNotContainTags(parameter);
     }
 
     @Override
     public boolean isValidNonProprietyName(String nonProprietyName) {
-        return nonProprietyName.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER;
+        return nonProprietyName.length() <= MAX_SYMBOLS_FOR_STRING_PARAMETER && isNotContainTags(nonProprietyName);
     }
 
     @Override

@@ -39,6 +39,9 @@ import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_FIRST_NAME;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LAST_NAME;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_TELEPHONE;
 
+/**
+ * The type Order dao.
+ */
 public class OrderDaoImpl implements OrderDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -48,6 +51,11 @@ public class OrderDaoImpl implements OrderDao {
 
     private static OrderDaoImpl instance = new OrderDaoImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static OrderDaoImpl getInstance() {
         return instance;
     }

@@ -78,7 +78,7 @@
         <input type="hidden" name="order_id" value="${sessionScope.order.orderId}"/>
         <input type="hidden" name="old_order_status_id" value="2">
         <input type="hidden" name="order_status_id" value="3"/>
-        <input type="submit" value="<fmt:message key="button.realize"/>" class="button"/>
+        <input type="submit" value="<fmt:message key="button.complete"/>" class="button"/>
     </form>
 </c:if>
 <br>

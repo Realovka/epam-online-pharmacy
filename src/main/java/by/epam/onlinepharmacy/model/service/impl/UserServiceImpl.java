@@ -9,6 +9,7 @@ import by.epam.onlinepharmacy.model.dao.UserDao;
 import by.epam.onlinepharmacy.model.dao.impl.UserDaoImpl;
 import by.epam.onlinepharmacy.model.service.UserService;
 import by.epam.onlinepharmacy.model.util.PasswordEncoder;
+import by.epam.onlinepharmacy.model.util.impl.PasswordEncoderImpl;
 import by.epam.onlinepharmacy.model.validation.UserValidator;
 import by.epam.onlinepharmacy.model.validation.impl.UserValidatorImpl;
 import by.epam.onlinepharmacy.model.verification.EmailSending;
@@ -32,9 +33,9 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.TELEPHO
 
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
-    private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
     private static final String ROLE_CUSTOMER_IN_ENGLISH = "CUSTOMER";
     private static final String ROLE_PHARMACIST_IN_ENGLISH = "PHARMACIST";
+    private static final String ROLE_CUSTOMER_IN_RUSSIAN = "КЛИЕНТ";
     private static final String ROLE_PHARMACIST_IN_RUSSIAN = "СОТРУДНИК АПТЕКИ";
     private static final String HEADER_FOR_VERIFICATION_CUSTOMER = "Activation from Alpha Pharmacy";
     private static final String MESSAGE_FOR_VERIFICATION_CUSTOMER = """
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao = UserDaoImpl.getInstance();
     private UserValidator userValidator = UserValidatorImpl.getInstance();
     private EmailSending emailSending = EmailSendingImpl.getInstance();
+    private PasswordEncoder passwordEncoder = PasswordEncoderImpl.getInstance();
 
     private UserServiceImpl() {
 
@@ -64,7 +66,7 @@ public class UserServiceImpl implements UserService {
         if (role.equals(Role.CUSTOMER.toString()) || role.equals(Role.PHARMACIST.toString())) {
             user.setRole(Role.valueOf(role));
         }
-        String encodedPassword = PasswordEncoder.createPasswordEncoded(password);
+        String encodedPassword = passwordEncoder.createPasswordEncoded(password);
 
         user.setLogin(login);
         user.setPassword(encodedPassword);
@@ -109,7 +111,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Optional<User> authenticationUser(String login, String password) throws ServiceException {
         Optional<User> userFromDb;
-        String passwordEncoded = PasswordEncoder.createPasswordEncoded(password);
+        String passwordEncoded = passwordEncoder.createPasswordEncoded(password);
         try {
             userFromDb = userDao.findUserByLoginAndPassword(login, passwordEncoded);
         } catch (DaoException e) {

@@ -1,11 +1,12 @@
 package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
+import by.epam.onlinepharmacy.model.validation.CommonValidator;
 import by.epam.onlinepharmacy.model.validation.PharmacyValidator;
 
 import java.util.Map;
 
-public class PharmacyValidatorImpl implements PharmacyValidator {
+public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator {
 
     private static final int MIN_FOR_BLOCK_AND_HOUSE = 0;
     private static final int MAX_SYMBOLS_FOR_CITY_AND_STREET = 70;
@@ -55,7 +56,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
 
     @Override
     public boolean isValidCityOrStreet(String parameter) {
-        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET;
+        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET && isNotContainTags(parameter);
     }
 
     @Override
@@ -63,7 +64,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
         if(house.equals(ZERO_STRING)) {
             return false;
         }
-        return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE;
+        return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE && isNotContainTags(house);
     }
 
     @Override

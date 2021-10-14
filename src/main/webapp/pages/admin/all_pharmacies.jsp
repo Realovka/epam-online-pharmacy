@@ -35,7 +35,7 @@
            placeholder="<fmt:message key="placeholder.number"/>" size="35px"/><br>
     <label class="field"><fmt:message key="label.city"/></label><br>
     <input type="text" name="city" value="${requestScope.mapData.get("city")}"
-           placeholder="<fmt:message key="placeholder.city"/>" minlength="1" maxlength="70" size="35px"/><br>
+           placeholder="<fmt:message key="placeholder.city"/>" minlength="1" maxlength="70" size="35px" pattern="[A-Za-x -]+$"/><br>
     <label class="field"><fmt:message key="label.street"/></label><br>
     <input type="text" name="street" value="${requestScope.mapData.get("street")}"
            placeholder="<fmt:message key="placeholder.street"/>" minlength="1" maxlength="70" size="35px"/><br>

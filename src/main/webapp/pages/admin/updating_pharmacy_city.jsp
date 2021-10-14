@@ -22,7 +22,7 @@
         <div class="error"><fmt:message key="error.pharmacy_city"/></div>
     </c:if>
     <input type="text" name="newCity" placeholder="<fmt:message key="placeholder.new_city"/>"
-           minlength="1" maxlength="70" class="change_data"/><br>
+           minlength="1" maxlength="70"  pattern="[A-Za-x -]+$" class="change_data"/><br>
     <input type="submit" value="<fmt:message key="button.update_city"/>" class="button"/>
 </form>
 <a href="${pageContext.request.contextPath}/controller?command=all_pharmacies" class="common_link"><fmt:message

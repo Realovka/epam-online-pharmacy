@@ -68,16 +68,16 @@ public class OrderDaoImplTest {
 
     @Test
     public void createOrderTest() throws DaoException {
-        when(orderDao.createOrder(order)).thenReturn(order);
-        Order actualOrder = orderDao.createOrder(order);
-        assertEquals(order, actualOrder);
+        when(orderDao.createOrder(order)).thenReturn(1);
+        int actualResult = orderDao.createOrder(order);
+        assertEquals(1, actualResult);
     }
 
     @Test
     public void createOrderFalseTest() throws DaoException {
-        when(orderDao.createOrder(order)).thenReturn(order);
-        Order actualOrder = orderDao.createOrder(order);
-        assertNotEquals(testOrder, actualOrder);
+        when(orderDao.createOrder(order)).thenReturn(2);
+        int actualResult = orderDao.createOrder(order);
+        assertNotEquals(1, actualResult);
     }
 
     @Test

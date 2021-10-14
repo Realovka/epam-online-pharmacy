@@ -1,15 +1,15 @@
 package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
-import by.epam.onlinepharmacy.model.validation.CommonValidator;
 import by.epam.onlinepharmacy.model.validation.UserValidator;
 
 import java.util.Map;
 
-public class UserValidatorImpl implements UserValidator, CommonValidator {
-    private static final String EMAIL_VALIDATOR = "^[\\w.!#$%&’*+/=?^_`{|}~<>-]+@\\w+\\.\\w+$"; //TODO
+public class UserValidatorImpl implements UserValidator {
+    private static final String EMAIL_VALIDATOR = "^[\\w.!#$%&’*+/=?^_`{|}~<>-]+@\\w+\\.\\w+$";
     private static final String TELEPHONE_VALIDATOR = "^\\+[0-9]{12}$";
-    private static  final String TAGS_REGEX = "\\<|\\>";
+    private static final String OPEN_TAG = "<";
+    private static final String CLOSE_TAG = ">";
     private static final int MAX_SYMBOLS_DATA_USER = 45;
     private static final String EMPTY_STRING = "\s";
 
@@ -47,7 +47,8 @@ public class UserValidatorImpl implements UserValidator, CommonValidator {
 
     @Override
     public boolean isValidStringParameter(String parameter) {
-        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_DATA_USER && isNotContainTags(parameter);
+        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_DATA_USER
+                && !parameter.contains(OPEN_TAG) && !parameter.contains(CLOSE_TAG);
     }
 
     @Override

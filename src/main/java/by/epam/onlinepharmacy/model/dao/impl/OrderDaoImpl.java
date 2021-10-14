@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,27 +99,23 @@ public class OrderDaoImpl implements OrderDao {
             """;
 
     @Override
-    public Order createOrder(Order order) throws DaoException {
-        Order orderDb = new Order();
+    public int createOrder(Order order) throws DaoException {
+        int oderId = 0;
         try (Connection connection = connectionPool.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ORDER)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_ORDER, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setTimestamp(1, order.getDataStarting());
             preparedStatement.setTimestamp(2, order.getDataEnding());
             preparedStatement.setLong(3, order.getPharmacy().getPharmacyId());
             preparedStatement.execute();
-            try (PreparedStatement statement = connection.prepareStatement(FIND_LAST_INSERT_ORDER_ID);
-                 ResultSet resultSet = statement.executeQuery()) {
-                while (resultSet.next()) {
-                    orderDb = new Order.Builder()
-                            .setOrderId(resultSet.getLong(ColumnName.ORDER_ID))
-                            .build();
-                }
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if(resultSet.next()) {
+              return resultSet.getInt(1);
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createOrder() ", e);
             throw new DaoException("SQLException in method createOrder() ", e);
         }
-        return orderDb;
+        return oderId;
     }
 
     @Override

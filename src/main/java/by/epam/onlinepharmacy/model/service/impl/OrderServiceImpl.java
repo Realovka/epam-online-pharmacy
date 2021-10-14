@@ -66,19 +66,22 @@ public class OrderServiceImpl implements OrderService {
                 .setDataEnding(Timestamp.valueOf(LocalDateTime.of(date, LocalTime.MIDNIGHT).plusDays(1)))
                 .setPharmacy(pharmacy)
                 .build();
-        Order orderDB;
+        int orderId;
         try {
-            orderDB = orderDao.createOrder(order);
+            orderId = orderDao.createOrder(order);
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method createOrder() ", e);
             throw new ServiceException("DaoException is in method createOrder() ", e);
         }
         try {
+            Order newOrder = new Order.Builder()
+                    .setOrderId(orderId)
+                    .build();
             List<Basket> basketList = new ArrayList<>();
             products.entrySet().forEach(product -> basketList.add(new Basket.Builder()
                     .setUser(auth)
                     .setProduct(product.getKey())
-                    .setOrder(orderDB)
+                    .setOrder(newOrder)
                     .setQuantity(product.getValue())
                     .build()));
             orderDao.createProductsInBasket(basketList);
@@ -96,8 +99,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId, statusOrderId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findAllProcessingOrdersForPharmacies() ", e);
-            throw new ServiceException("DaoException is in method findAllProcessingOrdersForPharmacies() ", e);
+            logger.log(Level.ERROR, "DaoException is in method  findAllOrdersInNeededStatusForPharmacies() ", e);
+            throw new ServiceException("DaoException is in method findAllOrdersInNeededStatusForPharmacies() ", e);
         }
         return orders;
     }
@@ -110,8 +113,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             basket = orderDao.findBasketForOrder(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findAllProductsInOrder() ", e);
-            throw new ServiceException("DaoException is in method findAllProductsInOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findBasketForOrder() ", e);
+            throw new ServiceException("DaoException is in method findBasketForOrder() ", e);
         }
         return basket;
     }

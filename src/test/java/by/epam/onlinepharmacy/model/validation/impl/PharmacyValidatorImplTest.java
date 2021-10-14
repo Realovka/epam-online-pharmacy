@@ -108,20 +108,20 @@ public class PharmacyValidatorImplTest {
     }
 
     @Test
-    public void isValidCityOrStreetTest() {
-        boolean actualResult = pharmacyValidator.isValidCityOrStreet(city);
+    public void isValidCityTest() {
+        boolean actualResult = pharmacyValidator.isValidCity(city);
         assertTrue(actualResult);
     }
 
     @Test
-    public void isValidCityOrStreetEmptyStringFalseTest() {
-        boolean actualResult = pharmacyValidator.isValidCityOrStreet(emptyString);
+    public void isValidCityEmptyStringFalseTest() {
+        boolean actualResult = pharmacyValidator.isValidCity(emptyString);
         assertFalse(actualResult);
     }
 
     @Test
-    public void isValidCityOrStreetLongTextFalseTest() {
-        boolean actualResult = pharmacyValidator.isValidCityOrStreet(longText);
+    public void isValidStreetLongTextFalseTest() {
+        boolean actualResult = pharmacyValidator.isValidStreet(longText);
         assertFalse(actualResult);
     }
 

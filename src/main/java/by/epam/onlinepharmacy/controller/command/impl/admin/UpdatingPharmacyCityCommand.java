@@ -38,7 +38,7 @@ public class UpdatingPharmacyCityCommand implements Command {
         List<PharmacyDto> nextPharmacies;
         List<PharmacyDto> previousPharmacies = new ArrayList<>();
 
-        if(!pharmacyValidator.isValidCityOrStreet(newCity)) {
+        if(!pharmacyValidator.isValidCity(newCity)) {
             request.setAttribute(RequestAttribute.UPDATING_PHARMACY_CITY_ERROR, BundleKey.PHARMACY_STRING_PARAMETERS_ERROR);
             return new CommandResult(PagePath.UPDATING_PHARMACY_CITY, CommandResult.RoutingType.FORWARD);
         }

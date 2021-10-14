@@ -1,13 +1,13 @@
 package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.controller.command.RequestParameter;
-import by.epam.onlinepharmacy.model.validation.CommonValidator;
 import by.epam.onlinepharmacy.model.validation.PharmacyValidator;
 
 import java.util.Map;
 
-public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator {
+public class PharmacyValidatorImpl implements PharmacyValidator {
 
+    private static final String CITY_REGEX = "^[A-Za-x -]+$";
     private static final int MIN_FOR_BLOCK_AND_HOUSE = 0;
     private static final int MAX_SYMBOLS_FOR_CITY_AND_STREET = 70;
     private static final int MAX_SYMBOLS_FOR_HOUSE = 20;
@@ -28,10 +28,10 @@ public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator
         if (!isValidNumber(formData.get(RequestParameter.NUMBER))) {
             formData.put(RequestParameter.NUMBER, EMPTY_STRING);
         }
-        if (!isValidCityOrStreet(formData.get(RequestParameter.CITY))) {
+        if (!isValidCity(formData.get(RequestParameter.CITY))) {
             formData.put(RequestParameter.CITY, EMPTY_STRING);
         }
-        if (!isValidCityOrStreet(formData.get(RequestParameter.STREET))) {
+        if (!isValidStreet(formData.get(RequestParameter.STREET))) {
             formData.put(RequestParameter.STREET, EMPTY_STRING);
         }
         if (!isValidHouse(formData.get(RequestParameter.HOUSE))) {
@@ -55,8 +55,13 @@ public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator
     }
 
     @Override
-    public boolean isValidCityOrStreet(String parameter) {
-        return !parameter.isBlank() && parameter.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET && isNotContainTags(parameter);
+    public boolean isValidCity(String city) {
+        return !city.isBlank() && city.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET && city.matches(CITY_REGEX);
+    }
+
+    @Override
+    public boolean isValidStreet(String street) {
+        return !street.isBlank() && street.length() <= MAX_SYMBOLS_FOR_CITY_AND_STREET;
     }
 
     @Override
@@ -64,7 +69,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator
         if(house.equals(ZERO_STRING)) {
             return false;
         }
-        return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE && isNotContainTags(house);
+        return !house.isBlank() && house.length() <= MAX_SYMBOLS_FOR_HOUSE;
     }
 
     @Override
@@ -77,7 +82,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator
         int pharmacyBlock;
         try {
            pharmacyBlock = Integer.parseInt(block);
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return pharmacyBlock >= 0;
@@ -91,7 +96,7 @@ public class PharmacyValidatorImpl implements PharmacyValidator, CommonValidator
         }
         try {
             newBlock = Integer.parseInt(block);
-        } catch (IllegalArgumentException e) {
+        } catch (NumberFormatException e) {
             return false;
         }
         return newBlock >= MIN_FOR_BLOCK_AND_HOUSE;

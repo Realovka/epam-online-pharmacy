@@ -21,9 +21,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * The type Product service.
- */
 public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
     private static final String NEED_RECIPE_EN = "Yes";
@@ -39,11 +36,6 @@ public class ProductServiceImpl implements ProductService {
 
     private static ProductServiceImpl instance = new ProductServiceImpl();
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static ProductServiceImpl getInstance() {
         return instance;
     }
@@ -76,8 +68,8 @@ public class ProductServiceImpl implements ProductService {
             }
 
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method createProduct() ", e);
-            throw new ServiceException("DaoException is in method createProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createProduct() while find list products ", e);
+            throw new ServiceException("DaoException is in method createProduct() while find list products ", e);
         }
         List<ProductDto> products = convertListProductToListProductDto(currentProducts);
         return products;
@@ -107,8 +99,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             productDao.addPathToPicture(id, fileName);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method addPathToPicture() ", e);
-            throw new ServiceException("DaoException is in method addPathToProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method addPathToPicture() while add path to picture ", e);
+            throw new ServiceException("DaoException is in method addPathToProduct() while add path to picture ", e);
         }
     }
 
@@ -119,8 +111,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             pathToPicture = productDao.findPathToPicture(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findPathToPicture() ", e);
-            throw new ServiceException("DaoException is in method findPathToProduct() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findPathToPicture() while find path to picture ", e);
+            throw new ServiceException("DaoException is in method findPathToProduct() while find path to picture ", e);
         }
         String path = pathToPicture.orElse(EMPTY_STRING);
         return path;
@@ -132,8 +124,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             productsDb = productDao.findListProducts(startingProduct);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findListProducts() ", e);
-            throw new ServiceException("DaoException is in method findListProducts() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findListProducts() while find list products ", e);
+            throw new ServiceException("DaoException is in method findListProducts() while find list products ", e);
         }
         List<ProductDto> products = convertListProductToListProductDto(productsDb);
         return products;
@@ -173,8 +165,8 @@ public class ProductServiceImpl implements ProductService {
         try {
             productsNumber = productDao.findProductsNumber();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() ", e);
-            throw new ServiceException("DaoException is in method findCurrentPage() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() while find products number() ", e);
+            throw new ServiceException("DaoException is in method findCurrentPage() while find products number() ", e);
         }
         if (productsNumber % RECORD_PER_PAGE == 0) {
             currentPage = productsNumber / RECORD_PER_PAGE;
@@ -207,8 +199,8 @@ public class ProductServiceImpl implements ProductService {
             long productId = Long.parseLong(id);
             product = productDao.findProductForOrderById(productId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method addProductToOrder() ", e);
-            throw new ServiceException("DaoException is in method addProductToOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method addProductToOrder() while find product for order by id ", e);
+            throw new ServiceException("DaoException is in method addProductToOrder() while find product for order by id ", e);
         }
         product.ifPresent(productToOrder -> {
             order.put(productToOrder, 1);
@@ -225,8 +217,8 @@ public class ProductServiceImpl implements ProductService {
                     .setInstruction(product.getInstruction())
                     .build();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findInstructionByProductId() ", e);
-            throw new ServiceException("DaoException is in method findInstructionByProductId() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findInstructionByProductId() while find product by id ", e);
+            throw new ServiceException("DaoException is in method findInstructionByProductId() while find product by id ", e);
         }
         return productDto;
     }

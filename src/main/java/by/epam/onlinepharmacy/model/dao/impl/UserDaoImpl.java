@@ -27,9 +27,6 @@ import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LOGIN;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_STATUS;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_TELEPHONE;
 
-/**
- * The type User dao.
- */
 public class UserDaoImpl implements UserDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -38,11 +35,6 @@ public class UserDaoImpl implements UserDao {
     private UserDaoImpl() {
     }
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static UserDaoImpl getInstance() {
         return instance;
     }

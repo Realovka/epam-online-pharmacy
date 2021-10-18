@@ -31,9 +31,6 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.LOGIN;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.PASSWORD;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.TELEPHONE;
 
-/**
- * The type User service.
- */
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_ENGLISH = "CUSTOMER";
@@ -55,11 +52,6 @@ public class UserServiceImpl implements UserService {
 
     private static UserServiceImpl instance = new UserServiceImpl();
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static UserServiceImpl getInstance() {
         return instance;
     }
@@ -88,14 +80,14 @@ public class UserServiceImpl implements UserService {
                 return Optional.empty();
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "Such login already exists ", e);
-            throw new ServiceException("Such login already exists ", e);
+            logger.log(Level.ERROR, "DaoException is in method createUser(), while find login  ", e);
+            throw new ServiceException("DaoException is in method createUser(), while find login ", e);
         }
         try {
             result = userDao.createUser(user);
         } catch (DaoException ex) {
-            logger.log(Level.ERROR, "DaoException is in method createUser(), when create user ", ex);
-            throw new ServiceException("DaoException is in method createUser(), when create user ", ex);
+            logger.log(Level.ERROR, "DaoException is in method createUser(), while create user ", ex);
+            throw new ServiceException("DaoException is in method createUser(), while create user ", ex);
         }
 
         if (user.getRole().
@@ -109,8 +101,8 @@ public class UserServiceImpl implements UserService {
                             MESSAGE_FOR_VERIFICATION_CUSTOMER);
                 }
             } catch (DaoException e) {
-                logger.log(Level.ERROR, "DaoException is in method createUser(), when send code", e);
-                throw new ServiceException("DaoException is in method createUser(), when send code ", e);
+                logger.log(Level.ERROR, "DaoException is in method createUser(), while send code", e);
+                throw new ServiceException("DaoException is in method createUser(), while send code ", e);
             }
         }
         return Optional.of(user);
@@ -123,8 +115,8 @@ public class UserServiceImpl implements UserService {
         try {
             userFromDb = userDao.findUserByLoginAndPassword(login, passwordEncoded);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method authenticationUser() ", e);
-            throw new ServiceException("DaoException is in method authenticationUser() ", e);
+            logger.log(Level.ERROR, "DaoException is in method authenticationUser(), while find user by login and password ", e);
+            throw new ServiceException("DaoException is in method authenticationUser(),  while find user by login and password ", e);
         }
         if (userFromDb.isEmpty()) {
             userFromDb = Optional.empty();

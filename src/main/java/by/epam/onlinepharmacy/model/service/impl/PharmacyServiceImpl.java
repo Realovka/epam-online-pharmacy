@@ -26,9 +26,6 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.NUMBER;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.STREET;
 
 
-/**
- * The type Pharmacy service.
- */
 public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
     private static final String ZERO_STRING = "0";
@@ -42,11 +39,6 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static PharmacyServiceImpl getInstance() {
         return instance;
     }
@@ -57,8 +49,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmaciesDb = pharmacyDao.findListPharmacies(startingPharmacy);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findListPharmacies() ", e);
-            throw new ServiceException("DaoException is in method findListPharmacies() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findListPharmacies() while find list pharmacies ", e);
+            throw new ServiceException("DaoException is in method findListPharmacies() while find list pharmacies ", e);
         }
 
         List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(pharmaciesDb);
@@ -71,8 +63,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmaciesDb = pharmacyDao.findPharmaciesByCity(city);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findListPharmaciesByCity() ", e);
-            throw new ServiceException("DaoException is in method findListPharmaciesByCity() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findListPharmaciesByCity() while find pharmacies by city ", e);
+            throw new ServiceException("DaoException is in method findListPharmaciesByCity() while find pharmacies by city ", e);
         }
 
         List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(pharmaciesDb);
@@ -104,8 +96,8 @@ public class PharmacyServiceImpl implements PharmacyService {
                 currentPharmacies = pharmacyDao.findListPharmacies(pages * RECORD_PER_PAGE);
             }
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method createPharmacy() ", e);
-            throw new ServiceException("DaoException is in method createPharmacy() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createPharmacy() while find list pharmacies ", e);
+            throw new ServiceException("DaoException is in method createPharmacy() while find list pharmacies ", e);
         }
         List<PharmacyDto> pharmacies = convertListPharmacyListToPharmacyDto(currentPharmacies);
         return pharmacies;
@@ -118,8 +110,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmaciesNumber = pharmacyDao.findPharmaciesNumber();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() ", e);
-            throw new ServiceException("DaoException is in method findCurrentPage() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findCurrentPage() while find pharmacies number ", e);
+            throw new ServiceException("DaoException is in method findCurrentPage() while find pharmacies number ", e);
         }
         if (pharmaciesNumber % RECORD_PER_PAGE == 0) {
             currentPage = pharmaciesNumber / RECORD_PER_PAGE;
@@ -151,8 +143,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDb = pharmacyDao.findPharmacyById(id).get();
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findPharmacyById() ", e);
-            throw new ServiceException("DaoException is in method findPharmacyById() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findPharmacyById() while find pharmacy by id ", e);
+            throw new ServiceException("DaoException is in method findPharmacyById() while find pharmacy by id ", e);
         }
         PharmacyDto pharmacy = convertPharmacyToPharmacyDto(pharmacyDb);
         return pharmacy;
@@ -166,8 +158,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.updateNumber(id, newNumber);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateNumber() ", e);
-            throw new ServiceException("DaoException is in method updateNumber() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateNumber() while update number ", e);
+            throw new ServiceException("DaoException is in method updateNumber() while update number ", e);
         }
     }
 
@@ -176,8 +168,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.updateCity(id, city);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateCity() ", e);
-            throw new ServiceException("DaoException is in method updateCity() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateCity() while update city ", e);
+            throw new ServiceException("DaoException is in method updateCity() while update city ", e);
         }
     }
 
@@ -186,8 +178,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.updateStreet(id, street);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateStreet() ", e);
-            throw new ServiceException("DaoException is in method updateStreet() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateStreet() while update street ", e);
+            throw new ServiceException("DaoException is in method updateStreet() while update street ", e);
         }
     }
 
@@ -196,8 +188,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.updateHouse(id, house);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateHouse() ", e);
-            throw new ServiceException("DaoException is in method updateHouse() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateHouse() while update house ", e);
+            throw new ServiceException("DaoException is in method updateHouse() while update house ", e);
         }
     }
 
@@ -207,8 +199,8 @@ public class PharmacyServiceImpl implements PharmacyService {
             try {
                 pharmacyDao.updateBlock(id, 0);
             } catch (DaoException e) {
-                logger.log(Level.ERROR, "DaoException is in method updateBlock() ", e);
-                throw new ServiceException("DaoException is in method updateBlock() ", e);
+                logger.log(Level.ERROR, "DaoException is in method updateBlock() while update block when new block 0 ", e);
+                throw new ServiceException("DaoException is in method updateBlock() while update block when new block 0 ", e);
             }
             return;
         }
@@ -217,8 +209,8 @@ public class PharmacyServiceImpl implements PharmacyService {
         try {
             pharmacyDao.updateBlock(id, newBlock);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateBlock() ", e);
-            throw new ServiceException("DaoException is in method updateBlock() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateBlock() while update block ", e);
+            throw new ServiceException("DaoException is in method updateBlock() while update block ", e);
         }
     }
 

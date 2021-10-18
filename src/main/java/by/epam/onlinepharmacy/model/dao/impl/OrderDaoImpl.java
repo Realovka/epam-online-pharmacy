@@ -8,7 +8,6 @@ import by.epam.onlinepharmacy.entity.StatusOrder;
 import by.epam.onlinepharmacy.entity.User;
 import by.epam.onlinepharmacy.exception.DaoException;
 import by.epam.onlinepharmacy.model.connection.ConnectionPool;
-import by.epam.onlinepharmacy.model.dao.ColumnName;
 import by.epam.onlinepharmacy.model.dao.OrderDao;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
@@ -40,9 +39,6 @@ import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_FIRST_NAME;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_LAST_NAME;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.USER_TELEPHONE;
 
-/**
- * The type Order dao.
- */
 public class OrderDaoImpl implements OrderDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -52,11 +48,6 @@ public class OrderDaoImpl implements OrderDao {
 
     private static OrderDaoImpl instance = new OrderDaoImpl();
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static OrderDaoImpl getInstance() {
         return instance;
     }
@@ -190,8 +181,8 @@ public class OrderDaoImpl implements OrderDao {
                 }
             }
         } catch (SQLException e) {
-            logger.log(Level.ERROR, "SQLException in method findProductsInOrder() ", e);
-            throw new DaoException("SQLException in method findProductsInOrder() ", e);
+            logger.log(Level.ERROR, "SQLException in method findBasketForOrder() ", e);
+            throw new DaoException("SQLException in method findBasketForOrder() ", e);
         }
         return basket;
     }

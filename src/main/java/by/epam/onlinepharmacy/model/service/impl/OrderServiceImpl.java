@@ -28,9 +28,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * The type Order service.
- */
 public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
     private static final String HEADER_FOR_PREPARED_ORDER = "Information about your order";
@@ -48,11 +45,6 @@ public class OrderServiceImpl implements OrderService {
 
     private static OrderServiceImpl instance = new OrderServiceImpl();
 
-    /**
-     * Gets instance.
-     *
-     * @return the instance
-     */
     public static OrderServiceImpl getInstance() {
         return instance;
     }
@@ -64,8 +56,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             pharmacyDb = pharmacyDao.findPharmacyById(pharmacyId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findPharmacyByIdr() ", e);
-            throw new ServiceException("DaoException is in method findPharmacyById() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createOrder() while find pharmacy by id ", e);
+            throw new ServiceException("DaoException is in method createOrder() while find pharmacy by id ", e);
         }
         Pharmacy pharmacy = pharmacyDb.get();
         LocalDate date = LocalDate.now();
@@ -78,8 +70,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             orderId = orderDao.createOrder(order);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method createOrder() ", e);
-            throw new ServiceException("DaoException is in method createOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createOrder() while create order", e);
+            throw new ServiceException("DaoException is in method createOrder() while create order", e);
         }
         try {
             Order newOrder = new Order.Builder()
@@ -94,8 +86,8 @@ public class OrderServiceImpl implements OrderService {
                     .build()));
             orderDao.createProductsInBasket(basketList);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method createProductsInBasket() ", e);
-            throw new ServiceException("DaoException is in method createProductsInBasket() ", e);
+            logger.log(Level.ERROR, "DaoException is in method createOrder() create products in basket ", e);
+            throw new ServiceException("DaoException is in method createOrder() create products in basket ", e);
         }
     }
 
@@ -107,8 +99,10 @@ public class OrderServiceImpl implements OrderService {
         try {
             orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId, statusOrderId);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method  findAllOrdersInNeededStatusForPharmacies() ", e);
-            throw new ServiceException("DaoException is in method findAllOrdersInNeededStatusForPharmacies() ", e);
+            logger.log(Level.ERROR, """
+                    DaoException is in method  findAllOrdersInNeededStatusForPharmacies() while find all processing orders """, e);
+            throw new ServiceException("""
+                    DaoException is in method findAllOrdersInNeededStatusForPharmacies() while find all processing orders """, e);
         }
         return orders;
     }
@@ -121,8 +115,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             basket = orderDao.findBasketForOrder(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findBasketForOrder() ", e);
-            throw new ServiceException("DaoException is in method findBasketForOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findBasketForOrder() while find basket for order ", e);
+            throw new ServiceException("DaoException is in method findBasketForOrder() while find basket for order ", e);
         }
         return basket;
     }
@@ -134,8 +128,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             orderDb = orderDao.findOrderById(id);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method findOrderById() ", e);
-            throw new ServiceException("DaoException is in method findOrderById() ", e);
+            logger.log(Level.ERROR, "DaoException is in method findOrderById() while find order by id ", e);
+            throw new ServiceException("DaoException is in method findOrderById() while find order by id ", e);
         }
         Order order = orderDb.get();
         return order;
@@ -154,8 +148,8 @@ public class OrderServiceImpl implements OrderService {
             order = orderDb.get();
             pharmacyDb = pharmacyDao.findPharmacyById(order.getPharmacy().getPharmacyId());
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method updateStatusOrder() ", e);
-            throw new ServiceException("DaoException is in method updateStatusOrder() ", e);
+            logger.log(Level.ERROR, "DaoException is in method updateStatusOrder() while update status or find pharmacy by id ", e);
+            throw new ServiceException("DaoException is in method updateStatusOrder() while update status or find pharmacy by id ", e);
         }
 
         if (statusOrder == 2) {
@@ -171,8 +165,8 @@ public class OrderServiceImpl implements OrderService {
         try {
             orderDao.deleteOrders(timestamp);
         } catch (DaoException e) {
-            logger.log(Level.ERROR, "DaoException is in method deleteOrders() ", e);
-            throw new ServiceException("DaoException is in method deleteOrders() ", e);
+            logger.log(Level.ERROR, "DaoException is in method deleteOrders() while delete orders ", e);
+            throw new ServiceException("DaoException is in method deleteOrders() while delete orders ", e);
         }
     }
 

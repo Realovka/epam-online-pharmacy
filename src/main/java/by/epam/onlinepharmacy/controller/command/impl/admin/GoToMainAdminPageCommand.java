@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * The type Go to main admin page command.
+ */
 public class GoToMainAdminPageCommand implements Command {
 
     @Override

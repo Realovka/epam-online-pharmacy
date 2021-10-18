@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to pharmacist login page command.
+ */
 public class GoToPharmacistLoginPageCommand implements Command {
 
     @Override

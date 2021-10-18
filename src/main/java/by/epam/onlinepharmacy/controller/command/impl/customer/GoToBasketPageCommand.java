@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to basket page command.
+ */
 public class GoToBasketPageCommand implements Command {
 
     @Override

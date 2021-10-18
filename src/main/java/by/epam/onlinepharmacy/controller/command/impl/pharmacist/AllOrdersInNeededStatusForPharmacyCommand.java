@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type All orders in needed status for pharmacy command.
+ */
 public class AllOrdersInNeededStatusForPharmacyCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

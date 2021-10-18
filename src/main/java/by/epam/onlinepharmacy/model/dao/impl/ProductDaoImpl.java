@@ -28,6 +28,9 @@ import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_PLANT;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_PRICE;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.PRODUCT_RECIPE;
 
+/**
+ * The type Product dao.
+ */
 public class ProductDaoImpl implements ProductDao {
 
     private Logger logger = LogManager.getLogger();
@@ -37,6 +40,11 @@ public class ProductDaoImpl implements ProductDao {
     private ProductDaoImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ProductDaoImpl getInstance() {
         return instance;
     }

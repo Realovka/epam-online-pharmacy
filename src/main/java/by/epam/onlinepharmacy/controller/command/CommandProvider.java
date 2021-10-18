@@ -81,6 +81,9 @@ import by.epam.onlinepharmacy.controller.command.impl.pharmacist.UpdatingOrderSt
 
 import java.util.EnumMap;
 
+/**
+ * The type Command provider.
+ */
 public class CommandProvider {
     private static CommandProvider instance = new CommandProvider();
 
@@ -168,10 +171,21 @@ public class CommandProvider {
         commands.put(CommandType.ALL_ORDERS_IN_PHARMACY_PAGE, new GoToMenuPageCommand());
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static CommandProvider getInstance() {
         return instance;
     }
 
+    /**
+     * Gets command.
+     *
+     * @param commandString the command string
+     * @return the command
+     */
     public Command getCommand(String commandString) {
         if (commandString.isEmpty()) {
             return commands.get(CommandType.DEFAULT);

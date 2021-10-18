@@ -23,6 +23,9 @@ import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_ID;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_NUMBER;
 import static by.epam.onlinepharmacy.model.dao.ColumnName.PHARMACY_STREET;
 
+/**
+ * The type Pharmacy dao.
+ */
 public class PharmacyDaoImpl implements PharmacyDao {
     private Logger logger = LogManager.getLogger();
     private ConnectionPool connectionPool = ConnectionPool.getInstance();
@@ -32,6 +35,11 @@ public class PharmacyDaoImpl implements PharmacyDao {
 
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static PharmacyDaoImpl getInstance() {
         return instance;
     }

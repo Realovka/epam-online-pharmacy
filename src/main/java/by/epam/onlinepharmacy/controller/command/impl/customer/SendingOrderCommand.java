@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * The type Sending order command.
+ */
 public class SendingOrderCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

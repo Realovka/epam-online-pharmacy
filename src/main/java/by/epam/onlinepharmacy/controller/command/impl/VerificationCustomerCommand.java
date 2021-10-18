@@ -15,6 +15,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Verification customer command.
+ */
 public class VerificationCustomerCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
@@ -24,7 +27,7 @@ public class VerificationCustomerCommand implements Command {
         String code = request.getParameter(RequestParameter.CODE);
         try {
             if (userService.updateCustomerStatus(code)) {
-              return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
+                return new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.REDIRECT);
             } else {
                 request.setAttribute(RequestAttribute.CODE_VERIFICATION_ERROR, BundleKey.CODE_VERIFICATION_ERROR);
                 return new CommandResult(PagePath.VERIFICATION_CUSTOMER, CommandResult.RoutingType.REDIRECT);

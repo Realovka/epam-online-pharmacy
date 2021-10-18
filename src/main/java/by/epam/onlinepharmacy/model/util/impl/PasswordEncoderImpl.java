@@ -9,6 +9,9 @@ import org.apache.logging.log4j.Logger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * The type Password encoder.
+ */
 public class PasswordEncoderImpl implements PasswordEncoder {
     private static final Logger logger = LogManager.getLogger();
     private static PasswordEncoderImpl instance = new PasswordEncoderImpl();
@@ -16,6 +19,11 @@ public class PasswordEncoderImpl implements PasswordEncoder {
     private PasswordEncoderImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static PasswordEncoderImpl getInstance() {
         return instance;
     }

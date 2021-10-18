@@ -7,6 +7,9 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+/**
+ * The type Http session listener.
+ */
 @WebListener
 public class HttpSessionListenerImpl implements HttpSessionListener {
     private static final String DEFAULT_LOCALE = "En";

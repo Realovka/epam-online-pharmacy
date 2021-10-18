@@ -16,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * The type Go to about product page command.
+ */
 public class GoToAboutProductPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

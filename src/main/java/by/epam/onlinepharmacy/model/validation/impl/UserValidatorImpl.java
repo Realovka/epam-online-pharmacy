@@ -5,6 +5,9 @@ import by.epam.onlinepharmacy.model.validation.UserValidator;
 
 import java.util.Map;
 
+/**
+ * The type User validator.
+ */
 public class UserValidatorImpl implements UserValidator {
     private static final String EMAIL_VALIDATOR = "^[\\w.!#$%&’*+/=?^_`{|}~<>-]+@\\w+\\.\\w+$";
     private static final String TELEPHONE_VALIDATOR = "^\\+[0-9]{12}$";
@@ -18,6 +21,11 @@ public class UserValidatorImpl implements UserValidator {
     private UserValidatorImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static UserValidatorImpl getInstance() {
         return instance;
     }

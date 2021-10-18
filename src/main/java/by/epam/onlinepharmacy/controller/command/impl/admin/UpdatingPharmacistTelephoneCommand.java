@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Updating pharmacist telephone command.
+ */
 public class UpdatingPharmacistTelephoneCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

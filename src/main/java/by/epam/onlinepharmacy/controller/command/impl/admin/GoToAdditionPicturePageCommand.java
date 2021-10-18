@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to addition picture page command.
+ */
 public class GoToAdditionPicturePageCommand implements Command {
 
     @Override

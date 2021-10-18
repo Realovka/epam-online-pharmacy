@@ -17,6 +17,9 @@ import java.util.List;
 
 import static by.epam.onlinepharmacy.controller.command.PagePath.*;
 
+/**
+ * The type Page redirect security filter.
+ */
 @WebFilter(urlPatterns = {"/pages/*"})
 public class PageRedirectSecurityFilter implements Filter {
     private Logger logger = LogManager.getLogger();

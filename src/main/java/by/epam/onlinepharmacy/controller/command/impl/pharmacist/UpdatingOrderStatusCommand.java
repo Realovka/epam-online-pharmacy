@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Updating order status command.
+ */
 public class UpdatingOrderStatusCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final String STATUS_IN_PROCESSING = "1";

@@ -63,10 +63,6 @@ public class OrderDaoImpl implements OrderDao {
 
     private static final String CREATE_ORDER = "INSERT INTO orders (data_starting, data_ending, pharmacy_id) VALUES (?, ?, ?)";
 
-    private static final String FIND_LAST_INSERT_ORDER_ID = """
-            SELECT order_id FROM orders WHERE order_id = last_insert_id()
-            """;
-
     private static final String CREATE_PRODUCTS_IN_BASKET = """
             INSERT INTO basket (user_id, product_id, order_id, quantity) VALUES (?, ?, ?, ?)
             """;
@@ -107,9 +103,10 @@ public class OrderDaoImpl implements OrderDao {
             preparedStatement.setTimestamp(2, order.getDataEnding());
             preparedStatement.setLong(3, order.getPharmacy().getPharmacyId());
             preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getGeneratedKeys();
-            if(resultSet.next()) {
-              return resultSet.getInt(1);
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
             }
         } catch (SQLException e) {
             logger.log(Level.ERROR, "SQLException in method createOrder() ", e);

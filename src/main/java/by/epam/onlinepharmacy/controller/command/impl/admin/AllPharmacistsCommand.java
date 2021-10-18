@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type All pharmacists command.
+ */
 public class AllPharmacistsCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

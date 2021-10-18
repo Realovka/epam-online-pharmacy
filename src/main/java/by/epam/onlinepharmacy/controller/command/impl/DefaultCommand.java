@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Default command.
+ */
 public class DefaultCommand implements Command {
 
     @Override

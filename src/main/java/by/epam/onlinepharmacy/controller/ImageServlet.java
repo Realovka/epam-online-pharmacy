@@ -24,6 +24,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Properties;
 
+/**
+ * The type Image servlet.
+ */
 @WebServlet(urlPatterns = "/addImage")
 @MultipartConfig(location = "E:/epam/img/", fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 5,

@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Verification pharmacist command.
+ */
 public class VerificationPharmacistCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

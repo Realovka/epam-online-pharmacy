@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Go to inactive pharmacists page command.
+ */
 public class GoToInactivePharmacistsPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

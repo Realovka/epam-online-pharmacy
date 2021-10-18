@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The type Registration command.
+ */
 public class RegistrationCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final String EMPTY_STRING = "\s";
@@ -35,7 +38,7 @@ public class RegistrationCommand implements Command {
         String role = request.getParameter(RequestParameter.ROLE);
 
         UserService userService = UserServiceImpl.getInstance();
-        Map<String, String> mapData =  userService.isFormValid(login, password, firstName, lastName, email, telephone);
+        Map<String, String> mapData = userService.isFormValid(login, password, firstName, lastName, email, telephone);
 
         request.setAttribute(RequestAttribute.MAP_DATA, mapData);
         if (mapData.containsValue(EMPTY_STRING)) {
@@ -47,7 +50,7 @@ public class RegistrationCommand implements Command {
             Optional<User> user = userService.createUser(login, password, firstName, lastName, email, telephone, role);
             if (user.isPresent()) {
                 if (user.get().getRole().equals(Role.CUSTOMER)) {
-                    commandResult = new  CommandResult(PagePath.VERIFICATION_CUSTOMER, CommandResult.RoutingType.REDIRECT);
+                    commandResult = new CommandResult(PagePath.VERIFICATION_CUSTOMER, CommandResult.RoutingType.REDIRECT);
                 } else {
                     commandResult = new CommandResult(PagePath.LOGIN, CommandResult.RoutingType.FORWARD);
                 }

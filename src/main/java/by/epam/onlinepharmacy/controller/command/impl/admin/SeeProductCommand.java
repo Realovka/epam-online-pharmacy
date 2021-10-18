@@ -14,6 +14,9 @@ import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type See product command.
+ */
 public class SeeProductCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

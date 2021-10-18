@@ -22,6 +22,9 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * The type Addition product command.
+ */
 public class AdditionProductCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final int RECORD_PER_PAGE = 5;

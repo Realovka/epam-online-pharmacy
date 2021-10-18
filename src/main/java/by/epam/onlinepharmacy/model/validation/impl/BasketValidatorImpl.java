@@ -2,6 +2,9 @@ package by.epam.onlinepharmacy.model.validation.impl;
 
 import by.epam.onlinepharmacy.model.validation.BasketValidator;
 
+/**
+ * The type Basket validator.
+ */
 public class BasketValidatorImpl implements BasketValidator {
     private static final int MIN_QUANTITY = 0;
     private static BasketValidatorImpl instance = new BasketValidatorImpl();
@@ -9,6 +12,11 @@ public class BasketValidatorImpl implements BasketValidator {
     private BasketValidatorImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static BasketValidatorImpl getInstance() {
         return instance;
     }

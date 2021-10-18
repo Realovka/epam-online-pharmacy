@@ -9,6 +9,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
+/**
+ * The type Encoder filter.
+ */
 @WebFilter(urlPatterns = {"/*"})
 public class EncoderFilter implements Filter {
 

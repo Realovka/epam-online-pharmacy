@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to search products by non-proprietary name command.
+ */
 public class GoToSearchProductsByNonProprietaryNameCommand implements Command {
 
     @Override

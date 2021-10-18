@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Search products by name command.
+ */
 public class SearchProductsByNameCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 
@@ -42,5 +45,4 @@ public class SearchProductsByNameCommand implements Command {
         session.setAttribute(SessionAttribute.LIST_PRODUCTS_BY_NAME, products);
         return new CommandResult(PagePath.SEARCH_PRODUCTS_BY_NAME, CommandResult.RoutingType.REDIRECT);
     }
-
 }

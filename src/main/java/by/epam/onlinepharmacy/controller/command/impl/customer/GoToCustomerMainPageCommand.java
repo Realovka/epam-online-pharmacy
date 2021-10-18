@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to customer main page command.
+ */
 public class GoToCustomerMainPageCommand implements Command {
 
     @Override

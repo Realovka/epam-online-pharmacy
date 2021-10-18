@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Inactivation pharmacist command.
+ */
 public class InactivationPharmacistCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

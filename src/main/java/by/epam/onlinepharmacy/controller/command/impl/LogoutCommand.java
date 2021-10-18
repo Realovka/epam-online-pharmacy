@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.controller.command.PagePath;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Logout command.
+ */
 public class LogoutCommand implements Command {
 
     @Override

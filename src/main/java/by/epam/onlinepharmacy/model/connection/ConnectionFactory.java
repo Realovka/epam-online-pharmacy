@@ -12,6 +12,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+/**
+ * The type Connection factory.
+ */
 class ConnectionFactory {
     private static final Logger logger = LogManager.getLogger();
     private static final Properties properties = new Properties();
@@ -48,6 +51,12 @@ class ConnectionFactory {
     private ConnectionFactory() {
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     * @throws SQLException the sql exception
+     */
     static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }

@@ -21,6 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Updating pharmacist first name command.
+ */
 public class UpdatingPharmacistFirstNameCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

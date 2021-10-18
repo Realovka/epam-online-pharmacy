@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.TimerTask;
 
+/**
+ * The type Delete order timer task.
+ */
 public class DeleteOrderTimerTask extends TimerTask {
     private static final Logger logger = LogManager.getLogger();
 

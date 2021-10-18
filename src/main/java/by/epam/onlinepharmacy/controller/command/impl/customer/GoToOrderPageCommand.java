@@ -20,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * The type Go to order page command.
+ */
 public class GoToOrderPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

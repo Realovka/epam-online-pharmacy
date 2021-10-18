@@ -7,6 +7,9 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.util.Timer;
 
+/**
+ * The type Servlet context listener.
+ */
 @WebListener
 public class ServletContextListenerImpl implements ServletContextListener {
     private Timer timer = new Timer();

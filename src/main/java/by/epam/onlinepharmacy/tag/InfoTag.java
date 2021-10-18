@@ -9,6 +9,9 @@ import javax.servlet.jsp.JspWriter;
 import javax.servlet.jsp.tagext.TagSupport;
 import java.io.IOException;
 
+/**
+ * The type Info tag.
+ */
 public class InfoTag extends TagSupport {
     private static final Logger logger = LogManager.getLogger();
 

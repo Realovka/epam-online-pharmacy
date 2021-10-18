@@ -22,6 +22,9 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Updating product price command.
+ */
 public class UpdatingProductPriceCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final int RECORD_PER_PAGE = 5;

@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * The type Change language command.
+ */
 public class ChangeLanguageCommand implements Command {
     private static final String RUSSIAN_LOCALE = "Ru";
     private static final String ENGLISH_LOCALE = "En";

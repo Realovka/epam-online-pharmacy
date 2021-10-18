@@ -9,6 +9,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * The type Go to menu page command.
+ */
 public class GoToMenuPageCommand implements Command {
 
     @Override

@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Addition pharmacy command.
+ */
 public class AdditionPharmacyCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final int RECORD_PER_PAGE = 15;

@@ -22,6 +22,9 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Updating product non proprietary name command.
+ */
 public class UpdatingProductNonProprietaryNameCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final int RECORD_PER_PAGE = 5;
@@ -29,7 +32,7 @@ public class UpdatingProductNonProprietaryNameCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {
         HttpSession session = request.getSession();
-        int currentPage = (int)session.getAttribute(SessionAttribute.CURRENT_PAGE);
+        int currentPage = (int) session.getAttribute(SessionAttribute.CURRENT_PAGE);
         long productId = (long) session.getAttribute(SessionAttribute.PRODUCT_ID);
         String nonProprietaryName = request.getParameter(RequestParameter.UPDATING_PRODUCT_NON_PROPRIETARY_NAME);
         ProductService productService = ProductServiceImpl.getInstance();
@@ -39,7 +42,7 @@ public class UpdatingProductNonProprietaryNameCommand implements Command {
         List<ProductDto> nextProducts;
         List<ProductDto> previousProducts = new ArrayList<>();
 
-        if(!productValidator.isValidNonProprietyName(nonProprietaryName)) {
+        if (!productValidator.isValidNonProprietyName(nonProprietaryName)) {
             request.setAttribute(RequestAttribute.PRODUCT_NON_PROPRIETARY_NAME_ERROR, BundleKey.PRODUCT_NON_PROPRIETARY_NAME_ERROR);
             return new CommandResult(PagePath.UPDATING_PRODUCT_NON_PROPRIETARY_NAME, CommandResult.RoutingType.FORWARD);
         }
@@ -53,8 +56,8 @@ public class UpdatingProductNonProprietaryNameCommand implements Command {
             nextProducts = productService.findListProducts((currentPage) * RECORD_PER_PAGE);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, """
-                     ServiceException in method execute while
-                     find list current products or update non-proprietary name of product """, e);
+                    ServiceException in method execute while
+                    find list current products or update non-proprietary name of product """, e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);
         }
         session.setAttribute(SessionAttribute.PREVIOUS_PRODUCTS, previousProducts);

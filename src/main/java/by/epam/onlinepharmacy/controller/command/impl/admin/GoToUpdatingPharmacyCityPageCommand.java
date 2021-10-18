@@ -8,6 +8,9 @@ import by.epam.onlinepharmacy.controller.command.SessionAttribute;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * The type Go to updating pharmacy city page command.
+ */
 public class GoToUpdatingPharmacyCityPageCommand implements Command {
 
     @Override

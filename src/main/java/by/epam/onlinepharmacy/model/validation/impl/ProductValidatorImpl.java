@@ -6,6 +6,9 @@ import by.epam.onlinepharmacy.model.validation.ProductValidator;
 import java.math.BigInteger;
 import java.util.Map;
 
+/**
+ * The type Product validator.
+ */
 public class ProductValidatorImpl implements ProductValidator {
     private static final int MAX_SYMBOLS_FOR_STRING_PARAMETER = 45;
     private static double MIN_PRICE = 0.0;
@@ -18,6 +21,11 @@ public class ProductValidatorImpl implements ProductValidator {
 
     private static ProductValidatorImpl instance = new ProductValidatorImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ProductValidatorImpl getInstance() {
         return instance;
     }

@@ -10,7 +10,13 @@ import java.sql.SQLException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 
+/**
+ * The enum Connection pool.
+ */
 public enum ConnectionPool {
+    /**
+     * Instance connection pool.
+     */
     INSTANCE;
 
     private Logger logger = LogManager.getLogger();
@@ -38,10 +44,20 @@ public enum ConnectionPool {
         logger.log(Level.INFO, "Connection pool was created");
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ConnectionPool getInstance() {
         return INSTANCE;
     }
 
+    /**
+     * Gets connection.
+     *
+     * @return the connection
+     */
     public Connection getConnection() {
         ProxyConnection connection = null;
         try {
@@ -54,6 +70,11 @@ public enum ConnectionPool {
         return connection;
     }
 
+    /**
+     * Release connection.
+     *
+     * @param connection the connection
+     */
     public void releaseConnection(Connection connection) {
         if (connection instanceof ProxyConnection && givenAwayConnections.remove(connection)) {
             try {
@@ -65,6 +86,9 @@ public enum ConnectionPool {
         }
     }
 
+    /**
+     * Destroy pool.
+     */
     public void destroyPool() {
         for (int i = 0; i < DEFAULT_POOL_SIZE; i++) {
             try {

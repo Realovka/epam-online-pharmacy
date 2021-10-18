@@ -151,13 +151,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePharmacistStatus(String id, Status status) throws ServiceException {
+    public boolean updatePharmacistStatus(String id, Status status) throws ServiceException {
+        boolean result;
         try {
-            userDao.updateUserStatus(Long.parseLong(id), status);
+            result = userDao.updateUserStatus(Long.parseLong(id), status) > 0;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method  updatePharmacistStatus() ", e);
             throw new ServiceException("DaoException is in method updatePharmacistStatus() ", e);
         }
+        return result;
     }
 
     @Override
@@ -203,43 +205,51 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateFirstName(long id, String firstName) throws ServiceException {
+    public boolean updateFirstName(long id, String firstName) throws ServiceException {
+        boolean result;
         try {
-            userDao.updateFirstName(id, firstName);
+            result = userDao.updateFirstName(id, firstName) > 1;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateFirstName() ", e);
             throw new ServiceException("DaoException is in method updateFirstName() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateLastName(long id, String lastName) throws ServiceException {
+    public boolean updateLastName(long id, String lastName) throws ServiceException {
+        boolean result;
         try {
-            userDao.updateLastName(id, lastName);
+            result = userDao.updateLastName(id, lastName) > 1;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateLastName() ", e);
             throw new ServiceException("DaoException is in method updateLastName() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateEmail(long id, String email) throws ServiceException {
+    public boolean updateEmail(long id, String email) throws ServiceException {
+        boolean result;
         try {
-            userDao.updateEmail(id, email);
+            result = userDao.updateEmail(id, email) > 0;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateEmail() ", e);
             throw new ServiceException("DaoException is in method updateEmail() ", e);
         }
+        return result;
     }
 
     @Override
-    public void updateTelephone(long id, String telephone) throws ServiceException {
+    public boolean updateTelephone(long id, String telephone) throws ServiceException {
+        boolean result;
         try {
-            userDao.updateTelephone(id, telephone);
+            result = userDao.updateTelephone(id, telephone) > 0;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateTelephone() ", e);
             throw new ServiceException("DaoException is in method updateTelephone() ", e);
         }
+        return result;
     }
 
     private String convertRole(String role) {

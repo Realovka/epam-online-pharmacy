@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
+/**
+ * The type Updating product quantity command.
+ */
 public class UpdatingProductQuantityCommand implements Command {
     @Override
     public CommandResult execute(HttpServletRequest request) {

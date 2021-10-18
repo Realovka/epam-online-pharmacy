@@ -18,6 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * The type Addition product to order command.
+ */
 public class AdditionProductToOrderCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

@@ -5,6 +5,9 @@ import by.epam.onlinepharmacy.model.validation.PharmacyValidator;
 
 import java.util.Map;
 
+/**
+ * The type Pharmacy validator.
+ */
 public class PharmacyValidatorImpl implements PharmacyValidator {
 
     private static final String CITY_REGEX = "^[A-Za-x -]+$";
@@ -19,6 +22,11 @@ public class PharmacyValidatorImpl implements PharmacyValidator {
     private PharmacyValidatorImpl() {
     }
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static PharmacyValidatorImpl getInstance() {
         return instance;
     }

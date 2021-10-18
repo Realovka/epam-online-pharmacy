@@ -18,6 +18,9 @@ import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type All products page command.
+ */
 public class AllProductsPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
     private static final int RECORD_PER_PAGE = 5;

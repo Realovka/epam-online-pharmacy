@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+/**
+ * The type Main page redirect filter.
+ */
 @WebFilter(urlPatterns = {"/pages/login.jsp"})
 public class MainPageRedirectFilter implements Filter {
 

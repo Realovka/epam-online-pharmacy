@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Search products by non-proprietary name command.
+ */
 public class SearchProductsByNonProprietaryNameCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

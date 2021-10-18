@@ -16,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * The type Go to updating product instruction page command.
+ */
 public class GoToUpdatingProductInstructionPageCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

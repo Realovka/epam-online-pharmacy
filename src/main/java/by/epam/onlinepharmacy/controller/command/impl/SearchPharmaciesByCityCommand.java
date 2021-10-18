@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
+/**
+ * The type Search pharmacies by city command.
+ */
 public class SearchPharmaciesByCityCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
 

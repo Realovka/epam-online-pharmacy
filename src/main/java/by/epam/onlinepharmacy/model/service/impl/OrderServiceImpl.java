@@ -28,6 +28,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * The type Order service.
+ */
 public class OrderServiceImpl implements OrderService {
     private Logger logger = LogManager.getLogger();
     private static final String HEADER_FOR_PREPARED_ORDER = "Information about your order";
@@ -45,6 +48,11 @@ public class OrderServiceImpl implements OrderService {
 
     private static OrderServiceImpl instance = new OrderServiceImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static OrderServiceImpl getInstance() {
         return instance;
     }

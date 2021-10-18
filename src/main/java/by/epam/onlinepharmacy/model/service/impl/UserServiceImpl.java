@@ -31,6 +31,9 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.LOGIN;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.PASSWORD;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.TELEPHONE;
 
+/**
+ * The type User service.
+ */
 public class UserServiceImpl implements UserService {
     private Logger logger = LogManager.getLogger();
     private static final String ROLE_CUSTOMER_IN_ENGLISH = "CUSTOMER";
@@ -52,6 +55,11 @@ public class UserServiceImpl implements UserService {
 
     private static UserServiceImpl instance = new UserServiceImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static UserServiceImpl getInstance() {
         return instance;
     }

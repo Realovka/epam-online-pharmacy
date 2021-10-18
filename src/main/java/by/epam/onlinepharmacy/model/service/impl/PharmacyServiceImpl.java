@@ -26,6 +26,9 @@ import static by.epam.onlinepharmacy.controller.command.RequestParameter.NUMBER;
 import static by.epam.onlinepharmacy.controller.command.RequestParameter.STREET;
 
 
+/**
+ * The type Pharmacy service.
+ */
 public class PharmacyServiceImpl implements PharmacyService {
     private Logger logger = LogManager.getLogger();
     private static final String ZERO_STRING = "0";
@@ -39,6 +42,11 @@ public class PharmacyServiceImpl implements PharmacyService {
 
     private static PharmacyServiceImpl instance = new PharmacyServiceImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static PharmacyServiceImpl getInstance() {
         return instance;
     }

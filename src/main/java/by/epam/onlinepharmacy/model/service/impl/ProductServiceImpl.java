@@ -21,6 +21,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+/**
+ * The type Product service.
+ */
 public class ProductServiceImpl implements ProductService {
     private Logger logger = LogManager.getLogger();
     private static final String NEED_RECIPE_EN = "Yes";
@@ -36,6 +39,11 @@ public class ProductServiceImpl implements ProductService {
 
     private static ProductServiceImpl instance = new ProductServiceImpl();
 
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
     public static ProductServiceImpl getInstance() {
         return instance;
     }

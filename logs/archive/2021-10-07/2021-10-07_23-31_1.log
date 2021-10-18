@@ -1,0 +1,135 @@
+2021-10-07 14:14:56.292 [http-nio-8080-exec-4] ERROR onlinepharmacy.model.service.impl.OrderServiceImpl - DaoException is in method findAllProductsInOrder() 
+by.epam.onlinepharmacy.exception.DaoException: SQLException in method findProductsInOrder() 
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.findBasketForOrder(OrderDaoImpl.java:165) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.findBasketForOrder(OrderServiceImpl.java:105) [classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.pharmacist.BasketForOrderCommand.execute(BasketForOrderCommand.java:28) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.doGet(Controller.java:22) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at by.epam.onlinepharmacy.controller.filter.EncoderFilter.doFilter(EncoderFilter.java:30) [classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: java.sql.SQLException: After end of result set
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.checkRowPos(ResultSetImpl.java:492) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:845) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:863) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.findBasketForOrder(OrderDaoImpl.java:157) ~[classes/:?]
+	... 31 more
+2021-10-07 14:14:56.363 [http-nio-8080-exec-4] ERROR controller.command.impl.pharmacist.BasketForOrderCommand - ServiceException in method execute while find all products in order or find order
+by.epam.onlinepharmacy.exception.ServiceException: DaoException is in method findAllProductsInOrder() 
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.findBasketForOrder(OrderServiceImpl.java:108) ~[classes/:?]
+	at by.epam.onlinepharmacy.controller.command.impl.pharmacist.BasketForOrderCommand.execute(BasketForOrderCommand.java:28) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.processRequest(Controller.java:33) [classes/:?]
+	at by.epam.onlinepharmacy.controller.Controller.doGet(Controller.java:22) [classes/:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:626) [servlet-api.jar:?]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) [servlet-api.jar:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) [tomcat-websocket.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at by.epam.onlinepharmacy.controller.filter.EncoderFilter.doFilter(EncoderFilter.java:30) [classes/:?]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:199) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96) [catalina.jar:8.5.57]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:543) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:81) [catalina.jar:8.5.57]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:690) [catalina.jar:8.5.57]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:87) [catalina.jar:8.5.57]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343) [catalina.jar:8.5.57]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:615) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) [tomcat-coyote.jar:8.5.57]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:818) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1626) [tomcat-coyote.jar:8.5.57]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) [tomcat-coyote.jar:8.5.57]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130) [?:?]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630) [?:?]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:8.5.57]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+Caused by: by.epam.onlinepharmacy.exception.DaoException: SQLException in method findProductsInOrder() 
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.findBasketForOrder(OrderDaoImpl.java:165) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.findBasketForOrder(OrderServiceImpl.java:105) ~[classes/:?]
+	... 30 more
+Caused by: java.sql.SQLException: After end of result set
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:89) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:63) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.checkRowPos(ResultSetImpl.java:492) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:845) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at com.mysql.cj.jdbc.result.ResultSetImpl.getString(ResultSetImpl.java:863) ~[mysql-connector-java-8.0.20.jar:8.0.20]
+	at by.epam.onlinepharmacy.model.dao.impl.OrderDaoImpl.findBasketForOrder(OrderDaoImpl.java:157) ~[classes/:?]
+	at by.epam.onlinepharmacy.model.service.impl.OrderServiceImpl.findBasketForOrder(OrderServiceImpl.java:105) ~[classes/:?]
+	... 30 more
+2021-10-07 14:15:32.633 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 14:43:02.089 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 14:44:47.823 [RMI TCP Connection(5)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 14:52:18.725 [RMI TCP Connection(8)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 15:00:40.114 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 15:06:37.751 [RMI TCP Connection(3)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 15:21:43.802 [RMI TCP Connection(6)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 15:26:59.789 [RMI TCP Connection(9)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 15:31:43.113 [RMI TCP Connection(12)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 16:57:11.627 [RMI TCP Connection(15)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 18:41:20.612 [RMI TCP Connection(20)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 19:42:18.748 [RMI TCP Connection(24)-127.0.0.1] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:05:48.965 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:08:51.709 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:32:23.179 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:32:54.991 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:33:29.435 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:34:45.387 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:35:02.117 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:35:50.933 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:36:53.333 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:39:24.229 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:42:53.132 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:45:12.344 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 21:50:14.278 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 22:55:31.210 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 22:56:49.774 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 22:57:10.385 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:01:01.457 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:01:51.026 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:02:03.345 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:04:44.876 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:07:50.807 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:11:02.480 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:15:16.511 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:21:11.068 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:22:43.762 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:27:49.441 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:28:29.846 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:29:44.267 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:30:12.773 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:30:48.489 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created
+2021-10-07 23:31:38.691 [main] INFO  epam.onlinepharmacy.model.connection.ConnectionPool - Connection pool was created

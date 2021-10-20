@@ -209,7 +209,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductDto findInstructionByProductId(long productId) throws ServiceException {
+    public ProductDto findProductForInstructionByProductId(long productId) throws ServiceException {
         ProductDto productDto;
         try {
             Product product = productDao.findProductById(productId).orElse(new Product());

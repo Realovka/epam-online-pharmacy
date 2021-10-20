@@ -31,7 +31,7 @@ public class GoToUpdatingProductInstructionPageCommand implements Command {
         ProductService productService = ProductServiceImpl.getInstance();
         ProductDto product;
         try {
-            product = productService.findInstructionByProductId(id);
+            product = productService.findProductForInstructionByProductId(id);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException while find ProductDto by productId ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.REDIRECT);

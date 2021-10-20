@@ -203,12 +203,12 @@ public interface ProductService {
     void updateProductInstruction(long productId, String instruction) throws ServiceException;
 
     /**
-     * Find instruction by product id product dto.
+     * Find product for instruction by product id product dto.
      *
      * @param productId the product id
      * @return the product dto
      * @throws ServiceException the service exception
      */
-    ProductDto findInstructionByProductId(long productId) throws ServiceException;
+    ProductDto findProductForInstructionByProductId(long productId) throws ServiceException;
 
 }

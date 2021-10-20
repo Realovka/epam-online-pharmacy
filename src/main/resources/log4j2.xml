@@ -10,8 +10,17 @@
             <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %logger{1} - %msg%n"/>
         </Console>
 
-        <RollingFile name="FileRolling" filename="E:/epam/onlinepharmacy/logs/log.txt" append="true"
+        <RollingFile name="FileRollingProject" filename="E:/epam/onlinepharmacy/logs/log.txt" append="true"
                      filePattern="E:/epam/onlinepharmacy/logs/archive/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
+            <PatternLayout pattern="${pattern_file}"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="15 KB"/>
+            </Policies>
+        </RollingFile>
+
+
+        <RollingFile name="FileRolling" filename="logs/log.txt" append="true"
+                     filePattern="$logs/archive/${date:yyyy-MM-dd}/%d{yyyy-MM-dd_HH-mm}_%i.log">
             <PatternLayout pattern="${pattern_file}"/>
             <Policies>
                 <SizeBasedTriggeringPolicy size="15 KB"/>
@@ -28,9 +37,14 @@
             <AppenderRef ref="FileRolling"/>
         </Logger>
 
+        <Logger name="Rolling_File" level="debug" additivity="false">
+            <AppenderRef ref="FileRollingProject"/>
+        </Logger>
+
         <Root level="all">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="FileRolling"/>
+            <AppenderRef ref="FileRollingProject"/>
         </Root>
     </Loggers>
 </Configuration>

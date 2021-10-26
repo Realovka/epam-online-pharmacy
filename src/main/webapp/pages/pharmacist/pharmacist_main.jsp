@@ -61,6 +61,9 @@
         </table>
     </c:when>
 </c:choose>
+<c:if test="${requestScope.noSuchPharmaciesInSearchError != null}">
+    <fmt:message key="msg.no_result_for_search_pharmacies"/>
+</c:if><br>
 <a href="${pageContext.request.contextPath}/controller?command=logout" class="common_link"><fmt:message
         key="link.logout"/></a>
 </body>

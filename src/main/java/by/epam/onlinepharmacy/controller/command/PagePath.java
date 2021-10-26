@@ -9,6 +9,7 @@ public final class PagePath {
     public static final String QUESTIONS = "/pages/questions.jsp";
     public static final String ABOUT_US = "/pages/about_us.jsp";
 
+
     //admin
     public static final String MAIN_ADMIN = "/pages/admin/admin_main.jsp";
     public static final String ALL_PHARMACISTS = "/pages/admin/all_pharmacists.jsp";
@@ -42,9 +43,9 @@ public final class PagePath {
     public static final String SEARCH_PRODUCTS_BY_NON_PROPRIETARY_NAME = "/pages/customer/products_by_non_proprietary_name.jsp";
     public static final String ABOUT_PRODUCT = "/pages/customer/about_product.jsp";
     public static final String BASKET = "/pages/customer/basket.jsp";
-    public static final String PHARMACIES_FOR_CUSTOMER = "/pages/customer/pharmacies_for_customer.jsp";
     public static final String ORDER = "/pages/customer/order.jsp";
     public static final String ORDER_ACCEPT = "/pages/customer/order_accept.jsp";
+    public static final String PHARMACIES_FOR_CUSTOMER = "/pages/customer/pharmacies_for_customer.jsp";
 
     //pharmacist
     public static final String MAIN_PHARMACIST = "/pages/pharmacist/pharmacist_main.jsp";

@@ -25,4 +25,9 @@ public class HttpSessionListenerImpl implements HttpSessionListener {
         session.setAttribute(SessionAttribute.CURRENT_BUNDLE, DEFAULT_BUNDLE);
         session.setAttribute(SessionAttribute.PREVIOUS_QUERY, DEFAULT_PREVIOUS_QUERY);
     }
+
+    @Override
+    public void sessionDestroyed(HttpSessionEvent se) {
+        HttpSessionListener.super.sessionDestroyed(se);
+    }
 }

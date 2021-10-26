@@ -92,17 +92,17 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Order> findAllOrdersInNeededStatusForPharmacies(long pharmacyId, String statusId) throws ServiceException {
+    public List<Order> findAllOrdersInNeededStatusForPharmacy(long pharmacyId, String statusId) throws ServiceException {
         int statusOrderId = Integer.parseInt(statusId);
         List<Order> orders;
         OrderDao orderDao = OrderDaoImpl.getInstance();
         try {
-            orders = orderDao.findAllProcessingOrdersForPharmacies(pharmacyId, statusOrderId);
+            orders = orderDao.findAllProcessingOrdersForPharmacy(pharmacyId, statusOrderId);
         } catch (DaoException e) {
             logger.log(Level.ERROR, """
-                    DaoException is in method  findAllOrdersInNeededStatusForPharmacies() while find all processing orders """, e);
+                    DaoException is in method  findAllOrdersInNeededStatusForPharmacy() while find all processing orders """, e);
             throw new ServiceException("""
-                    DaoException is in method findAllOrdersInNeededStatusForPharmacies() while find all processing orders """, e);
+                    DaoException is in method findAllOrdersInNeededStatusForPharmacy() while find all processing orders """, e);
         }
         return orders;
     }

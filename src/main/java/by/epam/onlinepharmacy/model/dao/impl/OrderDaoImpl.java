@@ -125,7 +125,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId, int statusId) throws DaoException {
+    public List<Order> findAllProcessingOrdersForPharmacy(long pharmacyId, int statusId) throws DaoException {
         List<Order> orders = new ArrayList<>();
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_ORDERS_IN_NEED_STATUS)) {

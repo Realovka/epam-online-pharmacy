@@ -32,14 +32,14 @@ public interface OrderDao {
     void createProductsInBasket(List<Basket> basket) throws DaoException;
 
     /**
-     * Find all processing orders for pharmacies list.
+     * Find all processing orders for pharmacy list.
      *
      * @param pharmacyId the pharmacy id
      * @param statusId   the status id
      * @return the list
      * @throws DaoException the dao exception
      */
-    List<Order> findAllProcessingOrdersForPharmacies(long pharmacyId, int statusId) throws DaoException;
+    List<Order> findAllProcessingOrdersForPharmacy(long pharmacyId, int statusId) throws DaoException;
 
     /**
      * Find basket for order list.

@@ -25,14 +25,14 @@ public interface OrderService {
     void createOrder(long pharmacyId, User auth, Map<Product, Integer> products) throws ServiceException;
 
     /**
-     * Find all orders in needed status for pharmacies list.
+     * Find all orders in needed status for pharmacy list.
      *
      * @param pharmacyId the pharmacy id
      * @param statusId   the status id
      * @return the list
      * @throws ServiceException the service exception
      */
-    List<Order> findAllOrdersInNeededStatusForPharmacies(long pharmacyId, String statusId) throws ServiceException;
+    List<Order> findAllOrdersInNeededStatusForPharmacy(long pharmacyId, String statusId) throws ServiceException;
 
     /**
      * Find basket for order list.

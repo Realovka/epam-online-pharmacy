@@ -208,7 +208,7 @@ public class UserServiceImpl implements UserService {
     public boolean updateFirstName(long id, String firstName) throws ServiceException {
         boolean result;
         try {
-            result = userDao.updateFirstName(id, firstName) > 1;
+            result = userDao.updateFirstName(id, firstName) > 0;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateFirstName() ", e);
             throw new ServiceException("DaoException is in method updateFirstName() ", e);
@@ -220,7 +220,7 @@ public class UserServiceImpl implements UserService {
     public boolean updateLastName(long id, String lastName) throws ServiceException {
         boolean result;
         try {
-            result = userDao.updateLastName(id, lastName) > 1;
+            result = userDao.updateLastName(id, lastName) > 0;
         } catch (DaoException e) {
             logger.log(Level.ERROR, "DaoException is in method updateLastName() ", e);
             throw new ServiceException("DaoException is in method updateLastName() ", e);

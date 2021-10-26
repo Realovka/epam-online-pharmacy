@@ -31,7 +31,7 @@ public class AllOrdersInNeededStatusForPharmacyCommand implements Command {
         OrderService orderService = OrderServiceImpl.getInstance();
         List<Order> orders;
         try {
-            orders = orderService.findAllOrdersInNeededStatusForPharmacies(pharmacyId, statusId);
+            orders = orderService.findAllOrdersInNeededStatusForPharmacy(pharmacyId, statusId);
         } catch (ServiceException e) {
             logger.log(Level.ERROR, "ServiceException in method execute while find all orders in needed status ", e);
             return new CommandResult(PagePath.ERROR_500_PAGE, CommandResult.RoutingType.FORWARD);

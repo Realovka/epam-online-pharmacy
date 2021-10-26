@@ -81,30 +81,30 @@ public class OrderDaoImplTest {
     }
 
     @Test
-    public void findAllProcessingOrdersForPharmaciesTest() throws DaoException {
-        when(orderDao.findAllProcessingOrdersForPharmacies(1, 1)).thenReturn(orders);
-        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacies(1, 1);
+    public void findAllProcessingOrdersForPharmacyTest() throws DaoException {
+        when(orderDao.findAllProcessingOrdersForPharmacy(1, 1)).thenReturn(orders);
+        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacy(1, 1);
         assertEquals(orders, actualList);
     }
 
     @Test
-    public void findAllProcessingOrdersForPharmaciesNotNullTest() throws DaoException {
-        when(orderDao.findAllProcessingOrdersForPharmacies(1, 1)).thenReturn(orders);
-        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacies(1, 1);
+    public void findAllProcessingOrdersForPharmacyNotNullTest() throws DaoException {
+        when(orderDao.findAllProcessingOrdersForPharmacy(1, 1)).thenReturn(orders);
+        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacy(1, 1);
         assertNotNull(actualList);
     }
 
     @Test
     public void findBasketForOrderTest() throws DaoException {
-        when(orderDao.findAllProcessingOrdersForPharmacies(1, 1)).thenReturn(orders);
-        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacies(1, 1);
+        when(orderDao.findAllProcessingOrdersForPharmacy(1, 1)).thenReturn(orders);
+        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacy(1, 1);
         assertEquals(orders, actualList);
     }
 
     @Test
     public void findBasketForOrderNotNullTest() throws DaoException {
-        when(orderDao.findAllProcessingOrdersForPharmacies(1, 1)).thenReturn(orders);
-        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacies(1, 1);
+        when(orderDao.findAllProcessingOrdersForPharmacy(1, 1)).thenReturn(orders);
+        List<Order> actualList = orderDao.findAllProcessingOrdersForPharmacy(1, 1);
         assertNotNull(actualList);
     }
 

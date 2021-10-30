@@ -10,7 +10,7 @@ public class ProductDto {
     private String dose;
     private String plant;
     private String group;
-    public BigDecimal price;
+    private BigDecimal price;
     private String recipe;
     private String pathToPicture;
     private String instruction;
